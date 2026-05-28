@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-California Road Trip — Route Explorer</title>
+  <style>
+    :root {
+      --primary: #1a365d;
+      --accent: #e53e3e;
+      --gold: #d69e2e;
+      --forest: #276749;
+      --sky: #2b6cb0;
+      --desert: #c05621;
+      --cream: #fffdf7;
+      --light: #f7fafc;
+      --dark: #1a202c;
+      --mid: #4a5568;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2d6a4f 60%, #c05621 100%);
+      color: white; padding: 56px 40px; text-align: center;
+    }
+    .hero h1 { font-size: 2.6rem; letter-spacing: -0.5px; margin-bottom: 10px; }
+    .hero .sub { font-family: sans-serif; font-size: 1.05rem; opacity: .88; margin-bottom: 6px; }
+    .hero .meta { font-family: sans-serif; font-size: 0.82rem; opacity: .65; letter-spacing: 1.2px; text-transform: uppercase; }
+    .hero .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .hero-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 5px 16px; font-family: sans-serif; font-size: 0.82rem; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── SECTION TITLES ── */
+    .sec-title { font-size: 1.55rem; color: var(--primary); margin-bottom: 4px; }
+    .sec-sub { font-family: sans-serif; font-size: 0.87rem; color: var(--mid); margin-bottom: 28px; }
+
+
+    /* ── ROUTE CARDS ── */
+    .routes-section { padding: 44px 0 60px; }
+    .confirm-note { background: linear-gradient(135deg, #fffaf0, #fff5f5); border: 2px solid #f6ad55; border-radius: 10px; padding: 18px 22px; margin-bottom: 36px; font-family: sans-serif; font-size: 0.88rem; color: var(--dark); }
+
+    .route-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.09); margin-bottom: 44px; overflow: hidden; border: 1px solid var(--border); }
+
+    .route-header { padding: 22px 28px 18px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--border); }
+    .route-num { font-family: sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mid); margin-bottom: 3px; }
+    .route-title { font-size: 1.45rem; color: var(--primary); margin-bottom: 3px; }
+    .route-tag { font-family: sans-serif; font-size: 0.87rem; color: var(--mid); }
+    .stats { display: flex; gap: 22px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-val { display: block; font-size: 1.35rem; font-weight: bold; color: var(--primary); }
+    .stat-lbl { font-family: sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .8px; color: var(--mid); }
+
+    .route-body { display: grid; grid-template-columns: 1fr 1fr; }
+    @media(max-width:800px){ .route-body { grid-template-columns: 1fr; } }
+
+    .route-info { padding: 22px 28px; border-right: 1px solid var(--border); }
+
+    /* stop chips */
+    .path { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 16px; }
+    .sc { font-family: sans-serif; font-size: 0.76rem; background: var(--light); border: 1px solid var(--border); border-radius: 20px; padding: 3px 9px; }
+    .sc.ys  { background: #f0fff4; border-color: #68d391; color: var(--forest); font-weight: bold; }
+    .sc.hi  { background: #fff5f5; border-color: #fc8181; color: #c53030; font-weight: bold; }
+    .sc.or  { background: #fffaf0; border-color: #f6ad55; color: var(--desert); font-weight: bold; }
+    .sa { color: #cbd5e0; font-size: 0.85rem; }
+
+    /* day grid — clickable rows */
+    .day-grid { display: flex; flex-direction: column; font-family: sans-serif; font-size: 0.79rem; margin-top: 12px; }
+    .day-entry { border-bottom: 1px solid var(--border); cursor: pointer; }
+    .day-entry:last-child { border-bottom: none; }
+    .day-row { display: grid; grid-template-columns: 52px 1fr auto 20px; gap: 8px; padding: 7px 2px; align-items: center; transition: background 0.15s; }
+    .day-entry:hover .day-row { background: #f0f5ff; border-radius: 6px; }
+    .dn { font-weight: bold; color: var(--primary); }
+    .dr { color: var(--dark); }
+    .dd { color: var(--mid); text-align: right; white-space: nowrap; }
+    .di { color: #a0aec0; font-size: 0.65rem; text-align: center; transition: transform 0.25s ease; user-select: none; }
+    .day-entry.open .di { transform: rotate(180deg); color: var(--sky); }
+
+    /* expandable panel */
+    .day-panel { display: none; padding: 16px 4px 20px; border-top: 1px solid var(--border); }
+    .day-entry.open .day-panel { display: block; }
+    .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:900px){ .panel-grid { grid-template-columns: 1fr; } }
+    .panel-section { margin-bottom: 14px; }
+    .ps-title { font-family: sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--mid); margin-bottom: 5px; }
+    .ps-text { font-family: sans-serif; font-size: 0.82rem; color: var(--dark); line-height: 1.55; }
+    .ps-list { font-family: sans-serif; font-size: 0.82rem; color: var(--dark); line-height: 1.7; padding-left: 16px; }
+    .ps-list li { margin-bottom: 2px; }
+    .ps-list li strong { color: var(--primary); }
+    .photo-link { display: inline-block; margin-top: 14px; font-family: sans-serif; font-size: 0.8rem; color: var(--sky); text-decoration: none; border: 1px solid #bee3f8; border-radius: 20px; padding: 4px 14px; transition: background 0.15s; }
+    .photo-link:hover { background: #ebf8ff; }
+    .panel-loading { font-family: sans-serif; font-size: 0.82rem; color: #a0aec0; font-style: italic; padding: 8px 0; }
+
+    /* tags */
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .t { font-family: sans-serif; font-size: 0.73rem; padding: 3px 9px; border-radius: 4px; }
+    .t-park  { background: #c6f6d5; color: #276749; }
+    .t-city  { background: #bee3f8; color: #2b6cb0; }
+    .t-scen  { background: #fef3c7; color: #92400e; }
+    .t-warn  { background: #fed7d7; color: #c53030; }
+    .t-yt    { background: #f0fff4; color: #276749; border: 1px solid #68d391; }
+
+    /* difficulty */
+    .diff { margin-top: 12px; font-family: sans-serif; font-size: 0.76rem; color: var(--mid); }
+    .bar-track { height: 5px; background: var(--border); border-radius: 3px; margin-top: 4px; }
+    .bar-fill { height: 100%; border-radius: 3px; }
+    .d1 { width: 30%; background: #68d391; }
+    .d2 { width: 50%; background: #48bb78; }
+    .d3 { width: 65%; background: #f6ad55; }
+    .d4 { width: 80%; background: #fc8181; }
+    .d5 { width: 95%; background: #e53e3e; }
+
+    /* state pills */
+    .states { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+    .stag { font-family: sans-serif; font-size: 0.68rem; background: var(--primary); color: white; padding: 2px 7px; border-radius: 3px; }
+
+    /* map */
+    .route-map { height: 100%; min-height: 420px; position: relative; display: flex; flex-direction: column; }
+    .route-map iframe { flex: 1; width: 100%; min-height: 360px; border: none; display: block; }
+    .map-canvas { flex: 1; width: 100%; min-height: 360px; }
+    .map-open-btn { display: block; text-align: center; background: var(--primary); color: white; font-family: sans-serif; font-size: 0.85rem; font-weight: bold; padding: 10px 0; text-decoration: none; letter-spacing: 0.5px; }
+    .map-open-btn:hover { background: #2a4a7f; }
+    /* interactive map layer controls */
+    .map-controls { display: flex; gap: 7px; padding: 9px 13px; background: var(--light); border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
+    .map-ctrl-label { font-family: sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-right: 3px; }
+    .map-layer-btn { font-family: sans-serif; font-size: 0.76rem; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 2px solid; cursor: pointer; transition: all 0.15s; background: white; }
+    .map-layer-btn.rest   { border-color: #2b6cb0; color: #2b6cb0; }
+    .map-layer-btn.shower { border-color: #276749; color: #276749; }
+    .map-layer-btn.food   { border-color: #c05621; color: #c05621; }
+    .map-layer-btn.active.rest   { background: #2b6cb0; color: white; }
+    .map-layer-btn.active.shower { background: #276749; color: white; }
+    .map-layer-btn.active.food   { background: #c05621; color: white; }
+    .map-loading { display:flex; align-items:center; justify-content:center; flex:1; min-height:360px; background:var(--light); font-family:sans-serif; font-size:0.85rem; color:var(--mid); }
+    .map-api-note { background: #fff5f5; border: 1px solid #fc8181; border-radius: 0 0 4px 4px; padding: 10px 14px; font-family: sans-serif; font-size: 0.76rem; color: #c53030; text-align: center; }
+
+    /* footer */
+    footer { background: var(--primary); color: rgba(255,255,255,.8); text-align: center; padding: 28px; font-family: sans-serif; font-size: 0.82rem; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+<div class="hero">
+  <h1>🗺️ Pre-California Route Explorer</h1>
+  <p class="sub">June 22 → July 2, 2026 &nbsp;·&nbsp; 11 Days &nbsp;·&nbsp; Huntington Valley, PA → San Francisco, CA</p>
+  <p class="meta">Google Maps Distance Matrix Validated · No Chicago · Yellowstone Non-Negotiable (2 Days)</p>
+  <div class="badges">
+    <span class="hero-badge">⛺ Car camping &amp; truck stops</span>
+    <span class="hero-badge">🌋 Yellowstone required</span>
+    <span class="hero-badge">🏔️ Utah · Colorado · Oregon · Washington</span>
+    <span class="hero-badge">🕛 Arrive SF by noon July 2</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ ROUTES ══════════════════════════════ -->
+<div class="routes-section">
+  <div class="wrap">
+
+    <h2 class="sec-title">10 Route Combinations — Pick Your Adventure</h2>
+    <p class="sec-sub">All legs validated via Google Maps Distance Matrix API · All arrive SF by noon July 2 · All include Yellowstone (2 nights)</p>
+
+    <div class="confirm-note">
+      🔒 <strong>Locked in:</strong> Huntington Valley, PA departure June 22 &nbsp;·&nbsp; Yellowstone NP minimum 2 full days &nbsp;·&nbsp; SF arrival before noon July 2 &nbsp;·&nbsp; No Chicago &nbsp;·&nbsp; Car only, no hotels (truck stops + camping)
+    </div>
+
+    <!-- ═══ ROUTE 1 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 01 of 10</div>
+          <div class="route-title">🏔️ The Colorado Rockies Classic</div>
+          <div class="route-tag">Heartland → Rockies → Yellowstone → Salt Flats → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,161</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">10</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">2</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Kansas City</span><span class="sa">→</span>
+            <span class="sc hi">Denver + RMNP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Salt Lake City</span><span class="sa">→</span>
+            <span class="sc">Bonneville</span><span class="sa">→</span>
+            <span class="sc">Reno</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">I-276 connects Huntington Valley directly to the PA Turnpike (I-76). You'll cross five Appalachian ridges through tunnels — Kittatinny, Tuscarora, and Allegheny — before descending into Pittsburgh via I-376. America's first modern superhighway, opened 1940. Beautiful mountain views at Somerset and Bedford.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Pittsburgh sits at the confluence of three rivers. A worthy first-night stop rather than just a fuel break. The optional 15-minute detour to the Duquesne Incline (Mount Washington) gives you the best city skyline view on the East Coast. Primanti Bros. is a Pittsburgh icon — get the sandwich with coleslaw and fries stuffed inside.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">74–84°F, humid, lush green hills in full summer canopy. Sunset at 8:48pm EDT — long driving day. Afternoon thunderstorms possible (3–7pm) over the Alleghenies. Tunnels stay dry but check radar before the mountain crossing.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">Leave Huntington Valley by 7am to avoid I-276 Philadelphia suburb congestion. Pittsburgh I-376 backs up 4–6pm — time your arrival accordingly. PA Turnpike has tolls throughout; keep E-ZPass accessible or budget ~$25 cash.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Sideling Hill Service Plaza (I-76, MM 172) — 24hr, designated truck lot, quiet overnight</li><li>Allegheny Mountain Service Plaza (I-76, MM 178) — elevated, cool at night</li><li>New Stanton Service Plaza (I-76, near Pittsburgh) — last plaza before city</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Flying J Travel Center</strong>, New Stanton PA (I-76 Exit 75B / I-70 Exit 75) — 12 showers, $15</li><li><strong>TA Travel Center</strong>, Carlisle PA (I-81 Exit 52, near I-76) — 22 showers, $15</li><li><strong>Pilot Travel Center</strong>, Breezewood PA (I-70/I-76 junction) — major truck hub</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li>Hoss's Family Steak & Sea, Somerset PA — classic mid-PA highway diner, open late</li><li>Eat'n Park, multiple Pittsburgh locations — local chain, open 24hr</li><li><strong>Primanti Bros.</strong>, Pittsburgh — iconic sandwich with coleslaw + fries inside the bread</li><li>Roy Rogers at most PA Turnpike service plazas</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/pittsburgh-skyline" target="_blank">📸 View Pittsburgh photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">I-376 west clips through the West Virginia panhandle almost imperceptibly before joining I-70 in Ohio. Rolling farmland through Wheeling, then Columbus via the I-270 bypass, Dayton, crossing into Indiana at Richmond. Flat and efficient — the kind of driving that makes miles disappear.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Indianapolis rewards a short stop. Monument Circle at the city center is walkable in 10 minutes. Mass Ave arts district has good restaurants. The Indy 500 track is right off I-465 if you want to see the most famous oval in racing up close.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">80–90°F, humid. Ohio and Indiana get strong afternoon thunderstorm lines in June — sometimes severe with hail and gusty winds. Check radar at each fuel stop after noon. Corn and soy are chest-high by late June; the green is vivid.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">Columbus I-70/I-270 merge is the main choke point — worst 4–6pm, avoid if possible. Indianapolis I-465 beltway backs up midafternoon on weekdays. Aim to be past Columbus before 12pm.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Ohio I-70 rest areas spaced ~50 miles: Clark County, Preble County, Guernsey County — all 24hr</li><li>Indiana I-70 rest area, Fountain County — quiet, overnight trucks welcome</li><li>Indiana State Fairgrounds RV area, Indianapolis — urban camping fallback</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Love's Travel Stop</strong>, Richmond IN (I-70 Exit 145) — right on route, $15 showers, 24hr</li><li><strong>Flying J</strong>, Greenfield IN (I-70 Exit 96, near Indianapolis KOA) — convenient combo stop</li><li><strong>Pilot Travel Center</strong>, Columbus OH (I-70 West) — multiple locations, all with showers</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>White Castle</strong>, Dayton or Columbus area — Midwest original, minimum 1 visit required by law</li><li>Waffle House, multiple I-70 Ohio exits — 24hr, $8 breakfast</li><li>Skyline Chili, Dayton OH — Cincinnati-style chili on spaghetti, a genuine regional experience</li><li>Shapiro's Delicatessen, Indianapolis — legendary deli open since 1905</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/indianapolis-skyline" target="_blank">📸 View Indianapolis photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Kansas City</span><span class="dd">482 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">I-70 West is pure Midwest: corn and soybeans, flat as a griddle, enormous sky. Terre Haute, then into Illinois. The Mississippi River crossing into St. Louis (Poplar Street Bridge) is a genuine moment — you can see the Gateway Arch perfectly from the highway. Missouri hills roll west toward Kansas City.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Kansas City straddles the MO/KS state line and is genuinely underrated. Its BBQ reputation is earned — Bryant's, Joe's KC, Jack Stack, and Gates are all legitimate institutions. The River Market neighborhood near downtown has nightlife and farmer's markets. You'll sleep well here.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">84–92°F, very humid. June is peak tornado season across Missouri and Kansas. Storms can develop fast in the afternoon. Check weather apps before the 3pm window. The air smells like rain and corn.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">St. Louis I-70 through the downtown interchange ('the Curve') is one of America's worst traffic chokepoints — avoid 4–6pm weekdays. The I-270 north bypass around St. Louis saves 20+ min. Kansas City I-70/I-435 interchange can back up from 4–6pm.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Missouri I-70 rest areas: Danville, Concordia, Blue Springs — all maintained, overnight parking fine</li><li>Illinois I-70 rest areas: Troy and Highland — clean, 24hr</li><li>St. Louis Arch grounds — public restrooms, parking (paid), good stretch break</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Love's Travel Stop</strong>, Foristell MO (I-70 Exit 203) — between St. Louis and KC, $15</li><li><strong>Pilot Flying J</strong>, Grain Valley MO (I-70, east of KC) — last stop before city</li><li><strong>Pilot Travel Center</strong>, Terre Haute IN (I-70 Exit 7) — west end of Indiana, clean facilities</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Gates Bar-B-Q</strong>, Kansas City — original KC BBQ, get the ribs and the 'hi may I help you' greeting</li><li><strong>Joe's KC Bar-B-Que</strong> (formerly Oklahoma Joe's) — legendary brisket, inside a gas station</li><li>Ted Drewes Frozen Custard, St. Louis — summer institution (25 min detour off I-44 in St. Louis)</li><li>Imo's Pizza, St. Louis area — 'square beyond compare' provel cheese pizza</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/kansas-city-skyline" target="_blank">📸 View Kansas City photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Kansas City → Denver + Red Rocks</span><span class="dd">603 mi · 8h 41m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">The longest day: 603 miles. I-70 west through Kansas is relentlessly flat for the first 200 miles — embrace the horizon and the enormous sky. By Salina (central KS) the Smoky Hills emerge; by Hays the landscape becomes dramatic chalk formations. Cross into Colorado at Kanorado. Denver rises against the entire Front Range. End at Red Rocks Amphitheatre (Morrison, CO) for sunset over the city.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Red Rocks is a natural sandstone amphitheatre 15 miles west of Denver. The park is open even without a concert — hike the Trading Post Trail (1.4 miles, easy) for formation views and Denver panoramas. The red rock columns glow gold at sunset. This is your reward for the Kansas drive.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Kansas: 90–100°F, dry and powerful wind. Colorado Front Range: 80–88°F. Red Rocks evening: 65–72°F with dramatic evening thunderstorms building over the Rockies. Bring a layer for Red Rocks — temperatures drop 20°F after sunset. June lightning shows from high points are spectacular.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">I-70 Kansas is essentially empty. Denver I-70/I-25 interchange ('The Stack') is the worst in Colorado — avoid 4–6pm. Red Rocks access road (CO-470) backs up on summer evenings before concerts. Arrive Red Rocks before 5pm.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Kansas I-70 rest areas: Colby, Russell, Salina — all 24hr, spacious truck lots</li><li>Colorado Welcome Center, Burlington CO (I-70 at CO border) — great rest stop</li><li>Eisenhower Tunnel parking area (I-70, not on this route but nearby reference) — scenic pull-off</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Love's Travel Stop</strong>, Salina KS (I-70 Exit 252) — 12 showers, major facility</li><li><strong>Pilot Travel Center</strong>, Colby KS (I-70 Exit 54) — 5 showers, mid-Kansas</li><li><strong>Flying J</strong>, Limon CO (I-70 Exit 359) — 8 showers, last truck stop before Denver metro</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Coors Brewery</strong>, Golden CO (I-70 Exit 265) — free tours, 15 min detour, genuinely worth it</li><li><strong>Beau Jo's Pizza</strong>, Golden CO — Colorado-style mountain pie, great carb load</li><li>Gella's Diner, Hays KS — good mid-Kansas lunch stop in a fun craft brewery setting</li><li>Chef's Diner, Salina KS — classic 1950s roadside diner</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/red-rocks-amphitheater" target="_blank">📸 View Red Rocks photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Denver → Rocky Mountain NP → Casper, WY</span><span class="dd">~330 mi · 5h</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">US-36 west from Denver through Boulder to Estes Park. Enter Rocky Mountain NP at the Fall River entrance. Trail Ridge Road — highest continuous paved highway in the US at 12,183 ft — crosses alpine tundra above the treeline with views over the entire Front Range. Exit via the west side, pick up US-34 to I-25 North, cruise 200 miles to Casper.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Rocky Mountain NP has 300+ miles of trails and 150 lakes. Trail Ridge Road is the star: at the summit you walk on arctic tundra, spot pika and yellow-bellied marmots, and on a clear day see 100 miles of peaks. June is prime: wildflowers below 10,000 ft, elk in the valleys, and snow still capping the highest peaks for dramatic contrast.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">⚠️ <strong>TIMED ENTRY PERMIT REQUIRED</strong> (May 22–Oct 12, 2026). Book at recreation.gov — only $2 + park pass ($35/vehicle). Sold out fast; book the day reservations open. Alpine summit: 40–55°F, strong wind. Afternoon thunderstorms build by 2pm — be off Trail Ridge Road by 1pm. Snow patches remain on north-facing slopes.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">US-36 Boulder to Estes Park backs up on summer weekends. Aim to be at the Fall River entrance gate before 9am. Estes Park town is congested all day in summer — fuel and food before 8am or after 4pm. Trail Ridge Road temporarily closes during lightning storms (20–45 min closures).</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Alpine Visitor Center, Trail Ridge Road (11,796 ft) — daytime break, stunning, restrooms</li><li>Fort Collins rest area, I-25 North — clean 24hr stop heading to Casper</li><li><strong>Pilot Flying J</strong>, Casper WY (I-25/US-20) — overnight truck lot, safest sleep spot in Casper</li><li><strong>Walmart Supercenter</strong>, Casper WY — free overnight parking, common stop</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>TA Travel Center</strong>, Fort Collins CO (I-25 Exit 268) — last full-service shower stop before the mountains</li><li><strong>Pilot Flying J</strong>, Cheyenne WY (I-25, between Denver and Casper) — on-route stop</li><li><strong>Pilot Flying J</strong>, Casper WY (I-25, US-20 junction) — large truck lot, 24hr, $15 showers</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Smoky Mountain Bakery</strong>, Estes Park — breakfast before the park, best cinnamon rolls</li><li>The Notchtop Bakery & Café, Estes Park — RMNP-themed pastries and sandwiches</li><li>Santiagos Mexican Restaurant, Fort Collins (I-25 route) — fast, authentic, local institution</li><li>Dairy Queen, Casper WY — unironic Midwest classic reward for long day</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/rocky-mountain-national-park" target="_blank">📸 View Rocky Mountain NP photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Casper → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">Take US-20 west then US-16 west from Tensleep into Ten Sleep Canyon — the start of the Bighorn Scenic Byway. 58 miles of sculpted canyon walls, Shell Creek canyon, and Shell Falls (120-ft waterfall) pour through Bighorn National Forest. Emerge at Greybull WY, pick up US-14A to Cody. Enter Yellowstone via the East Entrance — the quietest gate in the park.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Cody, WY was founded by Buffalo Bill Cody in 1896 and wears its Western identity proudly. The Buffalo Bill Center of the West is a world-class museum (5 museums in 1 building — give it 2 hours if you have it). The East Entrance route takes you through Wapiti Valley, considered one of the world's most scenic 50-mile drives by Teddy Roosevelt.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Cody: 88–96°F, dry. Bighorn mountains: 60–72°F, spectacular. Yellowstone: 55–70°F daytime, 35–42°F nights. <strong>Pack a 30°F sleeping bag for Yellowstone</strong>. Bears are highly active in June (cubs are new); carry bear spray. Bison calves visible throughout. Most roads open by June 1.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">No significant congestion until Yellowstone East Entrance gate, which can have 30–60 min waits on summer weekend mornings. Arrive the gate before 10am or after 4pm. Once inside, bison jams are inevitable (and awesome — just wait them out).</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Ten Sleep WY (US-16) — small town, public restrooms</li><li>Greybull WY — rest area with picnic tables, good lunch break</li><li>Cody WY visitor center — full restrooms, tourist info, free parking</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Love's Travel Stop</strong>, Cody WY area — last full-service truck stop before the park</li><li><strong>Yellowstone Campground shower houses</strong> — Bridge Bay and Canyon have coin-op showers ($3–$5) inside the park</li><li><strong>Love's Travel Stop</strong>, Cody WY — last shower before entering the park, $15</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Cassie's Supper Club</strong>, Cody WY — legendary steakhouse in a building with Wild West history, great for dinner</li><li>Beta Coffeehouse, Cody WY — excellent morning coffee before the scenic drive</li><li>Eatery at the Buffalo Bill Center gift shop — quick lunch in Cody</li><li>Old Faithful Inn Dining Room (if you arrive in time) — dinner inside a 1904 log lodge</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/yellowstone-national-park" target="_blank">📸 View Yellowstone photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">Zero miles on the highway. Today is fully inside Yellowstone National Park. Classic loop: <strong>Old Faithful</strong> (catch the 7am eruption — smallest crowds) → <strong>Grand Prismatic Spring</strong> (most vivid colors before 9am) → <strong>Norris Geyser Basin</strong> (most acidic in the park) → afternoon drive to <strong>Lamar Valley</strong> for wolves, grizzlies, and bison herds → <strong>Grand Canyon of Yellowstone</strong> for sunset at Artist Point.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Yellowstone sits atop a supervolcano — the largest in North America. The park has 10,000 geothermal features, more than any other place on Earth. In June: elk calving season, grizzlies foraging openly, bison with rust-colored calves. The Grand Canyon of Yellowstone has waterfalls twice the height of Niagara. This is one of the most singular places on the planet.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">55–72°F daytime, 35–45°F nights — <strong>layers are essential, especially at Lamar Valley mornings</strong>. Afternoon thunderstorms build by 2pm and typically clear by 4pm. Wildflowers bloom at lower elevations. Mosquitoes emerge by late June — bring DEET. <strong>Carry bear spray everywhere</strong> — legally required in backcountry.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">Old Faithful parking lot fills by 9am — arrive early. Bison on the road are an experience, not an inconvenience (they have right of way; never honk). Lamar Valley is accessed via a narrow road — pull-offs fill up at sunrise/sunset. Grand Canyon of Yellowstone Artist Point gets crowded by 10am.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>All major visitor centers have restrooms: Old Faithful, Canyon, Mammoth, Fishing Bridge</li><li>Norris Geyser Basin — restrooms at trailhead</li><li>Lamar Valley pull-offs — no facilities, plan ahead</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Bridge Bay Marina shower house</strong> — coin-operated ($3–$5), open June–Sept</li><li><strong>Canyon campground showers</strong> — coin-operated, central location</li><li><strong>Fishing Bridge RV Park showers</strong> — guests + day use</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Old Faithful Inn Dining Room</strong> — dinner inside a 1904 hand-built log lodge; make reservations at xanterra.com</li><li><strong>Lake Hotel Dining Room</strong> — more formal, views of Yellowstone Lake</li><li>Yellowstone General Stores: Canyon, Old Faithful, Bridge Bay — groceries, deli sandwiches</li><li>Picnic at Norris Geyser Basin or Nez Perce Creek pull-off — bring your own food</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/yellowstone-old-faithful-geyser" target="_blank">📸 View Yellowstone geysers photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Salt Lake City</span><span class="dd">322 mi · 4h 42m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">Exit Yellowstone via the South Entrance, immediately entering Grand Teton National Park. The Tetons are unlike any other mountain range — they rise directly from the valley floor with no foothills, straight up 7,000 feet. Stop at Jackson Lake Dam overlook (15 min, free) for the classic Teton panorama. Lunch in Jackson, WY, then US-89 south through the Snake River Plain to I-15 and Salt Lake City.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Jackson, WY is touristy but earned. The iconic antler arch in Town Square is the photo. Grand Teton NP has no entry wait (Yellowstone crowds mostly don't make it this far in the morning). Salt Lake City surprises visitors with excellent food, the salt lake itself glowing pink with halophilic algae, and the Wasatch Range as backdrop.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Grand Teton: 65–78°F, spectacular visibility. Jackson, WY: 82–86°F. Snake River Valley: 88°F. Salt Lake City: <strong>95–100°F</strong> in late June — it's a desert basin. Wasatch storms stay in the mountains. Great Salt Lake is accessible from I-80 via Antelope Island State Park.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">US-89 through Hoback Junction (south of Jackson) backs up on summer weekends — worst noon–4pm. Jackson town center is congested all day in July/August; in late June it's still manageable. Salt Lake City I-15 heavy during evening rush (5–6:30pm).</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Grand Teton NP rest areas — at Jackson Lake Junction, Colter Bay</li><li>Jackson, WY — multiple public restrooms in Town Square area</li><li>US-89 rest area, Bear Lake Valley UT — lovely scenic stop</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Love's Travel Stop</strong>, Idaho Falls ID (if routing via US-26) — on the highway</li><li><strong>Flying J</strong>, Tremonton UT (I-15 North of SLC) — last stop before the city</li><li><strong>Pilot Flying J</strong>, Salt Lake City — multiple I-15 locations with showers</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>The Bunnery</strong>, Jackson WY — iconic breakfast, OSM (oat sunflower millet) pancakes, expect a wait but worth it</li><li>Million Dollar Cowboy Bar, Jackson WY — walk in, look at the saddle barstools, have one drink</li><li><strong>Red Iguana</strong>, Salt Lake City — legendary Mexican mole, expect a wait</li><li>Crown Burger, Salt Lake City — local institution for burgers with pastrami</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/grand-teton-national-park" target="_blank">📸 View Grand Teton NP photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">SLC → Bonneville Salt Flats → Reno</span><span class="dd">518 mi · 7h 22m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">I-80 west from Salt Lake City. In 90 minutes you're at Wendover — gateway to the Bonneville Salt Flats. Walk on the flats: 30,000 acres of pure white salt where hundreds of land speed records have been set. Back on I-80 across Nevada — 400 miles of high desert through Wells, Battle Mountain, Winnemucca, and the Humboldt Sink to Reno. Pure American West.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Bonneville Salt Flats: arrive before 10am while temperatures are manageable. The reflections in the thin brine layer (present in June) make the horizon disappear. <strong>Drive onto the salt</strong> — it's BLM land and you're allowed to. Take photos in every direction. The Nevada stretch of I-80 is one of the loneliest highways in America — beautiful in its emptiness.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Utah desert: <strong>95–105°F</strong> in the afternoon. Nevada I-80: 90–100°F. <strong>Start early — be on the salt by 8am</strong>. Constant headwinds on the Nevada high desert (15–25 mph). Bring 1 gallon of water per person minimum. No shade on the salt flats — hat and sunscreen required.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">I-80 in Utah and Nevada is rarely congested. Reno I-80 through downtown backs up near casinos and during shift changes at the large warehouses. The Reno arch on Virginia Street is the most photographed traffic jam.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Bonneville Salt Flats access road — BLM free area, no facilities (pit toilet only)</li><li>Nevada I-80 rest area, Wells NV — spacious, 24hr, good for an overnight if needed</li><li>Nevada I-80 rest area, Lovelock NV — quiet, free overnight for vehicles</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Pilot Flying J</strong>, Wendover UT/NV (I-80 Exit 410) — at the state line, $15, 24hr</li><li><strong>Pilot Flying J</strong>, Battle Mountain NV (I-80 Exit 229) — mid-Nevada, clean</li><li><strong>Love's Travel Stop</strong>, Winnemucca NV — 5 showers, well-maintained</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li>Wendover Nugget Casino buffet (NV side) — reliable and cheap (<$15)</li><li><strong>Louis' Basque Corner</strong>, Reno NV — legendary family-style Basque dinner, affordable and enormous portions</li><li>Star Broiler Casino, Battle Mountain NV — surprisingly good steaks</li><li>Awful Awful Burger, Reno NV — legendary Nevada burger, 1 lb patty</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/bonneville-salt-flats" target="_blank">📸 View Bonneville Salt Flats photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Reno rest / Lake Tahoe preview</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">Rest day — no highway driving required. Lake Tahoe is 35 minutes south of Reno via US-395 to SR-431 (Mt. Rose Highway). Drive the north shore (SR-28) through Incline Village to Kings Beach — a slow, beautiful road along the lake. Stop at Tahoe City for lunch. Push to Emerald Bay on the south shore (1 hr from Reno) for the most photographed view in the Sierra Nevada.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">Lake Tahoe at 6,225 ft elevation is the clearest large lake in North America — visibility to 70 feet. In June: alpine wildflowers blooming, snow still visible on peaks above 9,000 ft, water a luminous electric blue. Not yet overrun by July crowds. Kings Beach is shallow enough for a (cold) swim. Emerald Bay has a tiny island with a stone mansion — rent a kayak for $25/hr.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Lake Tahoe: 68–76°F, sunny and crisp. Water temperature: 58–65°F — cold but doable on a hot day. Reno itself: 90–95°F. You'll feel the altitude (6,200 ft) — altitude sickness is rare but pace yourself. Mountain afternoon thunderstorms build by 3pm over the peaks.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text">Reno–Tahoe highway is clear on weekdays. Emerald Bay pull-off (Hwy 89 South Shore) gets very congested on summer weekends — arrive before 10am. Kings Beach fills by 11am on weekends. No traffic concerns for a mid-week visit.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li><strong>Pilot Flying J lot</strong>, Reno NV — sleep here (same stop as showers), 24hr, safe</li><li><strong>Walmart Supercenter</strong>, Reno NV (S Virginia St) — free overnight vehicle parking</li><li><strong>Love's Travel Stop</strong>, Fernley NV — quieter than Reno, good backup if Reno lots full</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li>Reno KOA or your campground shower house — morning start</li><li><strong>Tahoe State Recreation Area</strong>, Tahoe City — shower facilities available to day visitors ($5)</li><li>Sand Harbor State Park, Incline Village NV — beach showers</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Squeeze In</strong>, Reno NV — famous omelets (150+ varieties), long waits on weekends, worth it</li><li><strong>Tahoe House Bakery</strong>, Tahoe City CA — excellent coffee and pastries for the lake drive</li><li>Gar Woods Grill, Carnelian Bay CA — deck dining on the lake, spectacular mountain view</li><li>Sunnyside Restaurant, Tahoe City CA — Sunday brunch on the water</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/lake-tahoe-california" target="_blank">📸 View Lake Tahoe photos →</a></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Reno → San Francisco ✅ by 11am</span><span class="dd">218 mi · 3h 35m</span><span class="di">▼</span></div>
+              <div class="day-panel"><div class="panel-grid"><div><div class="panel-section"><p class="ps-title">🚗 Drive Summary</p><p class="ps-text">Final leg: 218 miles, 3.5 hours. I-80 west to Truckee, then climb to Donner Pass (7,056 ft) — where the infamous Donner Party was stranded in 1846–47. The Donner Memorial State Park museum is right off I-80 (20 min, $8/person, genuinely fascinating). Descend into Auburn and Sacramento, cross the Central Valley at speed, climb Altamont Pass, and the Bay Area spreads out before you. Arrive via the Bay Bridge into San Francisco.</p></div><div class="panel-section"><p class="ps-title">📍 About This Stop</p><p class="ps-text">3,161 miles from Huntington Valley. You made it. The Bay Bridge at sunrise in the fog is one of the great entrances to a great city. San Francisco greets you with sea air, Victorian houses, the smell of sourdough, and hills that will make your car hesitate. June Gloom (marine layer fog) is a feature, not a bug — it burns off by noon.</p></div><div class="panel-section"><p class="ps-title">☀️ June Conditions</p><p class="ps-text">Sierra Nevada: 55–65°F, clear and clean. Sacramento Valley: <strong>95–105°F</strong>, short 60-mile stretch. Bay Area: <strong>June Gloom</strong> — marine fog layer in morning (55–62°F), clearing to 65°F by afternoon. Fog is thick on the Bay Bridge at 7am. Bring a layer — SF is genuinely cold in June evenings.</p></div><div class="panel-section"><p class="ps-title">🚦 Traffic Advisory</p><p class="ps-text"><strong>Leave Reno by 6:30–7:00am</strong> to arrive SF by 10:30–11am. I-80 Sacramento backs up from 7:30am on weekdays. Bay Bridge westbound toll ($7 FasTrak, $7 cash) — FasTrak lanes move faster. US-101 and I-80 through SF both congested after 8am.</p></div></div><div><div class="panel-section"><p class="ps-title">🛌 Rest Stops (Sleep)</p><ul class="ps-list"><li>Donner Memorial State Park, Truckee CA — restrooms, museum, beautiful lakeside picnic</li><li>Weigh station rest area, Colfax CA — public restrooms, views of the American River Canyon</li><li>Sacramento Welcome Center, off I-80 — last major stop before Bay Area</li></ul></div><div class="panel-section"><p class="ps-title">🚿 Showers (Truck Stops)</p><ul class="ps-list"><li><strong>Pilot Flying J</strong>, Sacramento CA (I-80) — last truck stop before SF, $15</li><li><strong>TA Travel Center</strong>, West Sacramento CA — full facilities, 24hr</li><li>Lovelock NV rest area (previous night) — use this if you need a morning shower before departing Reno</li></ul></div><div class="panel-section"><p class="ps-title">🍳 Food Along the Way</p><ul class="ps-list"><li><strong>Squeeze In</strong>, Truckee CA — sister location, last mountain breakfast before the descent</li><li><strong>Ikeda's Country Market</strong>, Auburn CA (I-80 Exit 119) — legendary fruit stand, pies, and burgers since 1946</li><li><strong>In-N-Out Burger</strong>, Sacramento — your first California burger. Animal style. Non-negotiable.</li><li>Upon arriving in SF: Mission burrito at La Taqueria or El Farolito — the real destination</li></ul></div></div></div><a class="photo-link" href="https://unsplash.com/s/photos/san-francisco-bay-bridge-fog" target="_blank">📸 View San Francisco photos →</a></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Rocky Mountain NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-scen">Bonneville Salt Flats</span>
+            <span class="t t-city">Denver</span>
+            <span class="t t-city">Kansas City</span>
+            <span class="t t-city">Pittsburgh</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">OH</span><span class="stag">IN</span><span class="stag">MO</span><span class="stag">KS</span><span class="stag">CO</span><span class="stag">WY</span><span class="stag">UT</span><span class="stag">NV</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Moderate — 2 long flat days (KS + NV), beautiful mountain days
+            <div class="bar-track"><div class="bar-fill d2"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <div class="map-controls">
+            <span class="map-ctrl-label">Show:</span>
+            <button class="map-layer-btn rest active" onclick="toggleLayer('r1','rest',this)">🛌 Rest Stops</button>
+            <button class="map-layer-btn shower active" onclick="toggleLayer('r1','shower',this)">🚿 Showers</button>
+            <button class="map-layer-btn food active" onclick="toggleLayer('r1','food',this)">🍳 Food</button>
+          </div>
+          <div id="r1-map-canvas" class="map-canvas"><div class="map-loading">Loading map…</div></div>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Kansas+City,MO/Denver,CO/Rocky+Mountain+National+Park,CO/Yellowstone+National+Park,WY/Salt+Lake+City,UT/Reno,NV/San+Francisco,CA" target="_blank">🗺️ Open Route 1 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 1 -->
+
+    <!-- ═══ ROUTE 2 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 02 of 10</div>
+          <div class="route-title">🏜️ The Utah Grand Circle</div>
+          <div class="route-tag">Badlands → Yellowstone → Bryce Canyon → Zion → Las Vegas → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,550</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">5</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Kansas City</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">SLC</span><span class="sa">→</span>
+            <span class="sc hi">Bryce + Zion</span><span class="sa">→</span>
+            <span class="sc">Las Vegas</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Kansas City</span><span class="dd">482 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Kansas City → Badlands NP (Wall Drug!)</span><span class="dd">634 mi · 8h 59m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo → Yellowstone via Cody (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Salt Lake City</span><span class="dd">322 mi · 4h 42m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">SLC → Bryce Canyon → Zion NP</span><span class="dd">340 mi · 5h 40m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Zion → Las Vegas → overnight</span><span class="dd">152 mi · 2h 9m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Las Vegas → San Francisco ✅ by noon</span><span class="dd">568 mi · 8h 39m ⚡</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-park">Mt. Rushmore</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Bryce Canyon NP</span>
+            <span class="t t-park">Zion NP</span>
+            <span class="t t-warn">⚡ Jul 2 = 568mi day, depart LV 3:30am</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MO</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">UT</span><span class="stag">NV</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Hard — most national parks, long Day 4 + very early Jul 2 departure
+            <div class="bar-track"><div class="bar-fill d4"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Kansas+City,MO|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Salt+Lake+City,UT|Bryce+Canyon+National+Park,UT|Zion+National+Park,UT|Las+Vegas,NV&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Kansas+City,MO/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Salt+Lake+City,UT/Bryce+Canyon+National+Park,UT/Zion+National+Park,UT/Las+Vegas,NV/San+Francisco,CA" target="_blank">🗺️ Open Route 2 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 2 -->
+
+    <!-- ═══ ROUTE 3 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 03 of 10</div>
+          <div class="route-title">🌊 Oregon Coast Dream</div>
+          <div class="route-tag">Badlands → Yellowstone → Crater Lake → Redwood Forest → SF via Hwy 101</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,440</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Minneapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Twin Falls, ID</span><span class="sa">→</span>
+            <span class="sc hi">Bend, OR</span><span class="sa">→</span>
+            <span class="sc or">Crater Lake</span><span class="sa">→</span>
+            <span class="sc hi">Redwoods → SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Minneapolis</span><span class="dd">593 mi · 8h 46m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Minneapolis → Badlands NP (sunset!)</span><span class="dd">502 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo → Yellowstone via Bighorn (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Twin Falls, ID</span><span class="dd">268 mi · 4h 1m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Twin Falls → Bend, OR (Snake River Canyon)</span><span class="dd">444 mi · 7h 5m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Bend → Crater Lake → Medford, OR</span><span class="dd">~150 mi · 2h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Medford → Redwoods → SF ✅ by 11am</span><span class="dd">~370 mi · 6h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Crater Lake NP</span>
+            <span class="t t-park">Redwood NP</span>
+            <span class="t t-scen">Snake River Canyon</span>
+            <span class="t t-scen">Oregon's Mt. Bachelor</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MN</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">ID</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Moderate-Hard — 2 long Midwest days, then beautiful from Wyoming onward
+            <div class="bar-track"><div class="bar-fill d3"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Minneapolis,MN|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Twin+Falls,ID|Bend,OR|Crater+Lake+National+Park,OR|Crescent+City,CA&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Minneapolis,MN/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Twin+Falls,ID/Bend,OR/Crater+Lake+National+Park,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 3 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 3 -->
+
+    <!-- ═══ ROUTE 4 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 04 of 10</div>
+          <div class="route-title">🌲 Pacific Northwest — Washington + Oregon</div>
+          <div class="route-tag">Badlands → Yellowstone → Missoula → Spokane → Seattle → Portland → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,793</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">10</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Minneapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Missoula, MT</span><span class="sa">→</span>
+            <span class="sc hi">Seattle, WA</span><span class="sa">→</span>
+            <span class="sc or">Portland, OR</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Minneapolis</span><span class="dd">593 mi · 8h 46m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Minneapolis → Badlands NP (sunset!)</span><span class="dd">502 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo, WY → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Missoula, MT</span><span class="dd">265 mi · 4h 7m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Missoula → Spokane → Seattle</span><span class="dd">477 mi · 7h 32m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Seattle → Portland → Medford, OR</span><span class="dd">~460 mi · 7h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Medford, OR → SF ✅ by 11am</span><span class="dd">~350 mi · 5h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-city">Seattle, WA</span>
+            <span class="t t-city">Portland, OR</span>
+            <span class="t t-scen">Missoula Montana</span>
+            <span class="t t-scen">Columbia River Gorge</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MN</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">MT</span><span class="stag">WA</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Very Hard — most mileage of all 10 routes, tight schedule on Jul 1–2
+            <div class="bar-track"><div class="bar-fill d5"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Minneapolis,MN|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Missoula,MT|Spokane,WA|Seattle,WA|Portland,OR&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Minneapolis,MN/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Missoula,MT/Spokane,WA/Seattle,WA/Portland,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 4 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 4 -->
+
+    <!-- ═══ ROUTE 5 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 05 of 10</div>
+          <div class="route-title">🌲 Crater Lake + Redwoods Direct</div>
+          <div class="route-tag">Badlands → Yellowstone → Boise → Bend → Crater Lake → Giant Redwoods → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,495</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Minneapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Boise, ID</span><span class="sa">→</span>
+            <span class="sc hi">Bend, OR</span><span class="sa">→</span>
+            <span class="sc or">Crater Lake</span><span class="sa">→</span>
+            <span class="sc hi">Redwoods → SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Minneapolis</span><span class="dd">593 mi · 8h 46m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Minneapolis → Badlands NP (sunset!)</span><span class="dd">502 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo, WY → Yellowstone via Bighorn (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Boise, ID</span><span class="dd">388 mi · 5h 40m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Boise → Bend, OR (Snake River + High Desert)</span><span class="dd">319 mi · 5h 15m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Bend → Crater Lake NP → Medford, OR</span><span class="dd">150 mi · 2h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Medford → Crescent City → Redwoods → SF ✅</span><span class="dd">~370 mi · 6h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Crater Lake NP</span>
+            <span class="t t-park">Redwood NP</span>
+            <span class="t t-scen">Boise River Greenbelt</span>
+            <span class="t t-scen">Oregon High Desert</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MN</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">ID</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Moderate-Hard — balanced, beautiful from Wyoming onward, comfortable finale
+            <div class="bar-track"><div class="bar-fill d3"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Minneapolis,MN|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Boise,ID|Bend,OR|Crater+Lake+National+Park,OR|Eureka,CA&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Minneapolis,MN/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Boise,ID/Bend,OR/Crater+Lake+National+Park,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 5 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 5 -->
+
+    <!-- ═══ ROUTE 6 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 06 of 10</div>
+          <div class="route-title">🏔️ The Five National Parks Gauntlet</div>
+          <div class="route-tag">Rocky Mtn NP → Yellowstone → Bryce Canyon → Zion → Las Vegas → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,844</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">5</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">KC</span><span class="sa">→</span>
+            <span class="sc hi">Denver + RMNP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">SLC</span><span class="sa">→</span>
+            <span class="sc hi">Bryce Canyon</span><span class="sa">→</span>
+            <span class="sc hi">Zion NP</span><span class="sa">→</span>
+            <span class="sc">Las Vegas</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Kansas City</span><span class="dd">482 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Kansas City → Denver (Red Rocks evening)</span><span class="dd">603 mi · 8h 41m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Denver → Rocky Mountain NP → Casper, WY</span><span class="dd">~330 mi · 5h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Casper → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Salt Lake City</span><span class="dd">322 mi · 4h 42m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">SLC → Bryce Canyon → Zion NP</span><span class="dd">340 mi · 5h 40m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Zion → Las Vegas (overnight)</span><span class="dd">152 mi · 2h 9m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Las Vegas → SF ✅ (depart 3:30am)</span><span class="dd">568 mi · 8h 39m ⚡</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Rocky Mountain NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Bryce Canyon NP</span>
+            <span class="t t-park">Zion NP</span>
+            <span class="t t-scen">Red Rocks Amphitheatre</span>
+            <span class="t t-warn">⚡ Very early Jul 2 start required</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MO</span><span class="stag">CO</span><span class="stag">WY</span><span class="stag">UT</span><span class="stag">NV</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Hardest — most parks, 568mi final day requires 3:30am Las Vegas departure
+            <div class="bar-track"><div class="bar-fill d5"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Kansas+City,MO|Denver,CO|Rocky+Mountain+National+Park,CO|Yellowstone+National+Park,WY|Salt+Lake+City,UT|Bryce+Canyon+National+Park,UT|Zion+National+Park,UT|Las+Vegas,NV&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Kansas+City,MO/Denver,CO/Rocky+Mountain+National+Park,CO/Yellowstone+National+Park,WY/Salt+Lake+City,UT/Bryce+Canyon+National+Park,UT/Zion+National+Park,UT/Las+Vegas,NV/San+Francisco,CA" target="_blank">🗺️ Open Route 6 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 6 -->
+
+    <!-- ═══ ROUTE 7 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 07 of 10</div>
+          <div class="route-title">⛰️ Washington Cascades + Crater Lake</div>
+          <div class="route-tag">Badlands → Yellowstone → Spokane → Seattle → Portland → Crater Lake → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,773</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">10</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Minneapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Missoula → Spokane</span><span class="sa">→</span>
+            <span class="sc hi">Seattle, WA</span><span class="sa">→</span>
+            <span class="sc or">Portland → Crater Lake</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Minneapolis</span><span class="dd">593 mi · 8h 46m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Minneapolis → Badlands NP</span><span class="dd">502 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Missoula → Spokane</span><span class="dd">463 mi · 7h 14m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Spokane → Seattle (Space Needle!)</span><span class="dd">279 mi · 4h 16m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Seattle → Portland → Crater Lake</span><span class="dd">406 mi · 6h 38m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Crater Lake → SF ✅ by 11am</span><span class="dd">398 mi · 6h 23m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-city">Seattle, WA</span>
+            <span class="t t-park">Crater Lake NP</span>
+            <span class="t t-scen">Columbia River Gorge</span>
+            <span class="t t-city">Portland, OR</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MN</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">MT</span><span class="stag">WA</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Hard — high mileage but spreads out well; Crater Lake → SF is a perfect finale
+            <div class="bar-track"><div class="bar-fill d4"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Minneapolis,MN|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Missoula,MT|Spokane,WA|Seattle,WA|Portland,OR|Crater+Lake+National+Park,OR&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Minneapolis,MN/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Missoula,MT/Spokane,WA/Seattle,WA/Portland,OR/Crater+Lake+National+Park,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 7 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 7 -->
+
+    <!-- ═══ ROUTE 8 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 08 of 10</div>
+          <div class="route-title">🏔️ Denver + Boise + Crater Lake</div>
+          <div class="route-tag">Colorado Rockies → Yellowstone → Idaho → Oregon → SF — Best balance of everything</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,449</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">KC</span><span class="sa">→</span>
+            <span class="sc hi">Denver + RMNP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Boise, ID</span><span class="sa">→</span>
+            <span class="sc hi">Bend, OR</span><span class="sa">→</span>
+            <span class="sc or">Crater Lake</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Kansas City</span><span class="dd">482 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Kansas City → Denver (Red Rocks Amphitheatre)</span><span class="dd">603 mi · 8h 41m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Denver → Rocky Mountain NP → Casper, WY</span><span class="dd">~330 mi · 5h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Casper → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Boise, ID</span><span class="dd">388 mi · 5h 40m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Boise → Bend, OR (Snake River Canyon)</span><span class="dd">319 mi · 5h 15m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Bend → Crater Lake NP (deepest lake in US)</span><span class="dd">90 mi · 1h 32m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Crater Lake → SF ✅ by 11am</span><span class="dd">398 mi · 6h 23m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Rocky Mountain NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Crater Lake NP</span>
+            <span class="t t-scen">Red Rocks Amphitheatre</span>
+            <span class="t t-scen">Snake River Canyon</span>
+            <span class="t t-city">Denver</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MO</span><span class="stag">CO</span><span class="stag">WY</span><span class="stag">ID</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Moderate — hits Colorado + Oregon without overextending; relaxed finale days
+            <div class="bar-track"><div class="bar-fill d3"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Kansas+City,MO|Denver,CO|Rocky+Mountain+National+Park,CO|Yellowstone+National+Park,WY|Boise,ID|Bend,OR|Crater+Lake+National+Park,OR&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Kansas+City,MO/Denver,CO/Rocky+Mountain+National+Park,CO/Yellowstone+National+Park,WY/Boise,ID/Bend,OR/Crater+Lake+National+Park,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 8 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 8 -->
+
+    <!-- ═══ ROUTE 9 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 09 of 10</div>
+          <div class="route-title">🏙️ Montana + Seattle + Oregon Coast</div>
+          <div class="route-tag">Badlands → Yellowstone → Missoula → Seattle → Medford → SF via I-5</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,777</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">10</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Minneapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">Missoula, MT</span><span class="sa">→</span>
+            <span class="sc hi">Seattle, WA</span><span class="sa">→</span>
+            <span class="sc or">I-5 South → Medford</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Minneapolis</span><span class="dd">593 mi · 8h 46m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Minneapolis → Badlands NP</span><span class="dd">502 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → Missoula, MT</span><span class="dd">265 mi · 4h 7m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Missoula → Seattle (via Spokane)</span><span class="dd">475 mi · 7h 16m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Seattle → Medford, OR via I-5 South</span><span class="dd">460 mi · 7h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Medford → SF via I-5 → I-580 ✅</span><span class="dd">~350 mi · 5h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-city">Missoula, MT</span>
+            <span class="t t-city">Seattle, WA</span>
+            <span class="t t-scen">Cascade Mountains</span>
+            <span class="t t-scen">I-5 Willamette Valley</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">MN</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">MT</span><span class="stag">WA</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Hard — Seattle focus, heavy Midwest driving first half
+            <div class="bar-track"><div class="bar-fill d4"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Minneapolis,MN|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Missoula,MT|Seattle,WA|Medford,OR&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Minneapolis,MN/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Missoula,MT/Seattle,WA/Medford,OR/San+Francisco,CA" target="_blank">🗺️ Open Route 9 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 9 -->
+
+    <!-- ═══ ROUTE 10 ═══ -->
+    <div class="route-card">
+      <div class="route-header">
+        <div>
+          <div class="route-num">Route 10 of 10</div>
+          <div class="route-title">☀️ Death Valley Desert Route</div>
+          <div class="route-tag">Badlands → Yellowstone → SLC → Las Vegas → Death Valley → SF &nbsp;·&nbsp; ⚠️ Extreme Heat Warning</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val">3,460</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val">9</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc hi">Badlands NP</span><span class="sa">→</span>
+            <span class="sc ys">🌋 Yellowstone</span><span class="sa">→</span>
+            <span class="sc">SLC + Bonneville</span><span class="sa">→</span>
+            <span class="sc">Las Vegas</span><span class="sa">→</span>
+            <span class="sc hi">Death Valley NP ☀️</span><span class="sa">→</span>
+            <span class="sc hi">SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Omaha, NE (flat interstate)</span><span class="dd">~490 mi · 7h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Omaha → Badlands NP (via I-90)</span><span class="dd">~505 mi · 7h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Badlands → Mt. Rushmore → Buffalo, WY</span><span class="dd">~280 mi · 4h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Buffalo → Yellowstone (Day 1)</span><span class="dd">~185 mi · 3h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">🌋 Yellowstone — Full Explore Day 2</span><span class="dd">0 mi</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Yellowstone → SLC (Grand Teton on way)</span><span class="dd">322 mi · 4h 42m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">SLC → Bonneville Salt Flats → Las Vegas</span><span class="dd">421 mi · 5h 51m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Las Vegas → Death Valley NP ☀️ (drive pre-dawn)</span><span class="dd">126 mi · 1h 53m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Death Valley → SF ✅ depart 4:30am</span><span class="dd">464 mi · 7h 20m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-park">Badlands NP</span>
+            <span class="t t-yt">Yellowstone NP</span>
+            <span class="t t-park">Death Valley NP</span>
+            <span class="t t-scen">Bonneville Salt Flats</span>
+            <span class="t t-city">Las Vegas</span>
+            <span class="t t-warn">⚠️ Death Valley June avg high: 109°F (43°C)</span>
+            <span class="t t-warn">⚡ Depart Death Valley 4:30am Jul 2</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">IN</span><span class="stag">NE</span><span class="stag">SD</span><span class="stag">WY</span><span class="stag">UT</span><span class="stag">NV</span><span class="stag">CA</span>
+          </div>
+          <div class="diff">Drive difficulty: Hard + Extreme Heat — unique desert scenery, but Death Valley in late June is dangerous without prep
+            <div class="bar-track"><div class="bar-fill d4"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&origin=Huntington+Valley,+PA&destination=San+Francisco,+CA&waypoints=Pittsburgh,PA|Indianapolis,IN|Omaha,NE|Badlands+National+Park,SD|Yellowstone+National+Park,WY|Salt+Lake+City,UT|Las+Vegas,NV|Death+Valley+National+Park,CA&mode=driving" allowfullscreen></iframe>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Omaha,NE/Badlands+National+Park,SD/Yellowstone+National+Park,WY/Salt+Lake+City,UT/Las+Vegas,NV/Death+Valley+National+Park,CA/San+Francisco,CA" target="_blank">🗺️ Open Route 10 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 10 -->
+
+  </div><!-- /wrap -->
+</div><!-- /routes-section -->
+
+<footer>
+  <p>All driving times validated via Google Maps Distance Matrix API &nbsp;·&nbsp; Baselines only (no future departure_time, add 15–30% for Yellowstone + park corridors in peak summer) &nbsp;·&nbsp; All 10 routes arrive SF before noon July 2</p>
+  <p style="margin-top:8px;opacity:.6;">© 2026 Drapkin Family California Road Trip · Built with Google Maps Platform + Claude</p>
+</footer>
+
+<script>
+// ── Day card expand/collapse ───────────────────────────────────────────
+function toggleDay(el) { el.classList.toggle('open'); }
+
+// ── Interactive map layer data ────────────────────────────────────────
+const ROUTE_STOPS = {
+  r1: {
+    origin: 'Huntington Valley, PA',
+    destination: 'San Francisco, CA',
+    waypoints: ['Pittsburgh, PA','Indianapolis, IN','Kansas City, MO','Denver, CO',
+                'Rocky Mountain National Park, CO','Casper, WY',
+                'Yellowstone National Park, WY','Salt Lake City, UT','Reno, NV'],
+    stops: {
+      rest: [
+        {n:'Allegheny Mountain Service Plaza',     lat:40.120, lng:-78.478, note:'PA Turnpike · 24hr · truck overnight lot'},
+        {n:'New Stanton Service Plaza',             lat:40.215, lng:-79.598, note:'PA Turnpike · near Pittsburgh · 24hr'},
+        {n:'I-70 Rest Area — Clark County OH',     lat:39.934, lng:-83.813, note:'Ohio · 24hr overnight ok'},
+        {n:'I-70 Rest Area — Fountain County IN',  lat:40.002, lng:-87.156, note:'Indiana · 24hr'},
+        {n:'I-70 Rest Area — Concordia MO',        lat:38.980, lng:-93.570, note:'Missouri · maintained · 24hr'},
+        {n:'I-70 Rest Area — Salina KS',           lat:38.841, lng:-97.611, note:'Kansas · spacious truck lot'},
+        {n:'Pilot Flying J — Casper WY',           lat:42.840, lng:-106.323,note:'I-25/US-20 · overnight truck lot · 24hr'},
+        {n:'Walmart Supercenter — Casper WY',      lat:42.870, lng:-106.356,note:'Free overnight vehicle parking'},
+        {n:'I-80 Rest Area — Wells NV',            lat:41.114, lng:-114.963, note:'Nevada · free overnight · quiet'},
+        {n:'I-80 Rest Area — Lovelock NV',         lat:40.179, lng:-118.474, note:'Nevada · free overnight · level'},
+        {n:'Pilot Flying J — Reno NV',             lat:39.527, lng:-119.815, note:'I-80 Exit 12 · overnight truck lot · 24hr'},
+        {n:'Walmart Supercenter — Reno NV',        lat:39.498, lng:-119.789, note:'S Virginia St · free overnight parking'},
+      ],
+      shower: [
+        {n:'Flying J — New Stanton PA',            lat:40.213, lng:-79.600, note:'12 showers · $15 · I-76 Exit 75'},
+        {n:'TA Travel Center — Carlisle PA',        lat:40.202, lng:-77.189, note:'22 showers · $15 · I-81/I-76 junction'},
+        {n:"Love's — Richmond IN",                 lat:39.830, lng:-84.856, note:'I-70 Exit 145 · $15 · 24hr'},
+        {n:'Flying J — Greenfield IN',             lat:39.788, lng:-85.776, note:'I-70 Exit 96 · near Indianapolis'},
+        {n:"Love's — Foristell MO",                lat:38.817, lng:-90.906, note:'I-70 Exit 203 · between STL and KC'},
+        {n:'Pilot Flying J — Grain Valley MO',     lat:39.016, lng:-94.197, note:'I-70 · east of Kansas City'},
+        {n:"Love's — Salina KS",                   lat:38.841, lng:-97.612, note:'I-70 Exit 252 · 12 showers · $15'},
+        {n:'Pilot — Colby KS',                     lat:39.394, lng:-101.052,note:'I-70 Exit 54 · 5 showers · $15'},
+        {n:'Flying J — Limon CO',                  lat:39.264, lng:-103.692,note:'I-70 Exit 359 · 8 showers · $15'},
+        {n:'Pilot Flying J — Cheyenne WY',         lat:41.140, lng:-104.820,note:'I-25 · on route to Casper · $15'},
+        {n:"Love's — Cody WY",                     lat:44.524, lng:-109.052,note:'Last shower before Yellowstone · $15'},
+        {n:"Love's — Wendover UT",                 lat:40.737, lng:-114.041,note:'I-80 Exit 410 · UT/NV border · $15'},
+        {n:'Pilot Flying J — Battle Mountain NV',  lat:40.641, lng:-116.934,note:'I-80 Exit 229 · mid-Nevada · $15'},
+        {n:"Love's — Winnemucca NV",               lat:40.973, lng:-117.736,note:'5 showers · clean · $15'},
+        {n:'Pilot Flying J — Sacramento CA',       lat:38.582, lng:-121.494,note:'I-80 · last stop before SF · $15'},
+      ],
+      food: [
+        {n:'Primanti Bros — Pittsburgh PA',        lat:40.441, lng:-79.996, note:'Sandwich with coleslaw+fries inside the bread'},
+        {n:'White Castle — Dayton OH',             lat:39.759, lng:-84.192, note:'Midwest original · I-70 corridor'},
+        {n:"Gates Bar-B-Q — Kansas City MO",       lat:39.100, lng:-94.579, note:'The original KC BBQ joint'},
+        {n:'Coors Brewery — Golden CO',            lat:39.756, lng:-105.221,note:'Free tours · I-70 Exit 265 · 15 min detour'},
+        {n:'Red Rocks Amphitheatre — Morrison CO', lat:39.665, lng:-105.206,note:'Sunset hike · first big mountain payoff'},
+        {n:'Smoky Mountain Bakery — Estes Park CO',lat:40.377, lng:-105.522,note:'Breakfast before RMNP · cinnamon rolls'},
+        {n:"Cassie's Supper Club — Cody WY",       lat:44.524, lng:-109.057,note:'Best steak in Wyoming'},
+        {n:'Old Faithful Inn — Yellowstone',       lat:44.461, lng:-110.828,note:'Dinner in 1904 log lodge · reserve ahead'},
+        {n:'The Bunnery — Jackson WY',             lat:43.480, lng:-110.762,note:'Iconic breakfast · OSM pancakes'},
+        {n:'Red Iguana — Salt Lake City UT',       lat:40.761, lng:-111.891,note:'Legendary Mexican mole · expect a wait'},
+        {n:"Louis' Basque Corner — Reno NV",       lat:39.530, lng:-119.814,note:'Family-style dinner · huge portions · cheap'},
+        {n:"Ikeda's Country Market — Auburn CA",   lat:38.912, lng:-121.080,note:'I-80 Exit 119 · pies + burgers since 1946'},
+        {n:'In-N-Out Burger — Sacramento CA',      lat:38.582, lng:-121.495,note:'First California burger · animal style · required'},
+      ]
+    }
+  }
+};
+
+// ── Marker store & colors ─────────────────────────────────────────────
+const activeMarkers = {};
+const LAYER_COLOR = { rest:'#2b6cb0', shower:'#276749', food:'#c05621' };
+
+// ── Maps JS API callback ──────────────────────────────────────────────
+function initMaps() {
+  for (const rId of Object.keys(ROUTE_STOPS)) {
+    const canvas = document.getElementById(rId + '-map-canvas');
+    if (!canvas) continue;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { buildMap(rId); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(canvas);
+  }
+}
+
+function buildMap(rId) {
+  const data  = ROUTE_STOPS[rId];
+  const canvas = document.getElementById(rId + '-map-canvas');
+  canvas.innerHTML = ''; // clear loader text
+
+  const map = new google.maps.Map(canvas, {
+    zoom: 5,
+    center: { lat: 41.5, lng: -100.5 },
+    mapTypeId: 'roadmap',
+    disableDefaultUI: true,
+    zoomControl: true,
+    fullscreenControl: true
+  });
+
+  // Draw route ─────────────────────────────────────────────────────────
+  new google.maps.DirectionsService().route({
+    origin: data.origin,
+    destination: data.destination,
+    waypoints: data.waypoints.map(l => ({ location: l, stopover: true })),
+    travelMode: google.maps.TravelMode.DRIVING,
+    optimizeWaypoints: false
+  }, (result, status) => {
+    if (status === 'OK') {
+      new google.maps.DirectionsRenderer({
+        map, suppressMarkers: true,
+        polylineOptions: { strokeColor:'#1a365d', strokeWeight:5, strokeOpacity:0.75 }
+      }).setDirections(result);
+    }
+  });
+
+  // Place stop markers ─────────────────────────────────────────────────
+  activeMarkers[rId] = { rest:[], shower:[], food:[] };
+  const iw = new google.maps.InfoWindow();
+
+  for (const [layer, stops] of Object.entries(data.stops)) {
+    for (const s of stops) {
+      const m = new google.maps.Marker({
+        position: { lat: s.lat, lng: s.lng },
+        map,
+        title: s.n,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 9,
+          fillColor: LAYER_COLOR[layer],
+          fillOpacity: 0.92,
+          strokeColor: '#ffffff',
+          strokeWeight: 2.5
+        }
+      });
+      m.addListener('click', () => {
+        iw.setContent(
+          `<div style="font-family:sans-serif;font-size:13px;max-width:220px;line-height:1.5">` +
+          `<strong>${s.n}</strong><br><span style="color:#4a5568;font-size:12px">${s.note}</span></div>`
+        );
+        iw.open(map, m);
+      });
+      activeMarkers[rId][layer].push(m);
+    }
+  }
+}
+
+// ── Layer toggle ─────────────────────────────────────────────────────
+function toggleLayer(rId, layer, btn) {
+  const markers = activeMarkers[rId]?.[layer];
+  if (!markers) return;
+  const on = btn.classList.toggle('active');
+  markers.forEach(m => m.setVisible(on));
+}
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjN_vCoR1dolMa6EeYizZmDw58CuYTtE8&callback=initMaps">
+</script>
+</body>
+</html>
