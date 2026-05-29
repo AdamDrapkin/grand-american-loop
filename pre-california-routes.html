@@ -102,6 +102,10 @@
     .t-scen  { background: #fef3c7; color: #92400e; }
     .t-warn  { background: #fed7d7; color: #c53030; }
     .t-yt    { background: #f0fff4; color: #276749; border: 1px solid #68d391; }
+    .t-az    { background: #fde68a; color: #92400e; border: 1px solid #fbbf24; font-weight: 700; }
+    .t-r11   { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #78350f; border: 1px solid var(--gold); font-weight: 700; }
+    .r11-badge { display:inline-block; background: var(--gold); color: white; font-family:sans-serif; font-size:0.7rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:6px; }
+
 
     /* difficulty */
     .diff { margin-top: 12px; font-family: sans-serif; font-size: 0.76rem; color: var(--mid); }
@@ -1195,6 +1199,114 @@
       </div>
     </div><!-- /route 10 -->
 
+    <!-- ═══ ROUTE 11 ═══ -->
+    <div class="route-card" style="border:2px solid var(--gold);box-shadow:0 6px 40px rgba(214,158,46,.22);">
+      <div class="route-header" style="background:linear-gradient(135deg,#fffdf5 0%,#fff9e6 100%);">
+        <div>
+          <div class="r11-badge">⭐ Your Custom Pick</div>
+          <div class="route-num" style="color:var(--gold);">Route 11 of 11</div>
+          <div class="route-title" style="color:#78350f;">🌟 The Grand American Loop</div>
+          <div class="route-tag">Arizona Canyons + Utah Parks + Nevada + Montana + Oregon + Redwoods → SF</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-val" style="color:#92400e;">4,979</span><span class="stat-lbl">Total Miles</span></div>
+          <div class="stat"><span class="stat-val" style="color:#92400e;">9</span><span class="stat-lbl">Drive Days</span></div>
+          <div class="stat"><span class="stat-val" style="color:#92400e;">14</span><span class="stat-lbl">States</span></div>
+          <div class="stat"><span class="stat-val" style="color:#92400e;">6</span><span class="stat-lbl">Nat'l Parks</span></div>
+        </div>
+      </div>
+      <div class="route-body">
+        <div class="route-info">
+          <div class="path">
+            <span class="sc">HV, PA</span><span class="sa">→</span>
+            <span class="sc">Pittsburgh</span><span class="sa">→</span>
+            <span class="sc">Indianapolis</span><span class="sa">→</span>
+            <span class="sc">Kansas City</span><span class="sa">→</span>
+            <span class="sc">Denver</span><span class="sa">→</span>
+            <span class="sc hi">🏜️ Grand Canyon</span><span class="sa">→</span>
+            <span class="sc hi">Horseshoe Bend</span><span class="sa">→</span>
+            <span class="sc ys">Zion + Bryce</span><span class="sa">→</span>
+            <span class="sc or">Las Vegas, NV</span><span class="sa">→</span>
+            <span class="sc">Boise, ID</span><span class="sa">→</span>
+            <span class="sc">Missoula, MT</span><span class="sa">→</span>
+            <span class="sc hi">Crater Lake</span><span class="sa">→</span>
+            <span class="sc hi">Redwoods → SF ✓</span>
+          </div>
+          <div class="day-grid">
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 22</span><span class="dr">HV, PA → Pittsburgh</span><span class="dd">308 mi · 4h 52m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 23</span><span class="dr">Pittsburgh → Indianapolis</span><span class="dd">359 mi · 5h 33m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 24</span><span class="dr">Indianapolis → Kansas City</span><span class="dd">482 mi · 7h 19m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 25</span><span class="dr">Kansas City → Denver + Red Rocks</span><span class="dd">600 mi · 8h 41m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 26</span><span class="dr">Denver → Grand Canyon South Rim, AZ ⚡</span><span class="dd">~680 mi · 9h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 27</span><span class="dr">Grand Canyon → Horseshoe Bend → Zion NP, UT</span><span class="dd">~320 mi · 5h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 28</span><span class="dr">Zion → Bryce Canyon NP → Las Vegas, NV</span><span class="dd">~240 mi · 4h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 29</span><span class="dr">Las Vegas → Nevada Great Basin → Boise, ID ⚡</span><span class="dd">~640 mi · 9h 30m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jun 30</span><span class="dr">Boise → Missoula, MT (Big Sky Country)</span><span class="dd">~380 mi · 5h 40m</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 1</span><span class="dr">Missoula → Bend → Crater Lake → Crescent City ⚡</span><span class="dd">~620 mi · 10h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+            <div class="day-entry" onclick="toggleDay(this)">
+              <div class="day-row"><span class="dn">Jul 2</span><span class="dr">Crescent City → Redwoods → SF ✅ by noon</span><span class="dd">~370 mi · 6h</span><span class="di">▼</span></div>
+              <div class="day-panel"><p class="panel-loading">📍 Details loading…</p></div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="t t-az">🏜️ Grand Canyon NP</span>
+            <span class="t t-az">🌀 Horseshoe Bend</span>
+            <span class="t t-park">Zion NP</span>
+            <span class="t t-park">Bryce Canyon NP</span>
+            <span class="t t-city">Las Vegas, NV</span>
+            <span class="t t-park">Crater Lake NP</span>
+            <span class="t t-park">Redwood NP</span>
+            <span class="t t-scen">Montana Big Sky</span>
+            <span class="t t-warn">⚡ 3 hard days: Days 5, 8, 10 (600–640 mi each)</span>
+          </div>
+          <div class="states">
+            <span class="stag">PA</span><span class="stag">OH</span><span class="stag">IN</span><span class="stag">MO</span><span class="stag">KS</span><span class="stag">CO</span><span class="stag">NM</span><span class="stag">AZ</span><span class="stag">UT</span><span class="stag">NV</span><span class="stag">ID</span><span class="stag">MT</span><span class="stag">OR</span><span class="stag">CA</span>
+          </div>
+          <div class="diff" style="border-top:1px solid var(--border);padding-top:12px;margin-top:12px;">Drive difficulty: Hard — 3 long driving days, but maximum scenery. Most parks of any route.
+            <div class="bar-track"><div class="bar-fill d4"></div></div>
+          </div>
+        </div>
+        <div class="route-map">
+          <div class="map-controls" style="background:linear-gradient(135deg,#fffdf5,#fff9e6);">
+            <span class="map-ctrl-label" style="color:var(--gold);">🌟 Route 11 Map</span>
+            <span style="font-family:sans-serif;font-size:0.72rem;color:var(--mid);margin-left:6px;">Route line only — stops coming soon</span>
+          </div>
+          <div id="r11-map-canvas" class="map-canvas"><div class="map-loading">Loading map…</div></div>
+          <a class="map-open-btn" href="https://www.google.com/maps/dir/Huntington+Valley,PA/Pittsburgh,PA/Indianapolis,IN/Kansas+City,MO/Denver,CO/Grand+Canyon+National+Park,AZ/Page,AZ/Zion+National+Park,UT/Bryce+Canyon+National+Park,UT/Las+Vegas,NV/Boise,ID/Missoula,MT/Bend,OR/Crater+Lake+National+Park,OR/Crescent+City,CA/San+Francisco,CA" target="_blank">🗺️ Open Route 11 in Google Maps ↗</a>
+        </div>
+      </div>
+    </div><!-- /route 11 -->
+
   </div><!-- /wrap -->
 </div><!-- /routes-section -->
 
@@ -1700,6 +1812,27 @@ const ROUTE_STOPS = {
         {n:'In-N-Out Burger — Sacramento CA',    lat:38.582, lng:-121.495, note:'First California burger · animal style'},
       ]
     }
+  }
+  ,r11: {
+    origin: 'Huntington Valley, PA',
+    destination: 'San Francisco, CA',
+    waypoints: [
+      'Pittsburgh, PA',
+      'Indianapolis, IN',
+      'Kansas City, MO',
+      'Denver, CO',
+      'Grand Canyon National Park, AZ',
+      'Page, AZ',
+      'Zion National Park, UT',
+      'Bryce Canyon National Park, UT',
+      'Las Vegas, NV',
+      'Boise, ID',
+      'Missoula, MT',
+      'Bend, OR',
+      'Crater Lake National Park, OR',
+      'Crescent City, CA'
+    ],
+    stops: { rest: [], shower: [], food: [] }
   }
 };
 
