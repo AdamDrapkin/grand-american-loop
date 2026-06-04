@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yellowstone NP — Field Guide · June 25–28, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --ys:      #5C2B0A;
+      --ys2:     #B34A0A;
+      --ys3:     #D97B2A;
+      --teal:    #1A7A8A;
+      --gold:    #D69E2E;
+      --cream:   #FDFAF4;
+      --snow:    #FFF8F0;
+      --dark:    #1A202C;
+      --mid:     #5A4A3A;
+      --border:  #E4D0BC;
+      --red:     #C0392B;
+      --amber:   #8B5A00;
+      --green:   #1F5A2A;
+      --day1:    #7A2E08;
+      --day2:    #1A5A6A;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--teal)}
+
+    /* HERO */
+    .hero{background:linear-gradient(160deg,#3D1805 0%,#7A2E08 35%,#C05010 70%,#D69E2E 100%);color:white;padding:56px 24px 64px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+    .hero h1{font-size:2.8rem;font-weight:normal;letter-spacing:1px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+    .hero-dates{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-base{font-family:sans-serif;font-size:.82rem;opacity:.6;margin-bottom:24px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+    .hchip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 16px;font-family:sans-serif;font-size:.78rem}
+
+    /* LAYOUT */
+    .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+    section{padding:44px 0}
+    hr.div{border:none;border-top:1px solid var(--border);margin:0}
+    .sec-hd{font-size:1.45rem;color:var(--ys);margin-bottom:4px}
+    .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:26px}
+
+    /* BANNERS */
+    .banner-ys{background:linear-gradient(135deg,#5C2B0A,#9A4010);color:white;padding:20px 26px;border-radius:12px;margin:28px 0}
+    .banner-blue{background:linear-gradient(135deg,#F0FAFA,#CCECF0);border:1px solid #7DD3E0;border-radius:12px;padding:20px 26px;margin:20px 0}
+    .banner-alert{background:#FEF2F2;border:2px solid var(--red);border-radius:12px;padding:20px 26px;margin:20px 0}
+    .bn-label{font-family:sans-serif;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+    .bn-title{font-size:1.2rem;margin-bottom:7px}
+    .bn-text{font-family:sans-serif;font-size:.86rem;line-height:1.6;opacity:.93}
+    .banner-alert .bn-title{color:var(--red);font-size:1rem;font-family:sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+    .banner-alert .bn-text{color:var(--dark);opacity:1}
+
+    /* ALERTS GRID */
+    .alerts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:660px){.alerts-grid{grid-template-columns:1fr}}
+    .ac{border-radius:10px;padding:15px 17px;border-left:4px solid}
+    .ac.red{background:#FEF2F2;border-color:var(--red)}
+    .ac.amb{background:#FFFBEB;border-color:var(--amber)}
+    .ac.blu{background:#F0FAFA;border-color:var(--teal)}
+    .ac.grn{background:#F0FDF4;border-color:var(--green)}
+    .ac-icon{font-size:1rem;margin-bottom:3px}
+    .ac-title{font-family:sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+    .ac.red .ac-title{color:var(--red)}.ac.amb .ac-title{color:var(--amber)}.ac.blu .ac-title{color:var(--teal)}.ac.grn .ac-title{color:var(--green)}
+    .ac-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+
+    /* BASICS */
+    .basics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:620px){.basics-grid{grid-template-columns:1fr}}
+    .basic-card{background:white;border:1px solid var(--border);border-radius:10px;padding:17px 19px}
+    .bc-label{font-family:sans-serif;font-size:.67rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--ys2);margin-bottom:7px;font-weight:700}
+    .bc-val{font-size:1.05rem;color:var(--ys);margin-bottom:2px}
+    .bc-note{font-family:sans-serif;font-size:.78rem;color:var(--mid);line-height:1.45}
+
+    /* 4-DAY OVERVIEW GRID */
+    .days-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px}
+    @media(max-width:640px){.days-overview{grid-template-columns:1fr 1fr}}
+    .do-card{border-radius:10px;padding:14px 16px;text-align:center}
+    .do-card.arrival{background:#F1F5F9;border:1px solid #CBD5E1}
+    .do-card.full1{background:linear-gradient(135deg,#FFF8F0,#FDEBD0);border:2px solid var(--ys3)}
+    .do-card.full2{background:linear-gradient(135deg,#F0FAFA,#CCECF0);border:2px solid var(--teal)}
+    .do-card.depart{background:#F1F5F9;border:1px solid #CBD5E1}
+    .do-date{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:4px}
+    .do-label{font-family:sans-serif;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+    .do-card.full1 .do-label{color:var(--ys)}.do-card.full2 .do-label{color:var(--day2)}
+    .do-note{font-family:sans-serif;font-size:.73rem;color:var(--mid);line-height:1.4}
+
+    /* DAY SECTION HEADERS */
+    .day-section{margin-bottom:52px}
+    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-hd.arrival{background:linear-gradient(135deg,#4A5568,#718096)}
+    .day-hd.full1{background:linear-gradient(135deg,#5C2B0A,var(--ys2))}
+    .day-hd.full2{background:linear-gradient(135deg,#0E4A56,var(--teal))}
+    .day-hd.depart{background:linear-gradient(135deg,#4A5568,#718096)}
+    .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+    .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
+    .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+
+    /* LEAFLET */
+    .topo-map-lg{height:380px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:22px}
+    .topo-map-sm{height:270px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+    .map-caption{font-family:sans-serif;font-size:.72rem;color:var(--mid);margin-top:5px;margin-bottom:20px;font-style:italic}
+
+    /* TIME BLOCKS */
+    .time-block{margin-bottom:22px}
+    .tb-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--ys2);padding-bottom:6px;border-bottom:2px solid var(--ys2);margin-bottom:12px}
+    .tb-hd.teal{color:var(--teal);border-color:var(--teal)}
+    .tb-list{font-family:sans-serif;font-size:.85rem;color:var(--dark);line-height:1.75;list-style:none;padding:0}
+    .tb-list li{padding-left:14px;position:relative;margin-bottom:2px}
+    .tb-list li::before{content:'→';position:absolute;left:0;color:var(--ys2);font-size:.8rem}
+    .tb-list strong{color:var(--ys)}
+    .tb-list em{color:var(--amber);font-style:normal;font-weight:600}
+
+    /* TRAIL CARDS */
+    .trail-card{background:var(--snow);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:16px 0 24px}
+    .trail-card.teal-theme{background:#F0FAFA}
+    .tc-hd{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 18px;gap:12px;flex-wrap:wrap}
+    .tc-name{font-size:1.1rem;color:var(--ys);margin-bottom:4px}
+    .trail-card.teal-theme .tc-name{color:var(--day2)}
+    .tc-stats{display:flex;flex-wrap:wrap;gap:8px}
+    .tc-stat{font-family:sans-serif;font-size:.75rem;background:white;border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--mid)}
+    .tc-stat.easy{color:var(--green);font-weight:700;border-color:#86EFAC}.tc-stat.moderate{color:var(--amber);font-weight:700;border-color:#FCD34D}.tc-stat.strenuous{color:var(--red);font-weight:700;border-color:#FCA5A5}
+    .at-btn{display:inline-block;background:white;border:1.5px solid #5EAA3C;color:#5EAA3C;border-radius:20px;padding:5px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0}
+    .at-btn:hover{background:#F0FDF4}
+    /* MAP ACTION BUTTONS */
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:14px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.gmaps{background:white;border:1.5px solid #1A73E8;color:#1A73E8}
+    .mab.route{background:#1A73E8;color:white;border:1.5px solid #1A73E8}
+    .tc-body{padding:0 18px 16px}
+    .tc-notes{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.6;padding:12px 0 4px}
+    .tc-notes p{margin-bottom:6px}
+    .tc-tip{background:linear-gradient(135deg,#FFF8F0,#FDEBD0);border-left:3px solid var(--ys3);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .tc-tip.teal{background:linear-gradient(135deg,#F0FAFA,#CCECF0);border-color:var(--teal)}
+    .tc-warn{background:#FEF2F2;border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-family:sans-serif;font-size:.81rem;color:#7A1010;line-height:1.5}
+
+    /* OPTION BOXES */
+    .option-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+    @media(max-width:580px){.option-split{grid-template-columns:1fr}}
+    .opt-box{border-radius:10px;padding:14px 16px}
+    .opt-box.a{background:#FEF2F2;border:1px solid #FCA5A5}
+    .opt-box.b{background:#FFF8F0;border:1px solid #FCD34D}
+    .opt-title{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+    .opt-box.a .opt-title{color:#991B1B}.opt-box.b .opt-title{color:#78350F}
+    .opt-text{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.55}
+
+    /* BISON PROTOCOL */
+    .bison-box{background:linear-gradient(135deg,#3D1805,#6B2A08);color:white;border-radius:14px;padding:26px 30px;margin-bottom:32px}
+    .bp-title{font-size:1.15rem;margin-bottom:5px}
+    .bp-sub{font-family:sans-serif;font-size:.81rem;opacity:.72;margin-bottom:18px}
+    .bp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px}
+    .bp-step{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:13px 15px}
+    .bp-num{font-family:sans-serif;font-size:.67rem;opacity:.6;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .bp-text{font-family:sans-serif;font-size:.82rem;line-height:1.5}
+
+    /* INSIDER / RULES */
+    .intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:660px){.intel-grid{grid-template-columns:1fr}}
+    .intel-card{background:white;border:1px solid var(--border);border-radius:10px;padding:15px 17px}
+    .ic-num{font-family:sans-serif;font-size:.68rem;color:var(--ys3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .ic-title{font-family:sans-serif;font-size:.87rem;font-weight:700;color:var(--ys);margin-bottom:5px}
+    .ic-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.55}
+
+    .rules-list{display:flex;flex-direction:column;gap:12px}
+    .rule-card{background:white;border:1px solid var(--border);border-radius:10px;padding:15px 18px;display:flex;gap:12px;align-items:flex-start}
+    .rule-icon{font-size:1.3rem;flex-shrink:0;padding-top:2px}
+    .rule-title{font-family:sans-serif;font-size:.87rem;font-weight:700;color:var(--ys);margin-bottom:3px}
+    .rule-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.55}
+    .rule-text strong{color:var(--red)}
+
+    /* WILDLIFE */
+    .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+    .wl-card{background:white;border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+    .wl-name{font-size:.97rem;color:var(--ys);margin-bottom:3px}
+    .wl-prob{font-family:sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+    .wl-where{font-family:sans-serif;font-size:.76rem;color:var(--mid);line-height:1.4}
+    .cert{color:var(--ys)}.hi{color:var(--green)}.mod{color:var(--amber)}
+
+    /* CONTACTS */
+    .contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px}
+    .cc{background:white;border:1px solid var(--border);border-radius:10px;padding:15px 17px}
+    .cc-label{font-family:sans-serif;font-size:.67rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--ys2);margin-bottom:5px;font-weight:700}
+    .cc-val{font-family:sans-serif;font-size:.88rem;color:var(--dark);font-weight:600;margin-bottom:2px}
+    .cc-note{font-family:sans-serif;font-size:.76rem;color:var(--mid);line-height:1.4}
+
+    /* FOOTER */
+    .footer{background:var(--ys);color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-sup">Field Guide · Grand American Loop</div>
+  <h1>Yellowstone National Park</h1>
+  <div class="hero-dates">June 25 – 28, 2026</div>
+  <div class="hero-base">Base Camp: Canyon Campground · Canyon Village · 7,900 ft elevation</div>
+  <div class="hero-chips">
+    <span class="hchip">3 nights</span>
+    <span class="hchip">$35 / vehicle · 7-day pass</span>
+    <span class="hchip">No timed entry · Open 24/7</span>
+    <span class="hchip">Canyon VC: 8am–7pm daily</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- LIVE NPS ALERTS -->
+  <div class="banner-alert" style="margin-top:32px">
+    <div class="ac-icon">🚨</div>
+    <div class="bn-title">Live NPS Alerts — Verified June 2026</div>
+    <div class="bn-text">
+      <strong>1. Biscuit Basin area closed</strong> — Trails, backcountry campsites, and fishing areas near Biscuit Basin closed until further notice (bear-caused human injury investigation). <strong>Mystic Falls Trail affected.</strong> Do not include this trail in plans until reopened.<br><br>
+      <strong>2. Elk calves — Dangerous at Mammoth</strong> — Elk calves may be hidden near buildings, vehicles, and blind corners, particularly at Mammoth Hot Springs. Cow elk protecting calves are aggressive. Stay alert and give wide berth.<br><br>
+      <strong>3. Gardner River High Bridge traffic</strong> — Single-lane delays up to 15 minutes, 24/7, through late October 2026. Affects North Entrance route. Budget extra time if routing through Gardiner.
+    </div>
+  </div>
+
+  <!-- JUNE ADVANTAGE -->
+  <div class="banner-ys">
+    <div class="bn-label">June Advantage</div>
+    <div class="bn-title">You arrive during peak spring runoff. The waterfalls are at maximum power.</div>
+    <div class="bn-text">The Lower Falls of the Grand Canyon can push <strong style="color:#FCD68A">up to 63,500 gallons per second</strong> in June. Best waterfall month of the year. Canyon Campground confirmed open May 29 — operational for your June 25 arrival. No reservations, no timed entry.</div>
+  </div>
+
+  <!-- 4-DAY OVERVIEW -->
+  <div class="banner-blue">
+    <div class="bn-label" style="color:#0E4A56;opacity:1">Your 4 Days — At a Glance</div>
+    <div class="days-overview">
+      <div class="do-card arrival">
+        <div class="do-date">June 25</div>
+        <div class="do-label">Arrival Evening</div>
+        <div class="do-note">Drive in from Glacier (6h 53m) · Canyon rims if energy allows</div>
+      </div>
+      <div class="do-card full1">
+        <div class="do-date">June 26</div>
+        <div class="do-label">Full Day 1</div>
+        <div class="do-note">Go South — Hayden Valley · Grand Prismatic · Old Faithful · Mud Volcano</div>
+      </div>
+      <div class="do-card full2">
+        <div class="do-date">June 27</div>
+        <div class="do-label">Full Day 2</div>
+        <div class="do-note">Go Northeast — Lamar Valley · Trout Lake · Canyon rims full afternoon</div>
+      </div>
+      <div class="do-card depart">
+        <div class="do-date">June 28</div>
+        <div class="do-label">Departure</div>
+        <div class="do-note">Final Artist Point · Checkout 11am · Drive to Spokane</div>
+      </div>
+    </div>
+    <p style="font-family:sans-serif;font-size:.8rem;color:var(--mid);margin-top:8px">Two directions: south into geothermal country, northeast into wolf and bison territory. Canyon is your base and anchor throughout.</p>
+  </div>
+
+</div>
+
+<hr class="div">
+
+<!-- ALERTS -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">All Alerts — 2026</div>
+    <div class="sec-sub">Review before each morning departure</div>
+    <div class="alerts-grid">
+      <div class="ac red">
+        <div class="ac-icon">🚧</div>
+        <div class="ac-title">Dunraven Pass — Major Reconstruction</div>
+        <div class="ac-text"><strong>CALL 307-344-2117 morning of June 27</strong> before any Lamar Valley departure. If closed, detour via Norris adds 45 min each way. Text 82190 to 888-777 for live road alerts.</div>
+      </div>
+      <div class="ac red">
+        <div class="ac-icon">🚫</div>
+        <div class="ac-title">Boiling River — Permanently Closed</div>
+        <div class="ac-text">Closed since 2022 floods. Not reopening. <strong>Remove from plans entirely.</strong></div>
+      </div>
+      <div class="ac red">
+        <div class="ac-icon">🐻</div>
+        <div class="ac-title">Biscuit Basin Trails — Closed</div>
+        <div class="ac-text">Trails near Biscuit Basin closed pending bear injury investigation. <strong>Mystic Falls Trail affected.</strong> Verify status at Canyon VC before attempting. West Thumb Geyser Basin is unaffected.</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Road Construction — System-Wide</div>
+        <div class="ac-text">Paving and bridge work throughout. Budget <strong>up to 30-minute delays</strong> on any road. Gardner River bridge: 15-min delays 24/7 through October.</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Firehole Swimming — Verify Status</div>
+        <div class="ac-text">Closed in 2025. Verify 2026 status at park entrance or Canyon VC. Do not plan around it until confirmed open.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-icon">📱</div>
+        <div class="ac-title">No Cell Service — Download Before You Go</div>
+        <div class="ac-text">2.2M acres, minimal signal even in developed areas. <strong>Download the NPS app offline + Google Maps offline</strong> before leaving service range. Pick up physical maps at the entrance gate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PARK BASICS -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Park Basics</div>
+    <div class="sec-sub">Entry, weather, gear</div>
+    <div class="basics-grid">
+      <div class="basic-card">
+        <div class="bc-label">Entry</div>
+        <div class="bc-val">$35 / vehicle</div>
+        <div class="bc-note">7-day pass. No timed entry or vehicle reservations in 2026. Canyon Campground open since May 29.</div>
+      </div>
+      <div class="basic-card">
+        <div class="bc-label">Weather · Canyon Village (7,900 ft)</div>
+        <div class="bc-val">60–80°F days · 29–32°F nights</div>
+        <div class="bc-note">Near-freezing nights normal in late June. June = wettest month (rain, storms, even snow). Afternoon storms common. Layer constantly.</div>
+      </div>
+      <div class="basic-card">
+        <div class="bc-label">Essential Gear</div>
+        <div class="bc-val">Layers every single day</div>
+        <div class="bc-note">Rain jacket · Warm fleece/down · Binoculars (critical for wildlife) · Offline NPS app · Physical map from entrance · Sun protection at elevation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ ARRIVAL EVENING ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd arrival">
+        <div class="day-hd-label">June 25 — Evening Arrival</div>
+        <div class="day-hd-title">Arrive from Glacier · 6h 53m drive · Canyon Village</div>
+        <div class="day-hd-sub">Light evening activities only — you've been driving all day</div>
+      </div>
+      <div class="day-body">
+        <div class="time-block">
+          <div class="tb-hd">On Arrival</div>
+          <ul class="tb-list">
+            <li>Check in Canyon Campground (after 1pm check-in, but arriving evening is fine)</li>
+            <li>Walk to <strong>Canyon Visitor Center</strong> (8am–7pm, summer) — pick up maps, confirm June 27 road status for Lamar Valley, check Biscuit Basin closure status</li>
+            <li>Get current road conditions from the rangers — this 10-minute conversation sets up both full days</li>
+          </ul>
+        </div>
+        <div class="time-block">
+          <div class="tb-hd">Evening — Canyon Rims (if energy allows)</div>
+          <ul class="tb-list">
+            <li><strong>Artist Point</strong> (South Rim, 0.3 mi paved) — your first Yellowstone view. In late afternoon/evening light, the canyon walls glow orange. You're right at your campsite. This requires almost nothing from you.</li>
+            <li>Walk 1/8 mile past the main Artist Point overlook — views most visitors never reach</li>
+            <li>If tired: that's fine. Canyon is right here. You'll do it properly on Day 2 afternoon.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ FULL DAY 1 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd full1">
+        <div class="day-hd-label">June 26 · Full Day 1</div>
+        <div class="day-hd-title">Go South — The Geothermal Loop</div>
+        <div class="day-hd-sub">Hayden Valley · Grand Prismatic · Old Faithful · Upper Geyser Basin · Mud Volcano return</div>
+      </div>
+      <div class="day-body">
+
+        <!-- DAY 1 MAP -->
+        <div id="map-day1" class="topo-map-lg"></div>
+        <p class="map-caption">Day 1 route: Canyon Village → south through Hayden Valley → Fairy Falls TH → Old Faithful → return north via Mud Volcano · ~110 miles round trip</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/44.7353,-110.4995/44.6603,-110.4906/44.5434,-110.8444/44.5250,-110.8383/44.4605,-110.8281/44.6461,-110.4269" target="_blank" class="mab route">🗺️ Open Full Day Route in Google Maps</a>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Morning — Depart 9:00am (Ideal Timing)</div>
+          <ul class="tb-list">
+            <li><strong>9:00am depart</strong> Canyon Village heading south. 9am is actually optimal — less steam at Grand Prismatic by the time you arrive, most vivid colors.</li>
+            <li>Drive slowly south through <strong>Hayden Valley</strong> — windows down, speed 15 mph, scan slopes. 8–11am is a productive secondary wildlife window for grizzlies. You'll pass through Hayden both directions today.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Grand Prismatic — Use the Fairy Falls Trailhead</div>
+          <ul class="tb-list">
+            <li>Do NOT park at the main Midway Geyser Basin lot — fills by 9–10am with no overflow. Fairy Falls TH has two lots, always available.</li>
+          </ul>
+
+          <!-- TRAIL: Grand Prismatic Overlook -->
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Grand Prismatic Overlook Trail</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">1.2 mi RT</span>
+                  <span class="tc-stat easy">Easy</span>
+                  <span class="tc-stat">~100 ft gain</span>
+                  <span class="tc-stat">45–60 min</span>
+                  <span class="tc-stat">NPS: Easy · 1–2 hrs</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/grand-prismatic-hot-spring" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-prismatic" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.5434,-110.8444" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>Gradual uphill from Fairy Falls TH to the overlook. At the top: the aerial rainbow view — brilliant blue center (240°F water), orange/red/yellow rings of thermophilic bacteria in cooling zones. This is the most iconic image in all of Yellowstone.</p>
+                <p><strong>9:30am arrival = ideal.</strong> Early morning steam obscures the colors. By 9:30–10am the steam has lifted and the blues and oranges are most vivid. You're arriving at the perfect time.</p>
+              </div>
+              <div class="tc-warn">Stay on the boardwalk at all times. The crust over geothermal features can be inches thick over boiling water. Off-trail deaths have occurred. No exceptions for photos or any other reason.</div>
+            </div>
+          </div>
+
+          <ul class="tb-list" style="margin-top:4px">
+            <li>After the overlook, do the <strong>Midway Geyser Basin boardwalk</strong> (1.0 mi loop, flat, accessible) from the Midway lot — ground-level Prismatic up-close. Pair them together: overlook first, boardwalk second.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Midday — Old Faithful</div>
+          <ul class="tb-list">
+            <li>Drive south to Old Faithful (~20 min from Midway). Arrive ~noon.</li>
+            <li>Check predicted eruption times on the board at the Visitor Center immediately on arrival.</li>
+            <li>Watch from the <strong>Old Faithful Inn balcony</strong> (second floor, outdoor, no room fee). Better sightline than the crowded boardwalk below.</li>
+            <li>Erupts every ~90 minutes. Average eruption: 1–5 minutes.</li>
+          </ul>
+
+          <!-- TRAIL: Observation Point (optional) -->
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Observation Point Loop</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">1.6 mi RT</span>
+                  <span class="tc-stat moderate">Moderate</span>
+                  <span class="tc-stat">~160 ft gain</span>
+                  <span class="tc-stat">1–1.5 hrs</span>
+                  <span class="tc-stat">NPS: Moderate · 1–3 hrs</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/geyser-hill-loop-trail-and-observation-point" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-observation" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.4617,-110.8301" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>Switchbacks up the hillside above Old Faithful to a commanding elevated bird's-eye view of the entire Upper Geyser Basin — Old Faithful below you, the geyser field extending in every direction. Far fewer people than the boardwalk. <strong>Optional</strong> — do this instead of the boardwalk crowd if you have energy.</p>
+              </div>
+              <div class="tc-tip">The best time to do this: climb up <em>before</em> the next eruption, be at the overlook when Old Faithful goes off below you. Use the predicted eruption board to time your ascent.</div>
+            </div>
+          </div>
+
+          <ul class="tb-list">
+            <li>After Old Faithful: walk the <strong>Upper Geyser Basin loop</strong> (2 hrs, boardwalk) — Castle Geyser, Grand Geyser, Riverside Geyser, Morning Glory Pool. More active geysers per square mile than anywhere on Earth. <strong>Don't leave in the traffic wave immediately after the eruption.</strong> Walk the basin first, then leave.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Return North — Mud Volcano Add-On</div>
+          <ul class="tb-list">
+            <li>Drive back north toward Canyon. Stop at <strong>Mud Volcano</strong> on the way — it's right on the route.</li>
+          </ul>
+
+          <!-- TRAIL: Mud Volcano -->
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Mud Volcano Trail</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">1.5 mi loop</span>
+                  <span class="tc-stat easy">Easy*</span>
+                  <span class="tc-stat">~50 ft gain</span>
+                  <span class="tc-stat">45–60 min</span>
+                  <span class="tc-stat">NPS: Easy, some steep sections</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/mud-volcano-trail" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-mudvolcano" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.6461,-110.4269" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>Loop past turbulent mudpots, hissing steam vents, and a landscape that looks like it belongs on another planet. Dragon's Mouth Spring makes an audible sound like breathing. Mud Caldron is one of the most visually chaotic thermal features in the park. Worth every minute.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Evening — Hayden Valley Return</div>
+          <ul class="tb-list">
+            <li><strong>5–7pm:</strong> Drive north through Hayden Valley one more time heading back to Canyon. This is the evening wildlife window — second chance for grizzly sightings. The day started and ended in Hayden. That's intentional.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ FULL DAY 2 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd full2">
+        <div class="day-hd-label">June 27 · Full Day 2</div>
+        <div class="day-hd-title">Go Northeast — Lamar Valley + Canyon Afternoon</div>
+        <div class="day-hd-sub">Check Dunraven Pass first · Lamar morning · Canyon rims thorough in the afternoon</div>
+      </div>
+      <div class="day-body">
+
+        <!-- DAY 2 MAP -->
+        <div id="map-day2" class="topo-map-lg"></div>
+        <p class="map-caption">Day 2 route: Canyon → Dunraven Pass → Tower-Roosevelt → Lamar Valley → return → Canyon rims full afternoon</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/44.7353,-110.4995/44.9131,-110.4170/44.9369,-110.3278/44.8706,-110.1849/44.9103,-110.2578/44.7225,-110.4968/44.7163,-110.4974/44.7149,-110.4836" target="_blank" class="mab route">🗺️ Open Full Day Route in Google Maps</a>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd teal">Before You Leave — Critical Step</div>
+          <ul class="tb-list">
+            <li>Call <strong>307-344-2117</strong> to confirm Dunraven Pass status. If closed for construction, the Norris detour adds 45 min each way — adjust departure time accordingly.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd teal">Lamar Valley — Choose Your Approach</div>
+          <div class="option-split">
+            <div class="opt-box a">
+              <div class="opt-title">Option A · Wolves (4:30am Departure)</div>
+              <div class="opt-text">Bed by 9:30pm → 4:00am alarm → call Dunraven → <strong>4:30am depart</strong>. Arrive Lamar 5:30–6am dawn window. Wolves, grizzlies, bison — the full picture. No other timing makes wolf sightings realistic.</div>
+            </div>
+            <div class="opt-box b">
+              <div class="opt-title">Option B · 9:00am Departure</div>
+              <div class="opt-text">Normal morning. Arrive Lamar ~10:30am. <strong>Bison: guaranteed.</strong> Grizzly: realistic. Wolves: unlikely but not impossible. Honest expectation: a great wildlife drive, just not a wolf safari.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd teal">At Lamar Valley</div>
+          <ul class="tb-list">
+            <li>Drive slowly east through the valley. <strong>Any car pulled over with spotting scopes = stop at the next pullout</strong> and look in the same direction. That's the system.</li>
+            <li>Wolf packs to look for: <strong>Junction Butte pack</strong> and <strong>Lamar Canyon pack</strong>. Best sightings near Slough Creek pullout and Lamar River Bridge.</li>
+            <li>Bison: the top 2 Yellowstone TikTok videos (29M + 24M views) are just bison on this road. Budget 20+ extra minutes for jams.</li>
+          </ul>
+
+          <!-- TRAIL: Trout Lake -->
+          <div class="trail-card teal-theme">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Trout Lake Trail</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">1.2 mi RT</span>
+                  <span class="tc-stat easy">Easy</span>
+                  <span class="tc-stat">~100 ft gain</span>
+                  <span class="tc-stat">45–60 min</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/trout-lake-loop" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-troutlake" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.9103,-110.2578" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>Short uphill climb to a crystal-clear lake in an open meadow bowl. In late June, cutthroat trout are visibly spawning — you can see them from the bank. Northern river otters use this lake. A quiet, easy stop after the intensity of Lamar wildlife watching.</p>
+              </div>
+              <div class="tc-tip teal">Trailhead is on the north side of the road ~1 mile west of the Pebble Creek Campground turnoff. Easy to miss — watch for the small pullout and trailhead sign.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd teal">Afternoon — Canyon Rims: Thorough Pass</div>
+          <ul class="tb-list">
+            <li>Return to Canyon Village by 12:30–1pm (early if Option A dawn departure). <strong>You're back at your base</strong> — use the afternoon for Canyon in full.</li>
+            <li>If you did the arrival evening and yesterday morning you've only seen Artist Point. This afternoon: do the full canyon circuit.</li>
+          </ul>
+
+          <!-- TRAIL: Uncle Tom's Trail -->
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Uncle Tom's Trail</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">~0.5 mi RT</span>
+                  <span class="tc-stat strenuous">Strenuous*</span>
+                  <span class="tc-stat">328 steel steps</span>
+                  <span class="tc-stat">20–30 min</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/uncle-toms-trail" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-uncletom" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.7163,-110.4974" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>328 open-grate steel steps bolted directly into the canyon wall. Descends to the closest accessible view of the Lower Falls — you feel the mist, hear the thunder, look straight up at 308 feet of waterfall. Short but intense. Not for height-sensitive visitors.</p>
+              </div>
+              <div class="tc-tip">The steps are open-grate (you can see down through them). If heights are an issue, Artist Point gives a nearly equivalent view without the exposure.</div>
+            </div>
+          </div>
+
+          <!-- TRAIL: Brink of Lower Falls -->
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div>
+                <div class="tc-name">Brink of the Lower Falls Trail</div>
+                <div class="tc-stats">
+                  <span class="tc-stat">0.8 mi RT</span>
+                  <span class="tc-stat strenuous">Steep descent</span>
+                  <span class="tc-stat">600 ft drop</span>
+                  <span class="tc-stat">30–45 min</span>
+                  <span class="tc-stat">NPS: Steep descent</span>
+                </div>
+              </div>
+              <a href="https://www.alltrails.com/trail/us/wyoming/brink-of-the-lower-falls" target="_blank" class="at-btn">AllTrails ↗</a>
+            </div>
+            <div class="tc-body">
+              <div id="map-brink" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=44.7225,-110.4968" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+              <div class="tc-notes">
+                <p>Ten paved switchbacks descend 600 ft to the exact lip of the 308-ft Lower Falls. Stand at the brink — water rushes past your feet, mist rises, the roar is visceral. One of the most powerful viewpoints in the park.</p>
+                <p>⚠️ North Rim Drive is one-way. Once you enter, you cannot reverse. Plan the drive direction accordingly.</p>
+              </div>
+            </div>
+          </div>
+
+          <ul class="tb-list">
+            <li><strong>Inspiration Point</strong> — short walk from a pullout on North Rim Drive. Dramatic downstream canyon view at golden hour. Best of the day if the timing works out.</li>
+            <li><strong>South Rim Trail</strong> (2.0 mi one-way from Chittenden Bridge to Artist Point) — walk it instead of driving. The trail hugs the rim with continuous canyon views that are better than from the car.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd teal">Evening</div>
+          <ul class="tb-list">
+            <li>Last sunset from Artist Point or Inspiration Point — Canyon in evening light is different from morning.</li>
+            <li>Pack tonight. Checkout is 11am tomorrow.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DEPARTURE ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd depart">
+        <div class="day-hd-label">June 28</div>
+        <div class="day-hd-title">Departure Morning → Spokane</div>
+        <div class="day-hd-sub">Final morning · Checkout 11am · Drive north</div>
+      </div>
+      <div class="day-body">
+        <div class="time-block">
+          <div class="tb-hd">Final Morning</div>
+          <ul class="tb-list">
+            <li>One final <strong>Artist Point</strong> visit — morning light on the canyon walls for the last time. This one will be different from all the others. It always is.</li>
+            <li>OR: <strong>West Thumb Geyser Basin</strong> (1.0 mi flat loop, accessible) — geothermal pools directly on Yellowstone Lake shore. Beautiful and uncrowded in the morning. Worth it if you're routing south.</li>
+            <li><strong>Checkout by 11am</strong></li>
+          </ul>
+        </div>
+        <div class="time-block">
+          <div class="tb-hd">The Drive</div>
+          <ul class="tb-list">
+            <li>Exit via <strong>North Entrance (Gardiner, MT)</strong> toward Spokane. Budget 15-min delay at Gardner River High Bridge (construction, 24/7 through October).</li>
+            <li>Next chapter of the Grand American Loop begins.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- BISON PROTOCOL -->
+<section>
+  <div class="wrap">
+    <div class="bison-box">
+      <div class="bp-title">Bison Jam Protocol</div>
+      <div class="bp-sub">The #1 and #2 Yellowstone videos on TikTok are just bison walking on a road. It will happen to you. This is how it works.</div>
+      <div class="bp-grid">
+        <div class="bp-step"><div class="bp-num">Rule 1</div><div class="bp-text">Stay in the vehicle. Do not get out for a closer shot.</div></div>
+        <div class="bp-step"><div class="bp-num">Rule 2</div><div class="bp-text">Give right of way. They move on their own in 10–20 minutes.</div></div>
+        <div class="bp-step"><div class="bp-num">Rule 3</div><div class="bp-text">Do not honk. Move slowly if space opens ahead of you.</div></div>
+        <div class="bp-step"><div class="bp-num">Rule 4</div><div class="bp-text">Budget 20+ extra minutes on every Hayden and Lamar Valley drive.</div></div>
+        <div class="bp-step"><div class="bp-num">Distances</div><div class="bp-text"><strong>25 yards</strong> from bison + elk. <strong>100 yards</strong> from bears + wolves. Always.</div></div>
+        <div class="bp-step"><div class="bp-num">Live Alerts</div><div class="bp-text">Text <strong>82190</strong> to <strong>888-777</strong> for live road conditions + bison jam status.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- WILDLIFE -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Wildlife Guide</div>
+    <div class="sec-sub">All from vehicle and roadside · 25 yards from bison/elk · 100 yards from bears and wolves · No exceptions</div>
+    <div class="wl-grid">
+      <div class="wl-card"><div class="wl-name"><strong>Bison</strong></div><div class="wl-prob cert">Near-Certain</div><div class="wl-where">Hayden Valley, Lamar Valley, every road. All day. Budget 20+ min for jams.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Bison Calves</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Hayden Valley. Orange "red dogs" born Apr–May. Look alongside the main herd.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Grizzly Bear</strong></div><div class="wl-prob hi">Good — June prime</div><div class="wl-where">Hayden Valley slopes, Lamar meadows. 8–11am secondary window still productive.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Pronghorn</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Lamar Valley open meadows, any open grassland. Dawn and dusk.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Osprey</strong></div><div class="wl-prob hi">High (nesting)</div><div class="wl-where">Canyon walls. Look at the cliffs from Artist Point — nesting pairs visible Apr–Sep.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Bald Eagle</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Hayden Valley along the Yellowstone River. Morning.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Elk</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Hayden Valley. Dawn and dusk. Cows with calves in June — stay back from cows.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Wolf</strong></div><div class="wl-prob mod">Dawn-only realistic</div><div class="wl-where">Lamar Valley, 5:30–8am window. Junction Butte + Lamar Canyon packs. Spotting scopes essential.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Black Bear</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Forest edges, roadsides. Dawn and dusk. Smaller and faster than grizzlies.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Coyote</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Hayden Valley. Dawn and dusk. Often trots directly across the road.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Trumpeter Swan</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Hayden Valley river. Morning. Massive white birds with black bills.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Sandhill Crane</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Hayden Valley wetlands. Morning. Tall grey birds with red foreheads.</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- INSIDER TIPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">From the Park — Insider Tips</div>
+    <div class="sec-sub">Sourced from Yellowstone National Park Lodges · Things most visitors don't do</div>
+    <div class="intel-grid">
+      <div class="intel-card">
+        <div class="ic-num">Tip 1</div>
+        <div class="ic-title">Yellowstone Lake — The Quiet Alternative</div>
+        <div class="ic-text">While everyone crowds Old Faithful at midday, the 136-square-mile lake (largest high-elevation lake in North America) is quiet. Scenic cruises, guided fishing, and boat rentals available. A natural afternoon complement to the morning geyser basin.</div>
+      </div>
+      <div class="intel-card">
+        <div class="ic-num">Tip 2</div>
+        <div class="ic-title">Stargazing After Dark</div>
+        <div class="ic-text">Walk 100 yards from your campsite after dark. Very little light pollution across 2.2M acres. June nights are cold but clear. Bring a layer, download a star app before you lose signal, and spend 20 minutes looking up. There's nothing else like it at 7,900 ft.</div>
+      </div>
+      <div class="intel-card">
+        <div class="ic-num">Tip 3</div>
+        <div class="ic-title">Old Faithful Inn Balcony — For Everyone</div>
+        <div class="ic-text">The Old Faithful Inn is a National Historic Landmark (1903). The second-floor outdoor balcony is open to all visitors — no room, no fee. When the boardwalk crowd is elbow-to-elbow, go up. Better angle, more breathing room, same eruption.</div>
+      </div>
+      <div class="intel-card">
+        <div class="ic-num">Tip 4</div>
+        <div class="ic-title">West Thumb Geyser Basin — Underrated</div>
+        <div class="ic-text">Boiling pools directly on the shore of Yellowstone Lake. Equal visual drama to Midway Geyser Basin, significantly fewer crowds. Great for the departure morning if you route south, or as an add-on anytime you're near Lake Village.</div>
+      </div>
+      <div class="intel-card">
+        <div class="ic-num">Tip 5</div>
+        <div class="ic-title">98% of the Park is Off the Roads</div>
+        <div class="ic-text">Even a half-mile trail completely changes the experience. The moment you step away from pavement, the crowds vanish. The park looks, sounds, and feels different when you're not in a vehicle. Every trail on this guide delivers that shift within minutes.</div>
+      </div>
+      <div class="intel-card">
+        <div class="ic-num">Tip 6</div>
+        <div class="ic-title">~50 Miles Between Major Attractions</div>
+        <div class="ic-text">Old Faithful to Canyon: ~50 miles. Factor in road construction delays on every segment. The park is genuinely large — don't assume things are close because they're "all in Yellowstone." Your two full days are designed around this reality.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PARK RULES -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">What Not to Do</div>
+    <div class="sec-sub">Rules that exist because of real incidents — not suggestions</div>
+    <div class="rules-list">
+      <div class="rule-card">
+        <div class="rule-icon">🚷</div>
+        <div>
+          <div class="rule-title">Do Not Leave Boardwalks or Designated Trails</div>
+          <div class="rule-text">The ground over geothermal features can be inches thick over boiling water. The surface looks solid. It is not always solid. <strong>People have died going off-trail here.</strong> The boardwalk boundary is absolute. Supervise children at all times near thermal areas. Dogs, bikes, and scooters prohibited on boardwalks.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🐻</div>
+        <div>
+          <div class="rule-title">Maintain Distance from All Wildlife</div>
+          <div class="rule-text"><strong>100 yards from bears, wolves, and nesting birds. 25 yards from all other wildlife.</strong> If an animal changes its behavior because of your presence — stops, moves away, looks at you — you are too close and must back up immediately. Bull bison and elk cows with calves are unpredictable at any distance.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">📴</div>
+        <div>
+          <div class="rule-title">Do Not Rely on Cell Service for Navigation</div>
+          <div class="rule-text">Minimal coverage across 2.2M acres and 350+ miles of road. <strong>Download the NPS app for offline use before leaving cell range. Download Google Maps offline. Carry the physical park map from the entrance gate.</strong> GPS works without internet — offline maps do not require signal.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🪨</div>
+        <div>
+          <div class="rule-title">Do Not Remove Anything from the Park</div>
+          <div class="rule-text">Rocks, antlers, thermal deposits, flowers — all prohibited. With millions of annual visitors, even small removals degrade the park. Take photos. It's not a small rule — it's a federal violation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- CONTACTS -->
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Key Contacts</div>
+    <div class="sec-sub">Save before you lose signal — the road hotline especially</div>
+    <div class="contacts-grid">
+      <div class="cc">
+        <div class="cc-label">Dunraven Pass / Road Info</div>
+        <div class="cc-val">307-344-2117</div>
+        <div class="cc-note">Recorded road conditions. Call morning of June 27 before Lamar departure. Non-negotiable.</div>
+      </div>
+      <div class="cc">
+        <div class="cc-label">Live Road Alerts</div>
+        <div class="cc-val">Text 82190 → 888-777</div>
+        <div class="cc-note">Live bison jams, road closures, construction delays. Works without data.</div>
+      </div>
+      <div class="cc">
+        <div class="cc-label">Canyon Visitor Center</div>
+        <div class="cc-val">307-344-7381 · 8am–7pm</div>
+        <div class="cc-note">Walk from your campsite. Current trail closures, road conditions, wildlife reports.</div>
+      </div>
+      <div class="cc">
+        <div class="cc-label">NPS App — Download Offline Now</div>
+        <div class="cc-val">Full offline functionality</div>
+        <div class="cc-note">Trail maps, road closures, geyser prediction times — all offline. Download before you arrive.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <strong>Yellowstone National Park · June 25–28, 2026</strong> · Base: Canyon Village · Grand American Loop Field Guide<br>
+  <span style="font-size:.7rem;opacity:.6">Maps: OpenTopoMap (CC-BY-SA) · Waymarked Trails overlay · Trail data validated via NPS API (developer.nps.gov)</span>
+</div>
+
+<!-- ══════════════ LEAFLET MAP INITIALIZATION ══════════════ -->
+<script>
+function mkMap(id, center, zoom, stops, drawRoute) {
+  var container = document.getElementById(id);
+  if (!container) return;
+  var map = L.map(id, {scrollWheelZoom: false, zoomControl: true}).setView(center, zoom);
+
+  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    maxZoom: 15,
+    attribution: '© <a href="https://opentopomap.org">OpenTopoMap</a>'
+  }).addTo(map);
+
+  L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+    maxZoom: 15, opacity: 0.75,
+    attribution: '© <a href="https://hiking.waymarkedtrails.org">Waymarked Trails</a>'
+  }).addTo(map);
+
+  if (drawRoute && stops.length > 1) {
+    L.polyline(stops.map(function(s){ return [s.lat, s.lng]; }), {
+      color: '#B34A0A', weight: 3, opacity: 0.65, dashArray: '7,5'
+    }).addTo(map);
+  }
+
+  stops.forEach(function(s, i) {
+    var bg = s.type === 'base' ? '#5C2B0A' : (s.type === 'teal' ? '#1A7A8A' : '#B34A0A');
+    var lbl = s.num != null ? s.num : (i + 1);
+    var icon = L.divIcon({
+      html: '<div style="background:'+bg+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+lbl+'</div>',
+      iconSize:[26,26], iconAnchor:[13,13], className:''
+    });
+    L.marker([s.lat, s.lng], {icon:icon}).addTo(map)
+     .bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+  });
+  return map;
+}
+
+window.addEventListener('load', function() {
+
+  // ── DAY 1: SOUTH LOOP ──
+  mkMap('map-day1', [44.598, -110.658], 9, [
+    {lat:44.7353,lng:-110.4995, type:'base', num:'⌂', name:'Canyon Village (Base)'},
+    {lat:44.6603,lng:-110.4906, num:'1', name:'Hayden Valley', note:'Grizzly scan · Drive slow both directions'},
+    {lat:44.5434,lng:-110.8444, num:'2', name:'Fairy Falls Trailhead', note:'Park here for Grand Prismatic Overlook'},
+    {lat:44.5250,lng:-110.8383, num:'3', name:'Grand Prismatic Spring', note:'Midway Geyser Basin boardwalk'},
+    {lat:44.4605,lng:-110.8281, num:'4', name:'Old Faithful', note:'Check eruption board on arrival'},
+    {lat:44.6461,lng:-110.4269, num:'5', name:'Mud Volcano', note:'1.5 mi loop · Return add-on'}
+  ], true);
+
+  // ── TRAIL: Grand Prismatic Overlook ──
+  mkMap('map-prismatic', [44.5434, -110.8444], 13, [
+    {lat:44.5434,lng:-110.8444, type:'base', num:'TH', name:'Fairy Falls Trailhead', note:'Park here for Grand Prismatic Overlook · Do not use Midway lot'}
+  ], false);
+
+  // ── TRAIL: Observation Point ──
+  mkMap('map-observation', [44.4617, -110.8301], 13, [
+    {lat:44.4617,lng:-110.8301, type:'base', num:'TH', name:'Observation Point Trailhead', note:'Near Old Faithful Visitor Center'}
+  ], false);
+
+  // ── TRAIL: Mud Volcano ──
+  mkMap('map-mudvolcano', [44.6461, -110.4269], 13, [
+    {lat:44.6461,lng:-110.4269, type:'base', num:'TH', name:'Mud Volcano Trailhead', note:'On the road between Canyon and Hayden Valley'}
+  ], false);
+
+  // ── DAY 2: LAMAR + CANYON ──
+  mkMap('map-day2', [44.825, -110.362], 9, [
+    {lat:44.7353,lng:-110.4995, type:'base', num:'⌂', name:'Canyon Village (Base)'},
+    {lat:44.9131,lng:-110.4170, num:'1', name:'Tower-Roosevelt Junction', note:'Watch for wildlife in meadows here'},
+    {lat:44.9369,lng:-110.3278, num:'2', name:'Slough Creek Pullout', note:'Best wolf viewing area · Look for spotting scopes'},
+    {lat:44.8706,lng:-110.1849, num:'3', name:'Lamar River Bridge', note:'Wolf and bison hotspot'},
+    {lat:44.9103,lng:-110.2578, type:'teal', num:'4', name:'Trout Lake Trailhead', note:'1.2 mi RT · Spawning trout · Otters'},
+    {lat:44.7225,lng:-110.4968, num:'5', name:'Brink of Lower Falls TH', note:'North Rim · 0.8 mi · 600 ft descent'},
+    {lat:44.7163,lng:-110.4974, num:'6', name:"Uncle Tom's Trail", note:'South Rim · 328 open-grate steps'},
+    {lat:44.7149,lng:-110.4836, num:'7', name:'Artist Point', note:'South Rim · Best canyon view'}
+  ], true);
+
+  // ── TRAIL: Trout Lake ──
+  mkMap('map-troutlake', [44.9103, -110.2578], 13, [
+    {lat:44.9103,lng:-110.2578, type:'teal', num:'TH', name:'Trout Lake Trailhead', note:'Near Pebble Creek Campground · Watch for the small pullout'}
+  ], false);
+
+  // ── TRAIL: Uncle Tom's ──
+  mkMap('map-uncletom', [44.7163, -110.4974], 14, [
+    {lat:44.7163,lng:-110.4974, type:'base', num:'TH', name:"Uncle Tom's Trail", note:'South Rim · 328 steel steps to Lower Falls close-up'}
+  ], false);
+
+  // ── TRAIL: Brink of Lower Falls ──
+  mkMap('map-brink', [44.7225, -110.4968], 14, [
+    {lat:44.7225,lng:-110.4968, type:'base', num:'TH', name:'Brink of Lower Falls', note:'North Rim Drive · One-way · 600 ft descent to the lip of the falls'}
+  ], false);
+
+});
+</script>
+</body>
+</html>

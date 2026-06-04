@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Road Trip — July 2–12, 2026</title>
+<style>
+  :root {
+    --sunset: #D97B4A;
+    --ocean: #2B6B8E;
+    --forest: #3A6B4A;
+    --sand: #F5E6C8;
+    --cream: #FDFAF4;
+    --dark: #1E2A35;
+    --mid: #4A5568;
+    --light: #E8D5B0;
+    --gold: #C9A84C;
+    --urgent: #C0392B;
+    --success: #27AE60;
+    --birthday: #8B4FBE;
+    --beach: #2B9EC4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--sunset) 60%, var(--gold) 100%);
+    color: white;
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .hero .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .hero .meta {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .hero .meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-header {
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  .section-header h2 {
+    font-size: 1.8rem;
+    color: var(--ocean);
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .section-header p {
+    color: var(--mid);
+    font-style: italic;
+  }
+
+  /* ===== BOOKING ALERT ===== */
+  .booking-alert {
+    background: #FEF9F0;
+    border: 2px solid var(--sunset);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 30px 0;
+  }
+  .booking-alert h3 {
+    color: var(--urgent);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .booking-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #F0E0C8;
+  }
+  .booking-item:last-child { border-bottom: none; }
+  .booking-urgency {
+    background: var(--urgent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .booking-urgency.soon {
+    background: var(--sunset);
+  }
+  .booking-urgency.anytime {
+    background: var(--forest);
+  }
+  .booking-info strong {
+    display: block;
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+  .booking-info a {
+    color: var(--ocean);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+  .booking-info a:hover { text-decoration: underline; }
+  .booking-info .note {
+    color: var(--mid);
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* ===== WHY CALLOUT ===== */
+  .why-box {
+    background: #EEF5F9;
+    border-left: 4px solid var(--ocean);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    color: var(--mid);
+  }
+  .why-box strong { color: var(--ocean); }
+
+  /* ===== DAY CARDS ===== */
+  .day-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    margin: 24px 0;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    padding: 22px 28px;
+    gap: 20px;
+    border-bottom: 1px solid #F0EBE0;
+  }
+  .day-number {
+    background: var(--ocean);
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .day-number .num {
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .day-header-info h3 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--dark);
+  }
+  .day-header-info .date-line {
+    font-size: 0.85rem;
+    color: var(--mid);
+    font-style: italic;
+  }
+  .day-header-info .drive-badge {
+    display: inline-block;
+    background: #F0EBE0;
+    color: var(--mid);
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-top: 4px;
+  }
+
+  .day-header.birthday {
+    background: linear-gradient(135deg, #F8F0FF 0%, #EEE0FF 100%);
+  }
+  .day-header.birthday .day-number { background: var(--birthday); }
+  .day-header.beach .day-number { background: var(--beach); }
+
+  .day-body { padding: 24px 28px; }
+
+  /* ===== ACTIVITIES ===== */
+  .activity {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #F5F0E8;
+  }
+  .activity:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .activity-time {
+    min-width: 70px;
+    font-size: 0.8rem;
+    color: var(--sunset);
+    font-weight: bold;
+    padding-top: 3px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .activity-content h4 {
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .activity-content p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .activity-content .tags {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .tag.book { background: #FDECEA; color: var(--urgent); }
+  .tag.free { background: #EDF7EE; color: var(--success); }
+  .tag.food { background: #FFF3E0; color: #E65100; }
+  .tag.surprise { background: #F3E5F5; color: #6A1B9A; }
+  .tag.drive { background: #E3F2FD; color: #0D47A1; }
+
+  .book-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--ocean);
+    text-decoration: none;
+    border: 1px solid var(--ocean);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: sans-serif;
+  }
+  .book-link:hover { background: var(--ocean); color: white; }
+
+  /* ===== SPECIAL CALLOUTS ===== */
+  .birthday-banner {
+    background: linear-gradient(135deg, var(--birthday) 0%, #6A3B9E 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+  }
+  .birthday-banner strong { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+
+  .beach-banner {
+    background: linear-gradient(135deg, var(--beach) 0%, var(--ocean) 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin: 12px 0;
+    font-size: 0.88rem;
+  }
+  .beach-banner strong { display: block; font-size: 1rem; margin-bottom: 3px; }
+
+  .surprise-banner {
+    background: linear-gradient(135deg, #F3E5F5 0%, #E8D5F5 100%);
+    border: 2px solid #CE93D8;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin: 14px 0;
+    font-size: 0.88rem;
+    color: #4A148C;
+  }
+  .surprise-banner strong { display: block; font-size: 1rem; margin-bottom: 3px; }
+
+  /* ===== DECISION EXPLAINER ===== */
+  .decision-box {
+    background: #F0F7F0;
+    border: 1px solid #A8D5A8;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .decision-box h4 {
+    color: var(--forest);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .decision-box p { font-size: 0.88rem; color: var(--mid); margin-bottom: 8px; }
+  .decision-box .vs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .vs-option {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.82rem;
+  }
+  .vs-option.winner { background: var(--forest); color: white; }
+  .vs-option.loser { background: #F5F5F5; color: var(--mid); }
+  .vs-option strong { display: block; margin-bottom: 4px; }
+
+  /* ===== FOOD SECTION ===== */
+  .food-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.87rem;
+  }
+  .food-emoji { font-size: 1.1rem; flex-shrink: 0; }
+  .food-name { font-weight: bold; color: var(--dark); }
+  .food-desc { color: var(--mid); }
+
+  /* ===== OVERNIGHT ===== */
+  .overnight-box {
+    background: var(--sand);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 20px;
+    font-size: 0.87rem;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .overnight-box .hotel-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .overnight-box strong { color: var(--dark); display: block; }
+  .overnight-box span { color: var(--mid); }
+  .overnight-box a { color: var(--ocean); text-decoration: none; font-size: 0.82rem; }
+  .overnight-box a:hover { text-decoration: underline; }
+
+  /* ===== ROUTE MAP BAR ===== */
+  .route-bar {
+    background: white;
+    border: 1px solid #E0D8C8;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 30px 0;
+    overflow-x: auto;
+  }
+  .route-bar h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--mid);
+    margin-bottom: 14px;
+    font-family: sans-serif;
+  }
+  .route-stops {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    font-family: sans-serif;
+  }
+  .route-stop {
+    text-align: center;
+  }
+  .route-stop .stop-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--ocean);
+    border-radius: 50%;
+    margin: 0 auto 4px;
+  }
+  .route-stop .stop-name {
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 0.78rem;
+  }
+  .route-stop .stop-day {
+    color: var(--mid);
+    font-size: 0.7rem;
+  }
+  .route-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--ocean), var(--sunset));
+    min-width: 20px;
+    margin-bottom: 14px;
+  }
+
+  /* ===== BUDGET ===== */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+    margin-top: 12px;
+  }
+  .budget-table th {
+    background: var(--ocean);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    font-size: 0.82rem;
+  }
+  .budget-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #F0EBE0;
+    color: var(--mid);
+  }
+  .budget-table tr:nth-child(even) td { background: #FDFAF4; }
+  .budget-table .total td {
+    background: var(--sand);
+    color: var(--dark);
+    font-weight: bold;
+    border-bottom: none;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 30px;
+    font-size: 0.82rem;
+    margin-top: 60px;
+  }
+  footer a { color: rgba(255,255,255,0.8); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.8rem; }
+    .day-header { flex-direction: column; align-items: flex-start; }
+    .activity { flex-direction: column; gap: 6px; }
+    .activity-time { text-align: left; }
+    .decision-box .vs-row { grid-template-columns: 1fr; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .hero { background: #2B6B8E !important; -webkit-print-color-adjust: exact; }
+    .day-card { break-inside: avoid; box-shadow: none; border: 1px solid #DDD; }
+  }
+
+  /* ===== HOTEL CARDS ===== */
+  .hotel-options { margin-top: 10px; }
+  .hotel-option {
+    display: flex; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid #F0EBE0;
+    align-items: flex-start;
+  }
+  .hotel-option:last-child { border-bottom: none; }
+  .hotel-badge {
+    font-size: 0.68rem; font-family: sans-serif; font-weight: bold;
+    letter-spacing: 0.5px; padding: 4px 9px; border-radius: 12px;
+    white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  }
+  .hotel-badge.hval { background: #E8F5E9; color: #2E7D32; }
+  .hotel-badge.hloc { background: #FFF3E0; color: #E65100; }
+  .hotel-badge.hqua { background: #E3F2FD; color: #1565C0; }
+  .hotel-name { font-weight: bold; color: var(--dark); font-size: 0.9rem; }
+  .hotel-price { color: var(--sunset); font-weight: bold; font-size: 0.87rem; margin-top: 2px; }
+  .hotel-why { color: var(--mid); font-size: 0.83rem; margin-top: 4px; line-height: 1.5; }
+  .hotel-fees { color: var(--urgent); font-size: 0.78rem; font-style: italic; margin-top: 4px; }
+  .hotel-warn {
+    background: #FFF8E1; border-left: 3px solid #F9A825;
+    padding: 8px 12px; margin: 8px 0 4px; font-size: 0.82rem;
+    color: var(--mid); border-radius: 4px; font-family: sans-serif;
+  }
+  .hotel-link {
+    display: inline-block; margin-top: 5px; font-size: 0.8rem;
+    color: var(--ocean); text-decoration: none; font-family: sans-serif;
+  }
+  .hotel-link:hover { text-decoration: underline; }
+  /* Ensure all-caps restaurant note in booking links */
+  .resy-note { font-size: 0.78rem; color: var(--forest); font-family: sans-serif; margin-top: 4px; font-style: italic; }
+
+  /* ===== TRAFFIC ADVISORY ===== */
+  .traffic-panel {
+    background: #FFF5F5;
+    border: 2px solid #FC8181;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .traffic-panel-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #C53030;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .traffic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+    margin-top: 14px;
+  }
+  .traffic-table th {
+    background: #FED7D7;
+    color: #742A2A;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+  }
+  .traffic-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #FED7D7;
+    vertical-align: top;
+    font-family: sans-serif;
+  }
+  .traffic-table tr:last-child td { border-bottom: none; }
+  .traffic-table small { color: #718096; font-size: 0.78rem; display: block; }
+  .risk-red  { color: #C53030; font-weight: bold; }
+  .risk-yel  { color: #C05621; font-weight: bold; }
+  .risk-grn  { color: #276749; font-weight: bold; }
+  .traf-alert {
+    background: #FFF5F5;
+    border-left: 4px solid #FC8181;
+    border-radius: 0 8px 8px 0;
+    padding: 13px 18px;
+    margin: 10px 0 0;
+    font-size: 0.875rem;
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+  .traf-alert.warn {
+    background: #FFFAF0;
+    border-left-color: #F6AD55;
+  }
+  .traf-alert.clear {
+    background: #F0FFF4;
+    border-left-color: #68D391;
+  }
+  .traf-alert strong { display: block; margin-bottom: 5px; }
+  .traf-alert a { color: var(--ocean); }
+
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>California Road Trip</h1>
+  <p class="subtitle">San Francisco &rarr; Half Moon Bay &rarr; Carmel &rarr; Big Sur &rarr; Yosemite &rarr; Sequoia &rarr; Paso Robles &rarr; Santa Barbara &rarr; Malibu &rarr; Newport Beach</p>
+  <div class="meta">
+    <span>📅 July 2–12, 2026</span>
+    <span>👨‍👩‍👦‍👦 Family of 4</span>
+    <span>🚗 10 days · ~1,400 miles</span>
+    <span>🎂 Adam turns 22 on July 4th</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== ROUTE OVERVIEW ===== -->
+  <div class="route-bar">
+    <h4>Route Overview — South on Hwy 1</h4>
+    <div class="route-stops">
+      <div class="route-stop"><div class="stop-dot"></div><div class="stop-name">San Francisco</div><div class="stop-day">Days 1–2</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--ocean)"></div><div class="stop-name">Half Moon Bay</div><div class="stop-day">Day 3 stop</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--birthday)"></div><div class="stop-name">Carmel 🎂</div><div class="stop-day">Days 3–4</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--sunset)"></div><div class="stop-name">Big Sur</div><div class="stop-day">Day 4</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--forest)"></div><div class="stop-name">Yosemite</div><div class="stop-day">Days 5–6</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--forest)"></div><div class="stop-name">Sequoia</div><div class="stop-day">Day 7</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--gold)"></div><div class="stop-name">Paso Robles</div><div class="stop-day">Day 8</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--beach)"></div><div class="stop-name">Santa Barbara</div><div class="stop-day">Day 9</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:var(--sunset)"></div><div class="stop-name">Malibu + SM</div><div class="stop-day">Day 10</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="stop-dot" style="background:#27AE60"></div><div class="stop-name">Newport Beach</div><div class="stop-day">Day 10–11</div></div>
+    </div>
+  </div>
+
+  <!-- ===== TRAFFIC ADVISORY ===== -->
+  <div class="traffic-panel">
+    <div class="traffic-panel-title">🚦 Traffic Advisory — Verified via Google Maps Distance Matrix API</div>
+    <p style="font-size:0.84rem;color:#742A2A;margin-bottom:4px;">Two days on this trip carry <strong>critical traffic risk</strong>. The times below are Google Maps baselines (no traffic). Real-world estimates with July summer traffic shown separately — plan around them.</p>
+    <table class="traffic-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Route</th>
+          <th>Maps Baseline</th>
+          <th>Expected w/ Traffic</th>
+          <th>Risk</th>
+          <th>Depart By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Day 3</strong><small>Sat Jul 4 🎂</small></td>
+          <td>SF → Half Moon Bay → Carmel<small>CA-1 PCH South</small></td>
+          <td>~3h 30m · 140 mi</td>
+          <td class="risk-grn">~3h 30m · No issues</td>
+          <td class="risk-grn">🟢 Clear</td>
+          <td><strong>8:45 AM</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Day 5</strong><small>Mon Jul 6</small></td>
+          <td>Pacific Grove → Yosemite<small>Hwy 101 → 152 → 99 → 140</small></td>
+          <td>~4h 15m · ~220 mi</td>
+          <td class="risk-yel">4h 30m – 4h 45m</td>
+          <td class="risk-yel">🟡 Moderate</td>
+          <td><strong>8:00 AM</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Day 7</strong><small>Wed Jul 8</small></td>
+          <td>Yosemite → Sequoia<small>CA-41 S via Fresno</small></td>
+          <td>4h 21m · 218 mi</td>
+          <td class="risk-grn">~4h 30m</td>
+          <td class="risk-grn">🟢 Clear</td>
+          <td><strong>8:30 AM</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Day 8</strong><small>Thu Jul 9</small></td>
+          <td>Sequoia/Visalia → Paso Robles<small>Hwy 65 → 46 West</small></td>
+          <td>~3h · ~175 mi</td>
+          <td class="risk-grn">~4h 15m</td>
+          <td class="risk-grn">🟢 Clear</td>
+          <td><strong>9:00 AM</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Day 9</strong><small>Fri Jul 10</small></td>
+          <td>Paso Robles → Santa Barbara<small>US-101 South</small></td>
+          <td>2h 9m · 108 mi</td>
+          <td class="risk-yel">~4h</td>
+          <td class="risk-yel">🟡 Light</td>
+          <td><strong>9:00 AM</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Day 10</strong><small>Sat Jul 11</small></td>
+          <td>Paso Robles → Santa Barbara → Malibu → Santa Monica<small>US-101 S + PCH</small></td>
+          <td>4h 9m</td>
+          <td class="risk-red">5h 30m – 7h</td>
+          <td class="risk-red">🔴 HIGH</td>
+          <td><strong class="risk-red">8:30 AM</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== BOOKING CHECKLIST ===== -->
+  <div class="booking-alert">
+    <h3>🚨 Book These NOW — Before Reading Further</h3>
+    <div class="booking-item">
+      <span class="booking-urgency">BOOK TODAY</span>
+      <div class="booking-info">
+        <strong>Alcatraz Day Tour — July 2 (Day 1, 2:45pm ferry)</strong>
+        <a href="https://www.cityexperiences.com/san-francisco/city-cruises/alcatraz/" target="_blank">cityexperiences.com → Alcatraz Day Tour</a>
+        <div class="note">Sells out 2–4 weeks out in July. Evening tour = best light, fewer crowds. $47/adult. Book 4 tickets.</div>
+      </div>
+    </div>
+    <div class="booking-item">
+      <span class="booking-urgency">BOOK TODAY</span>
+      <div class="booking-info">
+        <strong>Muir Woods Timed Entry — July 3 (Day 2, morning)</strong>
+        <a href="https://gomuirwoods.com" target="_blank">gomuirwoods.com</a> &nbsp;|&nbsp; <a href="https://www.recreation.gov/timed-entry/10086745" target="_blank">recreation.gov</a>
+        <div class="note">$15/adult (16+). No walk-up parking. Timed entry is mandatory. Book 9am or 10am slot. 4 tickets.</div>
+      </div>
+    </div>
+    <div class="booking-item">
+      <span class="booking-urgency soon">BOOK SOON</span>
+      <div class="booking-info">
+        <strong>Yosemite Lodging — July 6 & 7 (Nights 5 & 6)</strong>
+        <a href="https://www.travelyosemite.com" target="_blank">travelyosemite.com (Aramark — official)</a>
+        <div class="note">No day-use reservation needed in 2026 (policy change — walk-up allowed). But lodging inside the valley books out months ahead. Book ASAP for 2 nights.</div>
+      </div>
+    </div>
+    <div class="booking-item">
+      <span class="booking-urgency soon">BOOK SOON</span>
+      <div class="booking-info">
+        <strong>Sensorio Field of Light — July 10 evening (Day 9)</strong>
+        <a href="https://www.sensoriopaso.com" target="_blank">sensoriopaso.com</a> (book via TIXR on that site)
+        <div class="note">Open Thu–Sun, 6:30–10:30pm. Mom sent this reel herself — she wants this. Book tickets directly through the official site, not resellers (resellers charge $84+).</div>
+      </div>
+    </div>
+    <div class="booking-item">
+      <span class="booking-urgency anytime">BOOK ANYTIME</span>
+      <div class="booking-info">
+        <strong>Big Sur state park day-use fees — Day 4 (Jul 5)</strong>
+        <div class="note">Julia Pfeiffer Burns SP (McWay Falls) $10/vehicle · Pfeiffer Beach $12/vehicle · Pfeiffer Big Sur SP $10/vehicle. Pay on arrival. No advance booking needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REDWOOD DECISION ===== -->
+  <!-- ===== CALIFORNIA FOOD PHILOSOPHY ===== -->
+  <div class="decision-box" style="border-color: #E67E22; background: #FFF8F0;">
+    <h4 style="color: #E67E22;">&#x1F35D; California Food: What to Expect on This Trip</h4>
+    <p>California has its own food culture unlike anywhere else in the US. Here&rsquo;s what makes it different &mdash; and what you&rsquo;ll actually encounter on this route:</p>
+    <p><strong>California Cuisine = Farm-to-Table:</strong> Alice Waters invented this philosophy at Chez Panisse in Berkeley in the 1970s. The rule: whatever is growing locally this week, cooked simply and perfectly. Every good restaurant on this route changes its menu seasonally. Avocado, artichokes, stone fruits, fresh herbs &mdash; California grows it all.</p>
+    <p><strong>Seafood (your family is already set up for this):</strong> Cioppino (SF&rsquo;s Italian seafood stew, born in 1800s North Beach), Dungeness crab, fresh oysters, Baja-style fish tacos. The fish is caught that morning. The difference is real.</p>
+    <p><strong>Santa Maria BBQ (the California BBQ answer):</strong> Tri-tip beef, slow-smoked over California red oak, seasoned with nothing but garlic-salt-pepper. Invented by Central Coast ranchers in the 1800s. Completely unique to California. You&rsquo;re driving through Santa Maria territory on Day 9. Jeffry&rsquo;s Wine Country BBQ in Paso Robles does this style.</p>
+    <p><strong>Baja-California Mexican:</strong> Not what you get back home. California borders Mexico. La Taqueria in SF has a James Beard Award for their burrito. Lilly&rsquo;s in Santa Barbara has $4 tacos people drive 2 hours for.</p>
+    <p><strong>In-N-Out Burger:</strong> California&rsquo;s fast food icon since 1948 &mdash; never frozen, fresh-cut fries, the famous <em>secret menu</em>. Order <strong>Double-Double Animal Style + Fries Well Done Animal Style</strong>. ~$10/person. A California pilgrimage.</p>
+    <p><strong>Spice level:</strong> California Mexican is generally mild-to-medium. Fish tacos and standard taquerias won&rsquo;t challenge anyone. If you want spice, ask. If you don&rsquo;t, don&rsquo;t.</p>
+  </div>
+
+    <div class="decision-box">
+    <h4>Why Muir Woods and Not Redwood National Park?</h4>
+    <p>Your mom's map said "redwood trees" — the experience of standing under enormous ancient coast redwoods. Redwood National Park (near Crescent City) has those trees but is <strong>6 hours 16 minutes north of San Francisco</strong> — the opposite direction of your trip. Going there would burn 2 full days just on driving.</p>
+    <p>Muir Woods National Monument is <strong>45 minutes from San Francisco</strong>, contains the same ancient coast redwood species (Sequoia sempervirens), and a family travel creator doing our exact same SF→LA route specifically chose Muir Woods over Redwood NP for exactly this reason.</p>
+    <div class="vs-row">
+      <div class="vs-option winner">
+        <strong>✅ Muir Woods</strong>
+        45 min from SF. Same ancient coast redwoods. On-route. Timed entry = no crowds.
+      </div>
+      <div class="vs-option loser">
+        <strong>❌ Redwood National Park</strong>
+        6h 16m north of SF. Opposite direction. Burns 2 full days of 10.
+      </div>
+      <div class="vs-option winner" style="background:var(--forest)80;">
+        <strong>✅ Sequoia NP</strong>
+        Giant Sequoias (different species — world's largest by volume). Day 7. Already in plan.
+      </div>
+    </div>
+    <p style="margin-top:12px; font-style:italic;">Bottom line: You get two redwood experiences — ancient coast redwoods at Muir Woods (Day 2) and giant sequoias at Sequoia NP (Day 7). The best of both worlds, on-route.</p>
+  </div>
+
+  <!-- ===== DAY 1 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">1</span><span>THU</span></div>
+      <div class="day-header-info">
+        <h3>Arrive San Francisco</h3>
+        <div class="date-line">Thursday, July 2, 2026 · Flight lands 11:27am Pacific</div>
+        <div class="drive-badge">No driving today — settle in and explore on foot</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="activity">
+        <div class="activity-time">11:27am</div>
+        <div class="activity-content">
+          <h4>Land at SFO — Grab your rental car</h4>
+          <p>Rental car desks are in the consolidated garage connected to the terminal. Budget 45–60 min for bags + car pickup. You'll be rolling by ~12:30pm.</p>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-time">1:00pm</div>
+        <div class="activity-content">
+          <h4>Check in, drop bags, recharge</h4>
+          <p>Most hotels hold luggage if you arrive before check-in (typically 3pm). Drop bags, freshen up, walk to lunch. You've been traveling since morning — don't over-schedule this afternoon.</p>
+          <div class="tags"><span class="tag free">No ticket needed</span></div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-time">2:00pm</div>
+        <div class="activity-content">
+          <h4>Fisherman's Wharf & Pier 39</h4>
+          <p>Walk the waterfront, watch the sea lions at Pier 39, grab a clam chowder bread bowl from Boudin Bakery. Classic San Francisco arrival energy. Easy, no lines, no tickets. The kids will like the sea lions.</p>
+          <div class="tags"><span class="tag free">Free to walk</span><span class="tag food">Clam chowder bowl here</span></div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-time">4:00pm</div>
+        <div class="activity-content">
+          <h4>Golden Gate Bridge walk (Marin side)</h4>
+          <p>If the group has energy: drive to the Marin Headlands overlook (Vista Point on the north end) for the most dramatic photo angle of the bridge. 20 minutes from Fisherman's Wharf. Free parking at Vista Point. This is different from Fort Point — that's tomorrow's surprise.</p>
+          <div class="tags"><span class="tag free">Free</span><span class="tag drive">20 min from Pier 39</span></div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-time">2:45pm</div>
+        <div class="activity-content">
+          <h4>Alcatraz Day Tour 🏛️</h4>
+          <p>Ferry departs from Pier 33 (Fisherman's Wharf area). Full afternoon daylight means excellent views of the bay and SF skyline on the crossing, the famous audio tour narrated by actual former inmates and guards, and dramatic late-afternoon light through the cellblock windows. Give yourself 30 min to get to Pier 33 before departure. Tour lasts ~2.5 hrs including ferry. You'll be back by 5:15pm.</p>
+          <div class="tags"><span class="tag book">Pre-booked required · ~$41/adult</span></div>
+          <a class="book-link" href="https://www.cityexperiences.com/san-francisco/city-cruises/alcatraz/" target="_blank">Book at cityexperiences.com →</a>
+          <div class="why-box" style="margin-top:10px;">
+            <strong>Day Tour:</strong> The 2:45pm slot gives you full daylight views of the island and SF skyline from the water — one of the best approaches to the city you'll see all trip. The audio tour is narrated by actual former inmates and guards — genuinely moving and well-produced. ~$41/adult. Book all 4 tickets as soon as possible.
+          </div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="activity-time">2:30pm</div>
+        <div class="activity-content">
+          <h4>&#x1F35E; Clam Chowder Bread Bowl — Boudin Bakery</h4>
+          <p>This is San Francisco&rsquo;s most iconic food experience: thick, creamy New England clam chowder served inside a hollowed-out sourdough loaf. Boudin has been baking San Francisco sourdough since 1849 using the same starter culture. The Fisherman&rsquo;s Wharf location is right at Pier 39 &mdash; get the bread bowl and eat it on the pier watching the sea lions. This is the taste of arrival.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F35E;</span><div><div class="food-name">Boudin Bakery &#11088; <em>The SF classic</em></div><div class="food-desc">San Francisco&rsquo;s sourdough institution since 1849. Clam chowder bread bowl on the pier while sea lions bark below. This is the arrival ritual. 160 Jefferson St. ~$12&ndash;15/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F99E;</span><div><div class="food-name">Fog Harbor Fish House &mdash; Pier 39</div><div class="food-desc">Sit-down alternative if you want a proper lunch instead of a walk-and-eat bread bowl. Pier 39 waterfront with bay views, Dungeness crab, clam chowder, fresh Pacific seafood. Great for the mom who wants to sit down after the flight. ~$25&ndash;40/person. No reservation needed at lunch.</div></div></div>
+          <div class="tags"><span class="tag food">Pier area &middot; Eat outside on the waterfront &middot; Sea lions visible from either spot</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:30pm</div>
+        <div class="activity-content">
+          <h4>Dinner in North Beach &mdash; Scoma&rsquo;s or Sotto Mare</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F980;</span><div><div class="food-name">Scoma&rsquo;s Restaurant</div><div class="food-desc">Fisherman&rsquo;s Wharf classic since 1965, built on a pier over the water. Known for Dungeness crab, cioppino, and fresh Pacific fish. Open late. ~$35&ndash;55/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F35C;</span><div><div class="food-name">Sotto Mare (if still open)</div><div class="food-desc">North Beach. SF&rsquo;s best cioppino &mdash; the Italian-American seafood stew born in San Francisco. Dungeness crab, clams, mussels, shrimp in a rich tomato-wine broth. Order it. ~$30&ndash;45/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F69A;</span><div><div class="food-name">Off the Grid Food Trucks</div><div class="food-desc">Check offthegrid.com for evening locations near the waterfront &mdash; California&rsquo;s best rotating food truck fleet. $10&ndash;15/person.</div></div></div>
+          <div class="tags"><span class="tag food">Dinner in North Beach &middot; Walk Pier 39 after</span></div>
+        </div>
+      </div>
+      <div class="overnight-box">
+        <span class="hotel-icon">🏨</span>
+        <div style="flex:1">
+          <strong>Stay: San Francisco — Nights 1 &amp; 2 (Jul 2–4)</strong>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BEST VALUE</span>
+              <div>
+                <div class="hotel-name">Nob Hill Hotel &middot; ⭐⭐⭐⭐ &middot; 8.0/10 (1,002 reviews)</div>
+                <div class="hotel-price">$154/night &middot; ~$308 for 2 nights</div>
+                <div class="hotel-why">4-star boutique hotel in Nob Hill — the most character-filled neighborhood in SF. 15-min walk or a short rideshare to Pier 33 (Alcatraz ferry). Great rated property at the best price point in the city. Walkable to North Beach restaurants for Day 2 dinner options.</div>
+                <div class="hotel-fees">No resort fee reported. Verify final total with taxes at checkout.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h118353.Hotel-Information?chkin=2026-07-02&chkout=2026-07-04&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($154/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hloc">BEST LOCATION</span>
+              <div>
+                <div class="hotel-name">Wharf Inn &middot; ⭐⭐½ &middot; 7.6/10 (1,209 reviews)</div>
+                <div class="hotel-price">$219/night &middot; ~$438 for 2 nights</div>
+                <div class="hotel-why">Directly on Fisherman's Wharf — a 5-minute walk to Pier 33 (Alcatraz day tour ferry). The location eliminates every Day 1 logistical headache: park once, walk everywhere. Pay the $19/night location premium if you want zero hassle arrival day.</div>
+                <div class="hotel-fees">⚠️ $19/night above $200 target. July 4th proximity drives SF prices up.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h883571.Hotel-Information?chkin=2026-07-02&chkout=2026-07-04&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($219/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 2 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">2</span><span>FRI</span></div>
+      <div class="day-header-info">
+        <h3>Fort Point + Muir Woods + SF</h3>
+        <div class="date-line">Friday, July 3, 2026</div>
+        <div class="drive-badge">~45 min to Muir Woods · Fort Point is a 20-min drive from downtown SF</div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="surprise-banner">
+        <strong>💝 Designed as a Surprise for Mom — Fort Point</strong>
+        The idea: tell her you're going to "see the Golden Gate Bridge up close." Fort Point appears underneath it — a Civil War fort almost nobody knows exists there. Let the roof reveal itself.
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:30am</div>
+        <div class="activity-content">
+          <h4>Fort Point National Historic Site — The Secret Under the Bridge</h4>
+          <p>Fort Point (201 Marine Drive, San Francisco) is a Civil War-era fort built directly beneath the Golden Gate Bridge — you stand on the roof and look straight up at the underside of the bridge spanning overhead. The view from the 3rd-floor windows is unlike anything else in San Francisco. This is NOT a ferry. You drive there (~20 min from downtown SF, free parking lot on-site). Open Fri–Mon, so today (Friday) is perfect.</p>
+
+          <div class="tags"><span class="tag free">Free entry (NPS site)</span><span class="tag surprise">Surprise for Mom</span></div>
+          <div class="why-box">
+            <strong>Why here?</strong> Source: @modicumofjoy (Post 3) — described as a hidden angle of the Golden Gate "only locals know about." The Instagram post shows the exact 3rd-floor window view and rooftop view with the bridge directly overhead. It's intimate, dramatic, and completely free.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">11:00am</div>
+        <div class="activity-content">
+          <h4>Drive to Muir Woods (timed entry reserved)</h4>
+          <p>~45 min from Fort Point via US-101 N to Panoramic Hwy. Park at the designated lot (your reservation includes parking or shuttle). Do not try to walk up — there is literally no parking without a reservation.</p>
+          <div class="tags"><span class="tag drive">45 min from Fort Point</span><span class="tag book">Reservation required</span></div>
+          <a class="book-link" href="https://gomuirwoods.com" target="_blank">Book timed entry at gomuirwoods.com →</a>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:00pm</div>
+        <div class="activity-content">
+          <h4>Muir Woods — Ancient Redwood Forest Walk</h4>
+          <p>The main Cathedral Grove trail is paved, flat, and accessible — perfect for everyone. The coast redwoods here are 500–1,000+ years old, 200+ feet tall. The canopy closes overhead. It is genuinely cathedral-like and unforgettable. The recommended Main Trail loop is 2 miles, ~1 hour at a relaxed pace. No rushing.</p>
+          <div class="tags"><span class="tag book">$15/adult — pre-booked</span><span class="tag free">Cathedral Grove = no extra fee</span></div>
+          <div class="why-box">
+            <strong>Ancient coast redwoods — same species as Redwood National Park</strong>, 45 minutes from San Francisco instead of 6 hours north. A family travel creator doing our exact same SF→LA trip made this same choice. This is the right call.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">2:00pm</div>
+        <div class="activity-content">
+          <h4>Drive back to San Francisco — Afternoon free</h4>
+          <p>Return to the city. Options: Lombard Street (the famous crooked street — short drive through Russian Hill, kids will love it), walk the Ferry Building Marketplace for snacks and local vendors, or just decompress at the hotel before tomorrow's birthday drive down PCH.</p>
+          <div class="tags"><span class="tag free">Lombard Street is free to drive through</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:00am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast Before Fort Point &mdash; Arsicault or Tartine</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F950;</span><div><div class="food-name">Arsicault Bakery (Richmond District)</div><div class="food-desc">Tiny French bakery window, widely called the best croissant in America. Worth a short drive. Expect a short line. 397 Arguello Blvd.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F35E;</span><div><div class="food-name">Tartine Manufactory</div><div class="food-desc">California&rsquo;s most famous bakery. Morning buns, sourdough, pastries. Martha Stewart and Alice Waters eat here. 595 Alabama St, Inner Mission. Lines start early.</div></div></div>
+          <div class="tags"><span class="tag food">Grab and go &mdash; full day ahead</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:30pm</div>
+        <div class="activity-content">
+          <h4>Dinner in San Francisco</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F32F;</span><div><div class="food-name">La Taqueria (Mission District)</div><div class="food-desc">James Beard Award winner. Widely considered California&rsquo;s best burrito. Cash-only counter, no frills, utterly legendary. Carne asada or carnitas. 2889 Mission St. ~$12/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F37D;</span><div><div class="food-name">Nopalito</div><div class="food-desc">Michelin Bib Gourmand Mexican &mdash; organic ingredients, homemade tortillas, incredible mole. Not expensive. 1224 9th Ave. ~$20&ndash;25/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F378;</span><div><div class="food-name">Trick Dog (cocktails after dinner)</div><div class="food-desc">One of SF&rsquo;s best craft cocktail bars &mdash; creative rotating menus, Mission District, no pretension. Good for the adults after dinner while the kids relax.</div></div></div>
+          <div class="tags"><span class="tag food">Pack bags tonight &mdash; Tahoe departure tomorrow</span></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏨</span>
+        <div>
+          <strong>Stay: San Francisco — Night 2 (same hotel as Night 1)</strong>
+          <span>Pack everything tonight &mdash; <strong>Birthday PCH drive starts tomorrow.</strong> Fill up gas tonight. Hotel options shown on Day 1.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 3 — BIRTHDAY ===== -->
+  <div class="day-card">
+    <div class="day-header birthday">
+      <div class="day-number" style="background:var(--birthday)"><span class="num">3</span><span>SAT</span></div>
+      <div class="day-header-info">
+        <h3>&#x1F382; BIRTHDAY DAY &mdash; The Pacific Coast Highway South</h3>
+        <div class="date-line">Saturday, July 4, 2026 &middot; Adam turns 22 &middot; Independence Day &middot; America&rsquo;s 250th Birthday</div>
+        <div class="drive-badge">SF &rarr; Half Moon Bay &rarr; Santa Cruz &rarr; Carmel: ~140 miles &middot; ~3h 30m drive with stops</div>
+        <div class="traf-alert clear">
+          <strong>&#x1F7E2; NO TRAFFIC &mdash; PCH southbound on July 4th is wide open</strong>
+          July 4th congestion runs eastbound (I-80 toward Tahoe) and northbound. You&rsquo;re heading south on CA-1. Completely clear. Drive comfortably, stop whenever you want.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="birthday-banner">
+        <strong>&#x1F386; Adam&rsquo;s 22nd + America&rsquo;s 250th + The Most Scenic Drive in California</strong>
+        No fireworks needed. You&rsquo;re driving the Pacific Coast Highway on Independence Day &mdash; arguably the most American thing you can do. Half Moon Bay bluffs, Santa Cruz Boardwalk, Carmel beach at sunset. This birthday writes itself.
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:00am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Birthday Breakfast &mdash; Last Morning in SF</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F950;</span><div><div class="food-name">Arsicault Bakery (Richmond District)</div><div class="food-desc">Best croissant in America, per Bon App&eacute;tit. Tiny French bakery window &mdash; one croissant, one coffee, one legendary bite before hitting the road. 397 Arguello Blvd. ~$5&ndash;10/person. Opens early.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F35E;</span><div><div class="food-name">Tartine Manufactory (Inner Mission)</div><div class="food-desc">California&rsquo;s most famous bakery &mdash; morning buns, sourdough, pastries. Grab and go. 595 Alabama St. Great fuel for a long drive.</div></div></div>
+          <div class="tags"><span class="tag food">Quick start &mdash; PCH awaits</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:45am</div>
+        <div class="activity-content">
+          <h4>Depart San Francisco &rarr; Pacific Coast Highway South</h4>
+          <p>Head south on CA-1 from SF. You&rsquo;re immediately on the coast &mdash; the Pacific to your right, sea cliffs dropping away. This is the drive. Don&rsquo;t rush it.</p>
+          <div class="tags"><span class="tag drive">CA-1 South &middot; Stay on the coast, not US-101</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:30am</div>
+        <div class="activity-content">
+          <h4>Half Moon Bay &mdash; Coastal Bluff Walk + Sam&rsquo;s Chowder House</h4>
+          <p>Half Moon Bay sits on a dramatic bluff above the Pacific &mdash; the same swells that create the famous Mavericks big-wave break offshore at Pillar Point. Walk the Half Moon Bay Coastal Trail for views north and south. The town has a charming Main Street with coffee and local shops. 30 miles south of SF.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F99E;</span><div><div class="food-name">Sam&rsquo;s Chowder House &#11088; <em>The Half Moon Bay food stop</em></div><div class="food-desc">Perched above Pillar Point Harbor with ocean views. Famous for their Maine lobster roll and New England clam chowder. This is the Half Moon Bay stop people plan their whole day around. 4210 N Cabrillo Hwy. Opens 11:30am &mdash; come back for lunch or push through to Santa Cruz. ~$25&ndash;35/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Coffee Roastery of Half Moon Bay</div><div class="food-desc">Local roaster &mdash; grab a coffee and walk the bluff path before continuing south. 523 Main St. ~$5&ndash;8/person.</div></div></div>
+          <div class="tags"><span class="tag free">Coastal Trail is free &middot; Sam&rsquo;s opens 11:30am</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">11:30am</div>
+        <div class="activity-content">
+          <h4>Santa Cruz Beach Boardwalk &mdash; July 4th on the Boardwalk</h4>
+          <p>The Santa Cruz Beach Boardwalk has operated since 1907 &mdash; the only surviving beachfront amusement park on the West Coast. The Giant Dipper wooden coaster is a National Historic Landmark. On July 4th and on a birthday this is a genuinely fun stop &mdash; rides, cotton candy, and full California beach energy. If the group wants to skip the rides, just walk the Santa Cruz Municipal Wharf for harbor seals and fish tacos and continue south.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F33E;</span><div><div class="food-name">Tacos Moreno (Santa Cruz)</div><div class="food-desc">Best no-frills taco spot in Santa Cruz. Carne asada, carnitas, fresh tortillas. Cash only, window service, completely authentic. 1053 Water St. ~$8&ndash;12/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F990;</span><div><div class="food-name">Stagnaro Bros. (Santa Cruz Wharf)</div><div class="food-desc">End-of-wharf seafood. Clam chowder, fish tacos, calamari with harbor seals below the deck. Casual, no reservation. ~$15&ndash;20/person.</div></div></div>
+          <div class="tags"><span class="tag drive">~1h from Half Moon Bay &middot; Boardwalk opens 11am</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">2:30pm</div>
+        <div class="activity-content">
+          <h4>Continue South &rarr; Carmel-by-the-Sea</h4>
+          <p>From Santa Cruz, continue south on CA-1 through Aptos, Watsonville, and Castroville (artichoke capital of the world &mdash; if you see a roadside stand, stop). The landscape shifts from urban to agricultural to coastline as you approach Monterey. Arrive Carmel by 4:30&ndash;5pm.</p>
+          <div class="tags"><span class="tag drive">~1h 30m from Santa Cruz &middot; Monterey is the halfway point</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">5:00pm</div>
+        <div class="activity-content">
+          <h4>Arrive Carmel &mdash; Check In + Walk Ocean Avenue</h4>
+          <p>Carmel-by-the-Sea has fairy tale stone cottages, a white sand beach at the foot of Ocean Avenue, and some of the best small-town exploring in California. Check in to the hotel, then walk Ocean Avenue from 10th Street down to the beach. The Carmel Beach sunset on July 4th &mdash; America&rsquo;s 250th birthday &mdash; is something you&rsquo;ll photograph and talk about for years.</p>
+          <div class="tags"><span class="tag free">Carmel Beach is free &middot; No parking meters in town</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">7:00pm</div>
+        <div class="activity-content">
+          <h4>&#x1F382; Birthday Dinner in Carmel</h4>
+          <p>Two confirmed, researched, Carmel-quality options. Adam&rsquo;s call.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F956;</span><div><div class="food-name">La Bicyclette &#11088; <em>Michelin Guide &middot; Wood-fired &middot; Garden courtyard</em></div><div class="food-desc">French-Proven&ccedil;al cooking in a fairy-tale cottage with a wood-burning oven and flower boxes at every window. The most atmospheric restaurant on the Monterey Peninsula &mdash; like eating in rural Provence. Rustic galettes, wood-fired meats, exceptional wine list. ~$35&ndash;55/person. <strong>Book 2&ndash;3 weeks ahead for July 4th.</strong></div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F34B;</span><div><div class="food-name">La Balena &#11088; <em>Slow Italian &middot; Local ingredients &middot; Intimate</em></div><div class="food-desc">Handmade pasta, whole roasted fish, vegetables from local farms. Chef Antonio Mure&rsquo;s Italian-California cooking &mdash; simple, precise, deeply satisfying. Smaller and more intimate than La Bicyclette. Perfect birthday dinner energy. ~$30&ndash;50/person.</div></div></div>
+          <div class="why-box"><strong>Birthday recommendation:</strong> La Bicyclette for the wood-fire atmosphere and visual drama. La Balena if the group wants something quieter and more intimate. Both are excellent.</div>
+          <div class="resy-note">&#128204; La Bicyclette: <a href="https://www.opentable.com/r/la-bicyclette-carmel" target="_blank">opentable.com/r/la-bicyclette-carmel</a> &mdash; call (831) 622-9899 as backup &middot; La Balena: <a href="https://resy.com/cities/mry/la-balena" target="_blank">resy.com</a> &mdash; book 2&ndash;3 weeks ahead for July 4th</div>
+          <a class="book-link" href="https://www.opentable.com/r/la-bicyclette-carmel" target="_blank">Book La Bicyclette on OpenTable &rarr;</a>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">&#x1F3E8;</span>
+        <div style="flex:1">
+          <strong>Stay: Pacific Grove (2 miles from Carmel) &mdash; Nights 3 &amp; 4 (Jul 4&ndash;6)</strong>
+          <div class="hotel-warn">&#128204; Pacific Grove is the smart move: 2 miles from Carmel-by-the-Sea, borders 17-Mile Drive, and significantly cheaper than Carmel proper ($350&ndash;600+/night in July).</div>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hqua">BEST OVERALL</span>
+              <div>
+                <div class="hotel-name">Lighthouse Lodge &amp; Cottages (Pacific Grove) &middot; &#11088;&#11088;&#11088; &middot; 8.2/10 (1,371 reviews)</div>
+                <div class="hotel-price">$215/night &middot; ~$430 for 2 nights &middot; Was $277/night</div>
+                <div class="hotel-why">Right near Point Pinos lighthouse with ocean views, a pool, and free breakfast. Walk to Lover&rsquo;s Point Beach. 5-minute drive to Carmel-by-the-Sea. 2 miles from the birthday dinner. Best overall for the Peninsula experience.</div>
+                <div class="hotel-fees">Slightly over $200 target. Breakfast included. Worth it for the Peninsula access.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h17226.Hotel-Information?chkin=2026-07-04&chkout=2026-07-06&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($215/night) &rarr;</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BUDGET OPTION</span>
+              <div>
+                <div class="hotel-name">Rosedale Inn (Pacific Grove) &middot; &#11088;&#11088;&frac12; &middot; 7.8/10 (1,002 reviews)</div>
+                <div class="hotel-price">$176/night &middot; ~$352 for 2 nights &middot; Was $226/night</div>
+                <div class="hotel-why">Within budget at $176/night &mdash; garden setting, clean rooms, solid reviews. Short drive or bike ride to Carmel-by-the-Sea. The savings vs. Lighthouse Lodge go toward the birthday dinner at La Bicyclette.</div>
+                <div class="hotel-fees">Exactly at budget limit with fees at ~$200 total. No resort fee reported.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h1187049.Hotel-Information?chkin=2026-07-04&chkout=2026-07-06&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($176/night) &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 4 ===== -->
+  <div class="day-card">
+    <div class="day-header beach">
+      <div class="day-number"><span class="num">4</span><span>SUN</span></div>
+      <div class="day-header-info">
+        <h3>&#x1F30A; Big Sur &mdash; The Drive That Rewires Your Brain</h3>
+        <div class="date-line">Sunday, July 5, 2026</div>
+        <div class="drive-badge">Carmel &rarr; Big Sur: 30 min south on Hwy 1 &middot; Full day exploring &middot; Return to Pacific Grove tonight</div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="beach-banner">
+        <strong>One of the most dramatic coastlines on earth &mdash; no hyperbole</strong>
+        Big Sur is 90 miles of cliffs, redwood canyons, and Pacific swells with almost no civilization. Bixby Bridge, McWay Falls, Pfeiffer Beach &mdash; these images have appeared on a million screensavers. Today you drive through them.
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:30am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast in Carmel Before Heading South</h4>
+          <p>Big Sur has almost no services once you leave Carmel. Eat well and fill the gas tank before you go.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F95A;</span><div><div class="food-name">Cultura Comida y Bebida</div><div class="food-desc">Carmel&rsquo;s most interesting breakfast &mdash; Mexican-California fusion, chilaquiles, huevos rancheros made with local ingredients. 7th Ave and San Carlos, Carmel. ~$15&ndash;22/person. Allow 45 min.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Carmel Coffee House (grab and go)</div><div class="food-desc">Quick coffee and pastries on Ocean Ave before hitting the road. ~$8&ndash;12/person.</div></div></div>
+          <div class="tags"><span class="tag food">&#x26A0;&#xFE0F; Fill up gas in Carmel &mdash; no gas stations in Big Sur</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:30am</div>
+        <div class="activity-content">
+          <h4>Bixby Creek Bridge &mdash; The Most Photographed Spot in California</h4>
+          <p>11 miles south of Carmel on Hwy 1. Built in 1932, 714 feet long, 260 feet above the canyon &mdash; one of the highest single-span concrete bridges in the world. Pull over on the north side for the classic shot looking across the bridge with the ocean below. This image exists on approximately every California travel account ever made. Source: @epicamerica_ and @modicumofjoy.</p>
+          <div class="tags"><span class="tag free">Free &middot; Pull-off on north side of bridge</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">10:30am</div>
+        <div class="activity-content">
+          <h4>McWay Falls &mdash; Waterfall onto an Untouched Beach</h4>
+          <p>Inside Julia Pfeiffer Burns State Park. An 80-foot waterfall drops directly onto a pristine cove beach &mdash; a beach you cannot walk on, only view from the cliff trail above. The cove is turquoise. The sand is perfect. It is completely inaccessible and therefore completely perfect. The viewpoint is a flat 0.6-mile walk from the parking area.</p>
+          <div class="tags"><span class="tag book">$10/vehicle park fee</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:00pm</div>
+        <div class="activity-content">
+          <h4>Pfeiffer Beach &mdash; Purple Sand</h4>
+          <p>Turn off Hwy 1 onto Sycamore Canyon Road (easy to miss &mdash; just south of Big Sur village). The road winds 2 miles down to a wild beach with massive sea stacks and caves. The manganese garnet in the sand gives parts of the beach a purple tint when the light hits right. The wave action through the sea arches is dramatic. $12/vehicle. Walk-up only.</p>
+          <div class="tags"><span class="tag book">$12/vehicle &middot; Cash and card accepted</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:30pm</div>
+        <div class="activity-content">
+          <h4>Lunch in Big Sur Village</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F950;</span><div><div class="food-name">Big Sur Bakery &amp; Restaurant &#11088;</div><div class="food-desc">Wood-fired pizzas, rustic sandwiches, house-baked bread. The most consistently excellent food in Big Sur. Hwy 1 at Pheneger Creek Rd. ~$15&ndash;22/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F305;</span><div><div class="food-name">Nepenthe Restaurant (optional splurge)</div><div class="food-desc">800 feet above the Pacific on a cliff terrace. The Ambrosia burger is legendary and the view makes everything taste better. ~$25&ndash;40/person. No reservations for the outdoor deck &mdash; come before 2pm. This is the Big Sur splurge if the budget allows.</div></div></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">3:00pm</div>
+        <div class="activity-content">
+          <h4>Pfeiffer Big Sur State Park &mdash; River Gorge Swimming</h4>
+          <p>The Big Sur River gorge has natural swimming holes in a redwood canyon &mdash; cold, clear water surrounded by towering trees. After the coastal stops, this is the shaded, cool afternoon option. $10/vehicle day use. Short walk from the parking lot.</p>
+          <div class="tags"><span class="tag book">$10/vehicle day use</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">5:00pm</div>
+        <div class="activity-content">
+          <h4>Drive Back to Pacific Grove &mdash; Dinner on Return</h4>
+          <p>Head north on Hwy 1 (~45 min back to Pacific Grove). Dinner options near the hotel.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F41F;</span><div><div class="food-name">Passionfish (Pacific Grove) &#11088;</div><div class="food-desc">James Beard-nominated chef, sustainable local seafood, Pacific Grove prices. Rockfish, halibut, Dungeness crab. One of the best value dinners on the Monterey Peninsula. ~$25&ndash;40/person. Reservations recommended.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F37A;</span><div><div class="food-name">Peter B&rsquo;s Brewpub (Monterey)</div><div class="food-desc">Casual pub inside the Portola Hotel &mdash; good burgers, local craft beers, no reservation needed. Great post-Big Sur decompression dinner. ~$15&ndash;22/person.</div></div></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">&#x1F3E8;</span>
+        <div>
+          <strong>Stay: Pacific Grove &mdash; Night 4 (same hotel as Night 3)</strong>
+          <span>Pack everything tonight. <strong>Depart 8:00am tomorrow</strong> for Yosemite via Hwy 101 &rarr; 152 &rarr; 99 &rarr; 140 (~4h 15m). Hotel options shown on Day 3.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 5 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">5</span><span>MON</span></div>
+      <div class="day-header-info">
+        <h3>Drive to Yosemite</h3>
+        <div class="date-line">Monday, July 6, 2026</div>
+        <div class="drive-badge">Pacific Grove → Yosemite Valley: ~4h 15m / ~220 miles via Hwy 101 → 152 → 99 → Hwy 140 (Arch Rock entrance)</div>
+        <div class="traf-alert warn">
+          <strong>🟡 MONDAY MORNING — Depart by 8:00 AM to reach the Valley before parking fills</strong>
+          The Hwy 140 Arch Rock entrance follows the Merced River through a stunning granite canyon before opening into Yosemite Valley — arguably the best approach. Yosemite eliminated its entry reservation system for 2026, so Valley parking fills before mid-morning on summer weekdays. Leave Pacific Grove by 8:00 AM → Valley floor by ~12:30pm. Check Hwy 140 road status at <a href="https://quickmap.dot.ca.gov" target="_blank">quickmap.dot.ca.gov</a> before departing.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="activity">
+        <div class="activity-time">7:45am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast Before Departing Pacific Grove</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F9C7;</span><div><div class="food-name">Lighthouse Lodge Breakfast (if staying there)</div><div class="food-desc">Free breakfast is included &mdash; eat before 8am and you&rsquo;re on the road without spending a cent on this meal. Eggs, waffles, fruit. Best possible start to a 4-hour drive day.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Jeninni Kitchen (Pacific Grove)</div><div class="food-desc">Excellent egg dishes, local pastries, California-Mediterranean. 542 Lighthouse Ave, Pacific Grove. ~$12&ndash;18/person. Opens 8am. Quick and satisfying before the road.</div></div></div>
+          <div class="tags"><span class="tag food">Quick start &mdash; ~4h 15m drive to Yosemite ahead</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:30am</div>
+        <div class="activity-content">
+          <h4>Depart Pacific Grove &rarr; Yosemite via Hwy 140 (Merced Canyon)</h4>
+          <p>Route: Hwy 1 North briefly &rarr; CA-68 &rarr; US-101 South &rarr; CA-156 &rarr; CA-99 North &rarr; CA-140 East through the Merced River Canyon. The Arch Rock entrance (Hwy 140) is one of Yosemite&rsquo;s most scenic approaches &mdash; the canyon narrows dramatically before the valley opens up. You&rsquo;ll pass through Mariposa (40 min from the valley) &mdash; a historic gold rush town and good last fuel/bathroom stop.</p>
+          <div class="tags"><span class="tag drive">~4h 15m &middot; ~220 miles &middot; Check Hwy 140 at quickmap.dot.ca.gov</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">10:30am</div>
+        <div class="activity-content">
+          <h4>&#x1F96B; STOP: Mariposa, CA &mdash; Gold Rush Gateway Town</h4>
+          <p>Mariposa is a historic gold rush town 40 minutes from Yosemite&rsquo;s Arch Rock entrance. It&rsquo;s your last real stop before the park &mdash; gas, bathrooms, snacks, and a stretch. The Mariposa Museum &amp; History Center has a 10-stamp gold mill from 1901 if anyone&rsquo;s curious. Main Street has a good local coffee shop and deli. It&rsquo;s also home to two of the Yosemite gateway hotels if you booked there.</p>
+          <div class="tags"><span class="tag food">Last fuel stop before Yosemite &middot; ~40 min from Arch Rock entrance</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:45pm</div>
+        <div class="activity-content">
+          <h4>Tunnel View — Your First Look at Yosemite Valley</h4>
+          <p>Your drive into the valley ends at a tunnel. When you emerge from the other side, pull over at Tunnel View immediately. This is the single most famous viewpoint in Yosemite — El Capitan on the left, Half Dome straight ahead, Bridalveil Fall on the right, the valley stretching away below you. This is the image you've seen a thousand times. Confirmed by 2 Instagram sources. Don't skip this moment.</p>
+          <div class="tags"><span class="tag free">Free — roadside pullout</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:30pm</div>
+        <div class="activity-content">
+          <h4>Check in to Yosemite lodging</h4>
+          <p>Your lodging is inside or near the valley — drop bags, grab lunch at the Valley Visitor Center area (Yosemite Village has a deli and store). Rest if needed after the drive. Full exploration day is tomorrow.</p>
+          <div class="why-box">
+            <strong>2026 Yosemite: NO day-use reservation needed.</strong> Yosemite eliminated the timed-entry permit system for 2026. Walk-up access is allowed. You just need your lodging reservation and $35/vehicle entry fee (or America the Beautiful Annual Pass covers all national parks — $80 and covers your whole trip including Sequoia).
+          </div>
+          <div class="tags"><span class="tag book">$35/vehicle OR America the Beautiful Pass ($80)</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">4:00pm</div>
+        <div class="activity-content">
+          <h4>Valley Floor Orientation Walk</h4>
+          <p>Walk along the Merced River toward El Capitan. In the afternoon light, El Capitan glows warm gold. You can hear waterfall noise from a mile away. This is free, flat, and the most beautiful easy walk in America. Don't save it for tomorrow — do it now.</p>
+          <div class="tags"><span class="tag free">Free · Valley floor</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">7:00pm</div>
+        <div class="activity-content">
+          <h4>Dinner in Yosemite Valley</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Degnan&rsquo;s Kitchen (Yosemite Village)</div><div class="food-desc">Best casual option in the valley &mdash; pizza, sandwiches, hearty plates. No reservations needed. Good for a tired family after a drive day.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F37D;</span><div><div class="food-name">Yosemite Valley Lodge Restaurant</div><div class="food-desc">Casual sit-down inside the park with a full menu &mdash; California cuisine, local ingredients, slightly more relaxed. Good wine list. Convenient if you&rsquo;re staying at the Lodge.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F96A;</span><div><div class="food-name">Camp Store or Valley Deli (Yosemite Village)</div><div class="food-desc">Grab provisions for tomorrow&rsquo;s Yosemite day at the Village Market. Sandwiches, snacks, and basic supplies. Good to stock up so you&rsquo;re not relying on restaurants during peak morning hours tomorrow.</div></div></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏕️</span>
+        <div style="flex:1">
+          <strong>Stay: Yosemite Area — Nights 5 &amp; 6 (Jul 6–8)</strong>
+          <div class="hotel-warn">📌 Yosemite Note: The official park lodges (Yosemite Valley Lodge ~$280–350/night, Half Dome Village tent cabins ~$130/night) must be booked directly at <a href="https://www.travelyosemite.com" target="_blank">travelyosemite.com</a>. They sell out months in advance. These two Mariposa options below are the affordable alternative — both are 45 min from the valley and within budget.</div>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BEST VALUE</span>
+              <div>
+                <div class="hotel-name">Quality Inn Yosemite Valley Gateway (Mariposa) &middot; ⭐⭐½ &middot; 8.0/10 (1,000 reviews)</div>
+                <div class="hotel-price">$176/night &middot; ~$352 for 2 nights</div>
+                <div class="hotel-why">Mariposa is the largest town gateway to Yosemite — the most consistent lodging options are here. 45 min drive to Yosemite Valley floor. Pool, standard rooms, well-reviewed. Book 2 rooms (2 queen each) or request a room with 2 queens. Great value for a Yosemite trip.</div>
+                <div class="hotel-fees">No resort fee. Standard hotel taxes apply (~12–14%).</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h26564.Hotel-Information?chkin=2026-07-06&chkout=2026-07-08&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($176/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hqua">BEST REVIEWED</span>
+              <div>
+                <div class="hotel-name">Miners Inn (Mariposa) &middot; ⭐⭐ &middot; 8.6/10 (1,008 reviews)</div>
+                <div class="hotel-price">$196/night &middot; ~$392 for 2 nights</div>
+                <div class="hotel-why">The highest-rated motel in the Mariposa/Yosemite gateway zone — 8.6/10 from over 1,000 guests. Known for cleanliness, friendly staff, and comfortable beds after long hiking days. Pool on-site. 45 min to Yosemite Valley. Guests specifically praise the comfort level for a mountain town property.</div>
+                <div class="hotel-fees">Within budget. Verify 2-queen room availability at booking.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h894104.Hotel-Information?chkin=2026-07-06&chkout=2026-07-08&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($196/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 6 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">6</span><span>TUE</span></div>
+      <div class="day-header-info">
+        <h3>Full Day Yosemite</h3>
+        <div class="date-line">Tuesday, July 7, 2026</div>
+        <div class="drive-badge">Zero driving · Valley floor only · Free shuttle</div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="activity">
+        <div class="activity-time">9:30am</div>
+        <div class="activity-content">
+          <h4>Yosemite Falls Trail</h4>
+          <p>Yosemite Falls is the tallest waterfall in North America (2,425 feet, three tiers). The lower falls overlook is a 1-mile round trip — completely accessible and worth every step. July is peak snowmelt so the falls are running at full power. You can feel the spray at the base. This is a "can't believe this is real" moment.</p>
+          <div class="tags"><span class="tag free">Free · 1 mile round trip</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">11:30am</div>
+        <div class="activity-content">
+          <h4>El Capitan Meadow</h4>
+          <p>Walk or take the free valley shuttle to El Capitan Meadow and lie in the grass looking straight up at the 3,000-foot vertical face. El Capitan is the largest granite monolith on Earth. You don't hike it — you just stand in front of it and feel very small. In summer, look for tiny colored dots on the face — those are climbers. Confirmed by 2 Instagram sources.</p>
+          <div class="tags"><span class="tag free">Free · Valley shuttle stops nearby</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:00pm</div>
+        <div class="activity-content">
+          <h4>&#x1F96A; Lunch in Yosemite Valley</h4>
+          <p>Midday in July gets hot in the valley. Take a real break &mdash; eat, hydrate, rest in the shade before the afternoon.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Degnan&rsquo;s Kitchen (Yosemite Village)</div><div class="food-desc">The go-to casual option inside the valley &mdash; pizza by the slice, deli sandwiches, salads, ice cream. No reservations. Open for lunch and dinner. Yosemite Village, next to the Visitor Center. ~$14&ndash;18/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F354;</span><div><div class="food-name">Village Grill Deck (Yosemite Village)</div><div class="food-desc">Counter-service burgers, veggie burgers, wraps, salads &mdash; eat on the deck outside with valley views between the trees. More burger-focused than Degnan&rsquo;s. Same Village area. ~$12&ndash;16/person. Great for the 17-year-old after a morning of hiking.</div></div></div>
+          <div class="tags"><span class="tag food">Both in Yosemite Village &middot; No reservations &middot; Cash and card accepted</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">3:00pm</div>
+        <div class="activity-content">
+          <h4>Valley of the Yosemite viewpoints + Mirror Lake (optional)</h4>
+          <p>Mirror Lake is a 5-mile easy loop through the valley floor with reflection views of Half Dome in the lake when conditions are right. July is late in the season so the lake may be low, but the forest walk is beautiful regardless. Alternatively, spend this time wandering between meadows — Yosemite rewards slow exploration.</p>
+          <div class="tags"><span class="tag free">Free · Valley floor · Shuttle accessible</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:30pm</div>
+        <div class="activity-content">
+          <h4>Golden Hour at Valley View</h4>
+          <p>Valley View (aka Gates of the Valley) is a roadside pullout where the valley walls frame El Capitan and the Merced River in the foreground. Evening light turns the granite walls orange-pink. This is the final shot before leaving tomorrow morning.</p>
+          <div class="tags"><span class="tag free">Free · Roadside pullout near park entrance</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">7:30pm</div>
+        <div class="activity-content">
+          <h4>&#x1F37D; Dinner in Yosemite Valley &mdash; then pack for tomorrow</h4>
+          <p>Tomorrow&rsquo;s drive to Sequoia is 4h 21m. Pack everything tonight after dinner.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F3D4;</span><div><div class="food-name">The Mountain Room Restaurant (Yosemite Valley Lodge) &#11088;</div><div class="food-desc">The best sit-down dinner inside Yosemite &mdash; California cuisine with locally sourced ingredients, excellent wine list, floor-to-ceiling windows looking out at Yosemite Falls. This is the one quality dinner inside the park. ~$30&ndash;45/person. Reservations recommended: call (801) 559-5000 or book at <a href="https://www.travelyosemite.com" target="_blank">travelyosemite.com</a>.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Degnan&rsquo;s Kitchen (casual, no reservation needed)</div><div class="food-desc">If the Mountain Room is fully booked or the family wants casual after a full day: Degnan&rsquo;s is open for dinner with pizza, pasta, and sandwiches. No reservation needed. Eat early (by 6:30) to pack in peace afterward. ~$14&ndash;18/person. Yosemite Village.</div></div></div>
+          <div class="tags"><span class="tag food">Pack bags after dinner &mdash; 8:30am Sequoia departure tomorrow</span></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏕️</span>
+        <div>
+          <strong>Stay: Yosemite Area — Night 6 (same hotel as Night 5)</strong>
+          <span>Pack everything tonight. Depart 8:30am tomorrow for Sequoia National Park (4h 21m via Fresno). Hotel options shown on Day 5.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 7 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">7</span><span>WED</span></div>
+      <div class="day-header-info">
+        <h3>Sequoia National Park — Giants</h3>
+        <div class="date-line">Wednesday, July 8, 2026</div>
+        <div class="drive-badge">Yosemite → Giant Forest Sequoia: 4h 21m / via Fresno · Inside Sequoia: drive within park</div>
+        <div class="traf-alert clear">
+          <strong>🟢 CLEAR — Best driving day of the trip. Midweek, no pressure.</strong>
+          Wednesday in the Central Valley is traffic-free. Exit Yosemite by 8:30am via Hwy 140 West (El Portal Road) before the Valley fills up, then south on CA-41 through Fresno. The CA-41 corridor is a straight shot — no bottlenecks. You'll arrive at Giant Forest by ~1pm with the full afternoon for General Sherman Tree, Moro Rock, and the Tunnel Log.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="activity">
+        <div class="activity-time">7:45am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast at the Hotel Before Departing</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F373;</span><div><div class="food-name">Hotel Breakfast (if included &mdash; Comfort Suites)</div><div class="food-desc">Both recommended Visalia hotels include free hot breakfast. If you used one of them, this morning breakfast is already paid for. Eggs, waffles, yogurt, fruit &mdash; fuel for a 4h 21m drive day. Eat before 8am to depart on time.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F96A;</span><div><div class="food-name">Village Store / Degnan&rsquo;s Grab-and-Go (if staying inside Yosemite)</div><div class="food-desc">If staying inside the valley, grab pastries, yogurt, and coffee at the Village Store before hitting the road. Open from 8am. Quick and easy. ~$8&ndash;12/person.</div></div></div>
+          <div class="tags"><span class="tag food">Eat before 8am &mdash; big drive and park day ahead</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:30am</div>
+        <div class="activity-content">
+          <h4>Depart Yosemite → Sequoia via Fresno</h4>
+          <p>Route goes via CA-41 South through Fresno, then east on Hwy 180 into Sequoia/Kings Canyon. The last 45 minutes winds up through spectacular mountain terrain. The Giant Forest area (where General Sherman Tree is) is at 6,400 feet elevation. Arrive around 12:50pm. The drive itself is beautiful — Sierra Nevada foothills, then the mountains.</p>
+          <div class="tags"><span class="tag drive">4h 21m · 218 miles · Bring snacks</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:00pm</div>
+        <div class="activity-content">
+          <h4>General Sherman Tree + Congress Trail</h4>
+          <p>General Sherman Tree is the largest living tree on Earth by volume — 274 feet tall, 36 feet wide at the base, 52,500 cubic feet of wood. The Congress Trail is a 2-mile loop through the Giant Forest that includes multiple giant sequoias. Unlike coast redwoods (tall and elegant), giant sequoias are massive and ancient — the difference is the scale of the trunk. Standing at the base and looking up is the experience. Confirmed by 3 Instagram sources.</p>
+          <div class="tags"><span class="tag book">$35/vehicle park entry (or America the Beautiful Pass)</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">3:30pm</div>
+        <div class="activity-content">
+          <h4>Moro Rock</h4>
+          <p>A 350-step granite staircase carved into the side of a dome brings you to a 360° panoramic view of the Sierra Nevada and the San Joaquin Valley. On a clear day you can see 150+ miles. The steps are paved and family-accessible. Takes 20–30 min round trip. The view from the top is the "I can't believe I'm here" moment of Sequoia. Confirmed by @adventurefamilyvlog — they specifically called it out.</p>
+          <div class="tags"><span class="tag free">Included with park entry</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">4:30pm</div>
+        <div class="activity-content">
+          <h4>&#x1F96A; Late Lunch in Sequoia or En Route to Visalia</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Lodgepole Market Center (inside Sequoia NP)</div><div class="food-desc">The main services area inside Sequoia National Park &mdash; deli counter, pizza by the slice, grab-and-go sandwiches, snacks. Right near Giant Forest and the General Sherman trailhead. Perfect late lunch after Moro Rock before the drive down. ~$10&ndash;15/person. No reservation needed.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F35F;</span><div><div class="food-name">In-N-Out Burger (Visalia) &mdash; on the way if stopping in town</div><div class="food-desc">If the family is hungry and the Lodgepole stop didn&rsquo;t happen: there&rsquo;s an In-N-Out in Visalia on Mooney Blvd. Classic California fast food on a California park day. Order Double-Double Animal Style. ~$10/person. Great bridge between park and dinner.</div></div></div>
+          <div class="tags"><span class="tag food">Eat in the park or wait until Visalia &mdash; 30&ndash;45 min drive to town</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:00pm</div>
+        <div class="activity-content">
+          <h4>Drive down to Visalia / Three Rivers for the night</h4>
+          <p>There's essentially no lodging inside Sequoia NP that accommodates a family of 4 easily in July. Three Rivers (at the park base, 30 min from Giant Forest) or Visalia (45 min) are the practical overnight options. More food options in Visalia.</p>
+          <div class="tags"><span class="tag drive">30–45 min from Giant Forest to accommodation</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">7:30pm</div>
+        <div class="activity-content">
+          <h4>Dinner in Visalia or Three Rivers</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F374;</span><div><div class="food-name">Vintage Press (Visalia)</div><div class="food-desc">Visalia&rsquo;s best restaurant &mdash; California cuisine, good wine, solid steaks and fresh fish. Not expensive. 216 N Willis St. ~$30&ndash;45/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F35F;</span><div><div class="food-name">In-N-Out Burger (Visalia)</div><div class="food-desc">After a day of Giant Sequoias, nobody is going to complain. Order <strong>Double-Double Animal Style</strong> &mdash; the secret menu item every Californian knows. ~$10/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F32E;</span><div><div class="food-name">Taco trucks on Mooney Blvd (Visalia)</div><div class="food-desc">Visalia has a strong Mexican-American community and excellent taco trucks &mdash; al pastor, birria, carne asada. Cheap, authentic, better than any sit-down Mexican in town. ~$8&ndash;12/person.</div></div></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏨</span>
+        <div style="flex:1">
+          <strong>Stay: Visalia — Night 7 (Jul 8–9)</strong>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hloc">BEST LOCATION</span>
+              <div>
+                <div class="hotel-name">Comfort Suites Visalia Convention Center &middot; ⭐⭐½ &middot; 9.0/10 (1,006 reviews)</div>
+                <div class="hotel-price">$172/night &middot; $193 total with fees</div>
+                <div class="hotel-why">In Visalia proper — within a mile of the Vintage Press restaurant (your dinner option). Free hot breakfast included. Pool. 9.0/10 guest rating from 1,000+ reviews makes it the most-reviewed and best-rated standard hotel in Visalia. 45 min from Sequoia Giant Forest.</div>
+                <div class="hotel-fees">No resort fee. Free breakfast included — saves money on Day 8 morning.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h899616.Hotel-Information?chkin=2026-07-08&chkout=2026-07-09&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($172/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BEST VALUE</span>
+              <div>
+                <div class="hotel-name">Comfort Suites Tulare Sequoia Gateway &middot; ⭐⭐½ &middot; 9.2/10 (639 reviews)</div>
+                <div class="hotel-price">$128/night &middot; $141 total with fees &middot; Was $147</div>
+                <div class="hotel-why">The best value-for-money in the Sequoia gateway zone — 9.2/10 rating at only $128/night. Tulare is 15 miles south of Visalia (~20 min) and equally positioned for the Sequoia approach. Free hot breakfast. Pool. If you don't mind the extra 20 min to Visalia restaurants, this is outstanding value.</div>
+                <div class="hotel-fees">$13 cheaper/night than the Visalia location, same breakfast included, same brand.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h458219.Hotel-Information?chkin=2026-07-08&chkout=2026-07-09&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($128/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 8 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">8</span><span>THU</span></div>
+      <div class="day-header-info">
+        <h3>Drive to Carmel-by-the-Sea — Surprise #2</h3>
+        <div class="date-line">Thursday, July 9, 2026</div>
+        <div class="drive-badge">Sequoia/Visalia → Carmel: 3h 56m / 228 miles via Fresno + CA-1 North</div>
+        <div class="traf-alert clear">
+          <strong>🟢 CLEAR — Thursday is ideal travel day on this route</strong>
+          The routing (Hwy 99 → 152 → 101 → CA-1 North) threads through the Central Valley and up to the Monterey Peninsula — zero bottlenecks on a Thursday morning. CA-1 North along the Monterey coastline is light on weekdays. Departing at 9:00 AM puts you in Carmel by early afternoon with time for Ocean Avenue before dinner.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="surprise-banner">
+        <strong>💝 Designed as a Surprise for Mom — Carmel-by-the-Sea</strong>
+        The original plan was to say "we're driving toward Big Sur" and let the fairy tale cottages announce Carmel before anyone realized where they were. Source: @modicumofjoy — a full 2-day itinerary of this town, confirmed by 4 independent sources as a must-see PCH stop.
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:30am</div>
+        <div class="activity-content">
+          <h4>Depart Sequoia area → Carmel via Fresno + Salinas</h4>
+          <p>Route: Hwy 99 North to Fresno, then CA-156 West toward Salinas, then CA-1 South to Carmel. The last stretch on CA-1 through Carmel is the first taste of the famous Pacific Coast Highway — the cliff hugging begins here. Arrive Carmel around 12:30pm.</p>
+          <div class="tags"><span class="tag drive">3h 56m · This route avoids doubling back north</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:30pm</div>
+        <div class="activity-content">
+          <h4>Arrive Carmel — Walk Ocean Avenue</h4>
+          <p>Ocean Avenue runs downhill from downtown to Carmel Beach. The street is lined with English-style cottages, art galleries, and small restaurants with flower boxes in every window. No street addresses (Carmel has no numbers — you navigate by block descriptions). The vibe is utterly unlike any American city. This is why 4 Instagram sources named it specifically.</p>
+          <div class="tags"><span class="tag free">Free to walk</span><span class="tag surprise">Mom's reaction here</span></div>
+          <div class="why-box">
+            <strong>Why Carmel?</strong> Confirmed by 4 independent sources including @modicumofjoy's full 2-day itinerary, a 10.4M-view reel, and @epicamerica_'s PCH overview. It sits naturally on our route between Sequoia and Big Sur. It was not on mom's original map — but she will love it. The fairy tale cottages are real. The white sand beach at the end of Ocean Avenue is free.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">10:00am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Morning Coffee + Bakery in Carmel</h4>
+          <p>Before anything else, find one of these two &mdash; both are extraordinary and completely different from anything back home.</p>
+          <div class="food-row"><span class="food-emoji">&#x2728;</span><div><div class="food-name">Station&aelig;ry &#11088; <em>Top pick (Instagram-famous interior)</em></div><div class="food-desc">@modicumofjoy specifically called this out as the Carmel coffee stop. Extraordinarily photogenic interior &mdash; the light, the architecture, the pastry case are unlike any caf&eacute; in California. Excellent espresso. Your mom will love this space. ~$8&ndash;15/person. Carmel-by-the-Sea downtown.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Carmel Roasting Co. (alternative / if Stationaery has a wait)</div><div class="food-desc">Carmel&rsquo;s original independent coffeehouse &mdash; outdoor patio on Carmel&rsquo;s main drag, excellent espresso, simple pastries, open early. Less scenographic than Stationaery but faster and equally good coffee. Great backup if Stationaery has a line. Ocean Ave &amp; Mission St. ~$6&ndash;12/person.</div></div></div>
+          <div class="tags"><span class="tag food">Start here &mdash; full day in Carmel ahead</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:00pm</div>
+        <div class="activity-content">
+          <h4>Lunch in Carmel</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F35D;</span><div><div class="food-name">La Bicyclette &#11088; <em>Top recommendation</em></div><div class="food-desc">Casual European bistro with a wood-burning oven. Handmade pizzas and pastas with Central Coast ingredients. Dolores St &amp; 7th Ave. @modicumofjoy&rsquo;s top Carmel pick, confirmed across multiple sources. ~$20&ndash;30/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F37D;</span><div><div class="food-name">Casanova Restaurant</div><div class="food-desc">French-Italian, garden courtyard, candlelit atmosphere. <strong>Van Gogh&rsquo;s personal table is here</strong> &mdash; the actual table from his room in Auvers-sur-Oise, France. A special lunch spot for a special stop. ~$35&ndash;50/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F366;</span><div><div class="food-name">Carmel Belle</div><div class="food-desc">Beloved local caf&eacute; in an old courtyard &mdash; sandwiches, salads, coffee, farm-fresh ingredients. Great for a lighter casual lunch. Doud Arcade, Mission St. ~$15&ndash;20/person.</div></div></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">3:00pm</div>
+        <div class="activity-content">
+          <h4>17-Mile Drive + Point Lobos State Reserve</h4>
+          <p>17-Mile Drive is a private scenic road ($12.25/vehicle at the gate) through the Pebble Beach estate — dramatic coastline, Lone Cypress (the most photographed tree in North America), seal rocks, and the Pacific crashing against granite. Takes 1–2 hours to drive at a leisurely pace with stops. Point Lobos State Reserve (just south of Carmel) has excellent tidepools and sea otters — $12/vehicle, one of the best protected coastal areas in California.</p>
+          <div class="tags"><span class="tag book">17-Mile Drive: $12.25/vehicle · Point Lobos: $12/vehicle</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:30pm</div>
+        <div class="activity-content">
+          <h4>Carmel Beach at Sunset</h4>
+          <p>White sand, dogs are allowed off-leash (Carmel is famously dog-friendly), no swimming but the sunsets are exceptional. Walk to the beach at the end of Ocean Avenue. Free.</p>
+          <div class="tags"><span class="tag free">Free public beach</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:00pm</div>
+        <div class="activity-content">
+          <h4>&#x1F37D; Dinner in Carmel</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F35D;</span><div><div class="food-name">La Balena &#11088; <em>Best dinner in Carmel</em></div><div class="food-desc">Italian farm-to-table in a warm, intimate Carmel dining room. Wood-fired pastas, seasonal vegetable dishes, excellent natural wines. Consistently rated the #1 dinner restaurant in Carmel. Junipero Ave between 5th &amp; 6th, Carmel. Reserve on <a href="https://www.opentable.com/la-balena" target="_blank">OpenTable</a> or call (831) 250-6295. ~$30&ndash;45/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Vesuvio Carmel</div><div class="food-desc">Neapolitan wood-fired pizza with an intimate Carmel courtyard &mdash; casual, family-friendly, and excellent. The margherita and prosciutto pizzas are the move. Junipero Ave, Carmel. ~$20&ndash;30/person. Walk-ins usually accepted; reservations available online. Great for the 17-year-old after a full day of ocean driving.</div></div></div>
+          <div class="resy-note">&#128204; La Bicyclette (your lunch spot) also takes reservations: <a href="https://www.opentable.com/r/la-bicyclette-carmel" target="_blank">opentable.com/r/la-bicyclette-carmel</a> &mdash; Michelin Guide restaurant, book 2&ndash;3 weeks out for July 9th. Call (831) 622-9899 as backup.</div>
+          <div class="tags"><span class="tag food">Dinner &rarr; ice cream on Ocean Ave &rarr; walk the cottage streets at night</span></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏨</span>
+        <div style="flex:1">
+          <strong>Stay: Pacific Grove (2 miles from Carmel) — Night 8 (Jul 9–10)</strong>
+          <div class="hotel-warn">📌 Pacific Grove is the smart move: it's on the Monterey Peninsula, literally 2 miles from Carmel-by-the-Sea, borders 17-Mile Drive, and is significantly cheaper than Carmel proper which runs $350–600+/night in July.</div>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hqua">BEST OVERALL</span>
+              <div>
+                <div class="hotel-name">Lighthouse Lodge &amp; Cottages (Pacific Grove) &middot; ⭐⭐⭐ &middot; 8.2/10 (1,371 reviews)</div>
+                <div class="hotel-price">$215/night &middot; $244 total with fees &middot; Was $277</div>
+                <div class="hotel-why">Pacific Grove is Carmel's neighbor — 2 miles apart, same peninsula, same views. The Lighthouse Lodge is a 3-star property right near Point Pinos lighthouse with ocean views, a pool, and free breakfast. Walk to Lover's Point Beach. 5-minute drive to Carmel-by-the-Sea. Discounted from $277 — book now.</div>
+                <div class="hotel-fees">Slightly over $200 target. Breakfast included. Worth it for the Peninsula access.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h17226.Hotel-Information?chkin=2026-07-09&chkout=2026-07-10&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($215/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BUDGET OPTION</span>
+              <div>
+                <div class="hotel-name">Rosedale Inn (Pacific Grove) &middot; ⭐⭐½ &middot; 7.8/10 (1,002 reviews)</div>
+                <div class="hotel-price">$176/night &middot; $200 total with fees &middot; Was $226</div>
+                <div class="hotel-why">Within budget at $176/night in Pacific Grove — garden setting, clean rooms, solid reviews. A short drive or bike ride to Carmel-by-the-Sea. Good base for a day that will be mostly spent exploring outdoors. The savings vs. Lighthouse Lodge can go toward the La Bicyclette dinner.</div>
+                <div class="hotel-fees">Exactly at budget limit with fees at $200 total. No resort fee reported.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h1187049.Hotel-Information?chkin=2026-07-09&chkout=2026-07-10&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($176/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 9 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">9</span><span>FRI</span></div>
+      <div class="day-header-info">
+        <h3>Big Sur → Paso Robles → Sensorio</h3>
+        <div class="date-line">Friday, July 10, 2026</div>
+        <div class="drive-badge">Carmel → Big Sur → Hearst Castle → Paso Robles: ~3–4 hrs total driving with stops</div>
+        <div class="traf-alert warn">
+          <strong>🟡 LIGHT TRAFFIC — Leave Carmel by 9:00 AM to stay ahead of the Friday coastal crowd</strong>
+          Friday morning on Hwy 1 south is manageable — the road narrows past Point Lobos but traffic moves. Weekend beach visitors start arriving by noon, so leaving Carmel by 9am gets you to Bixby Bridge and Big Sur well before any buildup. Once past Big Sur village, US-101 into Paso Robles is wide-open highway. Big Sur itself has almost no services — fill up the tank in Carmel before you go.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="activity">
+        <div class="activity-time">8:00am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast Before the Big Sur Drive</h4>
+          <p>You&rsquo;re still in Carmel / Pacific Grove this morning. Grab coffee and something to eat before hitting Bixby Bridge &mdash; Big Sur has almost no services once you leave Carmel.</p>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Carmel Roasting Co. (quick grab-and-go)</div><div class="food-desc">Fast espresso and pastries before the coastal drive. Ocean Ave &amp; Mission, Carmel-by-the-Sea. Opens early. Perfect for the family that wants to be on the road by 9am. ~$6&ndash;12/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F95A;</span><div><div class="food-name">Cultura Comida y Bebida (sit-down if you have time)</div><div class="food-desc">Carmel&rsquo;s most interesting breakfast &mdash; Mexican-California fusion, chilaquiles, huevos rancheros made with local ingredients. 7th Ave and San Carlos, Carmel. If the group wants a real sit-down before the Big Sur drive. ~$15&ndash;22/person. Slower service &mdash; allow 45&ndash;60 min.</div></div></div>
+          <div class="tags"><span class="tag food">Stock up &mdash; minimal food options until Nepenthe (1.5 hrs south)</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:30am</div>
+        <div class="activity-content">
+          <h4>Bixby Creek Bridge</h4>
+          <p>25 miles south of Carmel on CA-1 (30-min drive). Pull into the north pullout before the bridge (not the south — the north gives the classic view). Bixby Creek Bridge is a single-arch reinforced concrete bridge suspended 260 feet above a creek canyon, flanked by cliffs dropping into the Pacific. Every photographer on Instagram uses this same angle from the north pullout. Confirmed by 4 independent sources. Morning light hits the bridge face directly — go early.</p>
+          <div class="tags"><span class="tag free">Free · Road pullout</span></div>
+          <div class="why-box">
+            <strong>⚠️ Check road conditions before driving Big Sur:</strong> <a href="https://quickmap.dot.ca.gov" target="_blank">quickmap.dot.ca.gov</a> (Caltrans) — Highway 1 can close after winter storms. In July this is rarely an issue, but always verify.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">11:00am</div>
+        <div class="activity-content">
+          <h4>McWay Falls — Julia Pfeiffer Burns State Park</h4>
+          <p>30 miles south of Bixby Bridge. McWay Falls drops 80 feet from a cliff directly onto the beach below — in the middle of the ocean. There's no access to the beach (it's protected), but the overlook trail (0.7 miles round trip from the parking area) gives you the full view. This is one of the most visually distinctive waterfalls in the US because of the beach landing. Confirmed by 3 Instagram sources.</p>
+          <div class="tags"><span class="tag book">$10/vehicle state park fee</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:30pm</div>
+        <div class="activity-content">
+          <h4>Lunch in Big Sur — Nepenthe Restaurant (Optional Splurge)</h4>
+          <p>Nepenthe is perched on a cliff 800 feet above the Pacific. The view from the deck is the kind that makes you not care what the food tastes like (the food is actually good — burgers, California cuisine). This is the Big Sur splurge lunch if the budget has room. Otherwise, the Big Sur Bakery is beloved and more casual.</p>
+          <div class="food-row"><span class="food-emoji">🍔</span><div><div class="food-name">Nepenthe Restaurant</div><div class="food-desc">Cliff-top view, historic building. Ambrosia Burger. Worth it for the experience.</div></div></div>
+          <div class="food-row"><span class="food-emoji">🥐</span><div><div class="food-name">Big Sur Bakery & Restaurant</div><div class="food-desc">Local favorite, wood-fired, casual. Hwy 1, Big Sur village.</div></div></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">2:00pm</div>
+        <div class="activity-content">
+          <h4>Optional: Hearst Castle (San Simeon) — 1 hr south of McWay Falls</h4>
+          <p>William Randolph Hearst's personal mansion perched on a hill above the Pacific — 165 rooms, Neptune Pool, priceless art and tapestries. It's genuinely extraordinary and unlike anything else on this trip. Direct on Hwy 1. Tours run every 30 min. The Grand Rooms tour is recommended (~$30/adult). If the group has energy, this is worth the stop. If it's a "too many things" day, skip — Big Sur itself is a full experience.</p>
+          <div class="tags"><span class="tag book">~$30/adult · hearstcastle.com</span></div>
+          <a class="book-link" href="https://www.hearstcastle.org" target="_blank">Tours at hearstcastle.org →</a>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">4:30pm</div>
+        <div class="activity-content">
+          <h4>Drive to Paso Robles (Wineries / Settle in)</h4>
+          <p>About 1h 15m north of Hearst Castle via US-101. Wine country — rolling hills, olive orchards, lavender farms. Great place to decompress before Sensorio. Your hotel is here tonight. Freshen up before the evening.</p>
+          <div class="tags"><span class="tag drive">~1h 15m from Hearst Castle to Paso Robles</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:30pm</div>
+        <div class="activity-content">
+          <h4>Sensorio Field of Light — Mom's Own Pick</h4>
+          <p>615,000 hand-blown glass spheres installed across 15 acres of Paso Robles hillside, each lit from below by fiber optic cables — the color patterns pulse and shift slowly. You walk through it as darkness falls. It was designed by Bruce Munro, the same artist behind the original installation at Uluru in Australia. Open Thursday–Sunday, 6:30–10:30pm. Mom sent this reel herself — she's been thinking about this. Tonight she gets it.</p>
+          <div class="tags"><span class="tag book">Book via TIXR at sensoriopaso.com · DO NOT use resellers ($84+)</span><span class="tag surprise">Mom's pick — she sent you the reel</span></div>
+          <a class="book-link" href="https://www.sensoriopaso.com" target="_blank">Official tickets at sensoriopaso.com →</a>
+          <div class="why-box">
+            <strong>Timing tip:</strong> Arrive at opening (6:30pm) and walk as the sun sets — you get the transition from golden hour to full darkness. The installation is entirely different at dusk vs. full dark. 2 hours inside is plenty; 90 min is the sweet spot.
+          </div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:30pm</div>
+        <div class="activity-content">
+          <h4>Late dinner in Paso Robles &mdash; after Sensorio</h4>
+          <div class="food-row"><span class="food-emoji">&#x1F969;</span><div><div class="food-name">Jeffry&rsquo;s Wine Country BBQ &#11088; <em>The California BBQ experience</em></div><div class="food-desc">This is Santa Maria-style BBQ &mdash; California&rsquo;s own unique regional barbecue tradition. Dry-rubbed, house-smoked tri-tip over red oak. From-scratch sauces. Family-owned, casual, not expensive. This is the BBQ you came to California for &mdash; it doesn&rsquo;t exist like this anywhere else in the US. ~$20&ndash;30/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F355;</span><div><div class="food-name">Della&rsquo;s</div><div class="food-desc">Modern Paso wine country pizzeria and gin joint. Wood-fired pizzas, rustic small plates, great cocktails. Effortlessly cool California casual &mdash; great if Jeffry&rsquo;s is closed by the time you finish Sensorio.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F377;</span><div><div class="food-name">Glass of Paso Zinfandel (anywhere)</div><div class="food-desc">Paso Robles is one of California&rsquo;s top wine regions, known for bold Zinfandel and Rh&ocirc;ne-style reds (Syrah, Grenache). Order a local glass with dinner &mdash; this is what the region produces. You won&rsquo;t find this Zin back home.</div></div></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">🏨</span>
+        <div style="flex:1">
+          <strong>Stay: Paso Robles — Night 9 (Jul 10–11)</strong>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hval">BEST VALUE</span>
+              <div>
+                <div class="hotel-name">Melody Ranch Motel &middot; ⭐⭐ &middot; 9.2/10 (906 reviews)</div>
+                <div class="hotel-price">$190/night &middot; $218 total with fees</div>
+                <div class="hotel-why">A 9.2/10 motel at $190/night is genuinely exceptional &mdash; that rating beats most 3-star hotels in the area. Downtown Paso Robles location: walking distance to Jeffry&rsquo;s Wine Country BBQ and Della&rsquo;s, 10-min drive to Sensorio. Guests consistently rave about cleanliness and friendly staff. Well within budget.</div>
+                <div class="hotel-fees">No resort fee. $190/night is under budget. Verify 2 beds at booking.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h10080334.Hotel-Information?chkin=2026-07-10&chkout=2026-07-11&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($190/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hqua">BEST EXPERIENCE</span>
+              <div>
+                <div class="hotel-name">The Oaks Hotel Paso Robles &middot; ⭐⭐⭐ &middot; 9.0/10 (1,492 reviews)</div>
+                <div class="hotel-price">$206/night &middot; $236 total with fees &middot; Was $286</div>
+                <div class="hotel-why">3-star, 9.0/10, 1,492 reviews &mdash; the most-reviewed highly-rated hotel in Paso Robles. Walking distance to Downtown City Park and the wine bars. Pool. A step up from the Melody Ranch: better amenities, more polished experience, slightly over budget but discounted from $286.</div>
+                <div class="hotel-fees">$6 over $200/night target. Discounted from $286 &mdash; book before it goes back up.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h7317347.Hotel-Information?chkin=2026-07-10&chkout=2026-07-11&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($206/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 10 ===== -->
+  <div class="day-card">
+    <div class="day-header beach">
+      <div class="day-number"><span class="num">10</span><span>SAT</span></div>
+      <div class="day-header-info">
+        <h3>Santa Barbara &#8594; Malibu &#8594; Venice &#8594; Santa Monica</h3>
+        <div class="date-line">Saturday, July 11, 2026</div>
+        <div class="drive-badge">Paso Robles &#8594; Santa Barbara: 2h 9m &middot; Santa Barbara &#8594; Santa Monica via PCH: +2h</div>
+        <div class="traf-alert">
+          <strong>🔴 SATURDAY PCH MALIBU — Leave Paso Robles by 8:30 AM and time Malibu before 1pm</strong>
+          PCH is fully open (reopened May 2025 after the Palisades fire) but Saturday beach traffic through Malibu between 1pm–4pm is some of the worst gridlock in California — that 20-mile stretch alone can take 45–90 minutes. <strong>Game plan:</strong> Leave Paso Robles at 8:30am → Santa Barbara by ~10:30am → East Beach/Stearns Wharf → depart Santa Barbara by 12:15pm → reach Malibu (El Matador) by ~1:15pm, Neptune's Net by ~2pm, Venice by ~4pm, Santa Monica Pier at sunset. That sequence works if you keep moving. <strong>Backup plan:</strong> If you're leaving Santa Barbara after 1pm, cut inland on US-101 (skips all PCH Malibu gridlock) and Uber from your Santa Monica hotel to Venice Boardwalk and the Pier that evening instead — zero stress.
+        </div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="beach-banner">
+        <strong>Beach morning in Santa Barbara, then the full PCH finale into LA</strong>
+        The Sunday 12pm flight means we move to the Santa Monica area tonight. Santa Barbara beach in the morning, Malibu sea caves in the afternoon, Venice sunset, Santa Monica Pier at night.
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">8:30am</div>
+        <div class="activity-content">
+          <h4>&#x2615; Breakfast in Paso Robles Before the Drive</h4>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Spearhead Coffee (Paso Robles downtown)</div><div class="food-desc">Local roaster, downtown Paso Robles. Excellent single-origin espresso and fresh pastries. The quick, easy, California coffee shop start before hitting US-101 south. ~$6&ndash;12/person. Downtown Paso.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F37D;</span><div><div class="food-name">Thomas Hill Organics (sit-down if time allows)</div><div class="food-desc">Farm-to-table Paso Robles institution &mdash; the breakfast/brunch menu features eggs from local farms, house-cured meats, and seasonal produce from Central Coast growers. If the family wants one more proper California sit-down before Santa Barbara, this is it. 1305 Park St, Paso Robles. ~$16&ndash;25/person. 45&ndash;60 min.</div></div></div>
+          <div class="tags"><span class="tag food">Quick coffee: depart by 9am &middot; Sit-down: depart by 9:30am &middot; Arrive SB by 11:15am either way</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:00am</div>
+        <div class="activity-content">
+          <h4>Depart Paso Robles &#8594; Santa Barbara</h4>
+          <p>US-101 South. 2h 9m, 124 miles. Arrive ~11:15am. Drop bags at hotel (or hold luggage), walk straight to the beach &mdash; the water is a 5-minute walk from downtown.</p>
+          <div class="tags"><span class="tag drive">2h 9m from Paso Robles</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">11:30am</div>
+        <div class="activity-content">
+          <h4>East Beach &mdash; Santa Barbara&rsquo;s Best</h4>
+          <p>Santa Barbara&rsquo;s beaches face south (not west like most of California), meaning afternoon sun all day. East Beach is the largest &mdash; volleyball courts, palm-lined promenade, fine sand, warm Pacific water (~65&ndash;68&deg;F in July). Swim, lie in the sun, decompress. This is the California beach day.</p>
+          <div class="tags"><span class="tag free">Free public beach</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">1:30pm</div>
+        <div class="activity-content">
+          <h4>Stearns Wharf Lunch</h4>
+          <p>Walk to the end of the oldest working wooden pier on the West Coast and eat over the water. Harbor seals visible from the end of the pier. Casual, no reservations, quintessentially Santa Barbara.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F99E;</span><div><div class="food-name">Santa Barbara Shellfish Company &#11088;</div><div class="food-desc">End of Stearns Wharf. Counter service &mdash; order at the window, eat on the railing above the harbor. Fresh Dungeness crab, clam chowder, oysters, fish &amp; chips. This is California seafood at its most casual and most authentic. ~$20&ndash;30/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F32E;</span><div><div class="food-name">Lilly&rsquo;s Taqueria (alternative for non-seafood eaters)</div><div class="food-desc">A 10-min walk from the wharf &mdash; one of the best taquerias in California. Carne asada tacos at $4 each, birria, carnitas. No frills. People drive 2 hours to eat here. Chapala St. If anyone wants tacos over seafood, this is the answer.</div></div></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">3:00pm</div>
+        <div class="activity-content">
+          <h4>Drive Santa Barbara &#8594; Malibu via PCH</h4>
+          <p>Take US-101 South to CA-1 PCH at Ventura, then drive the Pacific Coast Highway through Malibu. The moment you leave the freeway and hit PCH, the ocean is immediately to your right. This stretch through Ventura and Malibu is classic California driving. El Matador is 1h 5m from Santa Barbara.</p>
+          <div class="tags"><span class="tag drive">1h 5m &middot; 60 miles &middot; PCH from Ventura south</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">4:15pm</div>
+        <div class="activity-content">
+          <h4>El Matador State Beach, Malibu</h4>
+          <p>A wild stretch of Malibu coastline with sea caves, rock arches, and tidal pools &mdash; far more dramatic than the flat urban beaches further south. Stairs down to the beach, explore the caves at low tide, watch waves crash through the arches. This is Malibu&rsquo;s best-kept photo secret. $8/vehicle at the lot on PCH.</p>
+          <div class="tags"><span class="tag book">$8/vehicle parking</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">6:00pm</div>
+        <div class="activity-content">
+          <h4>PCH South through Malibu &mdash; Neptune&rsquo;s Net for dinner</h4>
+          <p>Continue south on PCH through Malibu. Neptune&rsquo;s Net (25200 PCH) is a California legend &mdash; counter service, plastic trays, fresh seafood baskets, picnic tables above the Pacific, motorcycles and families side by side. It has been in films, TV shows, and every Malibu food list ever written. Order the fish tacos and the clam chowder. This is dinner.</p>
+          <div class="food-row"><span class="food-emoji">&#x1F990;</span><div><div class="food-name">Neptune&rsquo;s Net &#11088; <em>The Malibu PCH legend</em></div><div class="food-desc">25200 PCH, Malibu. Counter service, plastic trays, picnic tables above the Pacific. Clam chowder, shrimp baskets, Baja fish tacos (battered white fish, cabbage, crema, lime &mdash; the California classic). Motorcycles and families side by side. In films, TV shows, and every Malibu list ever written. ~$20/person. No reservations.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F3C4;</span><div><div class="food-name">Reel Inn Malibu &mdash; Alternative if Neptune&rsquo;s is too crowded</div><div class="food-desc">18661 PCH, Malibu &mdash; 1.5 miles south of Neptune&rsquo;s Net. Same casual PCH vibe: fish tacos, seafood baskets, outdoor picnic tables above the ocean. Locals&rsquo; pick when Neptune&rsquo;s has a 40-min wait (which happens on summer Saturdays). Order the grilled fish tacos. ~$15&ndash;20/person. No reservations.</div></div></div>
+          <div class="tags"><span class="tag food">July Saturday = Neptune&rsquo;s Net can be busy &middot; Both are walkable from the PCH parking</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">7:30pm</div>
+        <div class="activity-content">
+          <h4>Venice Beach Boardwalk</h4>
+          <p>45 minutes south of Malibu. The Venice Beach Boardwalk is the complete opposite of every other stop on this trip &mdash; street performers, Muscle Beach, skate park, artists, food vendors, and complete LA chaos at sunset. Walk the boardwalk from the skate park south. You&rsquo;ll either love it or want to leave in 30 minutes. Either reaction is valid.</p>
+          <div class="tags"><span class="tag free">Free to walk</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:00pm</div>
+        <div class="activity-content">
+          <h4>Santa Monica Pier &mdash; End of the Road</h4>
+          <p>10 minutes from Venice along Ocean Avenue. Walk to the end of the pier and look back at the Santa Monica Bay. The Route 66 &ldquo;End of the Trail&rdquo; sign is here &mdash; this is where the original cross-country highway terminates, in the Pacific Ocean. You drove from San Francisco to here. It&rsquo;s the emotional finish line of California.</p>
+          <div class="tags"><span class="tag free">Free to walk &middot; Pacific Park rides optional</span></div>
+        </div>
+      </div>
+
+      <div class="overnight-box">
+        <span class="hotel-icon">&#x1F3D9;</span>
+        <div style="flex:1">
+          <strong>Stay: Final Night &mdash; LAX Area (Jul 11–12)</strong>
+          <div class="hotel-warn">📌 Santa Monica hotels run $300–500+/night in July. The smart move: stay near LAX or Marina del Rey — 10–15 min from the airport, fraction of the cost, still close to Venice for the evening.</div>
+          <div class="hotel-options">
+            <div class="hotel-option">
+              <span class="hotel-badge hloc">MOST CONVENIENT</span>
+              <div>
+                <div class="hotel-name">Holiday Inn Los Angeles &ndash; LAX Airport &middot; ⭐⭐⭐ &middot; 8.2/10 (4,554 reviews)</div>
+                <div class="hotel-price">$185/night &middot; $215 total with fees</div>
+                <div class="hotel-why">The largest review base of any hotel near LAX &mdash; 4,554 guests have rated it 8.2/10. Free airport shuttle runs 24/7. Drop your rental car nearby the night before and take the shuttle. 10-min drive to LAX. You check out, take the shuttle, and you&rsquo;re done. No morning driving stress for a noon flight.</div>
+                <div class="hotel-fees">No resort fee. Free airport shuttle. Best pure logistics choice for noon departure.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h9174.Hotel-Information?chkin=2026-07-11&chkout=2026-07-12&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($185/night) →</a>
+              </div>
+            </div>
+            <div class="hotel-option">
+              <span class="hotel-badge hqua">BEST VIBE</span>
+              <div>
+                <div class="hotel-name">Jolly Roger Hotel (Marina del Rey) &middot; ⭐⭐½ &middot; 8.2/10 (1,001 reviews)</div>
+                <div class="hotel-price">$217/night &middot; $252 total with fees &middot; Was $267</div>
+                <div class="hotel-why">Marina del Rey is 1 mile from Venice Beach &mdash; you can walk to the Venice Boardwalk from the hotel. 15-minute drive to LAX the next morning. Staying near Venice for your last California night gives you the full experience: Venice sunset, hotel, airport. The location earns the $32 premium over the Holiday Inn.</div>
+                <div class="hotel-fees">$17 over target. Discounted from $267. Worth it for the Venice proximity on your last night.</div>
+                <a class="hotel-link" href="https://www.expedia.com/.h9674744.Hotel-Information?chkin=2026-07-11&chkout=2026-07-12&rm1=a4&BRANDCID=HOTEL.CLAUDEAI-MICROAPP" target="_blank">View on Expedia ($217/night) →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAY 11 ===== -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-number"><span class="num">11</span><span>SUN</span></div>
+      <div class="day-header-info">
+        <h3>Fly Home &#9992; End of the California Dream</h3>
+        <div class="date-line">Sunday, July 12, 2026 &mdash; Departure Day</div>
+        <div class="drive-badge">Hotel &#8594; LAX: 15&ndash;20 min &middot; Flight departs 12:00pm Pacific &middot; Land ~10:00pm Eastern</div>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="activity">
+        <div class="activity-time">8:00am</div>
+        <div class="activity-content">
+          <h4>Wake up, pack, grab breakfast</h4>
+          <p>Last California morning. Walk to the Santa Monica Promenade or 3rd Street for a coffee and a proper sit-down breakfast. You have time &mdash; LAX is 15 minutes away and you don&rsquo;t need to be there until 10am.</p>
+          <div class="food-row"><span class="food-emoji">&#x2615;</span><div><div class="food-name">Huckleberry Cafe &amp; Bakery &#11088; <em>Top pick</em></div><div class="food-desc">1014 Wilshire Blvd, Santa Monica. Beloved neighborhood breakfast institution &mdash; house-made pastries, egg sandwiches on fresh-baked bread, excellent coffee. This is the California farm-to-table breakfast your mom will love. Walk there from any Santa Monica hotel. ~$15&ndash;20/person.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F95E;</span><div><div class="food-name">Eggslut at The Original Farmers Market</div><div class="food-desc">The famous egg sandwich shop from LA &mdash; if you want a quick, iconic final bite before the airport. The Farmers Market (6333 W 3rd St) is 20 min from LAX. Slut: coddled egg on potato pur&eacute;e in a jar, served with brioche. One of LA&rsquo;s cult breakfast dishes.</div></div></div>
+          <div class="food-row"><span class="food-emoji">&#x1F354;</span><div><div class="food-name">One last In-N-Out at LAX area</div><div class="food-desc">There&rsquo;s an In-N-Out on Sepulveda Blvd near LAX. If you haven&rsquo;t gone yet &mdash; this is your last chance in California. Animal Style at the airport. Perfect ending.</div></div></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">9:45am</div>
+        <div class="activity-content">
+          <h4>Drive to LAX</h4>
+          <p>15&ndash;20 minutes from Santa Monica via Lincoln Blvd or I-405. Drop rental car at the consolidated rental center (shuttles to terminals). Allow 30 minutes for car return + shuttle. Check in by 10am for a noon flight &mdash; gives you plenty of time.</p>
+          <div class="tags"><span class="tag drive">15 min from Santa Monica to LAX</span></div>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="activity-time">12:00pm</div>
+        <div class="activity-content">
+          <h4>Flight departs LAX &#9992;</h4>
+          <p>You flew west as a family. You drove 1,400 miles of California coastline, mountains, and desert. You stood under ancient redwoods, looked up at 3,000-foot granite walls, saw the largest tree on Earth, watched fireworks over Lake Tahoe on Adam&rsquo;s 22nd birthday, and drove the most scenic highway in America. Landing ~10pm Eastern.</p>
+          <div class="tags"><span class="tag free">See you on the other side</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ===== BUDGET ===== -->
+  <div class="section-header">
+    <h2>Estimated Budget</h2>
+    <p>Family of 4 · Casual dining · Mid-range hotels</p>
+  </div>
+  <table class="budget-table">
+    <thead>
+      <tr><th>Category</th><th>Low Estimate</th><th>High Estimate</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hotels (10 nights)</td><td>$1,800</td><td>$3,500</td><td>$180–350/night average</td></tr>
+      <tr><td>Gas (~1,400 miles)</td><td>$280</td><td>$380</td><td>~25 MPG, $5/gal avg CA</td></tr>
+      <tr><td>Rental Car (11 days)</td><td>$550</td><td>$900</td><td>Mid-size SUV</td></tr>
+      <tr><td>Alcatraz (4 tickets)</td><td>$188</td><td>$188</td><td>~$47/adult Evening Tour</td></tr>
+      <tr><td>Muir Woods (4 tickets)</td><td>$60</td><td>$60</td><td>$15/adult</td></tr>
+      <tr><td>National Parks (2 parks)</td><td>$80</td><td>$80</td><td>America the Beautiful Annual Pass — covers Yosemite + Sequoia + all NPS</td></tr>
+      <tr><td>Sensorio (4 tickets)</td><td>$120</td><td>$200</td><td>Official TIXR pricing TBD; avoid resellers</td></tr>
+      <tr><td>ClearlyKayak (4)</td><td>$160</td><td>$220</td><td>~$40–55/person</td></tr>
+      <tr><td>17-Mile Drive + Point Lobos</td><td>$49</td><td>$49</td><td>$12.25 + $12/vehicle + others</td></tr>
+      <tr><td>Hearst Castle (4 tickets)</td><td>$120</td><td>$120</td><td>~$30/adult · optional</td></tr>
+      <tr><td>Food (11 days × 4 people)</td><td>$900</td><td>$1,600</td><td>Casual/food truck focus: $20–35/person/day</td></tr>
+      <tr><td>Misc (parking, snacks, tips)</td><td>$200</td><td>$350</td><td></td></tr>
+      <tr class="total"><td><strong>TOTAL ESTIMATED</strong></td><td><strong>$4,507</strong></td><td><strong>$7,647</strong></td><td>Excludes flights, fireworks cruise</td></tr>
+    </tbody>
+  </table>
+
+  <div class="why-box" style="margin-top:16px;">
+    <strong>Money-saving tip:</strong> The America the Beautiful Annual Pass ($80) covers all national park entry fees for your entire vehicle for one year. It covers Yosemite ($35), Sequoia ($35), and any other NPS sites. You break even immediately and save $70+.
+  </div>
+
+  <!-- ===== TIPS ===== -->
+  <div class="section-header">
+    <h2>Rules of the Road</h2>
+    <p>Hard-learned truths for this specific itinerary</p>
+  </div>
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-bottom:40px;">
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--ocean);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--ocean);">Morning People</div>
+      <div style="font-size:0.86rem; color:var(--mid);">Parents are NOT morning people. No activity before 9:30am. Kayaks go at 10am. Let everyone sleep.</div>
+    </div>
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--forest);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--forest);">Max 3 Activities/Day</div>
+      <div style="font-size:0.86rem; color:var(--mid);">Relaxed pace is the goal. Drive time counts as an activity. No cramming. Best memories are unhurried ones.</div>
+    </div>
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--sunset);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--sunset);">Food Philosophy</div>
+      <div style="font-size:0.86rem; color:var(--mid);">Casual California. Food trucks welcome. Not fancy restaurants. Local spots over chains. The best meals on this trip cost under $15/person.</div>
+    </div>
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--urgent);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--urgent);">Big Sur Road Warning</div>
+      <div style="font-size:0.86rem; color:var(--mid);">Check <a href="https://quickmap.dot.ca.gov" target="_blank">quickmap.dot.ca.gov</a> the morning you drive Big Sur. Landslides and road closures are real. Always have a backup route.</div>
+    </div>
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--gold);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--gold);">Hwy 140 (Arch Rock) Check</div>
+      <div style="font-size:0.86rem; color:var(--mid);">The Merced Canyon approach to Yosemite can have rockfall closures. Check quickmap.dot.ca.gov before Day 5 departure. Alternate: Hwy 120 Big Oak Flat entrance via I-580/120 from the north.</div>
+    </div>
+    <div style="background:white; border-radius:12px; padding:18px; border-left:4px solid var(--birthday);">
+      <div style="font-weight:bold; margin-bottom:6px; color:var(--birthday);">Fort Point Clarification</div>
+      <div style="font-size:0.86rem; color:var(--mid);">Fort Point is NOT a ferry. You DRIVE there (201 Marine Drive, 20 min from downtown SF). Free NPS site. Open Fri–Mon — Day 2 (Friday July 3) is perfect.</div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<footer>
+  <div style="max-width:700px; margin:0 auto;">
+    <p style="font-size:1rem; color:white; margin-bottom:8px;">California Road Trip · July 2–12, 2026</p>
+    <p>All driving times verified via Google Maps Directions API. All attraction details verified via live research. Prices subject to change — verify before booking.</p>
+    <p style="margin-top:12px;">Last updated: May 2026 · Built for the family of 4 ❤️</p>
+  </div>
+</footer>
+
+</body>
+</html>

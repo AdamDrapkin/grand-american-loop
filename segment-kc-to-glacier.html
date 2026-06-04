@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segment Guide · Kansas City → Glacier NP · Jun 19–22</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --ut:    #C05621;
+      --id:    #2D6A4F;
+      --mt:    #1B3D6E;
+      --gold:  #D69E2E;
+      --cream: #FDFAF4;
+      --snow:  #FFF8F0;
+      --dark:  #1A202C;
+      --mid:   #5A4A3A;
+      --border:#E4D0BC;
+      --amber: #92400E;
+      --green: #1F6B2A;
+      --red:   #C0392B;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--mt)}
+    .hero{background:linear-gradient(160deg,#1A202C 0%,#1B3D6E 30%,#C05621 65%,#D69E2E 100%);color:white;padding:52px 24px 60px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+    .hero h1{font-size:2.6rem;font-weight:normal;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+    .hero-dates{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-route{font-family:sans-serif;font-size:.82rem;opacity:.62;margin-bottom:22px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+    .hchip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 15px;font-family:sans-serif;font-size:.78rem}
+    .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+    section{padding:42px 0}
+    hr.div{border:none;border-top:1px solid var(--border);margin:0}
+    .overview-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+    @media(max-width:640px){.overview-strip{grid-template-columns:1fr 1fr}}
+    .ov-card{border-radius:10px;padding:14px 16px;text-align:center}
+    .ov-card.d5{background:linear-gradient(135deg,#FFFFF0,#FEFCBF);border:2px solid #ECC94B}
+    .ov-card.d6{background:linear-gradient(135deg,#FFF5F5,#FED7D7);border:2px solid #FC8181}
+    .ov-card.d7{background:linear-gradient(135deg,#F0FFF4,#C6F6D5);border:2px solid #68D391}
+    .ov-card.d8{background:linear-gradient(135deg,#EBF8FF,#BEE3F8);border:2px solid #63B3ED}
+    .ov-date{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:4px}
+    .ov-label{font-family:sans-serif;font-size:.82rem;font-weight:700;margin-bottom:3px}
+    .ov-note{font-family:sans-serif;font-size:.72rem;color:var(--mid);line-height:1.4}
+    .day-section{margin-bottom:52px}
+    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-hd.d5{background:linear-gradient(135deg,#744210,#C05621)}
+    .day-hd.d6{background:linear-gradient(135deg,#92400E,#ED8936)}
+    .day-hd.d7{background:linear-gradient(135deg,#276749,#38A169)}
+    .day-hd.d8{background:linear-gradient(135deg,#1B3D6E,#3A7DC9)}
+    .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+    .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
+    .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+    .seg-map{height:320px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
+    .map-caption{font-family:sans-serif;font-size:.72rem;color:var(--mid);margin-bottom:6px;font-style:italic}
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.gmaps{background:white;border:1.5px solid #1A73E8;color:#1A73E8}
+    .mab.route{background:#1A73E8;color:white;border:1.5px solid #1A73E8}
+    .time-block{margin-bottom:22px}
+    .tb-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--ut);padding-bottom:6px;border-bottom:2px solid var(--ut);margin-bottom:12px}
+    .tb-hd.id{color:var(--id);border-color:var(--id)}
+    .tb-hd.mt{color:var(--mt);border-color:var(--mt)}
+    .tb-hd.gold{color:var(--gold);border-color:var(--gold)}
+    .tb-list{font-family:sans-serif;font-size:.85rem;color:var(--dark);line-height:1.75;list-style:none;padding:0}
+    .tb-list li{padding-left:14px;position:relative;margin-bottom:2px}
+    .tb-list li::before{content:'→';position:absolute;left:0;color:var(--ut);font-size:.8rem}
+    .tb-list strong{color:var(--mt)}
+    .stop-card{background:var(--snow);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0 22px}
+    .stop-card.id-theme{background:#F0FFF4}
+    .stop-card.mt-theme{background:#EFF6FF}
+    .sc-hd{padding:14px 18px 12px;border-bottom:1px solid var(--border)}
+    .sc-name{font-size:1.08rem;color:var(--ut);margin-bottom:5px;font-weight:600}
+    .stop-card.id-theme .sc-name{color:var(--id)}
+    .stop-card.mt-theme .sc-name{color:var(--mt)}
+    .sc-stats{display:flex;flex-wrap:wrap;gap:7px}
+    .sc-stat{font-family:sans-serif;font-size:.74rem;background:white;border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--mid)}
+    .sc-stat.must{background:#FFF5F5;border-color:#FCA5A5;color:var(--red);font-weight:700}
+    .sc-stat.free{background:#F0FFF4;border-color:#86EFAC;color:var(--green);font-weight:700}
+    .sc-stat.book{background:#FFFBEB;border-color:#FCD34D;color:var(--amber);font-weight:700}
+    .sc-body{padding:14px 18px 16px}
+    .sc-notes{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.6;margin-bottom:10px}
+    .sc-notes p{margin-bottom:6px}
+    .sc-tip{background:linear-gradient(135deg,#FFF9F0,#FDEBD0);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .sc-tip.id{background:linear-gradient(135deg,#F0FFF4,#DCFCE7);border-color:var(--id)}
+    .sc-tip.mt{background:linear-gradient(135deg,#EBF8FF,#BEE3F8);border-color:var(--mt)}
+    /* LOGISTICS STRIP */
+    .logistics-strip{background:#F7FAFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:20px 0}
+    .ls-title{font-family:sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--mt);margin-bottom:10px}
+    .ls-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:580px){.ls-grid{grid-template-columns:1fr}}
+    .ls-card{background:white;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+    .ls-type{font-family:sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .ls-type.rest{color:#2B6CB0}.ls-type.shower{color:var(--green)}.ls-type.food{color:var(--ut)}
+    .ls-name{font-family:sans-serif;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:2px}
+    .ls-note{font-family:sans-serif;font-size:.75rem;color:var(--mid);line-height:1.4}
+    .long-day-banner{background:linear-gradient(135deg,#742A2A,#C0392B);color:white;border-radius:12px;padding:18px 24px;margin:16px 0}
+    .ld-title{font-family:sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;opacity:.8;margin-bottom:4px}
+    .ld-text{font-family:sans-serif;font-size:.87rem;line-height:1.6;opacity:.94}
+    .alert-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+    @media(max-width:640px){.alert-grid{grid-template-columns:1fr}}
+    .ac{border-radius:10px;padding:14px 16px;border-left:4px solid}
+    .ac.red{background:#FEF2F2;border-color:var(--red)}
+    .ac.amb{background:#FFFBEB;border-color:var(--amber)}
+    .ac.grn{background:#F0FDF4;border-color:var(--green)}
+    .ac.blu{background:#EFF6FF;border-color:var(--mt)}
+    .ac-title{font-family:sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+    .ac.red .ac-title{color:var(--red)}.ac.amb .ac-title{color:var(--amber)}.ac.grn .ac-title{color:var(--green)}.ac.blu .ac-title{color:var(--mt)}
+    .ac-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .drive-stat{display:inline-flex;align-items:center;gap:6px;background:#F7FAFC;border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-family:sans-serif;font-size:.82rem;margin:6px 0}
+    .drive-val{font-weight:700;color:var(--mt);font-size:1rem}
+    .footer{background:var(--mt);color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sup">Segment Guide · Grand American Loop · Days 5–8</div>
+  <h1>Kansas City → Glacier National Park</h1>
+  <div class="hero-dates">June 19 – 22, 2026</div>
+  <div class="hero-route">Kearney, NE → Rock Springs, WY → Utah → Idaho → Montana → Johnson's of St. Mary CHECK-IN</div>
+  <div class="hero-chips">
+    <span class="hchip">🎨 Bentonite Hills, Hanksville UT</span>
+    <span class="hchip">⬜ Bonneville Salt Flats</span>
+    <span class="hchip">🌡️ Homestead Crater, Midway UT</span>
+    <span class="hchip">🏙️ Salt Lake City · Red Iguana</span>
+    <span class="hchip">🌊 Shoshone Falls · Twin Falls</span>
+    <span class="hchip">🏔️ Salmon River of No Return</span>
+    <span class="hchip">🦬 National Bison Range</span>
+    <span class="hchip">🏞️ Flathead Lake · Whitefish</span>
+    <span class="hchip">✅ Glacier Check-In Jun 22</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="overview-strip">
+    <div class="ov-card d5"><div class="ov-date">Jun 19</div><div class="ov-label">Day 5</div><div class="ov-note">Kearney → Chimney Rock → Rock Springs, WY · 571 mi HARDEST DAY</div></div>
+    <div class="ov-card d6"><div class="ov-date">Jun 20</div><div class="ov-label">Day 6</div><div class="ov-note">Rock Springs → Homestead Crater → Bentonite Hills → SLC (Red Iguana) → Bonneville → Shoshone Falls · Twin Falls</div></div>
+    <div class="ov-card d7"><div class="ov-date">Jun 21</div><div class="ov-label">Day 7</div><div class="ov-note">Twin Falls → Salmon River Canyon → Bison Range → Flathead Lake → Whitefish</div></div>
+    <div class="ov-card d8"><div class="ov-date">Jun 22</div><div class="ov-label">Day 8</div><div class="ov-note">Whitefish → Lake McDonald → Marias Pass → Johnson's of St. Mary CHECK-IN ✅</div></div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ═══ DAY 5 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d5">
+        <div class="day-hd-label">June 19 · Day 5 · 8h 20m · 570 mi (direct) · +1h 2m if Chimney Rock — HARDEST DRIVE</div>
+        <div class="day-hd-title">Oregon Trail Country → Rock Springs</div>
+        <div class="day-hd-sub">Kearney, NE → Chimney Rock (optional) → Scotts Bluff → Rock Springs, WY overnight</div>
+      </div>
+      <div class="day-body">
+        <div class="long-day-banner">
+          <div class="ld-title">Hardest Drive Day of the Entire Trip · Two Drivers Required</div>
+          <div class="ld-text">571 miles. Split the wheel near Scottsbluff (~2.5 hrs in). I-80 through Wyoming is notorious for crosswind advisories — check WYDOT 511 (dial 511 or wydot.gov/511) before entering Wyoming. Rock Springs sits at 6,270 ft — nights drop to low 40s even in late June. Have layers accessible before Wyoming.</div>
+        </div>
+
+        <div id="map-day5" class="seg-map"></div>
+        <p class="map-caption">Day 5: Kearney NE → Chimney Rock (opt.) → Scotts Bluff → Rock Springs WY · I-80 West all day</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Kearney+NE/Chimney+Rock+Bayard+NE/Rock+Springs+WY" target="_blank" class="mab route">🗺️ Open Day 5 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Chimney Rock &amp; Scotts Bluff National Monument</div>
+            <div class="sc-stats">
+              <span class="sc-stat">US-26 north of I-80, western Nebraska</span>
+              <span class="sc-stat free">Free w/ NPS Pass</span>
+              <span class="sc-stat">1.5 hrs total</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p><strong>Chimney Rock</strong> rises 300+ ft above the North Platte valley floor — the single most-cited landmark in every Oregon, California, and Mormon Trail pioneer diary. Every wagon train heading west saw it as a navigation marker for weeks before passing it. Visitor center open 9am–4pm MT. Scotts Bluff NM nearby: 800-ft bluff, summit road 9am–5:30pm, views into Wyoming and Colorado.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Chimney+Rock+National+Historic+Site+Nebraska" target="_blank" class="mab gmaps">📍 Chimney Rock</a>
+              <a href="https://www.google.com/maps/search/Scotts+Bluff+National+Monument+Nebraska" target="_blank" class="mab gmaps">📍 Scotts Bluff NM</a>
+            </div>
+            <div class="sc-tip">Both sites are free with America the Beautiful pass. Western Nebraska is fully exposed — sunscreen mandatory. Split wheel at Scottsbluff (2.5 hrs in).</div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd gold">Rock Springs, WY — Overnight</div>
+          <ul class="tb-list">
+            <li>6,270 ft elevation. Nights drop to the low 40s even in June. Layers accessible before Wyoming.</li>
+            <li>Check WYDOT 511 tonight for any wind advisories for tomorrow morning on I-80.</li>
+          </ul>
+          <div class="drive-stat"><span class="drive-val">8h 20m</span>&nbsp;·&nbsp;571 mi · Rock Springs, WY overnight</div>
+        </div>
+
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 5 Corridor (NE → WY)</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Petro — York, NE</div>
+              <div class="ls-note">I-80 Exit 353 / US-81 · 250 truck spaces · laundry · CAT scale · eastern NE</div>
+              <a href="https://maps.google.com/?q=40.8462,-97.5876" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Pilot Flying J — North Platte, NE</div>
+              <div class="ls-note">I-80 · $15 · 24hr · western Nebraska milestone</div>
+              <a href="https://maps.google.com/?q=41.122,-100.752" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">TA — Rawlins, WY</div>
+              <div class="ls-note">I-80 Exit 214 · 188 truck spaces · laundry · pet area · mid-Wyoming</div>
+              <a href="https://maps.google.com/?q=41.7953,-107.2311" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower + Overnight</div>
+              <div class="ls-name">Pilot Flying J — Rock Springs, WY ⭐</div>
+              <div class="ls-note">I-80 Exit 102 · overnight base · $15 showers · 24hr · EV charging · 6,270 ft</div>
+              <a href="https://maps.google.com/?q=41.5952,-109.2271" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 6 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d6">
+        <div class="day-hd-label">June 20 · Day 6 · 11h 47m · 757 mi (Google Maps verified w/ Bentonite detour)</div>
+        <div class="day-hd-title">Utah Epic — Crater, Badlands, City, Salt Flats</div>
+        <div class="day-hd-sub">Rock Springs → Homestead Crater → Bentonite Hills (Hanksville) → SLC (Red Iguana) → Bonneville Salt Flats → Shoshone Falls · Twin Falls, ID overnight</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day6" class="seg-map"></div>
+        <p class="map-caption">Day 6: Rock Springs WY → Midway UT → Hanksville UT (Bentonite Hills) → Salt Lake City → Wendover/Bonneville → Twin Falls ID · I-80 West + I-70 West + US-93 North</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Rock+Springs+WY/Homestead+Crater+Midway+UT/Bentonite+Hills+Hanksville+Utah/Salt+Lake+City+UT/Wendover+UT/Twin+Falls+ID" target="_blank" class="mab route">🗺️ Open Day 6 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Homestead Crater — Midway, UT</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Midway, UT · off US-40 from I-80</span>
+              <span class="sc-stat book">Book Ahead · homesteadresort.com</span>
+              <span class="sc-stat">90–96°F geothermal pool · only warm-water scuba in continental US</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>A 55-foot dome of travertine limestone enclosing a 90–96°F geothermal pool. Swim in it, scuba dive in it, or just stand inside the cave opening and watch the blue light hit the water. Hours: Mon–Fri 8:30am–10:30pm · Sat–Sun 8am–10:30pm. Midway detour adds ~90 min round trip from I-80.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Homestead+Crater+Midway+Utah" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Bentonite Hills — Hanksville, UT</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Hanksville, UT · off Cow Dung Road (past Mars Desert Research Station)</span>
+              <span class="sc-stat book">Best Time · Cloudy afternoon or blue hour (3–4pm)</span>
+              <span class="sc-stat must">⚠️ Clay road — avoid after rain</span>
+              <span class="sc-stat">1–2 hrs photography stop</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Otherworldly badlands of rust-red and multi-colored clay bentonite formations. The hills shift from orange to purple to deep red depending on light and angle. Most dramatic from the air or during golden hour — bluebird skies wash out colors. Optimal light: cloudy afternoon (3–4pm) or blue hour (dusk). The road is clay-based and treacherous after precipitation — check weather before committing.</p>
+              <p><strong>Navigation caveat:</strong> Google Earth's "Bentonite Hills" marker points to the wrong location. These are the hills off Cow Dung Road, just past the Mars Desert Research Station outside Hanksville. Have a detailed map or offline route ready.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Bentonite+Hills+Hanksville+Utah" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              <a href="https://www.google.com/maps/search/Mars+Desert+Research+Station+Hanksville+Utah" target="_blank" class="mab gmaps">📍 Mars Research Station (landmark)</a>
+            </div>
+            <div class="sc-tip">Instagram content creator (@ultimatevacationn) reports this took 8 years to make the detour worth it. Cloudiness is NOT a drawback — it's a requirement for color saturation. Timing adds ~3h 43m from Homestead Crater.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Salt Lake City — Red Iguana Lunch</div>
+            <div class="sc-stats">
+              <span class="sc-stat">736 W North Temple, SLC, UT</span>
+              <span class="sc-stat">4.6⭐ · 10,374 reviews · legendary mole</span>
+              <span class="sc-stat">45–60 min stop</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>The city backed by 11,000-ft Wasatch peaks is one of the most dramatic urban settings in America. Red Iguana (736 W North Temple) is the legendary mole restaurant — 30-ingredient mole negro, expect a line, worth every minute. SLC pass-through, not overnight.</p>
+              <p>Temple Square is a 5-minute walk from Red Iguana — free outdoor grounds, impressive architecture regardless of your beliefs.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Red+Iguana+Salt+Lake+City+UT" target="_blank" class="mab gmaps">📍 Red Iguana</a>
+              <a href="https://www.google.com/maps/search/Temple+Square+Salt+Lake+City" target="_blank" class="mab gmaps">📍 Temple Square</a>
+            </div>
+            <div class="sc-tip">SLC's I-15/I-80 interchange congests 3–6pm — pass through before 3pm or after 6pm.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Bonneville Salt Flats</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Wendover, UT · I-80 Exit 4</span>
+              <span class="sc-stat free">Free</span>
+              <span class="sc-stat">30,000 acres white · land speed records</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>You step out of the car onto a surface that looks like a frozen white planet. 30,000 acres of perfectly flat salt crust. Drive on it. Walk on it. The salt reflects UV upward — sunscreen under your chin and nose. June is peak crust condition before summer heat cracks the patterns. The ThrustSSC broke the sound barrier here at 763 mph in 1997. ⚠️ Check usfra.org for any race week closures around June 20.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Bonneville+Salt+Flats+Utah" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop-card id-theme">
+          <div class="sc-hd">
+            <div class="sc-name">Shoshone Falls — Twin Falls, ID</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Twin Falls, ID · US-93 North from Wendover</span>
+              <span class="sc-stat">212 ft drop · taller than Niagara</span>
+              <span class="sc-stat">$5/vehicle · peak June flow</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>The Snake River drops 212 feet over a 900-foot-wide basalt ledge — taller than Niagara by 36 feet. June is the best month: full snowmelt flow before irrigation diversions begin. The overlook is a 3-minute walk. Spray is heavy enough to feel from 100 feet away. The <strong>Perrine Bridge</strong> nearby (480 ft above the canyon) allows year-round BASE jumping without a permit — you'll likely see jumpers.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Shoshone+Falls+Twin+Falls+Idaho" target="_blank" class="mab gmaps">📍 Shoshone Falls</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="drive-stat"><span class="drive-val">11h 47m</span>&nbsp;·&nbsp;757 mi · Twin Falls, ID overnight · Google Maps verified (w/ Bentonite detour)</div>
+
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 6 Corridor (WY → UT → ID)</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">TA — Fort Bridger, WY</div>
+              <div class="ls-note">I-80 Exit 34 · WY/UT border · truck lot · laundry · last WY stop</div>
+              <a href="https://maps.google.com/?q=41.3131,-110.3929" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Love's — Wendover, UT</div>
+              <div class="ls-note">I-80 state line · after Salt Flats · $15 · 24hr</div>
+              <a href="https://maps.google.com/?q=40.737,-114.041" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Pilot Flying J — Salt Lake City</div>
+              <div class="ls-note">I-15 Exit 306 / 2100 S · $15 · 24hr · EV charging · SLC pass-through</div>
+              <a href="https://maps.google.com/?q=40.7344,-111.9147" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower + Rest</div>
+              <div class="ls-name">Love's — Twin Falls, ID</div>
+              <div class="ls-note">US-93 South · $15 · 24hr · overnight corridor</div>
+              <a href="https://maps.google.com/?q=42.600,-114.447" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 7 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d7">
+        <div class="day-hd-label">June 21 · Day 7 · 9h 13m · ~580 mi</div>
+        <div class="day-hd-title">River of No Return → Bison Range → Flathead Lake</div>
+        <div class="day-hd-sub">Twin Falls → Salmon River Canyon → National Bison Range → Flathead Lake → Whitefish, MT overnight</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day7" class="seg-map"></div>
+        <p class="map-caption">Day 7: Twin Falls → Salmon River Scenic Byway → Bison Range Moiese MT → Polson → Whitefish · US-93 North all day</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Twin+Falls+ID/Salmon+ID/National+Bison+Range+Moiese+MT/Polson+MT/Whitefish+MT" target="_blank" class="mab route">🗺️ Open Day 7 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card id-theme">
+          <div class="sc-hd">
+            <div class="sc-name">Salmon River Scenic Byway — River of No Return</div>
+            <div class="sc-stats">
+              <span class="sc-stat">US-93 North from Twin Falls · ~3.5 hrs driving</span>
+              <span class="sc-stat free">Free · On-Route</span>
+              <span class="sc-stat">100+ mi canyon · No cell service</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>US-93 enters a landscape most Americans have never seen. The Snake River canyon gives way to central Idaho high country, then the Salmon River — the <strong>River of No Return</strong> — carves 100+ miles through vertical rhyolite cliffs. June: the river runs jade-green and high from snowmelt. Bald eagles, bighorn sheep on cliff faces, river otters in pools, spawning salmon leaping in shallows — visible from the road. <strong>Zero cell service for ~80 miles. Download offline maps in Twin Falls.</strong></p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Salmon+River+Scenic+Byway+Idaho" target="_blank" class="mab gmaps">📍 Salmon River Canyon</a>
+            </div>
+            <div class="sc-tip id">Two-lane mountain highway — follow the river, don't push pace. Watch for cattle near Elk Bend and Challis. You'll get behind RVs. It doesn't matter. This road is driven slowly on purpose.</div>
+          </div>
+        </div>
+
+        <div class="stop-card mt-theme">
+          <div class="sc-hd">
+            <div class="sc-name">CSKT National Bison Range — Red Sleep Mountain Drive</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Moiese, MT · US-93 via Ronan</span>
+              <span class="sc-stat must">⚠️ Gate closes 6pm sharp</span>
+              <span class="sc-stat">19-mile drive · 1.5–2 hrs</span>
+              <span class="sc-stat">350 bison + pronghorn + elk + bighorn</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>18,800 acres of native Palouse grassland managed by the Confederated Salish and Kootenai Tribes. The 19-mile Red Sleep Mountain Drive puts you at close range with the herd on open hillside. June: bison calves ("red dogs") born April–May are visible alongside the main herd. <strong>Note: does NOT accept America the Beautiful pass — separate fee required. Gate closes at 6pm sharp — enter by 5:45pm maximum.</strong></p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/National+Bison+Range+Moiese+Montana" target="_blank" class="mab gmaps">📍 National Bison Range</a>
+            </div>
+            <div class="sc-tip mt">From Twin Falls to the Bison Range is ~3.5 hrs. Arriving by 4pm gives a comfortable 1.5-hr drive window before gate closes. Depart Twin Falls by 7–7:30am to make this work.</div>
+          </div>
+        </div>
+
+        <div class="stop-card mt-theme">
+          <div class="sc-hd">
+            <div class="sc-name">Flathead Lake + Polson, MT</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Polson, MT · US-93 north of Ronan</span>
+              <span class="sc-stat free">Free · Pass-Through</span>
+              <span class="sc-stat">Largest freshwater lake west of Mississippi</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>30 miles long, glacier-cold, crystal clear, absurdly blue against the Mission Mountains to the east. US-93 runs along the east shore for 15 miles — pull off at any overlook. Montana residents consider this the crown jewel of the state.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Flathead+Lake+Polson+Montana" target="_blank" class="mab gmaps">📍 Flathead Lake</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd mt">Overnight — Whitefish, MT</div>
+          <ul class="tb-list">
+            <li><strong>Montana Coffee Traders</strong> (110 Central Ave) — opens 6:30am. Your tomorrow morning ritual before Glacier. 4.6⭐, best coffee in Montana.</li>
+            <li>Downtown Whitefish has excellent restaurants — Great Northern Bar &amp; Grill or Bonsai Brewing Project are local favorites after a 580-mile day.</li>
+          </ul>
+          <div class="map-actions" style="margin-top:8px">
+            <a href="https://www.google.com/maps/search/Montana+Coffee+Traders+Whitefish+MT" target="_blank" class="mab gmaps">📍 Montana Coffee Traders</a>
+          </div>
+          <div class="drive-stat"><span class="drive-val">9h 13m</span>&nbsp;·&nbsp;~580 mi · Whitefish, MT overnight</div>
+        </div>
+
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 7 Corridor (ID → MT)</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Love's — Missoula, MT</div>
+              <div class="ls-note">I-90 Exit 96 · $15 · 24hr · Missoula pass-through on Day 7</div>
+              <a href="https://maps.google.com/?q=46.841,-114.098" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">TA — Missoula, MT</div>
+              <div class="ls-note">I-90 Exit 96 / US-93 N · 130 truck spaces · 4 service bays · 24/7 fuel</div>
+              <a href="https://maps.google.com/?q=46.9294,-114.0789" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Pilot Flying J — Columbia Falls, MT</div>
+              <div class="ls-note">US-2 · gateway to Glacier &amp; Whitefish · DEF · 24/7 fuel · call ahead showers</div>
+              <a href="https://maps.google.com/?q=48.3693,-114.1767" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type food">🍽️ Food Stop</div>
+              <div class="ls-name">Montana Coffee Traders — Whitefish</div>
+              <div class="ls-note">110 Central Ave · opens 6:30am · best coffee in Montana · Glacier departure ritual</div>
+              <a href="https://www.google.com/maps/search/Montana+Coffee+Traders+Whitefish+MT" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 8 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d8">
+        <div class="day-hd-label">June 22 · Day 8 · 2h 12m · 111 mi</div>
+        <div class="day-hd-title">The Threshold Drive → Glacier Check-In</div>
+        <div class="day-hd-sub">Whitefish → Coffee → Lake McDonald first look → Marias Pass → Johnson's of St. Mary · CHECK-IN ✅</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day8" class="seg-map"></div>
+        <p class="map-caption">Day 8: Whitefish → US-2 East → West Glacier → Marias Pass → St. Mary · 2h 12m of one of the finest threshold drives in North America</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Whitefish+MT/West+Glacier+MT/St.+Mary+MT" target="_blank" class="mab route">🗺️ Open Day 8 Route in Google Maps</a>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd mt">Morning — Coffee First</div>
+          <ul class="tb-list">
+            <li>Montana Coffee Traders opens 6:30am. Have coffee before driving to Glacier. Always.</li>
+            <li>US-2 East from Whitefish immediately enters Glacier's southern boundary along the Middle Fork Flathead River — canyon walls, peaks rising north. This drive sets the tone.</li>
+          </ul>
+        </div>
+
+        <div class="stop-card mt-theme">
+          <div class="sc-hd">
+            <div class="sc-name">West Glacier + Lake McDonald — First Look</div>
+            <div class="sc-stats">
+              <span class="sc-stat">West Glacier, MT · West Entrance</span>
+              <span class="sc-stat">$35/vehicle 7-day park pass</span>
+              <span class="sc-stat">45–60 min stop</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Lake McDonald: 10-mile turquoise glacial lake rimmed in old-growth cedar and hemlock. The shoreline stones are multicolored — red, green, blue — from iron and mineral staining, polished by glaciers. Drive the Going-to-the-Sun Road as far as you like. This is the orientation. You have three full days starting tomorrow.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Lake+McDonald+Glacier+National+Park" target="_blank" class="mab gmaps">📍 Lake McDonald</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd mt">Marias Pass → St. Mary → Johnson's Check-In</div>
+          <ul class="tb-list">
+            <li><strong>Marias Pass</strong> (5,213 ft) — the lowest northern Rockies Continental Divide crossing, used by the Great Northern Railroad in 1891. At the summit, the Rockies open east into flat grassland. One of the most dramatic landscape transitions in North America.</li>
+            <li><strong>St. Mary Visitor Center</strong> (8am–4:30pm): stop before anything else — confirm Many Glacier shuttle status for June 24, pick up trail maps, get current road and trail conditions from rangers.</li>
+            <li><strong>Check into Johnson's of St. Mary.</strong> CONFIRMED reservation June 22–25. Open the <a href="glacier-guide.html">glacier-guide.html</a> for the full 4-day plan.</li>
+          </ul>
+          <div class="map-actions" style="margin-top:8px">
+            <a href="https://www.google.com/maps/search/Johnson's+of+St+Mary+Montana+Glacier" target="_blank" class="mab gmaps">📍 Johnson's of St. Mary ✅</a>
+            <a href="https://www.google.com/maps/search/St+Mary+Visitor+Center+Glacier+National+Park" target="_blank" class="mab gmaps">📍 St. Mary Visitor Center</a>
+          </div>
+          <div class="drive-stat"><span class="drive-val">2h 12m</span>&nbsp;·&nbsp;111 mi · Johnson's of St. Mary · CONFIRMED ✅</div>
+        </div>
+
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · Showers not needed Day 8 — short 2h drive</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type food">🍽️ Coffee</div>
+              <div class="ls-name">Montana Coffee Traders — Whitefish</div>
+              <div class="ls-note">110 Central Ave · 6:30am · depart after coffee · don't skip this</div>
+              <a href="https://www.google.com/maps/search/Montana+Coffee+Traders+Whitefish+MT" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Emergency Stop</div>
+              <div class="ls-name">Pilot Flying J — Columbia Falls, MT</div>
+              <div class="ls-note">US-2 between Whitefish and West Glacier · DEF · fuel · last stop before Glacier</div>
+              <a href="https://maps.google.com/?q=48.3693,-114.1767" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-grid">
+          <div class="ac blu">
+            <div class="ac-title">You've Arrived — Glacier Starts Now</div>
+            <div class="ac-text">Open the <strong>glacier-guide.html</strong> for the full 4-day plan. Tonight: Wild Goose Island Overlook (48.6972, -113.5425) — 6.7 miles west on GTTS Road. First "oh" moment of the entire trip.</div>
+          </div>
+          <div class="ac grn">
+            <div class="ac-title">Tonight's First Move</div>
+            <div class="ac-text">St. Mary Visitor Center (8am–4:30pm) before anything else. Confirm Many Glacier shuttle for June 24. Get real-time trail and GTTS Road status from rangers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd" style="color:var(--mt)">Pre-Drive Checklist</div>
+    <div class="sec-sub">Book or verify before June 19</div>
+    <div class="alert-grid">
+      <div class="ac amb">
+        <div class="ac-title">Homestead Crater — Book Swim Time</div>
+        <div class="ac-text">homesteadresort.com. June 20 morning slots. Weekend slots book out. Confirm before you commit to the Midway detour.</div>
+      </div>
+      <div class="ac red">
+        <div class="ac-title">Bonneville Salt Flats — Check Race Schedule</div>
+        <div class="ac-text">usfra.org for any USFRA events near June 20. Race weeks close driving access. June 20 is typically clear — verify.</div>
+      </div>
+      <div class="ac grn">
+        <div class="ac-title">Bison Range Gate — 6pm Absolute</div>
+        <div class="ac-text">Red Sleep Mountain Drive gate closes 6pm sharp. Enter by 5:45pm. Depart Twin Falls by 7–7:30am to arrive comfortably before 6pm.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-title">Salmon River — Download Offline Maps</div>
+        <div class="ac-text">80+ miles zero cell service through the canyon. Google Maps offline or Gaia GPS. Download in Twin Falls before turning north on US-93.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <strong>Grand American Loop · Segment 2 · Kansas City → Glacier NP · Jun 19–22, 2026</strong><br>
+  <span style="font-size:.7rem;opacity:.6">Maps: OpenStreetMap · All drive times Google Maps verified · Bison Range: CSKT managed, no America the Beautiful pass · Johnson's confirmed Jun 22–25</span>
+</div>
+
+<script>
+function mkMap(id, center, zoom, stops, drawRoute) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(map);
+  if (drawRoute && stops.length > 1) {
+    L.polyline(stops.map(s=>[s.lat,s.lng]),{color:'#1B3D6E',weight:3,opacity:.7,dashArray:'7,5'}).addTo(map);
+  }
+  stops.forEach(function(s,i){
+    var cols = {base:'#1B3D6E', ut:'#C05621', id:'#2D6A4F', mt:'#1B3D6E'};
+    var bg = cols[s.type] || '#C05621';
+    var lbl = s.num!=null ? s.num : (i+1);
+    var icon = L.divIcon({html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+lbl+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+    L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+  });
+}
+
+window.addEventListener('load', function(){
+
+  mkMap('map-day5',[41.5,-104.0],6,[
+    {lat:40.700,lng:-99.082,num:'1',name:'Kearney, NE · Depart'},
+    {lat:41.703,lng:-103.343,num:'2',name:'Chimney Rock, NE',note:'Pioneer landmark · 300 ft above valley · NPS site'},
+    {lat:41.832,lng:-103.706,num:'3',name:'Scotts Bluff NM',note:'800-ft bluff · summit road daily · views to WY and CO'},
+    {lat:41.595,lng:-109.227,type:'mt',num:'4',name:'Rock Springs, WY',note:'Overnight · 6,270 ft elevation · nights 40s in June'}
+  ],true);
+
+  mkMap('map-day6',[40.9,-113.0],6,[
+    {lat:41.595,lng:-109.227,num:'1',name:'Rock Springs, WY · Depart'},
+    {lat:40.514,lng:-111.498,type:'ut',num:'2',name:'Homestead Crater · Midway UT',note:'90°F geothermal pool inside 55-ft dome · book ahead'},
+    {lat:38.373,lng:-110.714,type:'ut',num:'3',name:'Bentonite Hills · Hanksville UT',note:'Multi-colored clay badlands · best cloudy afternoon or blue hour · clay road treacherous after rain'},
+    {lat:40.7718,lng:-111.9125,type:'ut',num:'4',name:'Red Iguana · Salt Lake City',note:'736 W North Temple · legendary mole · expect a line'},
+    {lat:40.762,lng:-113.889,type:'ut',num:'5',name:'Bonneville Salt Flats · Wendover UT',note:'30,000 acres white · drive on it · check race schedule'},
+    {lat:42.590,lng:-114.369,type:'id',num:'6',name:'Shoshone Falls · Twin Falls ID',note:'212 ft · taller than Niagara · peak June flow · $5'}
+  ],true);
+
+  mkMap('map-day7',[45.5,-114.5],6,[
+    {lat:42.590,lng:-114.369,num:'1',name:'Twin Falls, ID · Depart'},
+    {lat:45.175,lng:-113.895,type:'id',num:'2',name:'Salmon River Canyon',note:'River of No Return · eagles · bighorn · spawning salmon · no cell service'},
+    {lat:47.351,lng:-114.075,type:'mt',num:'3',name:'National Bison Range · Moiese MT',note:'19-mi Red Sleep Drive · 350 bison · gate closes 6pm sharp'},
+    {lat:47.694,lng:-114.159,type:'mt',num:'4',name:'Flathead Lake · Polson MT',note:'Largest freshwater lake west of Mississippi'},
+    {lat:48.412,lng:-114.338,type:'mt',num:'5',name:'Whitefish, MT',note:'Overnight · Montana Coffee Traders 6:30am tomorrow'}
+  ],true);
+
+  mkMap('map-day8',[48.55,-113.75],9,[
+    {lat:48.412,lng:-114.338,num:'1',name:'Whitefish, MT · Depart after coffee'},
+    {lat:48.565,lng:-113.881,type:'mt',num:'2',name:'Lake McDonald · West Glacier',note:'10-mi turquoise lake · old-growth cedar · colored glacial stones'},
+    {lat:48.299,lng:-113.346,num:'3',name:'Marias Pass · 5,213 ft',note:'Lowest northern Rockies Continental Divide crossing'},
+    {lat:48.7456,lng:-113.4339,type:'base',num:'✓',name:"Johnson's of St. Mary · CHECK IN",note:'CONFIRMED Jun 22–25 · Glacier NP east side base · 3 nights'}
+  ],true);
+});
+</script>
+</body>
+</html>

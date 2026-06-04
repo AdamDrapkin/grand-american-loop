@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segment Guide · Huntingdon Valley → Kansas City · Jun 15–18</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --r66:   #C0392B;
+      --r66b:  #922B21;
+      --gold:  #D69E2E;
+      --city:  #2B6CB0;
+      --arch:  #2C7A3A;
+      --cream: #FFFDF7;
+      --snow:  #FFF9F0;
+      --dark:  #1A202C;
+      --mid:   #5A4A3A;
+      --border:#E4D0BC;
+      --amber: #92400E;
+      --green: #1F6B2A;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--city)}
+    .hero{background:linear-gradient(160deg,#1A202C 0%,#7B341E 40%,#C0392B 75%,#D69E2E 100%);color:white;padding:52px 24px 60px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+    .hero h1{font-size:2.6rem;font-weight:normal;letter-spacing:.5px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+    .hero-dates{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-route{font-family:sans-serif;font-size:.82rem;opacity:.62;margin-bottom:22px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+    .hchip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 15px;font-family:sans-serif;font-size:.78rem}
+    .r66-chip{background:rgba(192,57,43,.5);border-color:rgba(255,255,255,.4)}
+    .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+    section{padding:42px 0}
+    hr.div{border:none;border-top:1px solid var(--border);margin:0}
+    .sec-hd{font-size:1.45rem;color:var(--r66b);margin-bottom:4px}
+    .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:24px}
+    .overview-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+    @media(max-width:640px){.overview-strip{grid-template-columns:1fr 1fr}}
+    .ov-card{border-radius:10px;padding:14px 16px;text-align:center}
+    .ov-card.d1{background:linear-gradient(135deg,#EBF8FF,#BEE3F8);border:2px solid #63B3ED}
+    .ov-card.d2{background:linear-gradient(135deg,#FFF5F5,#FED7D7);border:2px solid #FC8181}
+    .ov-card.d3{background:linear-gradient(135deg,#FFFFF0,#FEFCBF);border:2px solid #F6E05E}
+    .ov-card.d4{background:linear-gradient(135deg,#F0FFF4,#C6F6D5);border:2px solid #68D391}
+    .ov-date{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:4px}
+    .ov-label{font-family:sans-serif;font-size:.82rem;font-weight:700;margin-bottom:3px}
+    .ov-note{font-family:sans-serif;font-size:.72rem;color:var(--mid);line-height:1.4}
+    .day-section{margin-bottom:52px}
+    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-hd.d1{background:linear-gradient(135deg,#2B6CB0,#3182CE)}
+    .day-hd.d2{background:linear-gradient(135deg,#C0392B,#E53E3E)}
+    .day-hd.d3{background:linear-gradient(135deg,#744210,#C05621)}
+    .day-hd.d4{background:linear-gradient(135deg,#276749,#38A169)}
+    .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+    .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
+    .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+    .seg-map{height:300px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
+    .map-caption{font-family:sans-serif;font-size:.72rem;color:var(--mid);margin-bottom:6px;font-style:italic}
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.gmaps{background:white;border:1.5px solid #1A73E8;color:#1A73E8}
+    .mab.route{background:#1A73E8;color:white;border:1.5px solid #1A73E8}
+    .time-block{margin-bottom:22px}
+    .tb-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--r66);padding-bottom:6px;border-bottom:2px solid var(--r66);margin-bottom:12px}
+    .tb-hd.city{color:var(--city);border-color:var(--city)}
+    .tb-hd.arch{color:var(--arch);border-color:var(--arch)}
+    .tb-hd.gold{color:var(--gold);border-color:var(--gold)}
+    .tb-list{font-family:sans-serif;font-size:.85rem;color:var(--dark);line-height:1.75;list-style:none;padding:0}
+    .tb-list li{padding-left:14px;position:relative;margin-bottom:2px}
+    .tb-list li::before{content:'→';position:absolute;left:0;color:var(--r66);font-size:.8rem}
+    .tb-list strong{color:var(--r66b)}
+    .stop-card{background:var(--snow);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0 22px}
+    .sc-hd{padding:14px 18px 12px;border-bottom:1px solid var(--border)}
+    .sc-name{font-size:1.08rem;color:var(--r66b);margin-bottom:5px;font-weight:600}
+    .sc-stats{display:flex;flex-wrap:wrap;gap:7px}
+    .sc-stat{font-family:sans-serif;font-size:.74rem;background:white;border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--mid)}
+    .sc-stat.must{background:#FFF5F5;border-color:#FCA5A5;color:var(--r66);font-weight:700}
+    .sc-stat.free{background:#F0FFF4;border-color:#86EFAC;color:var(--green);font-weight:700}
+    .sc-stat.book{background:#FFFBEB;border-color:#FCD34D;color:var(--amber);font-weight:700}
+    .sc-body{padding:14px 18px 16px}
+    .sc-notes{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.6;margin-bottom:10px}
+    .sc-notes p{margin-bottom:6px}
+    .sc-tip{background:linear-gradient(135deg,#FFF9F0,#FDEBD0);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .sc-tip.city{background:linear-gradient(135deg,#EBF8FF,#BEE3F8);border-color:var(--city)}
+    .sc-tip.arch{background:linear-gradient(135deg,#F0FFF4,#C6F6D5);border-color:var(--arch)}
+    /* REST/SHOWER STRIP */
+    .logistics-strip{background:#F7FAFC;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:20px 0}
+    .ls-title{font-family:sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--city);margin-bottom:10px}
+    .ls-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:580px){.ls-grid{grid-template-columns:1fr}}
+    .ls-card{background:white;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+    .ls-type{font-family:sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+    .ls-type.rest{color:var(--city)}.ls-type.shower{color:var(--arch)}.ls-type.food{color:var(--r66)}
+    .ls-name{font-family:sans-serif;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:2px}
+    .ls-note{font-family:sans-serif;font-size:.75rem;color:var(--mid);line-height:1.4}
+    /* R66 BANNER */
+    .r66-banner{background:linear-gradient(135deg,#7B341E,#C0392B);color:white;border-radius:12px;padding:22px 26px;margin:24px 0}
+    .r66b-title{font-size:1.2rem;margin-bottom:6px}
+    .r66b-text{font-family:sans-serif;font-size:.85rem;opacity:.9;line-height:1.6}
+    .r66-shield{display:inline-block;background:white;color:var(--r66);font-family:sans-serif;font-size:.82rem;font-weight:900;padding:4px 14px;border-radius:6px;margin-right:8px;letter-spacing:1px}
+    /* ROUTE 66 ROAD SECTION */
+    .r66-road-box{background:linear-gradient(135deg,#1A202C,#2D3748);color:white;border-radius:12px;padding:20px 24px;margin:16px 0}
+    .r66r-title{font-family:sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;opacity:.7;margin-bottom:8px}
+    .r66r-text{font-family:sans-serif;font-size:.85rem;line-height:1.65;opacity:.93}
+    .r66r-stops{list-style:none;padding:0;margin-top:10px}
+    .r66r-stops li{font-family:sans-serif;font-size:.82rem;padding:4px 0 4px 16px;position:relative;opacity:.9;border-bottom:1px solid rgba(255,255,255,.08)}
+    .r66r-stops li:last-child{border-bottom:none}
+    .r66r-stops li::before{content:'▸';position:absolute;left:0;color:var(--gold)}
+    .alert-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+    @media(max-width:640px){.alert-grid{grid-template-columns:1fr}}
+    .ac{border-radius:10px;padding:14px 16px;border-left:4px solid}
+    .ac.red{background:#FEF2F2;border-color:var(--r66)}
+    .ac.amb{background:#FFFBEB;border-color:var(--amber)}
+    .ac.grn{background:#F0FDF4;border-color:var(--green)}
+    .ac.blu{background:#EFF6FF;border-color:var(--city)}
+    .ac-title{font-family:sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+    .ac.red .ac-title{color:var(--r66)}.ac.amb .ac-title{color:var(--amber)}.ac.grn .ac-title{color:var(--green)}.ac.blu .ac-title{color:var(--city)}
+    .ac-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .drive-stat{display:inline-flex;align-items:center;gap:6px;background:#F7FAFC;border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-family:sans-serif;font-size:.82rem;margin:6px 0}
+    .drive-val{font-weight:700;color:var(--city);font-size:1rem}
+    .footer{background:var(--r66b);color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sup">Segment Guide · Grand American Loop · Days 1–4</div>
+  <h1>Huntingdon Valley → Kansas City</h1>
+  <div class="hero-dates">June 15 – 18, 2026</div>
+  <div class="hero-route">3487 Hillcroft Rd, Huntingdon Valley, PA → Kansas City, MO → Kearney, NE overnight</div>
+  <div class="hero-chips">
+    <span class="hchip">Pittsburgh Fort Pitt reveal</span>
+    <span class="hchip">Gateway Arch · Museum free</span>
+    <span class="hchip">Chain of Rocks Bridge</span>
+    <span class="hchip">City Museum</span>
+    <span class="hchip">Johnson's Shut-Ins swim</span>
+    <span class="hchip">Meramec Caverns</span>
+    <span class="hchip r66-chip">🛣️ Route 66 · Born in Springfield 1926</span>
+    <span class="hchip">Cuba MO · 12 Murals</span>
+    <span class="hchip">Joe's KC BBQ</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="overview-strip">
+    <div class="ov-card d1"><div class="ov-date">Jun 15</div><div class="ov-label">Day 1</div><div class="ov-note">HV → Pittsburgh (Fort Pitt tunnel + overlook) → Dayton overnight</div></div>
+    <div class="ov-card d2"><div class="ov-date">Jun 16</div><div class="ov-label">Day 2</div><div class="ov-note">Dayton → Shapiro's Deli (Indy) → Gateway Arch → Chain of Rocks → City Museum · STL overnight</div></div>
+    <div class="ov-card d3"><div class="ov-date">Jun 17</div><div class="ov-label">Day 3</div><div class="ov-note">STL → Route 66 corridor → Shut-Ins swim → Meramec Caverns → Cuba murals → Springfield</div></div>
+    <div class="ov-card d4"><div class="ov-date">Jun 18</div><div class="ov-label">Day 4</div><div class="ov-note">Springfield → Joe's KC BBQ → Great Plains push → Kearney NE overnight</div></div>
+  </div>
+
+  <div class="r66-banner">
+    <div class="r66b-title"><span class="r66-shield">US 66</span> The Mother Road · Centennial Year 2026</div>
+    <div class="r66b-text">Route 66 was officially named on November 11, 1926 — in Springfield, Missouri. You'll pass through on its 100th birthday year. From St. Louis to Springfield, you're driving the original corridor: the road that carried families, Dust Bowl refugees, and dreamers west for six decades. Ted Drewes is literally on it. Meramec Caverns advertised on barn roofs all the way from Chicago. And Springfield named the whole thing.</div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ═══ DAY 1 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d1">
+        <div class="day-hd-label">June 15 · Day 1 · 8h 49m · 563 mi</div>
+        <div class="day-hd-title">The Fort Pitt Tunnel Reveal → Dayton</div>
+        <div class="day-hd-sub">3487 Hillcroft Rd → Pittsburgh stop (45 min) → overnight Dayton, OH · I-76 West → I-70 West</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day1" class="seg-map"></div>
+        <p class="map-caption">Day 1: Huntingdon Valley PA → Pittsburgh → Dayton OH · Pennsylvania Turnpike (I-76 West) → I-70 West</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/3487+Hillcroft+Road+Huntingdon+Valley+PA/Pittsburgh+PA/Dayton+OH" target="_blank" class="mab route">🗺️ Open Day 1 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Fort Pitt Tunnel → Mount Washington Overlook</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Pittsburgh, PA</span>
+              <span class="sc-stat must">The Reveal</span>
+              <span class="sc-stat free">Free</span>
+              <span class="sc-stat">45–60 min total</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Drive I-376 through the <strong>Fort Pitt Tunnel</strong> — you're in a mountain, and then in a split second the entire Pittsburgh skyline explodes into view across the Monongahela River. It's one of the most famous tunnel reveals in American driving. Don't look at your phone. Watch the windshield.</p>
+              <p>Cross to <strong>Mount Washington</strong> on the south bank for the panoramic overlook view. Three rivers converge directly below. Take the <strong>Duquesne Incline</strong> (1877 original wooden funicular, $5 round trip — cash/card) 400 feet up for the elevated angle. Small museum at the top covers Pittsburgh's industrial funicular history.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Grandview+Overlook+Pittsburgh+PA" target="_blank" class="mab gmaps">📍 Grandview Overlook</a>
+              <a href="https://www.google.com/maps/search/Duquesne+Incline+Pittsburgh+PA" target="_blank" class="mab gmaps">📍 Duquesne Incline</a>
+            </div>
+            <div class="sc-tip city">Traffic: Evening rush (4–6pm weekdays) hits Fort Pitt Bridge and Squirrel Hill Tunnel hard. Pass through before 3pm or after 6:30pm. Incline has a 10-min wait on weekend afternoons — before 11am or after 7pm is line-free.</div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd city">Overnight — Dayton, OH</div>
+          <ul class="tb-list">
+            <li>Pure transit overnight. Wright Brothers museum (Dayton Aviation Heritage NHP) is a 30-min detour if arriving before 4pm — free NPS site, genuinely excellent.</li>
+            <li>Any I-70 corridor hotel. Tomorrow's drive is easy — Indy lunch, then St. Louis.</li>
+          </ul>
+          <div class="drive-stat"><span class="drive-val">8h 49m</span>&nbsp;·&nbsp;563 mi total</div>
+        </div>
+
+        <!-- Day 1 logistics -->
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 1 Corridor</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Love's — New Stanton, PA</div>
+              <div class="ls-note">I-76 Exit 75 / I-70 · 24hr showers · truck lot · CAT scale · just east of Pittsburgh</div>
+              <a href="https://maps.google.com/?q=40.2195,-79.5992" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Flying J — New Stanton, PA</div>
+              <div class="ls-note">I-76 Exit 75 · 12 showers · $15 · 24hr · near Pittsburgh exit</div>
+              <a href="https://maps.google.com/?q=40.213,-79.600" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Pilot Flying J — Smithton, PA</div>
+              <div class="ls-note">I-70/PA-136 Exit 51 · 24hr showers · CAT scale · laundry</div>
+              <a href="https://maps.google.com/?q=40.1472,-79.7819" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower + Overnight</div>
+              <div class="ls-name">Pilot Flying J — Vandalia, OH</div>
+              <div class="ls-note">I-70/I-75 junction · Dayton area · $15 showers · 24hr · truck overnight lot</div>
+              <a href="https://maps.google.com/?q=39.8890,-84.1955" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 2 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d2">
+        <div class="day-hd-label">June 16 · Day 2 · 5h 36m · 359 mi</div>
+        <div class="day-hd-title">Shapiro's Deli → Gateway Arch → Chain of Rocks → City Museum</div>
+        <div class="day-hd-sub">Dayton → Indianapolis lunch → St. Louis afternoon/evening · overnight St. Louis</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day2" class="seg-map"></div>
+        <p class="map-caption">Day 2: Dayton → Indianapolis → St. Louis · I-70 West the entire day</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Dayton+OH/Indianapolis+IN/St.+Louis+MO" target="_blank" class="mab route">🗺️ Open Day 2 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Shapiro's Delicatessen — Indianapolis</div>
+            <div class="sc-stats">
+              <span class="sc-stat">808 S Meridian, Indianapolis, IN</span>
+              <span class="sc-stat must">Lunch Stop</span>
+              <span class="sc-stat">Since 1905</span>
+              <span class="sc-stat">4.5⭐ · 7,079 reviews</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Genuine Midwestern Jewish deli, same building since 1905. Corned beef, pastrami, massive portions, no pretense. Get the corned beef on rye. Get in, eat, get back on I-70. Hours: Mon–Fri 10am–7:30pm · Sat–Sun 9am–7:30pm.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Shapiro's+Delicatessen+Indianapolis+IN" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+            <div class="sc-tip">Traffic advisory: I-70 construction in Indianapolis near mile 82–83 (Washington St ramp, through Nov 2026) — add 30 min. Near St. Louis: I-55/70 lane reductions active through summer 2027 — add 15–20 min.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Gateway Arch National Park — St. Louis</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Gateway Arch, St. Louis MO</span>
+              <span class="sc-stat must">Major Stop</span>
+              <span class="sc-stat free">Museum Free</span>
+              <span class="sc-stat">Tram: $26–30 · Book ahead</span>
+              <span class="sc-stat">9am–6pm Sun–Thu · 9am–8pm Fri–Sat</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>630 feet of stainless steel above the Mississippi. The underground museum covers westward expansion, the Corps of Discovery, and the Arch's construction — it's genuinely excellent and FREE. The tram to the top ($26–30/person) takes you up in 5-person pod capsules.</p>
+              <p>The <strong>Eads Bridge</strong> (1874) is a 2-minute walk north — this is where Route 66 travelers originally crossed the Mississippi. Historic and worth seeing from the walkway.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Gateway+Arch+National+Park+St+Louis+MO" target="_blank" class="mab gmaps">📍 Gateway Arch</a>
+              <a href="https://www.google.com/maps/search/Eads+Bridge+St+Louis+MO" target="_blank" class="mab gmaps">📍 Eads Bridge</a>
+            </div>
+            <div class="sc-tip arch">Summer weekends sell out for the tram. Book at archpark.org before June 16. Museum is always free — tram is the variable. The Arch grounds and Mississippi cobblestone levee are accessible even without a ticket.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Chain of Rocks Bridge — Original Route 66 Mississippi Crossing</div>
+            <div class="sc-stats">
+              <span class="sc-stat">10820 Riverview Dr, St. Louis, MO 63137</span>
+              <span class="sc-stat free">FREE</span>
+              <span class="sc-stat">Pedestrian & bike since 1999</span>
+              <span class="sc-stat">5,353 ft long · Opened 1929</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Built in 1929 as one of Route 66's original Mississippi crossings, the Chain of Rocks Bridge has a unique <strong>22-degree bend in the middle</strong> — engineered to avoid a rock formation in the river. It was decommissioned in 1970, left for years, and reopened in 1999 as a pedestrian and bike path. Walk the full length: you're literally on the original Route 66, over the Mississippi, on a bridge that's been unchanged since 1929.</p>
+              <p>The views are remarkable — the river is wide here, with the St. Louis skyline visible to the south. Historic water intake towers mid-river add to the atmosphere. On a clear afternoon, you can see for miles.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Chain+of+Rocks+Bridge+St+Louis+MO" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+            <div class="sc-tip">Located at the north edge of St. Louis — about 15 min from the Arch. Free parking lot on the Missouri side. Walk to the bend, take photos, walk back. 45 min total. The Illinois side has a trailhead for the Ted Jones Trail if you want to extend further.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">City Museum — St. Louis</div>
+            <div class="sc-stats">
+              <span class="sc-stat">750 N 16th St, St. Louis, MO 63103</span>
+              <span class="sc-stat">$34.99 Summer Pass · 10am–6pm</span>
+              <span class="sc-stat">314-231-2489</span>
+              <span class="sc-stat">All ages · unforgettable</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>A former shoe warehouse turned into one of the most unusual buildings in America. Part museum, part giant indoor/outdoor playground, part art installation. Caves, tunnels, slides (including a 10-story spiral slide), a rooftop Ferris wheel, an aquarium, circus arts, and architecture salvaged from demolished St. Louis buildings — all incorporated into the structure itself. There is nothing else like it anywhere.</p>
+              <p>The Summer Play Pass ($34.99) includes rooftop access. Bring layers — the basement caves are cold. There are no "rules" — you crawl, climb, slide, and explore at your own pace. Adults love it as much as kids.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/City+Museum+St+Louis+MO" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+            <div class="sc-tip">City Museum gets very busy on summer weekends — if you're arriving on a Saturday or Sunday, go right when it opens at 10am. The caves and underground sections are the most interesting and least crowded during peak hours. City Nights events (21+) run Thursday–Saturday evenings if you want an adults-only version.</div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd arch">Evening — Ted Drewes on the Original Route 66</div>
+          <ul class="tb-list">
+            <li><strong>Ted Drewes Frozen Custard</strong> (6726 Chippewa St) — Chippewa Street IS the original Route 66 alignment through St. Louis. You're standing on the Mother Road. 4.8⭐ / 12,013 reviews. 97 years on this corner. Order a "concrete" — so thick it's served upside-down.</li>
+            <li>Hours: Summer 11am–midnight (roughly). Window service only. Cash or card. No seating.</li>
+          </ul>
+          <div class="map-actions" style="margin-top:8px">
+            <a href="https://www.google.com/maps/search/Ted+Drewes+Frozen+Custard+St+Louis+MO" target="_blank" class="mab gmaps">📍 Ted Drewes — Route 66 Address</a>
+          </div>
+          <div class="drive-stat"><span class="drive-val">5h 36m</span>&nbsp;·&nbsp;359 mi · St. Louis overnight</div>
+        </div>
+
+        <!-- Day 2 logistics -->
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 2 Corridor</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Love's — Greenfield, IN</div>
+              <div class="ls-note">I-70 Exit 104 · near Indianapolis · 24hr showers · truck lot · CAT scale</div>
+              <a href="https://maps.google.com/?q=39.8072,-85.7663" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Pilot Flying J — Terre Haute, IN</div>
+              <div class="ls-note">I-70 Exit 11 · 24hr showers · truck lot · CAT scale · IN/IL border</div>
+              <a href="https://maps.google.com/?q=39.4748,-87.3010" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Love's — Foristell, MO</div>
+              <div class="ls-note">I-70 Exit 203 · between STL and KC · $15 · east approach to St. Louis</div>
+              <a href="https://maps.google.com/?q=38.817,-90.906" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Petro — Kingdom City, MO</div>
+              <div class="ls-note">I-70 Exit 148 · 235 truck spaces · laundry · 24/7 fuel · west of STL</div>
+              <a href="https://maps.google.com/?q=38.9418,-91.9355" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 3 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d3">
+        <div class="day-hd-label">June 17 · Day 3 · 5h 51m · 334 mi</div>
+        <div class="day-hd-title">Into the Ozarks — The Route 66 Corridor</div>
+        <div class="day-hd-sub">St. Louis → Route 66 State Park → Johnson's Shut-Ins → Meramec Caverns → Cuba murals → Springfield</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day3" class="seg-map"></div>
+        <p class="map-caption">Day 3: St. Louis → Ozarks detour → Shut-Ins swim → Meramec Caverns → Cuba MO murals → Springfield · I-44 West (the Route 66 corridor)</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/St.+Louis+MO/Johnson's+Shut-Ins+State+Park+MO/Meramec+Caverns+Stanton+MO/Cuba+MO/Springfield+MO" target="_blank" class="mab route">🗺️ Open Day 3 Route in Google Maps</a>
+        </div>
+
+        <!-- Route 66 road explainer -->
+        <div class="r66-road-box">
+          <div class="r66r-title">🛣️ The Actual Route 66 — Where It Goes From Here</div>
+          <div class="r66r-text">From St. Louis westward, Route 66 runs almost exactly parallel to I-44. When you're on I-44, you're on the Route 66 corridor. The old highway exists as frontage roads alongside the interstate in many sections — you can dip off and drive the original pavement. Key: the route heads through Watson Road (southwest St. Louis), then into the Ozark plateau, following the Meramec River valley west.</div>
+          <ul class="r66r-stops">
+            <li><strong>St. Louis (Watson Rd / Chippewa St)</strong> — The original Route 66 westbound alignment leaving the city</li>
+            <li><strong>Route 66 State Park, Eureka (~30 min from STL)</strong> — 409 acres on the former Times Beach EPA Superfund site, now a park with a Route 66 museum pavilion. Quick stop, free to walk.</li>
+            <li><strong>Meramec Caverns, Stanton</strong> — Jesse James hideout, advertised on barn rooftops across the Midwest since the 1930s. ON the route.</li>
+            <li><strong>Cuba, MO — "Route 66 Mural City"</strong> — 12 officially commissioned murals depicting local history. Right on I-44/Route 66.</li>
+            <li><strong>Lebanon, MO</strong> — The Munger Moss Motel (1946, original neon sign still lit) is the best-preserved Route 66 motel in Missouri.</li>
+            <li><strong>Springfield, MO</strong> — Where Route 66 was officially named on November 11, 1926. Centennial year 2026.</li>
+          </ul>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Johnson's Shut-Ins State Park — SWIM STOP</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Hwy 21 detour south of I-44 · Lesterville, MO</span>
+              <span class="sc-stat must">Swim Stop</span>
+              <span class="sc-stat">$7/vehicle</span>
+              <span class="sc-stat">2–3 hrs · Green flag = open</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>The East Fork Black River carved through 1.5-billion-year-old Precambrian rhyolite into a natural water park of chutes, channels, slides, and ice-cold deep pools. Nothing manmade. The rock is smooth from a billion years of water. The water is cold from Ozark springs. In June with high humidity — this is the best possible break from the interstate.</p>
+              <p>Check mostateparks.com morning of June 17 for flag status. Green = open. Arrive by 9am to park close.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Johnson's+Shut-Ins+State+Park+Missouri" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+            <div class="sc-tip">~1.5 hrs south of I-44 from St. Louis via Hwy 21. Weekend crowds are heavy — arrive by 9am. The parking lot fills by mid-morning in summer.</div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Meramec Caverns — Jesse James Hideout</div>
+            <div class="sc-stats">
+              <span class="sc-stat">I-44 Exit 230, Stanton, MO</span>
+              <span class="sc-stat">$30.50/adult</span>
+              <span class="sc-stat">Guided 80-min tour</span>
+              <span class="sc-stat">Tours every 20–30 min from 9am</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Five-level limestone cave system. A constant 60°F inside year-round. Tours every 20–30 minutes. Meramec Caverns has been a Route 66 landmark since the 1930s — the owner hired people to paint the cavern's name on barn roofs across a 12-state area. You've seen those barns your whole life. This is the cave. Jesse James allegedly used it as a hideout after bank robberies. Bring a light layer for the 60°F interior.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Meramec+Caverns+Stanton+Missouri" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Cuba, MO — "Route 66 Mural City"</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Cuba, MO · I-44 Exit 208</span>
+              <span class="sc-stat free">Free</span>
+              <span class="sc-stat">12 official murals · 20-min stop</span>
+              <span class="sc-stat">Wagon Wheel Motel · 80+ years</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Cuba commissioned 12 large-scale murals through the <strong>Viva Cuba Murals Project</strong> — painted on building walls throughout town, each depicting scenes from local and Route 66 history. Pick up a walking map at the Cuba Visitor Center and do the loop. 20 minutes, completely free, genuinely impressive.</p>
+              <p>The <strong>Wagon Wheel Motel</strong> on Route 66 in Cuba is the longest continuously-operating motel on Route 66 — over 80 years in the same spot. The original neon sign, the original cabins. You can look; you can also stay if you want a real Route 66 night.</p>
+              <p><strong>Missouri Hick BBQ</strong> (Cuba) — Old West décor, ribs/brisket/pulled pork. Local favorite. Good lunch or early dinner option.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Cuba+Missouri+Route+66+Murals" target="_blank" class="mab gmaps">📍 Cuba Mural City</a>
+              <a href="https://www.google.com/maps/search/Wagon+Wheel+Motel+Cuba+Missouri" target="_blank" class="mab gmaps">📍 Wagon Wheel Motel</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Springfield, MO — Where Route 66 Was Born</div>
+            <div class="sc-stats">
+              <span class="sc-stat">Springfield, MO · I-44 terminus city</span>
+              <span class="sc-stat r66-chip" style="background:#FFF5F5;border:1px solid #FCA5A5;color:var(--r66)">Named Here Nov 11, 1926</span>
+              <span class="sc-stat">Overnight</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Route 66 was officially named at the Colonial Hotel in Springfield, Missouri on November 11, 1926. Its centennial is November 2026. Tonight you're sleeping in the city where it all started. The <strong>Route 66 Car Museum</strong> (1634 W Route 66 Blvd, check hours) has 80+ vehicles from the Route 66 era — worth a morning stop.</p>
+              <p><strong>Lambert's Café</strong> (Ozark, 10 min south) — the only restaurant in America where dinner rolls are thrown at you from across the room. 4.6⭐ / 27,972 reviews. Arrive at 5pm or after 8pm for shortest wait.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Lambert's+Cafe+Ozark+Missouri" target="_blank" class="mab gmaps">📍 Lambert's Café (Throwed Rolls)</a>
+              <a href="https://www.google.com/maps/search/Route+66+Car+Museum+Springfield+Missouri" target="_blank" class="mab gmaps">📍 Route 66 Car Museum</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 3 logistics -->
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 3 Corridor</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Pilot Flying J — Springfield, MO</div>
+              <div class="ls-note">I-44 Exit 77 · 24hr showers · EV charging · drivers lounge · overnight option</div>
+              <a href="https://maps.google.com/?q=37.2074,-93.3548" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">TA — Strafford, MO</div>
+              <div class="ls-note">I-44 Exit 88 · 140 truck spaces · CAT scale · 24hr showers · laundry · east of Springfield</div>
+              <a href="https://maps.google.com/?q=37.2728,-93.1161" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower</div>
+              <div class="ls-name">Pilot Flying J — Joplin, MO</div>
+              <div class="ls-note">I-44 · south MO / Route 66 corridor · $15 · 24hr · useful if heading toward Joplin</div>
+              <a href="https://maps.google.com/?q=37.053,-94.482" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type food">🍽️ Food Stop</div>
+              <div class="ls-name">Missouri Hick BBQ — Cuba, MO</div>
+              <div class="ls-note">Cuba, MO off I-44 · ribs, brisket, pulled pork · Old West décor · right on Route 66</div>
+              <a href="https://www.google.com/maps/search/Missouri+Hick+BBQ+Cuba+MO" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="drive-stat"><span class="drive-val">5h 51m</span>&nbsp;·&nbsp;334 mi · Springfield, MO overnight</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DAY 4 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd d4">
+        <div class="day-hd-label">June 18 · Day 4 · 7h 37m · 498 mi</div>
+        <div class="day-hd-title">Joe's Kansas City BBQ → The Great Plains</div>
+        <div class="day-hd-sub">Springfield → Kansas City (Joe's BBQ lunch) → Kearney, NE overnight · I-44 N → I-70 W → I-29 N → I-80 W</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day4" class="seg-map"></div>
+        <p class="map-caption">Day 4: Springfield → Kansas City → Kearney NE · First Great Plains crossing</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/Springfield+MO/Kansas+City+KS/Kearney+NE" target="_blank" class="mab route">🗺️ Open Day 4 Route in Google Maps</a>
+        </div>
+
+        <div class="stop-card">
+          <div class="sc-hd">
+            <div class="sc-name">Joe's Kansas City Bar-B-Que</div>
+            <div class="sc-stats">
+              <span class="sc-stat">3002 W 47th Ave, Kansas City, KS (in a gas station)</span>
+              <span class="sc-stat must">Top 5 BBQ in America</span>
+              <span class="sc-stat">4.8⭐ · 17,469 reviews</span>
+              <span class="sc-stat">Mon–Sat 11am–9pm (10pm Fri–Sat)</span>
+            </div>
+          </div>
+          <div class="sc-body">
+            <div class="sc-notes">
+              <p>Operates inside a working Quik Trip gas station and has for decades. Ranked consistently top-5 BBQ in America. Order the <strong>Z-Man</strong>: slow-smoked brisket on a kaiser roll with smoked provolone and crispy onion rings. $15. It will ruin you for other sandwiches.</p>
+              <p>No reservations. <strong>Use the takeout counter register to skip the dining room line.</strong> Arrives by noon for shortest wait.</p>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/search/Joe's+Kansas+City+Bar-B-Que" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+            </div>
+            <div class="sc-tip">KC's I-70/I-435 interchange is congested 4–7pm — pass through before 4pm or after 7pm. Up to 93 minutes cumulative delay in KC metro during peak hours.</div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd arch">Kearney, NE — The Great Plains Begin</div>
+          <ul class="tb-list">
+            <li>After Kansas City, I-80 west opens into enormous sky, grain elevators on the horizon, and the Platte River valley. You're on the Oregon/California/Mormon Trail corridor.</li>
+            <li>Kearney is 2,150 ft elevation — evenings cool to the upper 50s vs KC's heat. <strong>Kearney Archway Monument</strong> straddles I-80 at Exit 272 — large museum on the Great Plains migration trails. $14/adult, open ~10am–7pm.</li>
+            <li>Tomorrow is the hardest drive day of the entire trip (571 mi). Sleep early.</li>
+          </ul>
+          <div class="drive-stat"><span class="drive-val">7h 37m</span>&nbsp;·&nbsp;498 mi · Kearney, NE overnight</div>
+        </div>
+
+        <!-- Day 4 logistics -->
+        <div class="logistics-strip">
+          <div class="ls-title">🛌 Rest Stops · 🚿 Showers · Day 4 Corridor</div>
+          <div class="ls-grid">
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Pilot Flying J — Kansas City, MO</div>
+              <div class="ls-note">I-70 Exit 9 / Corrington Ave · 24hr showers · truck lot · CAT scale · KC east side</div>
+              <a href="https://maps.google.com/?q=39.1197,-94.5484" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type rest">🛌 Rest Stop</div>
+              <div class="ls-name">Love's — Faucett, MO</div>
+              <div class="ls-note">I-29 Exit 20 · north of KC on I-29 · 24hr showers · truck lot · CAT scale</div>
+              <a href="https://maps.google.com/?q=39.5936,-94.8278" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower + Overnight</div>
+              <div class="ls-name">Love's — Kearney, NE ⭐</div>
+              <div class="ls-note">I-80 Exit 272 · overnight base · $15 showers · 24hr · CAT scale · Jun 18 stop</div>
+              <a href="https://maps.google.com/?q=40.699,-99.082" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+            <div class="ls-card">
+              <div class="ls-type food">🍽️ Food Stop</div>
+              <div class="ls-name">Joe's KC BBQ — Z-Man Sandwich</div>
+              <div class="ls-note">3002 W 47th Ave, KC KS · in a gas station · lunch stop · no reservations needed</div>
+              <a href="https://www.google.com/maps/search/Joe's+Kansas+City+Bar-B-Que" target="_blank" class="mab gmaps" style="margin-top:6px;font-size:.72rem;padding:4px 10px">📍 Map</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Pre-Drive Checklist</div>
+    <div class="sec-sub">Book these before June 15</div>
+    <div class="alert-grid">
+      <div class="ac red">
+        <div class="ac-title">Gateway Arch Tram Tickets</div>
+        <div class="ac-text">Summer weekends sell out. Book at <strong>archpark.org</strong> for June 16. Museum is always free — tram is the variable.</div>
+      </div>
+      <div class="ac grn">
+        <div class="ac-title">Johnson's Shut-Ins — Check Flag Morning Of</div>
+        <div class="ac-text">mostateparks.com · Green = swim open. No advance booking needed — just arrive by 9am to park close.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-title">City Museum — Weekend Strategy</div>
+        <div class="ac-text">If June 16 falls on a weekend, arrive at 10am when doors open. Tickets at citymuseum.org or door. $34.99 Summer Pass includes rooftop.</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-title">Tomorrow — Hardest Drive Day</div>
+        <div class="ac-text">June 19 is 571 mi (Kearney → Rock Springs, WY). Two drivers required. Check WYDOT 511 before entering Wyoming. Sleep early in Kearney.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <strong>Grand American Loop · Segment 1 · Huntingdon Valley → Kansas City · Jun 15–18, 2026</strong><br>
+  <span style="font-size:.7rem;opacity:.6">Maps: OpenStreetMap · All drive times Google Maps verified · Route 66 centennial 2026 · City Museum $34.99 Summer Pass · Chain of Rocks Bridge FREE</span>
+</div>
+
+<script>
+function mkMap(id, center, zoom, stops, drawRoute) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(map);
+  if (drawRoute && stops.length > 1) {
+    L.polyline(stops.map(s=>[s.lat,s.lng]),{color:'#2B6CB0',weight:3,opacity:.7,dashArray:'7,5'}).addTo(map);
+  }
+  stops.forEach(function(s,i){
+    var bg = s.type==='r66'?'#C0392B':(s.type==='base'?'#7B341E':'#2B6CB0');
+    var lbl = s.num!=null ? s.num : (i+1);
+    var icon = L.divIcon({html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+lbl+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+    L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+  });
+}
+
+window.addEventListener('load', function(){
+
+  mkMap('map-day1',[40.55,-80.8],7,[
+    {lat:40.1800,lng:-75.0527,type:'base',num:'⌂',name:'3487 Hillcroft Rd, Huntingdon Valley PA',note:'Home base — start here'},
+    {lat:40.4282,lng:-80.0152,num:'1',name:'Mount Washington Overlook, Pittsburgh',note:'Grandview Ave · Fort Pitt tunnel reveal · Duquesne Incline nearby'},
+    {lat:39.771,lng:-84.194,num:'2',name:'Dayton, OH',note:'Overnight · Wright Brothers NHP nearby'}
+  ],true);
+
+  mkMap('map-day2',[39.9,-87.5],7,[
+    {lat:39.771,lng:-84.194,num:'1',name:'Dayton, OH · Depart'},
+    {lat:39.7563,lng:-86.1596,num:'2',name:"Shapiro's Deli — Indianapolis",note:'808 S Meridian · since 1905 · corned beef'},
+    {lat:38.6247,lng:-90.1848,type:'r66',num:'3',name:'Gateway Arch NP · St. Louis',note:'630 ft · museum free · tram $26–30 · book ahead'},
+    {lat:38.7385,lng:-90.1680,type:'r66',num:'4',name:'Chain of Rocks Bridge',note:'10820 Riverview Dr · FREE · original Route 66 · 22-degree bend'},
+    {lat:38.6350,lng:-90.2050,type:'r66',num:'5',name:'City Museum',note:'750 N 16th St · $34.99 · 10am–6pm · 10-story slide'},
+    {lat:38.5894,lng:-90.3076,type:'r66',num:'6',name:'Ted Drewes Frozen Custard',note:'6726 Chippewa St — ON Route 66 · 97 years'}
+  ],true);
+
+  mkMap('map-day3',[37.8,-91.5],7,[
+    {lat:38.6247,lng:-90.1848,num:'1',name:'St. Louis · Depart'},
+    {lat:38.6186,lng:-90.6584,num:'2',name:'Route 66 State Park · Eureka MO',note:'Near Eureka · Route 66 museum pavilion · quick stop · free'},
+    {lat:37.569,lng:-90.843,num:'3',name:"Johnson's Shut-Ins",note:'Natural water park · cold spring swimming · green flag check'},
+    {lat:38.215,lng:-91.057,num:'4',name:'Meramec Caverns',note:'I-44 Exit 230 · Jesse James hideout · 80-min tour · 60°F'},
+    {lat:38.059,lng:-91.436,type:'r66',num:'5',name:'Cuba, MO — Mural City',note:'12 murals · Wagon Wheel Motel · Missouri Hick BBQ'},
+    {lat:37.209,lng:-93.292,type:'r66',num:'6',name:'Springfield, MO',note:'Route 66 named here 1926 · Lambert\'s Café'}
+  ],true);
+
+  mkMap('map-day4',[39.5,-96.0],7,[
+    {lat:37.209,lng:-93.292,num:'1',name:'Springfield, MO · Depart'},
+    {lat:38.9790,lng:-94.6090,type:'r66',num:'2',name:"Joe's Kansas City Bar-B-Que",note:'3002 W 47th Ave · Z-Man sandwich · inside a gas station'},
+    {lat:40.700,lng:-99.082,num:'3',name:'Kearney, NE',note:'Overnight · Great Plains · sleep early — 571 mi tomorrow'}
+  ],true);
+});
+</script>
+</body>
+</html>

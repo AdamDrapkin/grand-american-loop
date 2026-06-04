@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glacier NP — Field Guide · June 22–25, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --gl:    #1B3D6E;
+      --ice:   #3A7DC9;
+      --pine:  #2D5A3D;
+      --snow:  #F0F6FC;
+      --cream: #FAFCFF;
+      --dark:  #1A202C;
+      --mid:   #4A5568;
+      --border:#C8D8EA;
+      --red:   #C0392B;
+      --amber: #A0500A;
+      --green: #1F6B3A;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--ice)}
+
+    /* HERO */
+    .hero{background:linear-gradient(160deg,#0A1E3C 0%,#1B3D6E 45%,#2A6496 78%,#4A8EC4 100%);color:white;padding:56px 24px 64px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+    .hero h1{font-size:2.8rem;font-weight:normal;letter-spacing:1px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+    .hero-dates{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-base{font-family:sans-serif;font-size:.82rem;opacity:.6;margin-bottom:24px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+    .hchip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 16px;font-family:sans-serif;font-size:.78rem}
+
+    /* LAYOUT */
+    .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+    section{padding:44px 0}
+    hr.div{border:none;border-top:1px solid var(--border);margin:0}
+    .sec-hd{font-size:1.45rem;color:var(--gl);margin-bottom:4px}
+    .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:26px}
+
+    /* BANNERS */
+    .banner-green{background:linear-gradient(135deg,#1A4D2E,#2D7A4F);color:white;padding:20px 26px;border-radius:12px;margin:28px 0}
+    .banner-blue{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #93C5FD;border-radius:12px;padding:20px 26px;margin:20px 0}
+    .banner-alert{background:#FEF2F2;border:2px solid var(--red);border-radius:12px;padding:20px 26px;margin:20px 0}
+    .bn-label{font-family:sans-serif;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+    .bn-title{font-size:1.2rem;margin-bottom:7px}
+    .bn-text{font-family:sans-serif;font-size:.86rem;line-height:1.6;opacity:.93}
+    .banner-alert .bn-title{color:var(--red);font-size:1rem;font-family:sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+    .banner-alert .bn-text{color:var(--dark);opacity:1}
+
+    /* ALERTS */
+    .alerts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:660px){.alerts-grid{grid-template-columns:1fr}}
+    .ac{border-radius:10px;padding:15px 17px;border-left:4px solid}
+    .ac.red{background:#FEF2F2;border-color:var(--red)}.ac.amb{background:#FFFBEB;border-color:var(--amber)}
+    .ac.blu{background:#EFF6FF;border-color:var(--ice)}.ac.grn{background:#F0FDF4;border-color:var(--green)}
+    .ac-icon{font-size:1rem;margin-bottom:3px}
+    .ac-title{font-family:sans-serif;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+    .ac.red .ac-title{color:var(--red)}.ac.amb .ac-title{color:var(--amber)}.ac.blu .ac-title{color:#1D4E89}.ac.grn .ac-title{color:var(--green)}
+    .ac-text{font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+
+    /* BASICS */
+    .basics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:620px){.basics-grid{grid-template-columns:1fr}}
+    .basic-card{background:white;border:1px solid var(--border);border-radius:10px;padding:17px 19px}
+    .bc-label{font-family:sans-serif;font-size:.67rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--ice);margin-bottom:7px;font-weight:700}
+    .bc-val{font-size:1.05rem;color:var(--gl);margin-bottom:2px}
+    .bc-note{font-family:sans-serif;font-size:.78rem;color:var(--mid);line-height:1.45}
+
+    /* 4-DAY OVERVIEW */
+    .days-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px}
+    @media(max-width:640px){.days-overview{grid-template-columns:1fr 1fr}}
+    .do-card{border-radius:10px;padding:14px 16px;text-align:center}
+    .do-card.arr{background:#F1F5F9;border:1px solid #CBD5E1}
+    .do-card.f1{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:2px solid var(--ice)}
+    .do-card.f2{background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:2px solid #4ADE80}
+    .do-card.dep{background:#F1F5F9;border:1px solid #CBD5E1}
+    .do-date{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:4px}
+    .do-label{font-family:sans-serif;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+    .do-card.f1 .do-label{color:var(--gl)}.do-card.f2 .do-label{color:var(--pine)}
+    .do-note{font-family:sans-serif;font-size:.73rem;color:var(--mid);line-height:1.4}
+
+    /* DAY SECTIONS */
+    .day-section{margin-bottom:52px}
+    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-hd.arr,.day-hd.dep{background:linear-gradient(135deg,#4A5568,#718096)}
+    .day-hd.f1{background:linear-gradient(135deg,#1B3D6E,#3A7DC9)}
+    .day-hd.f2{background:linear-gradient(135deg,#2D5A3D,#4A9B6A)}
+    .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+    .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
+    .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+
+    /* LEAFLET */
+    .topo-map-lg{height:380px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:10px}
+    .topo-map-sm{height:260px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:10px}
+    .map-caption{font-family:sans-serif;font-size:.72rem;color:var(--mid);margin-bottom:6px;font-style:italic}
+
+    /* MAP ACTION BUTTONS */
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.gmaps{background:white;border:1.5px solid #1A73E8;color:#1A73E8}
+    .mab.at{background:white;border:1.5px solid #5EAA3C;color:#5EAA3C}
+    .mab.route{background:#1A73E8;color:white;border:1.5px solid #1A73E8}
+
+    /* TIME BLOCKS */
+    .time-block{margin-bottom:22px}
+    .tb-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--ice);padding-bottom:6px;border-bottom:2px solid var(--ice);margin-bottom:12px}
+    .tb-hd.pine{color:var(--pine);border-color:var(--pine)}
+    .tb-list{font-family:sans-serif;font-size:.85rem;color:var(--dark);line-height:1.75;list-style:none;padding:0}
+    .tb-list li{padding-left:14px;position:relative;margin-bottom:2px}
+    .tb-list li::before{content:'→';position:absolute;left:0;color:var(--ice);font-size:.8rem}
+    .tb-list strong{color:var(--gl)}
+    .tb-list em{color:var(--amber);font-style:normal;font-weight:600}
+
+    /* OPTION BOXES */
+    .option-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+    @media(max-width:580px){.option-split{grid-template-columns:1fr}}
+    .opt-box{border-radius:10px;padding:14px 16px}
+    .opt-box.a{background:#EFF6FF;border:1px solid #93C5FD}
+    .opt-box.b{background:#F0FDF4;border:1px solid #86EFAC}
+    .opt-title{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+    .opt-box.a .opt-title{color:#1D4E89}.opt-box.b .opt-title{color:#14532D}
+    .opt-text{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.55}
+
+    /* TRAIL CARDS */
+    .trail-card{background:var(--snow);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0 22px}
+    .trail-card.pine-theme{background:#F0FDF4}
+    .tc-hd{padding:14px 18px 10px;border-bottom:1px solid var(--border)}
+    .tc-name{font-size:1.1rem;color:var(--gl);margin-bottom:5px}
+    .trail-card.pine-theme .tc-name{color:var(--pine)}
+    .tc-stats{display:flex;flex-wrap:wrap;gap:7px}
+    .tc-stat{font-family:sans-serif;font-size:.74rem;background:white;border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--mid)}
+    .tc-stat.easy{color:var(--green);font-weight:700;border-color:#86EFAC}
+    .tc-stat.mod{color:var(--amber);font-weight:700;border-color:#FCD34D}
+    .tc-stat.hard{color:var(--red);font-weight:700;border-color:#FCA5A5}
+    .tc-body{padding:14px 18px 16px}
+    .tc-notes{font-family:sans-serif;font-size:.82rem;color:var(--dark);line-height:1.6;margin-bottom:10px}
+    .tc-notes p{margin-bottom:6px}
+    .tc-tip{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-left:3px solid var(--ice);border-radius:0 6px 6px 0;padding:10px 14px;margin-top:10px;font-family:sans-serif;font-size:.81rem;color:var(--dark);line-height:1.5}
+    .tc-tip.pine{background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border-color:var(--pine)}
+
+    /* WILDLIFE */
+    .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+    .wl-card{background:white;border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+    .wl-name{font-size:.97rem;color:var(--gl);margin-bottom:3px}
+    .wl-prob{font-family:sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+    .wl-where{font-family:sans-serif;font-size:.76rem;color:var(--mid);line-height:1.4}
+    .cert{color:var(--gl)}.hi{color:var(--green)}.mod{color:var(--amber)}
+
+    /* CONTACTS */
+    .contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px}
+    .cc{background:white;border:1px solid var(--border);border-radius:10px;padding:15px 17px}
+    .cc-label{font-family:sans-serif;font-size:.67rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--ice);margin-bottom:5px;font-weight:700}
+    .cc-val{font-family:sans-serif;font-size:.88rem;color:var(--dark);font-weight:600;margin-bottom:2px}
+    .cc-note{font-family:sans-serif;font-size:.76rem;color:var(--mid);line-height:1.4}
+    .cc a{color:var(--ice);text-decoration:none;word-break:break-all;font-size:.81rem}
+
+    /* FOOTER */
+    .footer{background:var(--gl);color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sup">Field Guide · Grand American Loop</div>
+  <h1>Glacier National Park</h1>
+  <div class="hero-dates">June 22 – 25, 2026</div>
+  <div class="hero-base">Base Camp: Johnson's of St. Mary · East Entrance · 4,500 ft</div>
+  <div class="hero-chips">
+    <span class="hchip">3 nights</span>
+    <span class="hchip">$35 / vehicle · 7-day pass</span>
+    <span class="hchip">No vehicle reservations · No timed entry</span>
+    <span class="hchip">St. Mary VC: 8am–4:30pm daily</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="banner-alert" style="margin-top:32px">
+    <div class="ac-icon">🚧</div>
+    <div class="bn-title">Live NPS Road Status — As of Early June 2026</div>
+    <div class="bn-text">GTTS Road is currently open <strong>to Avalanche Creek (west)</strong> and <strong>to Jackson Glacier Overlook (east)</strong>. Logan Pass opening <strong>not yet confirmed</strong>. Typically reaches Logan Pass mid-June. <strong>Check nps.gov/glac/conditions daily from June 18.</strong> If Logan Pass isn't open by June 23, swap Days 1 and 2.</div>
+  </div>
+
+  <div class="banner-green">
+    <div class="bn-label">Your Timing Advantage</div>
+    <div class="bn-title">You arrive before July 1 — the last day of unrestricted access.</div>
+    <div class="bn-text">The new 2026 ticketed shuttle system and Logan Pass 3-hour parking limit don't launch until <strong style="color:#86EFAC">July 1</strong>. You drive freely, park without time limits, and face lighter crowds. This is a real advantage.</div>
+  </div>
+
+  <div class="banner-blue">
+    <div class="bn-label" style="color:#1D4E89;opacity:1">Your 4 Days — At a Glance</div>
+    <div class="days-overview">
+      <div class="do-card arr"><div class="do-date">June 22</div><div class="do-label">Arrival</div><div class="do-note">Drive in · GTTS Road orientation · Wild Goose Island</div></div>
+      <div class="do-card f1"><div class="do-date">June 23</div><div class="do-label">Full Day 1</div><div class="do-note">Go West — Logan Pass · Hidden Lake · GTTS full corridor</div></div>
+      <div class="do-card f2"><div class="do-date">June 24</div><div class="do-label">Full Day 2</div><div class="do-note">Go North — Many Glacier · Redrock Falls · St. Mary Falls return</div></div>
+      <div class="do-card dep"><div class="do-date">June 25</div><div class="do-label">Departure</div><div class="do-note">Wild Goose sunrise · Sunrift Gorge → Yellowstone</div></div>
+    </div>
+    <p style="font-family:sans-serif;font-size:.8rem;color:var(--mid);margin-top:8px">Two full days, two opposite directions. Nothing is rushed. Everything fits.</p>
+  </div>
+</div>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd">2026 Alerts</div>
+    <div class="sec-sub">Review before each morning departure</div>
+    <div class="alerts-grid">
+      <div class="ac amb"><div class="ac-icon">⚠️</div><div class="ac-title">GTTS Road — Logan Pass Opening TBD</div><div class="ac-text">Typically reaches Logan Pass mid-June. <strong>Check nps.gov/glac/conditions daily from June 18.</strong> If closed June 23, run Day 2 (Many Glacier) first.</div></div>
+      <div class="ac amb"><div class="ac-icon">⚠️</div><div class="ac-title">Many Glacier — Verify 2026 Access</div><div class="ac-text">Required shuttle tickets in 2025. Verify status at St. Mary VC on June 22. If required: <strong>Recreation.gov at 7 PM MDT the night before.</strong></div></div>
+      <div class="ac amb"><div class="ac-icon">🧊</div><div class="ac-title">Hidden Lake Overlook — Snow Likely</div><div class="ac-text">Trail starts at 6,646 ft. Boardwalk may be buried. Yellow markers guide through snowpack. <strong>Microspikes + waterproof boots required.</strong></div></div>
+      <div class="ac blu"><div class="ac-icon">🐻</div><div class="ac-title">Peak Bear Activity — Late June</div><div class="ac-text">Bring bear spray — rentals at West Glacier and St. Mary. Make noise on every trail. <strong>100-yard minimum from bears.</strong></div></div>
+      <div class="ac amb"><div class="ac-icon">🚗</div><div class="ac-title">GTTS Vehicle Restriction</div><div class="ac-text">Vehicles over <strong>21 ft or 8 ft wide</strong> cannot drive between Avalanche Creek and Rising Sun. Standard SUVs: fine.</div></div>
+      <div class="ac grn"><div class="ac-icon">📍</div><div class="ac-title">St. Mary VC — Use It Every Morning</div><div class="ac-text">8am–4:30pm daily. Real-time trail status, road conditions, wildlife sightings. <strong>Stop here every morning before driving out.</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Park Basics</div>
+    <div class="sec-sub">Entry, weather, and gear</div>
+    <div class="basics-grid">
+      <div class="basic-card"><div class="bc-label">Entry</div><div class="bc-val">$35 / vehicle</div><div class="bc-note">7-day pass. No vehicle reservations or timed entry in 2026. Drive in freely any time.</div></div>
+      <div class="basic-card"><div class="bc-label">Weather · St. Mary (4,500 ft)</div><div class="bc-val">68–76°F days · Low 40s nights</div><div class="bc-note">East side is drier + warmer than west. Logan Pass: 45–60°F with significant wind. Afternoon thunderstorms possible.</div></div>
+      <div class="basic-card"><div class="bc-label">Essential Gear</div><div class="bc-val">Layers every day</div><div class="bc-note">Rain jacket · Warm fleece · Waterproof boots · Microspikes (Logan Pass) · Bear spray · Sun protection</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ ARRIVAL DAY ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd arr">
+        <div class="day-hd-label">June 22</div>
+        <div class="day-hd-title">Arrival Day</div>
+        <div class="day-hd-sub">Drive in, settle, first orientation along GTTS Road — easy afternoon</div>
+      </div>
+      <div class="day-body">
+        <div class="time-block">
+          <div class="tb-hd">First Stop: St. Mary Visitor Center</div>
+          <ul class="tb-list">
+            <li>Before anything else — <strong>St. Mary Visitor Center</strong> (8am–4:30pm). Get trail maps, confirm GTTS Road status, verify Many Glacier shuttle for June 24.</li>
+            <li>If Many Glacier tickets needed: set a 6:50pm alarm for Recreation.gov tonight.</li>
+          </ul>
+        </div>
+        <div class="time-block">
+          <div class="tb-hd">Afternoon — First GTTS Road Drive</div>
+          <ul class="tb-list">
+            <li><strong>Wild Goose Island Overlook</strong> — 6.7 miles west of St. Mary VC. A 14-foot island in St. Mary Lake backed by 8,000-ft peaks. The opening sequence of <em>The Shining</em>. Your first "oh" moment.
+              <div class="map-actions" style="margin-top:8px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6972,-113.5425" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+              </div>
+            </li>
+            <li><strong>Two Dog Flats</strong> — scan slopes slowly for grizzlies and elk</li>
+            <li><strong>Rising Sun</strong> area — pull off, walk to the lakeshore</li>
+            <li><strong>Sun Point Nature Trail</strong> (1.6 mi RT, 45 min) if energy allows
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6817,-113.5339" target="_blank" class="mab gmaps">📍 Google Maps</a>
+                <a href="https://www.alltrails.com/trail/us/montana/sun-point-nature-trail" target="_blank" class="mab at">AllTrails ↗</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="time-block">
+          <div class="tb-hd">Evening</div>
+          <ul class="tb-list">
+            <li>St. Mary lake shore for sunset. Drive back along GTTS Road — different light on return.</li>
+            <li>Dinner, unpack. <em>Tomorrow is the full western corridor.</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ FULL DAY 1 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd f1">
+        <div class="day-hd-label">June 23 · Full Day 1</div>
+        <div class="day-hd-title">Go West — The GTTS Road Corridor</div>
+        <div class="day-hd-sub">Logan Pass · Hidden Lake Overlook · West Side Viewpoints · Return east at sunset</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day1" class="topo-map-lg"></div>
+        <p class="map-caption">Interactive topo + Waymarked Trails hiking overlay · Numbered markers show day sequence · Tap any marker for details</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/48.7456,-113.4339/48.6972,-113.5425/48.6875,-113.4762/48.6786,-113.4747/48.6817,-113.5339/48.6868,-113.5713/48.6853,-113.5928/48.6959,-113.7178/48.7031,-113.7508/48.7073,-113.7731/48.6787,-113.8194" target="_blank" class="mab route">🗺️ Open Full Day Route in Google Maps</a>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Logan Pass — Choose Your Arrival Window</div>
+          <div class="option-split">
+            <div class="opt-box a">
+              <div class="opt-title">Option A · 6am Wake-Up</div>
+              <div class="opt-text"><strong>6:00am depart → 6:30am at Logan Pass.</strong> Lot wide open. Mountain goats in morning light. Hidden Lake Overlook with fewer people. Done by late breakfast, then drive the full west side.</div>
+            </div>
+            <div class="opt-box b">
+              <div class="opt-title">Option B · No Early Start</div>
+              <div class="opt-text">Drive the west side first (Weeping Wall, Triple Arches, Avalanche). <strong>Arrive Logan Pass 3:30–4:30pm</strong> when families leave for dinner. Spots open. Goats still there. Afternoon light on peaks is beautiful.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Logan Pass — The Hike</div>
+          <ul class="tb-list">
+            <li><strong>Mountain goats visible from the parking lot</strong> — you don't need to hike. June = peak season with kids grazing right at the VC area.</li>
+          </ul>
+
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div class="tc-name">Hidden Lake Overlook</div>
+              <div class="tc-stats">
+                <span class="tc-stat">2.7 mi RT</span>
+                <span class="tc-stat mod">Moderate</span>
+                <span class="tc-stat">551 ft gain</span>
+                <span class="tc-stat">1.5–2 hrs</span>
+                <span class="tc-stat">Starts at 6,646 ft</span>
+              </div>
+            </div>
+            <div class="tc-body">
+              <div id="map-hidden-lake" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6959,-113.7178" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+                <a href="https://www.alltrails.com/trail/us/montana/hidden-lake-overlook" target="_blank" class="mab at">AllTrails ↗</a>
+              </div>
+              <div class="tc-notes">
+                <p>The boardwalk from Logan Pass VC to the Hidden Lake Overlook is likely buried under snow in late June. Yellow road markers guide you through. The trail climbs through alpine meadow with goats on surrounding ridges and views extending to the Continental Divide.</p>
+                <p><strong>Microspikes are not optional.</strong> The snow makes it more beautiful, not harder. Overlook is the destination — you don't need to descend to the lake itself.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">GTTS Road West Side</div>
+          <ul class="tb-list">
+            <li>Continue west past Logan Pass. Drive to Avalanche Creek and back.</li>
+            <li><strong>Weeping Wall</strong> — a waterfall that flows over the road during snowmelt. Stop and stand under it.
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.7031,-113.7508" target="_blank" class="mab gmaps">📍 Google Maps</a>
+              </div>
+            </li>
+            <li><strong>Triple Arches</strong> — remarkable stone bridge construction visible from road</li>
+            <li><strong>Avalanche Creek</strong> — end of restricted vehicle zone. Walk to the creek, then turn around.</li>
+            <li>Drive back east — completely different light and perspective on the return.</li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd">Evening — Return to St. Mary</div>
+          <ul class="tb-list">
+            <li><strong>Sunrift Gorge</strong> on the way back — 5-minute walk into a narrow rock gorge with water churning through it.
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6868,-113.5713" target="_blank" class="mab gmaps">📍 Google Maps</a>
+              </div>
+            </li>
+            <li><strong>Two Dog Flats / Rising Sun</strong> — evening grizzly and elk scan. Slow way down.</li>
+            <li><strong>Wild Goose Island</strong> — evening light on the lake as the sun drops. Go both morning and evening.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ FULL DAY 2 ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd f2">
+        <div class="day-hd-label">June 24 · Full Day 2</div>
+        <div class="day-hd-title">Go North — Many Glacier Valley</div>
+        <div class="day-hd-sub">Depart 8am · Arrive by 9am · Redrock Falls · Return via St. Mary Falls</div>
+      </div>
+      <div class="day-body">
+        <div id="map-day2" class="topo-map-lg"></div>
+        <p class="map-caption">Day 2 route: St. Mary → US-89 North → Babb → Many Glacier → return south → St. Mary Falls · Evening at Wild Goose Island</p>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/48.7456,-113.4339/48.7975,-113.6594/48.7972,-113.6600/48.6853,-113.5928/48.6868,-113.5713/48.6972,-113.5425" target="_blank" class="mab route">🗺️ Open Full Day Route in Google Maps</a>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd pine">Morning — Drive North to Many Glacier (8:00am)</div>
+          <ul class="tb-list">
+            <li><strong>8:00am depart</strong> — north on US-89 (~12 mi), left at Babb, west 12 miles. Arrive ~9–9:30am.</li>
+            <li>Pull into <strong>Swiftcurrent Motor Lodge parking</strong> — park rangers often have spotting scopes aimed at goats on the cliffs above.
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/dir/48.7456,-113.4339/48.7975,-113.6594" target="_blank" class="mab route">🗺️ Directions: Base → Many Glacier</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd pine">Morning Hike — Redrock Falls (Recommended)</div>
+          <div class="trail-card pine-theme">
+            <div class="tc-hd">
+              <div class="tc-name">Redrock Falls Trail</div>
+              <div class="tc-stats">
+                <span class="tc-stat">3.6 mi RT</span>
+                <span class="tc-stat easy">Easy</span>
+                <span class="tc-stat">~100 ft gain</span>
+                <span class="tc-stat">2–2.5 hrs</span>
+                <span class="tc-stat">Flattest in Many Glacier</span>
+              </div>
+            </div>
+            <div class="tc-body">
+              <div id="map-redrock" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.7972,-113.6600" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+                <a href="https://www.alltrails.com/trail/us/montana/redrock-falls-via-swiftcurrent-pass" target="_blank" class="mab at">AllTrails ↗</a>
+              </div>
+              <div class="tc-notes">
+                <p>The flattest significant hike in Many Glacier — only ~100 ft of elevation gain. Follows Swiftcurrent Lake and Lake Josephine to a vivid red argillite rock waterfall. The red color is iron-rich sediment from 1.5 billion years ago.</p>
+                <p><strong>Best family option here.</strong> Easy pace, beautiful lake views, moose in the wetlands, goats visible on cliffs above.</p>
+              </div>
+              <div class="tc-tip pine">Make noise on this trail — forested sections are prime bear habitat. Bear spray accessible, not buried in your pack.</div>
+            </div>
+          </div>
+
+          <p style="font-family:sans-serif;font-size:.83rem;color:var(--mid);margin:4px 0 10px">— or if you prefer a shorter loop —</p>
+
+          <div class="trail-card pine-theme">
+            <div class="tc-hd">
+              <div class="tc-name">Swiftcurrent Lake Nature Trail</div>
+              <div class="tc-stats">
+                <span class="tc-stat">2.6 mi RT</span>
+                <span class="tc-stat easy">Easy</span>
+                <span class="tc-stat">~30 ft gain</span>
+                <span class="tc-stat">1–1.5 hrs</span>
+                <span class="tc-stat">First 0.9 mi accessible</span>
+              </div>
+            </div>
+            <div class="tc-body">
+              <div id="map-swiftcurrent" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.7975,-113.6594" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+                <a href="https://www.alltrails.com/trail/us/montana/swiftcurrent-lake-nature-trail" target="_blank" class="mab at">AllTrails ↗</a>
+              </div>
+              <div class="tc-notes">
+                <p>Loops around Swiftcurrent Lake with Many Glacier Hotel in the backdrop. First 0.9 miles is wheelchair accessible. The wetlands section is prime moose habitat. Goats on cliffs above throughout.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd pine">Afternoon — Return South via St. Mary Falls</div>
+          <ul class="tb-list">
+            <li>Leave Many Glacier by noon–12:30pm. Drive south back (35–40 min).</li>
+            <li>Stop at <strong>St. Mary Falls + Virginia Falls</strong> — right off GTTS Road near St. Mary.</li>
+          </ul>
+
+          <div class="trail-card">
+            <div class="tc-hd">
+              <div class="tc-name">St. Mary Falls + Virginia Falls</div>
+              <div class="tc-stats">
+                <span class="tc-stat">3.2 mi RT (both)</span>
+                <span class="tc-stat mod">Moderate</span>
+                <span class="tc-stat">Descend 260 ft · Climb 285 ft</span>
+                <span class="tc-stat">2–2.5 hrs</span>
+              </div>
+            </div>
+            <div class="tc-body">
+              <div id="map-stmaryfalls" class="topo-map-sm"></div>
+              <div class="map-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6853,-113.5928" target="_blank" class="mab gmaps">📍 Open in Google Maps</a>
+                <a href="https://www.alltrails.com/trail/us/montana/st-mary-and-virginia-falls-trail" target="_blank" class="mab at">AllTrails ↗</a>
+              </div>
+              <div class="tc-notes">
+                <p><strong>St. Mary Falls</strong> (0.8 mi one-way): 35-ft waterfall dropping into brilliant aqua-green pools over red argillite rock. June runoff makes it even more vivid.</p>
+                <p><strong>Virginia Falls</strong> (1.6 mi one-way): Larger and more dramatic. Do not turn back at St. Mary Falls — the extra half-mile is always worth it.</p>
+              </div>
+              <div class="tc-tip">Park at the St. Mary Falls Trailhead on GTTS Road. Late afternoon (2–4pm) is a sweet window — crowds thin and the light in the canyon is warm.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="time-block">
+          <div class="tb-hd pine">Evening</div>
+          <ul class="tb-list">
+            <li><strong>Sunrift Gorge</strong> — 5-minute walk, never skip it
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6868,-113.5713" target="_blank" class="mab gmaps">📍 Google Maps</a>
+              </div>
+            </li>
+            <li><strong>Wild Goose Island Overlook</strong> — final evening light before your last night. Three visits and every one looks different.
+              <div class="map-actions" style="margin-top:6px">
+                <a href="https://www.google.com/maps/search/?api=1&query=48.6972,-113.5425" target="_blank" class="mab gmaps">📍 Google Maps</a>
+              </div>
+            </li>
+            <li>Pack tonight — departure is early-ish tomorrow for the Yellowstone drive.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ═══ DEPARTURE ═══ -->
+<section>
+  <div class="wrap">
+    <div class="day-section">
+      <div class="day-hd dep">
+        <div class="day-hd-label">June 25</div>
+        <div class="day-hd-title">Departure Morning → Yellowstone</div>
+        <div class="day-hd-sub">Leave by 9–10am · 6h 53m to Canyon Village</div>
+      </div>
+      <div class="day-body">
+        <div class="time-block">
+          <div class="tb-hd">Before You Leave</div>
+          <ul class="tb-list">
+            <li><strong>Wild Goose Island</strong> — one final look on the way out (10 min from base)</li>
+            <li><strong>Sunrift Gorge</strong> — 5-minute stop heading west on GTTS Road</li>
+            <li><strong>Checkout Johnson's by 11am</strong></li>
+          </ul>
+        </div>
+        <div class="time-block">
+          <div class="tb-hd">The Drive South</div>
+          <ul class="tb-list">
+            <li>US-89 South → Browning → US-2 East → MT-287 → US-191 → West Yellowstone entrance</li>
+            <li><strong>6h 53m</strong> total. Arrive Canyon Village by early–mid evening.</li>
+            <li>Canyon rims at sunset if you have energy — Artist Point works in any light.</li>
+          </ul>
+          <div class="map-actions" style="margin-top:10px">
+            <a href="https://www.google.com/maps/dir/48.7456,-113.4339/44.7353,-110.4995" target="_blank" class="mab route">🗺️ St. Mary → Yellowstone Canyon Village</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Wildlife Guide</div>
+    <div class="sec-sub">All from vehicle and roadside · 100 yards from bears · 25 yards from all other wildlife</div>
+    <div class="wl-grid">
+      <div class="wl-card"><div class="wl-name"><strong>Mountain Goat</strong></div><div class="wl-prob cert">Near-Certain</div><div class="wl-where">Logan Pass — from the parking lot. June = peak. No hiking needed.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Bighorn Sheep</strong></div><div class="wl-prob hi">High</div><div class="wl-where">Oberlin Bend (GTTS Road), Many Glacier slopes. Morning.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Grizzly Bear</strong></div><div class="wl-prob mod">Good — June prime</div><div class="wl-where">Two Dog Flats, Many Glacier slopes. Dawn and dusk.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Marmot</strong></div><div class="wl-prob hi">Very High</div><div class="wl-where">Logan Pass rocky slopes. They sunbathe — midday is best.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Moose</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Swiftcurrent wetlands at Many Glacier. Dawn and dusk.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Pika</strong></div><div class="wl-prob hi">Very High</div><div class="wl-where">Logan Pass rocky slopes. Listen for high-pitched "eep."</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Elk</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Two Dog Flats spring mornings.</div></div>
+      <div class="wl-card"><div class="wl-name"><strong>Bald / Golden Eagle</strong></div><div class="wl-prob mod">Moderate</div><div class="wl-where">Lake areas, Sherburne Reservoir. Morning.</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section>
+  <div class="wrap">
+    <div class="sec-hd">Key Contacts</div>
+    <div class="sec-sub">Save before you lose signal</div>
+    <div class="contacts-grid">
+      <div class="cc"><div class="cc-label">NPS Conditions — Check from June 18</div><div class="cc-val">Daily GTTS Road + trail status</div><a href="https://www.nps.gov/glac/planyourvisit/conditions.htm" target="_blank">nps.gov/glac/conditions</a></div>
+      <div class="cc"><div class="cc-label">Logan Pass 2026</div><div class="cc-val">Shuttle + parking limit details</div><a href="https://www.nps.gov/glac/planyourvisit/visiting-loganpass-2026.htm" target="_blank">nps.gov — Logan Pass 2026</a></div>
+      <div class="cc"><div class="cc-label">St. Mary Visitor Center</div><div class="cc-val">8am – 4:30pm daily</div><div class="cc-note">Stop here every morning. Rangers have real-time conditions for trails, roads, and wildlife sightings.</div></div>
+      <div class="cc"><div class="cc-label">Many Glacier Shuttle (if required)</div><div class="cc-val">7 PM MDT night before</div><div class="cc-note">Recreation.gov. Verify 2026 status at St. Mary VC on June 22.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <strong>Glacier National Park · June 22–25, 2026</strong> · Base: Johnson's of St. Mary · Grand American Loop Field Guide<br>
+  <span style="font-size:.7rem;opacity:.6">Maps: OpenTopoMap (CC-BY-SA) · Waymarked Trails hiking overlay · AllTrails URLs verified June 2026 · NPS trail data via developer.nps.gov</span>
+</div>
+
+<script>
+function mkMap(id, center, zoom, stops, drawRoute) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:15,attribution:'© <a href="https://opentopomap.org">OpenTopoMap</a>'}).addTo(map);
+  L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png',{maxZoom:15,opacity:.75,attribution:'© <a href="https://hiking.waymarkedtrails.org">Waymarked Trails</a>'}).addTo(map);
+  if (drawRoute && stops.length > 1) {
+    L.polyline(stops.map(s=>[s.lat,s.lng]),{color:'#3A7DC9',weight:3,opacity:.65,dashArray:'7,5'}).addTo(map);
+  }
+  stops.forEach(function(s,i){
+    var bg = s.type==='base' ? '#5C2B0A' : (s.type==='pine' ? '#2D5A3D' : '#3A7DC9');
+    var lbl = s.num!=null ? s.num : (i+1);
+    var icon = L.divIcon({html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+lbl+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+    L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+  });
+  return map;
+}
+
+window.addEventListener('load', function(){
+  mkMap('map-day1',[48.702,-113.638],10,[
+    {lat:48.7456,lng:-113.4339,type:'base',num:'⌂',name:"Johnson's of St. Mary"},
+    {lat:48.6972,lng:-113.5425,num:'1',name:'Wild Goose Island Overlook',note:'5–10 min from base · Roadside pullout'},
+    {lat:48.6875,lng:-113.4762,num:'2',name:'Two Dog Flats',note:'Best roadside grizzly area'},
+    {lat:48.6786,lng:-113.4747,num:'3',name:'Rising Sun',note:'Lake views · Wildlife scan'},
+    {lat:48.6817,lng:-113.5339,num:'4',name:'Sun Point Trailhead',note:'1.6 mi RT · Easy'},
+    {lat:48.6868,lng:-113.5713,num:'5',name:'Sunrift Gorge',note:'5-min walk · Stunning gorge'},
+    {lat:48.6853,lng:-113.5928,num:'6',name:'St. Mary Falls Trailhead',note:'3.2 mi RT to both falls'},
+    {lat:48.6959,lng:-113.7178,num:'7',name:'Logan Pass',note:'Mountain goats guaranteed · Hidden Lake Overlook'},
+    {lat:48.7031,lng:-113.7508,num:'8',name:'Weeping Wall',note:'Waterfall over the road'},
+    {lat:48.7073,lng:-113.7731,num:'9',name:'Triple Arches',note:'Stone bridge · Photo stop'},
+    {lat:48.6787,lng:-113.8194,num:'10',name:'Avalanche Creek',note:'End of restricted vehicle zone · Turn around point'}
+  ],true);
+
+  mkMap('map-hidden-lake',[48.6959,-113.7178],13,[
+    {lat:48.6959,lng:-113.7178,type:'pine',num:'TH',name:'Logan Pass Trailhead',note:'Hidden Lake Overlook starts here · Mountain goats in parking area'}
+  ],false);
+
+  mkMap('map-day2',[48.752,-113.556],10,[
+    {lat:48.7456,lng:-113.4339,type:'base',num:'⌂',name:"Johnson's of St. Mary"},
+    {lat:48.7975,lng:-113.6594,num:'1',name:'Many Glacier Hotel',note:'Spotting scopes · Ranger intel'},
+    {lat:48.7972,lng:-113.6600,num:'2',name:'Redrock Falls Trailhead',note:'3.6 mi RT · Flattest hike in valley'},
+    {lat:48.6853,lng:-113.5928,num:'3',name:'St. Mary Falls Trailhead',note:'3.2 mi RT to both falls · Return stop'},
+    {lat:48.6868,lng:-113.5713,num:'4',name:'Sunrift Gorge',note:'5-min walk · Never skip'},
+    {lat:48.6972,lng:-113.5425,num:'5',name:'Wild Goose Island Overlook',note:'Evening light · Last of the day'}
+  ],true);
+
+  mkMap('map-redrock',[48.7972,-113.6600],13,[
+    {lat:48.7972,lng:-113.6600,type:'pine',num:'TH',name:'Redrock Falls Trailhead',note:'Swiftcurrent Picnic Area · Many Glacier'}
+  ],false);
+
+  mkMap('map-swiftcurrent',[48.7975,-113.6594],13,[
+    {lat:48.7975,lng:-113.6594,type:'pine',num:'TH',name:'Many Glacier Hotel Trailhead',note:'Swiftcurrent Lake Nature Trail'}
+  ],false);
+
+  mkMap('map-stmaryfalls',[48.6853,-113.5928],13,[
+    {lat:48.6853,lng:-113.5928,type:'pine',num:'TH',name:'St. Mary Falls Trailhead',note:'Leads to St. Mary Falls and Virginia Falls'}
+  ],false);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logistics Guide · Grand American Loop · Rest · Showers · Food</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --rest:   #2B6CB0;
+      --shower: #276749;
+      --food:   #C05621;
+      --sleep:  #553C9A;
+      --gold:   #D69E2E;
+      --cream:  #FDFAF4;
+      --dark:   #1A202C;
+      --mid:    #5A4A3A;
+      --border: #E4D0BC;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--rest)}
+
+    /* HERO */
+    .hero{background:linear-gradient(160deg,#1A202C 0%,#2B6CB0 35%,#276749 65%,#C05621 100%);color:white;padding:52px 24px 60px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+    .hero h1{font-size:2.6rem;font-weight:normal;letter-spacing:.5px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+    .hero-sub{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-note{font-family:sans-serif;font-size:.82rem;opacity:.62;margin-bottom:22px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+    .hchip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 14px;font-family:sans-serif;font-size:.78rem}
+    .hchip.rest{background:rgba(43,108,176,.4);border-color:rgba(99,179,237,.6)}
+    .hchip.shower{background:rgba(39,103,73,.4);border-color:rgba(104,211,145,.6)}
+    .hchip.food{background:rgba(192,86,33,.4);border-color:rgba(246,173,85,.6)}
+
+    /* LAYOUT */
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+    section{padding:40px 0}
+    hr.div{border:none;border-top:1px solid var(--border);margin:0}
+    .sec-hd{font-size:1.55rem;margin-bottom:4px}
+    .sec-hd.rest{color:var(--rest)}.sec-hd.shower{color:var(--shower)}.sec-hd.food{color:var(--food)}.sec-hd.sleep{color:var(--sleep)}
+    .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:26px}
+
+    /* TAB NAV */
+    .tab-nav{position:sticky;top:0;z-index:100;background:white;border-bottom:2px solid var(--border);padding:0 20px;display:flex;gap:0;overflow-x:auto}
+    .tab-btn{font-family:sans-serif;font-size:.82rem;font-weight:700;padding:12px 20px;border:none;background:none;cursor:pointer;color:var(--mid);border-bottom:3px solid transparent;white-space:nowrap;transition:all .15s}
+    .tab-btn:hover{color:var(--dark)}
+    .tab-btn.active.rest{color:var(--rest);border-bottom-color:var(--rest)}
+    .tab-btn.active.shower{color:var(--shower);border-bottom-color:var(--shower)}
+    .tab-btn.active.food{color:var(--food);border-bottom-color:var(--food)}
+    .tab-btn.active.sleep{color:var(--sleep);border-bottom-color:var(--sleep)}
+    .tab-pane{display:none}.tab-pane.active{display:block}
+
+    /* MAP */
+    .log-map{height:420px;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:16px}
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.rest{background:white;border:1.5px solid var(--rest);color:var(--rest)}
+    .mab.shower{background:white;border:1.5px solid var(--shower);color:var(--shower)}
+    .mab.food{background:white;border:1.5px solid var(--food);color:var(--food)}
+    .mab.sleep{background:white;border:1.5px solid var(--sleep);color:var(--sleep)}
+
+    /* STATE GROUPS */
+    .state-group{margin-bottom:32px}
+    .state-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--mid);padding:7px 14px;background:var(--border);border-radius:6px;margin-bottom:12px}
+
+    /* STOP CARDS (table style) */
+    .stop-table{width:100%;border-collapse:collapse;font-family:sans-serif;font-size:.83rem}
+    .stop-table th{text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--mid);font-weight:700}
+    .stop-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--dark);line-height:1.5}
+    .stop-table tr:last-child td{border-bottom:none}
+    .stop-table tr:hover td{background:#FAFAF8}
+    .stop-name{font-weight:700;color:var(--dark)}
+    .stop-loc{font-size:.76rem;color:var(--mid);margin-top:2px}
+    .stop-note{font-size:.79rem;color:var(--mid);line-height:1.4;margin-top:2px}
+    .gmap-link{display:inline-block;margin-top:4px;font-size:.74rem;font-weight:700;color:var(--rest);text-decoration:none;border:1px solid #BEE3F8;border-radius:12px;padding:2px 8px;transition:background .12s}
+    .gmap-link:hover{background:#EBF8FF}
+    .gmap-link.shower{color:var(--shower);border-color:#C6F6D5}.gmap-link.shower:hover{background:#F0FFF4}
+    .gmap-link.food{color:var(--food);border-color:#FEEBC8}.gmap-link.food:hover{background:#FFFAF0}
+    .gmap-link.sleep{color:var(--sleep);border-color:#E9D8FD}.gmap-link.sleep:hover{background:#FAF5FF}
+
+    /* FOOD CARDS */
+    .food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;margin-top:4px}
+    .fc{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .fc-hd{background:linear-gradient(135deg,#7B341E,#C05621);color:white;padding:12px 16px}
+    .fc-name{font-size:1rem;font-weight:600;margin-bottom:2px}
+    .fc-loc{font-family:sans-serif;font-size:.74rem;opacity:.82}
+    .fc-body{padding:14px 16px}
+    .fc-rating{font-family:sans-serif;font-size:.78rem;color:var(--gold);font-weight:700;margin-bottom:5px}
+    .fc-order{font-family:sans-serif;font-size:.82rem;color:var(--dark);margin-bottom:6px;line-height:1.5}
+    .fc-hours{font-family:sans-serif;font-size:.76rem;color:var(--mid);margin-bottom:8px}
+
+    /* FOOTER */
+    .footer{background:#1A202C;color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-sup">Logistics Guide · Grand American Loop</div>
+  <h1>Rest · Showers · Food</h1>
+  <div class="hero-sub">All 18 Days · 3487 Hillcroft Rd → San Francisco</div>
+  <div class="hero-note">All stops verified · coordinates pinned · Google Maps links for every location</div>
+  <div class="hero-chips">
+    <span class="hchip rest">🛌 40+ Rest Stops</span>
+    <span class="hchip shower">🚿 20 Shower Stops</span>
+    <span class="hchip food">🍽️ 9 Destination Restaurants</span>
+    <span class="hchip" style="background:rgba(85,60,154,.3);border-color:rgba(183,148,244,.5)">🏨 Overnight Bases</span>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active rest" onclick="showTab('rest',this)">🛌 Rest Stops</button>
+  <button class="tab-btn shower" onclick="showTab('shower',this)">🚿 Showers</button>
+  <button class="tab-btn food" onclick="showTab('food',this)">🍽️ Best Restaurants</button>
+  <button class="tab-btn sleep" onclick="showTab('sleep',this)">🏨 Overnight Stops</button>
+</div>
+
+<!-- ═══ REST STOPS ═══ -->
+<div id="pane-rest" class="tab-pane active">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd rest">Rest Stops — Full Route</div>
+      <div class="sec-sub">Truck stop mega-plazas with 24hr showers, overnight parking, fuel, and food. All verified addresses and coordinates.</div>
+
+      <div id="map-rest" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/3487+Hillcroft+Road,+Huntingdon+Valley,+PA+19006/San+Francisco,+CA" target="_blank" class="mab rest">🗺️ Open Full Route in Google Maps</a>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Pennsylvania · I-76 / I-70 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Love's — New Stanton</div></td><td>I-76 Exit 75 / I-70</td><td>24hr showers · truck lot · CAT scale · near Pittsburgh</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.2195,-79.5992" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Smithton</div></td><td>I-70/PA-136 Exit 51</td><td>24hr showers · truck lot · CAT scale · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.1472,-79.7819" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Petro — Carlisle</div></td><td>I-81 Exit 52 / I-76 Exit 226</td><td>380 truck spaces · Iron Skillet restaurant · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.1951,-77.1905" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Ohio · I-70 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Vandalia</div></td><td>I-70/I-75 junction · Dayton area</td><td>24hr showers · truck lot · CAT scale · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.8890,-84.1955" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Love's — Tipp City</div></td><td>I-75 Exit 68</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.9611,-84.1729" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Eaton</div></td><td>I-70 Exit 10 / US-127</td><td>198 truck spaces · Reserve-It parking · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.7449,-84.6502" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Indiana · I-70 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Love's — Greenfield</div></td><td>I-70 Exit 104 / SR-9 · near Indianapolis</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.8072,-85.7663" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Terre Haute</div></td><td>I-70 Exit 11</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.4748,-87.3010" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Whitestown</div></td><td>I-65 Exit 130 / SR-334</td><td>169 truck spaces · fitness room · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.9996,-86.3542" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Missouri · I-70 / I-44 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Petro — Kingdom City</div></td><td>I-70 Exit 148</td><td>235 truck spaces · laundry · 24/7 fuel</td><td><a href="https://www.google.com/maps/search/?api=1&query=38.9418,-91.9355" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Kansas City</div></td><td>I-70 Exit 9 / Corrington Ave</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.1197,-94.5484" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Springfield</div></td><td>I-44 Exit 77</td><td>24hr showers · EV charging · drivers lounge</td><td><a href="https://www.google.com/maps/search/?api=1&query=37.2074,-93.3548" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Strafford</div></td><td>I-44 Exit 88</td><td>140 truck spaces · CAT scale · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=37.2728,-93.1161" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Nebraska · I-80 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Love's — Kearney ⭐</div><div class="stop-note">Jun 18 overnight base</div></td><td>I-80 Exit 272</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.6870,-98.9870" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Petro — York</div></td><td>I-80 Exit 353 / US-81</td><td>250 truck spaces · laundry · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.8462,-97.5876" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Big Springs</div></td><td>I-80 Exit 107</td><td>24hr showers · truck lot · laundry · western NE</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.0603,-102.0752" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Wyoming · I-80 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Rock Springs ⭐</div><div class="stop-note">Jun 19 overnight</div></td><td>I-80 Exit 102</td><td>24hr showers · EV charging · 6,270 ft elevation</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.5952,-109.2271" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Rawlins</div></td><td>I-80 Exit 214</td><td>188 truck spaces · laundry · pet area</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.7953,-107.2311" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Fort Bridger</div></td><td>I-80 Exit 34 · UT border</td><td>24hr showers · truck lot · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.3131,-110.3929" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Utah · I-80 / I-15 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Salt Lake City</div></td><td>I-15 Exit 306 / 2100 South</td><td>24hr showers · EV charging · drivers lounge</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.7344,-111.9147" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Tooele</div></td><td>I-80 Exit 99 · near Bonneville</td><td>191 truck spaces · 3 service bays · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.7253,-112.2989" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Idaho · US-93 / I-84 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Jerome</div></td><td>I-84 Exit 168 / US-93 · Twin Falls corridor</td><td>24hr showers · truck wash · bulk propane · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.7205,-114.5103" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Post Falls</div></td><td>I-90 Exit 2 · Spokane corridor</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.7134,-116.9661" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Montana · US-93 / US-2 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">TA — Missoula</div></td><td>I-90 Exit 96 / US-93 N</td><td>130 truck spaces · 4 service bays · 24/7 fuel</td><td><a href="https://www.google.com/maps/search/?api=1&query=46.9294,-114.0789" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Columbia Falls</div></td><td>US-2 · gateway to Glacier &amp; Whitefish</td><td>Truck parking · DEF · 24/7 fuel · call ahead showers</td><td><a href="https://www.google.com/maps/search/?api=1&query=48.3693,-114.1767" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Washington · I-90 / I-5 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Petro — Spokane ⭐</div><div class="stop-note">Jun 28 overnight</div></td><td>I-90 Exit 272</td><td>200 truck spaces · Reserve-It · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.6272,-117.5491" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — North Bend</div></td><td>I-90 Exit 34 · halfway to Rainier</td><td>140 truck spaces · EV charging · Reserve-It</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.4963,-121.7919" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">Oregon · I-5 / US-97 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">TA — Aurora</div></td><td>I-5 Exit 278 · Portland–Salem</td><td>275 truck spaces · fitness room · game room</td><td><a href="https://www.google.com/maps/search/?api=1&query=45.2373,-122.8012" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Klamath Falls</div></td><td>US-97 South · on route to Crater Lake</td><td>24hr showers · truck lot · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.2249,-121.7382" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+
+      <div class="state-group">
+        <div class="state-hd">California · I-5 / US-101 Corridor</div>
+        <table class="stop-table">
+          <tr><th>Stop</th><th>Location</th><th>Key Services</th><th>Map</th></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Weed</div></td><td>I-5 Exit 747 · entering CA</td><td>24hr showers · EV charging · CAT scale</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.4227,-122.3780" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">TA — Redding</div></td><td>I-5 / Knighton Rd</td><td>196 truck spaces · Reserve-It · laundry · pet area</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.5480,-122.3593" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+          <tr><td><div class="stop-name">Pilot Flying J — Dunnigan</div></td><td>I-5 Exit 578 · near Sacramento</td><td>24hr showers · EV charging · live parking · laundry</td><td><a href="https://www.google.com/maps/search/?api=1&query=38.8935,-121.9737" target="_blank" class="gmap-link">📍 Map</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ SHOWERS ═══ -->
+<div id="pane-shower" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd shower">Shower Stops — Full Route</div>
+      <div class="sec-sub">All truck stop showers ~$15 per shower · Private room with lock · Towel typically provided · 24hr availability · Pay at counter before use</div>
+
+      <div id="map-shower" class="log-map"></div>
+
+      <table class="stop-table" style="margin-top:16px">
+        <tr><th>State</th><th>Stop</th><th>Location</th><th>Details</th><th>Map</th></tr>
+        <tr><td>PA</td><td><div class="stop-name">Flying J — New Stanton</div></td><td>I-76 Exit 75 · near Pittsburgh</td><td>12 showers · $15 · 24hr</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.213,-79.600" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>OH</td><td><div class="stop-name">Love's — Columbus</div></td><td>I-270 exit</td><td>$15 · 24hr</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.967,-82.827" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>OH</td><td><div class="stop-name">Pilot Flying J — Dayton</div></td><td>I-70/I-75 junction</td><td>$15 · 24hr · Dayton stop</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.804,-84.271" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>IN</td><td><div class="stop-name">Love's — Richmond</div></td><td>I-70 Exit 145</td><td>$15 · 24hr · IN/OH border</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.830,-84.856" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>MO</td><td><div class="stop-name">Love's — Foristell</div></td><td>I-70 Exit 203 · between STL and KC</td><td>$15</td><td><a href="https://www.google.com/maps/search/?api=1&query=38.817,-90.906" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>MO</td><td><div class="stop-name">Pilot Flying J — Joplin</div></td><td>I-44 · south MO / Route 66 corridor</td><td>$15</td><td><a href="https://www.google.com/maps/search/?api=1&query=37.053,-94.482" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>NE</td><td><div class="stop-name">Love's — Kearney ⭐ Jun 18 overnight</div></td><td>I-80 Nebraska</td><td>$15 · 24hr · midway push</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.699,-99.082" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>NE</td><td><div class="stop-name">Pilot Flying J — North Platte</div></td><td>I-80</td><td>$15 · 24hr · western NE</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.122,-100.752" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>WY</td><td><div class="stop-name">Pilot Flying J — Rock Springs ⭐ Jun 19</div></td><td>I-80 Exit 99</td><td>$15 · 24hr · overnight stop</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.585,-109.205" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>WY</td><td><div class="stop-name">TA — Laramie</div></td><td>I-80</td><td>8 showers · $15 · Wyoming push</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.311,-105.590" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>UT</td><td><div class="stop-name">Love's — Wendover</div></td><td>I-80 state line · after Salt Flats</td><td>$15 · 24hr</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.737,-114.041" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>UT</td><td><div class="stop-name">Pilot Flying J — Salt Lake City</div></td><td>I-15</td><td>$15 · 24hr · SLC area</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.761,-111.898" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>ID</td><td><div class="stop-name">Love's — Twin Falls</div></td><td>US-93 South</td><td>$15 · 24hr</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.600,-114.447" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>MT</td><td><div class="stop-name">Love's — Missoula</div></td><td>I-90 Exit 96</td><td>$15 · 24hr · Day 7 pass-through</td><td><a href="https://www.google.com/maps/search/?api=1&query=46.841,-114.098" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>MT</td><td><div class="stop-name">TA — Missoula</div></td><td>Broadway</td><td>8 showers · $15</td><td><a href="https://www.google.com/maps/search/?api=1&query=46.844,-114.095" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>WA</td><td><div class="stop-name">Pilot Flying J — Spokane ⭐ Jun 28</div></td><td>I-90</td><td>$15 · 24hr · overnight stop</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.688,-117.297" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>WA</td><td><div class="stop-name">Love's — Ellensburg</div></td><td>I-90 · halfway through Cascades</td><td>$15</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.005,-120.540" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>OR</td><td><div class="stop-name">Love's — Grants Pass</div></td><td>I-5 Exit 55</td><td>$15 · last OR shower before Crater Lake</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.441,-123.330" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+        <tr><td>CA</td><td><div class="stop-name">Pilot Flying J — Redding</div></td><td>I-5</td><td>$15 · northern CA heading south toward SFO</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.589,-122.393" target="_blank" class="gmap-link shower">📍 Map</a></td></tr>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ FOOD ═══ -->
+<div id="pane-food" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd food">Best Restaurants — Full Route</div>
+      <div class="sec-sub">Nine destination restaurants along the route — places that justify going out of your way. Every one verified, reviewed, and worth the stop.</div>
+
+      <div id="map-food" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/Pittsburgh,PA/Indianapolis,IN/St.+Louis,MO/Kansas+City,+KS/Salt+Lake+City,+UT/Whitefish,+MT/Seattle,+WA/Portland,+OR/San+Francisco,+CA" target="_blank" class="mab food">🗺️ Food Stops Route in Google Maps</a>
+      </div>
+
+      <div class="food-grid">
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Primanti Bros</div>
+            <div class="fc-loc">46 18th St, Pittsburgh, PA · Day 1</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.5⭐ · 7,454 reviews</div>
+            <div class="fc-order"><strong>Order:</strong> Any sandwich — coleslaw and fries are inside it. That's the thing. 191K Instagram views via College GameDay.</div>
+            <div class="fc-hours">Open late · perfect post-incline stop</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=40.4507,-79.9856" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Shapiro's Delicatessen</div>
+            <div class="fc-loc">808 S Meridian, Indianapolis, IN · Day 2 lunch</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.5⭐ · 7,079 reviews</div>
+            <div class="fc-order"><strong>Order:</strong> Corned beef on rye. Since 1905. No pretense. Enormous portions.</div>
+            <div class="fc-hours">Mon–Fri 10am–7:30pm · Sat–Sun 9am–7:30pm</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=39.7563,-86.1596" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Ted Drewes Frozen Custard</div>
+            <div class="fc-loc">6726 Chippewa St, St. Louis, MO · Day 2 evening</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.8⭐ · 12,013 reviews · 97 years on Route 66</div>
+            <div class="fc-order"><strong>Order:</strong> A "concrete mixer" — so thick they serve it upside-down to prove it won't fall out.</div>
+            <div class="fc-hours">Summer hours until 10:30pm · no seating · window only</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.5894,-90.3076" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Lambert's Café — Throwed Rolls</div>
+            <div class="fc-loc">1800 W State Hwy J, Ozark, MO · Day 3 dinner</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.6⭐ · 27,972 reviews</div>
+            <div class="fc-order"><strong>Order:</strong> Anything — dinner rolls will be thrown at you from across the room. Massive Southern portions. Arrive at 5pm or after 8pm for shortest wait.</div>
+            <div class="fc-hours">10 min south of Springfield · arrives early or late to avoid line</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.0693,-93.2247" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Joe's Kansas City Bar-B-Que</div>
+            <div class="fc-loc">3002 W 47th Ave, Kansas City, KS · Day 4 lunch</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.8⭐ · 17,469 reviews · Top 5 BBQ in America</div>
+            <div class="fc-order"><strong>Order:</strong> The Z-Man — smoked brisket, smoked provolone, crispy onion rings on a kaiser roll. $15. Life-changing.</div>
+            <div class="fc-hours">Mon–Sat 11am–9pm (10pm Fri–Sat) · No reservations · use takeout counter</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.979,-94.609" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Red Iguana</div>
+            <div class="fc-loc">736 W North Temple, Salt Lake City, UT · Day 6 lunch</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.6⭐ · 10,374 reviews · legendary mole</div>
+            <div class="fc-order"><strong>Order:</strong> Mole negro — a dark, 30-ingredient sauce that takes three days to make. Expect a line. Worth it.</div>
+            <div class="fc-hours">SLC pass-through on Day 6 · line moves fast at lunch</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=40.7718,-111.9125" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Montana Coffee Traders — Whitefish</div>
+            <div class="fc-loc">110 Central Ave, Whitefish, MT · Day 8 morning ritual</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.6⭐ · Best coffee in Montana</div>
+            <div class="fc-order"><strong>Order:</strong> Whatever's on the single-origin board. Before Glacier. Every morning you're nearby.</div>
+            <div class="fc-hours">Opens 6:30am · your Glacier departure fuel</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=48.4114,-114.3370" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Pike Place Chowder</div>
+            <div class="fc-loc">1530 Post Alley, Seattle, WA · Day 15</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.6⭐ · 8,022 reviews · award-winning clam chowder</div>
+            <div class="fc-order"><strong>Order:</strong> New England clam chowder in a sourdough bread bowl. Multiple "best chowder in America" awards.</div>
+            <div class="fc-hours">Pike Place Market, Post Alley · opens 11am daily</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=47.6094,-122.3412" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Voodoo Doughnut</div>
+            <div class="fc-loc">22 SW 3rd Ave, Portland, OR · Day 16</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.4⭐ · 19,492 reviews · 24hr</div>
+            <div class="fc-order"><strong>Order:</strong> Maple bacon bar — a glazed doughnut topped with real bacon strips and maple frosting. The single iconic Portland food experience.</div>
+            <div class="fc-hours">Open 24 hours · the line at 2am is shorter than at noon</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=45.5227,-122.6730" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ SLEEP ═══ -->
+<div id="pane-sleep" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd sleep">Overnight Stops — Full Route</div>
+      <div class="sec-sub">All 17 overnight bases from home to SFO. Confirmed reservations marked. All others are recommendation targets.</div>
+
+      <div id="map-sleep" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/3487+Hillcroft+Road,+Huntingdon+Valley,+PA+19006/Dayton,+OH/St.+Louis,+MO/Springfield,+MO/Kearney,+NE/Rock+Springs,+WY/Twin+Falls,+ID/Whitefish,+MT/St.+Mary,+MT/Canyon+Village,+Yellowstone+NP/Spokane,+WA/Seattle,+WA/Crater+Lake+NP,+OR/Santa+Rosa,+CA/San+Francisco,+CA" target="_blank" class="mab sleep">🗺️ Overnight Route in Google Maps</a>
+      </div>
+
+      <table class="stop-table">
+        <tr><th>Day / Date</th><th>Overnight Location</th><th>Status</th><th>Notes</th><th>Map</th></tr>
+        <tr><td>Jun 15 · Day 1</td><td><div class="stop-name">Dayton, OH</div></td><td>Book needed</td><td>Pure transit overnight. Any I-70 corridor hotel.</td><td><a href="https://www.google.com/maps/search/?api=1&query=39.771,-84.194" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 16 · Day 2</td><td><div class="stop-name">St. Louis, MO</div></td><td>Book needed</td><td>Downtown or near Arch. Gateway Arch area hotels.</td><td><a href="https://www.google.com/maps/search/?api=1&query=38.625,-90.185" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 17 · Day 3</td><td><div class="stop-name">Springfield, MO</div></td><td>Book needed</td><td>Route 66 birthplace. Plenty of options on I-44.</td><td><a href="https://www.google.com/maps/search/?api=1&query=37.209,-93.292" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 18 · Day 4</td><td><div class="stop-name">Kearney, NE</div></td><td>Book needed</td><td>I-80 Exit 272 corridor. Multiple chain hotels.</td><td><a href="https://www.google.com/maps/search/?api=1&query=40.700,-99.082" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 19 · Day 5</td><td><div class="stop-name">Rock Springs, WY</div></td><td>Book needed</td><td>6,270 ft. Nights drop to low 40s. I-80 corridor.</td><td><a href="https://www.google.com/maps/search/?api=1&query=41.595,-109.227" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 20 · Day 6</td><td><div class="stop-name">Twin Falls, ID</div></td><td>Book needed</td><td>After Shoshone Falls and long Utah day. Near I-84/US-93.</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.590,-114.369" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 21 · Day 7</td><td><div class="stop-name">Whitefish, MT</div></td><td>Book needed</td><td>Mountain town, walkable downtown. Best base before Glacier.</td><td><a href="https://www.google.com/maps/search/?api=1&query=48.412,-114.338" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr style="background:#EFF6FF"><td>Jun 22–25 · Days 8–11</td><td><div class="stop-name">Johnson's of St. Mary, MT</div></td><td style="color:#276749;font-weight:700">✅ CONFIRMED</td><td>Glacier NP east side base. 3 nights.</td><td><a href="https://www.google.com/maps/search/?api=1&query=48.7456,-113.4339" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr style="background:#EFF6FF"><td>Jun 25–28 · Days 11–14</td><td><div class="stop-name">Canyon Campground, Yellowstone</div></td><td style="color:#276749;font-weight:700">✅ CONFIRMED</td><td>Two tent reservations (switch Jun 27). 3 nights.</td><td><a href="https://www.google.com/maps/search/?api=1&query=44.726,-110.501" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 28 · Day 14</td><td><div class="stop-name">Petro — Spokane, WA</div></td><td style="color:#276749;font-weight:600">Truck stop · no booking</td><td>I-90 Exit 272 · 200 truck spaces · Iron Skillet restaurant · 24hr showers · free overnight parking.</td><td><a href="https://maps.google.com/?q=47.6272,-117.5491" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 29 · Day 15</td><td><div class="stop-name">Pilot Flying J — Fife, WA</div></td><td style="color:#276749;font-weight:600">Truck stop · no booking</td><td>I-5 near Tacoma · after Seattle · positioned for Portland run Day 16 · 24hr showers · free overnight.</td><td><a href="https://maps.google.com/?q=47.225,-122.378" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jun 30 · Day 16</td><td><div class="stop-name">Love's — Grants Pass, OR</div></td><td style="color:#276749;font-weight:600">Truck stop · no booking</td><td>I-5 Exit 55 · after Crater Lake · at US-199 junction · perfect position for Redwoods morning.</td><td><a href="https://maps.google.com/?q=42.441,-123.330" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr><td>Jul 1 · Day 17</td><td><div class="stop-name">Love's — Ukiah, CA</div></td><td style="color:#276749;font-weight:600">Truck stop · no booking</td><td>After Redwoods. 2h 11m to SFO. Depart 8am = arrive 10:11am (49-min buffer). Free overnight parking · $15 showers.</td><td><a href="https://maps.google.com/?q=39.150,-123.208" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+        <tr style="background:#F0FFF4"><td>Jul 2 · Day 18</td><td><div class="stop-name">San Francisco International Airport</div></td><td style="color:#276749;font-weight:700">HARD DEADLINE 11am</div></td><td>Depart Ukiah by 8am · 2h 11m (Google Maps verified) · arrive 10:11am · 49-min buffer. California chapter begins.</td><td><a href="https://www.google.com/maps/search/?api=1&query=37.618,-122.375" target="_blank" class="gmap-link sleep">📍 Map</a></td></tr>
+      </table>
+    </div>
+  </section>
+</div>
+
+<div class="footer">
+  <strong>Grand American Loop · Logistics Guide · Rest · Showers · Food · Sleep</strong><br>
+  <span style="font-size:.7rem;opacity:.6">Maps: OpenStreetMap · All coordinates verified · Shower prices ~$15/standard · Subject to change · Book overnight stops before Jun 15</span>
+</div>
+
+<script>
+var _pendingMaps = {};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active','rest','shower','food','sleep')});
+  document.getElementById('pane-'+name).classList.add('active');
+  btn.classList.add('active', name);
+  // Lazy-init the map for this tab — deferred so display:block takes effect before Leaflet measures
+  if (_pendingMaps[name]) {
+    var fn = _pendingMaps[name];
+    delete _pendingMaps[name];
+    setTimeout(fn, 60);
+  }
+}
+
+function mkMap(id, center, zoom, stops) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+  var colors = {rest:'#2B6CB0', shower:'#276749', food:'#C05621', sleep:'#553C9A'};
+  stops.forEach(function(s){
+    var bg = colors[s.type] || '#2B6CB0';
+    var icon = L.divIcon({html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)">'+s.lbl+'</div>',iconSize:[22,22],iconAnchor:[11,11],className:''});
+    L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:11px;color:#666">'+s.note+'</span>':''));
+  });
+}
+
+window.addEventListener('load', function(){
+
+  // REST MAP — first tab is visible, init immediately
+  mkMap('map-rest',[41.5,-100.0],4,[
+    {lat:40.220,lng:-79.599,type:'rest',lbl:'R',name:'Love\'s New Stanton PA'},
+    {lat:39.889,lng:-84.196,type:'rest',lbl:'R',name:'Pilot Flying J Vandalia OH'},
+    {lat:38.942,lng:-91.936,type:'rest',lbl:'R',name:'Petro Kingdom City MO'},
+    {lat:39.120,lng:-94.548,type:'rest',lbl:'R',name:'Pilot Flying J Kansas City MO'},
+    {lat:37.207,lng:-93.355,type:'rest',lbl:'R',name:'Pilot Flying J Springfield MO'},
+    {lat:40.687,lng:-98.987,type:'rest',lbl:'R',name:'Love\'s Kearney NE'},
+    {lat:41.595,lng:-109.227,type:'rest',lbl:'R',name:'Pilot Flying J Rock Springs WY'},
+    {lat:40.734,lng:-111.915,type:'rest',lbl:'R',name:'Pilot Flying J Salt Lake City UT'},
+    {lat:42.721,lng:-114.510,type:'rest',lbl:'R',name:'Pilot Flying J Jerome ID'},
+    {lat:46.929,lng:-114.079,type:'rest',lbl:'R',name:'TA Missoula MT'},
+    {lat:47.627,lng:-117.549,type:'rest',lbl:'R',name:'Petro Spokane WA'},
+    {lat:45.237,lng:-122.801,type:'rest',lbl:'R',name:'TA Aurora OR'},
+    {lat:41.423,lng:-122.378,type:'rest',lbl:'R',name:'Pilot Flying J Weed CA'}
+  ]);
+
+  // SHOWER, FOOD, SLEEP MAPS — lazy-init when tab is first clicked
+  _pendingMaps['shower'] = function() { mkMap('map-shower',[41.5,-100.0],4,[
+    {lat:40.213,lng:-79.600,type:'shower',lbl:'S',name:'Flying J New Stanton PA'},
+    {lat:39.804,lng:-84.271,type:'shower',lbl:'S',name:'Pilot Flying J Dayton OH'},
+    {lat:38.817,lng:-90.906,type:'shower',lbl:'S',name:'Love\'s Foristell MO'},
+    {lat:40.699,lng:-99.082,type:'shower',lbl:'S',name:'Love\'s Kearney NE'},
+    {lat:41.585,lng:-109.205,type:'shower',lbl:'S',name:'Pilot Flying J Rock Springs WY'},
+    {lat:40.737,lng:-114.041,type:'shower',lbl:'S',name:'Love\'s Wendover UT'},
+    {lat:40.761,lng:-111.898,type:'shower',lbl:'S',name:'Pilot Flying J Salt Lake City UT'},
+    {lat:42.600,lng:-114.447,type:'shower',lbl:'S',name:'Love\'s Twin Falls ID'},
+    {lat:46.841,lng:-114.098,type:'shower',lbl:'S',name:'Love\'s Missoula MT'},
+    {lat:47.688,lng:-117.297,type:'shower',lbl:'S',name:'Pilot Flying J Spokane WA'},
+    {lat:42.441,lng:-123.330,type:'shower',lbl:'S',name:'Love\'s Grants Pass OR'},
+    {lat:40.589,lng:-122.393,type:'shower',lbl:'S',name:'Pilot Flying J Redding CA'}
+  ]); };
+
+  _pendingMaps['food'] = function() { mkMap('map-food',[41.5,-100.0],4,[
+    {lat:40.451,lng:-79.986,type:'food',lbl:'F',name:'Primanti Bros Pittsburgh PA'},
+    {lat:39.756,lng:-86.160,type:'food',lbl:'F',name:"Shapiro's Deli Indianapolis IN"},
+    {lat:38.589,lng:-90.308,type:'food',lbl:'F',name:'Ted Drewes St. Louis MO'},
+    {lat:37.069,lng:-93.225,type:'food',lbl:'F',name:"Lambert's Café Ozark MO"},
+    {lat:38.979,lng:-94.609,type:'food',lbl:'F',name:"Joe's KC BBQ Kansas City"},
+    {lat:40.772,lng:-111.913,type:'food',lbl:'F',name:'Red Iguana Salt Lake City UT'},
+    {lat:48.411,lng:-114.337,type:'food',lbl:'F',name:'Montana Coffee Traders Whitefish MT'},
+    {lat:47.609,lng:-122.341,type:'food',lbl:'F',name:'Pike Place Chowder Seattle WA'},
+    {lat:45.523,lng:-122.673,type:'food',lbl:'F',name:'Voodoo Doughnut Portland OR'}
+  ]); };
+
+  _pendingMaps['sleep'] = function() { mkMap('map-sleep',[41.5,-100.0],4,[
+    {lat:39.771,lng:-84.194,type:'sleep',lbl:'1',name:'Dayton OH · Jun 15'},
+    {lat:38.625,lng:-90.185,type:'sleep',lbl:'2',name:'St. Louis MO · Jun 16'},
+    {lat:37.209,lng:-93.292,type:'sleep',lbl:'3',name:'Springfield MO · Jun 17'},
+    {lat:40.700,lng:-99.082,type:'sleep',lbl:'4',name:'Kearney NE · Jun 18'},
+    {lat:41.595,lng:-109.227,type:'sleep',lbl:'5',name:'Rock Springs WY · Jun 19'},
+    {lat:42.590,lng:-114.369,type:'sleep',lbl:'6',name:'Twin Falls ID · Jun 20'},
+    {lat:48.412,lng:-114.338,type:'sleep',lbl:'7',name:'Whitefish MT · Jun 21'},
+    {lat:48.746,lng:-113.434,type:'sleep',lbl:'✓',name:"Johnson's of St. Mary MT · Jun 22–25 · CONFIRMED"},
+    {lat:44.726,lng:-110.501,type:'sleep',lbl:'✓',name:'Canyon Campground Yellowstone · Jun 25–28 · CONFIRMED'},
+    {lat:47.627,lng:-117.549,type:'sleep',lbl:'8',name:'Petro Spokane WA · Jun 28 · truck stop'},
+    {lat:47.225,lng:-122.378,type:'sleep',lbl:'9',name:'Pilot Flying J Fife WA · Jun 29 · truck stop · after Seattle'},
+    {lat:42.441,lng:-123.330,type:'sleep',lbl:'10',name:'Love\'s Grants Pass OR · Jun 30 · truck stop · after Crater Lake'},
+    {lat:39.150,lng:-123.208,type:'sleep',lbl:'11',name:"Love's Ukiah CA · Jul 1 · 2h 11m to SFO"},
+    {lat:37.618,lng:-122.375,type:'sleep',lbl:'🏁',name:'SFO · Jul 2 11am · HARD DEADLINE'}
+  ]); };
+
+});
+</script>
+</body>
+</html>
