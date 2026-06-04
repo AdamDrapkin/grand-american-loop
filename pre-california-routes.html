@@ -144,6 +144,36 @@
 
     /* footer */
     footer { background: var(--primary); color: rgba(255,255,255,.8); text-align: center; padding: 28px; font-family: sans-serif; font-size: 0.82rem; }
+
+    /* ── Mobile ── */
+    @media(max-width:640px) {
+      .hero { padding: 32px 18px 28px; }
+      .hero h1 { font-size: 1.65rem; }
+      .hero .sub { font-size: 0.88rem; }
+      .hero .meta { font-size: 0.72rem; }
+      .hero-badge { font-size: 0.74rem; padding: 4px 12px; }
+      .wrap { padding: 0 14px; }
+      .routes-section { padding: 28px 0 40px; }
+      .confirm-note { padding: 13px 14px; font-size: 0.82rem; }
+      .route-header { padding: 16px 14px 14px; gap: 12px; }
+      .route-title { font-size: 1.2rem; }
+      .stats { gap: 14px; }
+      .stat-val { font-size: 1.1rem; }
+      .route-info { padding: 16px 14px; border-right: none; border-bottom: 1px solid var(--border); }
+      .day-row { grid-template-columns: 46px 1fr 18px; gap: 6px; padding: 9px 2px; }
+      .dd { display: none; }
+      .day-panel { padding: 12px 2px 16px; }
+      .panel-grid { grid-template-columns: 1fr; gap: 14px; }
+      .ps-text, .ps-list { font-size: 0.80rem; }
+      .tags { gap: 5px; }
+      .t { font-size: 0.68rem; padding: 3px 7px; }
+      .route-map { min-height: 320px; }
+      .map-canvas, .route-map iframe { min-height: 260px; }
+      .map-controls { padding: 8px 10px; gap: 5px; }
+      .map-layer-btn { font-size: 0.70rem; padding: 4px 9px; }
+      .map-open-btn { font-size: 0.78rem; padding: 11px 0; }
+      .sc { font-size: 0.70rem; padding: 2px 7px; }
+    }
   </style>
 </head>
 <body>

@@ -56,7 +56,7 @@ OUTPUT_FILE  = "./docs/index.html"    # where the bundled file is written
 
 # ── Viewer Title ─────────────────────────────────────────────────
 # Shown in the browser tab and in the top-left of the viewer.
-VIEWER_TITLE = "Grand American Loop"
+VIEWER_TITLE = "Pre-California · Grand American Loop"
 
 # ── Asset Inlining ───────────────────────────────────────────────
 # Set True  → scan each HTML file for local images, fonts, CSS, JS
@@ -336,6 +336,8 @@ def build_viewer_html(pages, labels, title, translate_button, translate_css, tra
             'body{top:0!important}.goog-te-gadget{display:none!important}</style>'
             '<div id="google_translate_element" style="display:none"></div>'
             '<script>'
+            'document.addEventListener("DOMContentLoaded",function(){'
+            'window.parent.postMessage({type:"page-ready"},"*");});'
             'function googleTranslateElementInit(){'
             'new google.translate.TranslateElement({pageLanguage:"en",autoDisplay:false},"google_translate_element");}'
             'window.addEventListener("message",function(e){'
@@ -346,7 +348,7 @@ def build_viewer_html(pages, labels, title, translate_button, translate_css, tra
             'if(s){clearInterval(t);s.value=lang;s.dispatchEvent(new Event("change"));}'
             'else if(++tries>40){clearInterval(t);}},150);}});'
             '</script>'
-            '<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>'
+            '<script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>'
         )
         pages = [
             p.replace('</body>', _inject + '</body>') if '</body>' in p else p + _inject
@@ -562,7 +564,12 @@ function init() {{
     const iframe = document.createElement('iframe');
     iframe.title = 'Slide ' + (i + 1);
     iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
-    if (i === 0) {{ iframe.srcdoc = html; iframe.onload = () => loader.classList.add('hidden'); }}
+    if (i === 0) {{
+      const hide0 = () => loader.classList.add('hidden');
+      iframe.onload = hide0;
+      setTimeout(hide0, 6000);
+      iframe.srcdoc = html;
+    }}
     slide.appendChild(iframe);
     track.appendChild(slide);
 
@@ -607,10 +614,25 @@ function loadSlide(index) {{
   const iframe = slide.querySelector('iframe');
   const loader = slide.querySelector('.slide-loader');
   if (iframe && !iframe.srcdoc) {{
+    const hide = () => {{ if (loader) loader.classList.add('hidden'); }};
+    iframe.onload = hide;
+    setTimeout(hide, 6000);
     iframe.srcdoc = PAGES[index];
-    iframe.onload = () => loader && loader.classList.add('hidden');
   }}
 }}
+
+// Hide loader when page signals DOMContentLoaded via postMessage
+window.addEventListener('message', function(e) {{
+  if (!e.data || e.data.type !== 'page-ready') return;
+  document.querySelectorAll('.slide iframe').forEach(function(f) {{
+    try {{
+      if (f.contentWindow === e.source) {{
+        var loader = f.parentElement.querySelector('.slide-loader');
+        if (loader) loader.classList.add('hidden');
+      }}
+    }} catch(err) {{}}
+  }});
+}});
 
 // ── Button handlers ──────────────────────────────────────────
 btnPrev.addEventListener('click', () => goTo(current - 1));
