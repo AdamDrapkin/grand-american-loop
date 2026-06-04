@@ -202,6 +202,14 @@ def inline_assets_in_html(html_content, html_path):
     return result, replacements, skipped
 
 
+def extract_hero_gradient(html):
+    """Pull the hero section background gradient for thumbnail previews."""
+    m = re.search(r'\.hero\s*\{[^}]*?background\s*:\s*(linear-gradient[^;]+)', html, re.DOTALL)
+    if m:
+        return m.group(1).strip()
+    return 'linear-gradient(135deg,#1a202c 0%,#4a5568 100%)'
+
+
 def build_translate_html(languages, enabled):
     """Return the translate button + dropdown HTML, or empty string."""
     if not enabled:
@@ -336,17 +344,20 @@ def build_viewer_html(pages, labels, title, translate_button, translate_css, tra
             'body{top:0!important}.goog-te-gadget{display:none!important}</style>'
             '<div id="google_translate_element" style="display:none"></div>'
             '<script>'
+            'var _pendingLang=null;'
             'document.addEventListener("DOMContentLoaded",function(){'
             'window.parent.postMessage({type:"page-ready"},"*");});'
-            'function googleTranslateElementInit(){'
-            'new google.translate.TranslateElement({pageLanguage:"en",autoDisplay:false},"google_translate_element");}'
-            'window.addEventListener("message",function(e){'
-            'if(e&&e.data&&e.data.type==="translate"){'
-            'var lang=e.data.lang,tries=0;'
+            'function _doTranslate(lang){'
+            '_pendingLang=lang;var tries=0;'
             'var t=setInterval(function(){'
             'var s=document.querySelector(".goog-te-combo");'
-            'if(s){clearInterval(t);s.value=lang;s.dispatchEvent(new Event("change"));}'
-            'else if(++tries>40){clearInterval(t);}},150);}});'
+            'if(s){clearInterval(t);s.value=_pendingLang;s.dispatchEvent(new Event("change"));}'
+            'else if(++tries>60){clearInterval(t);}},200);}'
+            'function googleTranslateElementInit(){'
+            'new google.translate.TranslateElement({pageLanguage:"en",autoDisplay:false},"google_translate_element");'
+            'if(_pendingLang&&_pendingLang!=="en"){setTimeout(function(){_doTranslate(_pendingLang);},800);}}'
+            'window.addEventListener("message",function(e){'
+            'if(e&&e.data&&e.data.type==="translate"){_doTranslate(e.data.lang);}});'
             '</script>'
             '<script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>'
         )
@@ -354,8 +365,10 @@ def build_viewer_html(pages, labels, title, translate_button, translate_css, tra
             p.replace('</body>', _inject + '</body>') if '</body>' in p else p + _inject
             for p in pages
         ]
-    pages_json  = json.dumps(pages, ensure_ascii=False).replace('</script>', r'<\/script>').replace('</style>', r'<\/style>')
-    labels_json = json.dumps(labels, ensure_ascii=False)
+    gradients     = [extract_hero_gradient(p) for p in pages]
+    gradients_json = json.dumps(gradients, ensure_ascii=False)
+    pages_json    = json.dumps(pages, ensure_ascii=False).replace('</script>', r'<\/script>').replace('</style>', r'<\/style>')
+    labels_json   = json.dumps(labels, ensure_ascii=False)
 
     translate_script_tag = ""
 
@@ -413,7 +426,7 @@ def build_viewer_html(pages, labels, title, translate_button, translate_css, tra
 }}
 *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
 html{{height:100%;-webkit-font-smoothing:antialiased}}
-body{{height:100dvh;font-family:var(--font-body);font-size:var(--text-sm);color:var(--color-text);background:var(--color-bg);display:flex;flex-direction:column;overflow:hidden;user-select:none}}
+body{{height:100dvh;font-family:var(--font-body);font-size:var(--text-sm);color:var(--color-text);background:var(--color-bg);display:flex;flex-direction:column;overflow:hidden;user-select:none;padding-bottom:env(safe-area-inset-bottom,0px)}}
 /* ── Top Bar ── */
 .topbar{{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-4);background:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-sm);z-index:100;flex-shrink:0;height:48px}}
 .logo{{display:flex;align-items:center;gap:var(--space-2);color:var(--color-primary);font-weight:600;font-size:var(--text-sm);letter-spacing:-0.01em;flex-shrink:0}}
@@ -439,10 +452,9 @@ body{{height:100dvh;font-family:var(--font-body);font-size:var(--text-sm);color:
 .thumb.active{{border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-highlight)}}
 .thumb-label{{font-size:9px;font-family:var(--font-mono);color:var(--color-text-muted);padding:2px 4px;background:var(--color-surface);border-top:1px solid var(--color-border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;margin-top:auto}}
 .thumb-num{{position:absolute;top:3px;left:4px;font-size:9px;font-family:var(--font-mono);font-weight:600;color:var(--color-text-faint)}}
-.thumb-preview{{flex:1;background:var(--color-surface-2);display:flex;align-items:center;justify-content:center}}
-.thumb-preview svg{{opacity:.3}}
+.thumb-preview{{flex:1;overflow:hidden;border-radius:var(--radius-sm) var(--radius-sm) 0 0}}
 /* ── Viewport ── */
-.viewport{{flex:1;overflow:hidden;position:relative}}
+.viewport{{flex:1;overflow:hidden;position:relative;min-height:0}}
 .slides-track{{display:flex;height:100%;width:100%;transition:transform 380ms cubic-bezier(0.16,1,0.3,1);will-change:transform}}
 .slide{{flex-shrink:0;width:100%;height:100%;position:relative}}
 .slide iframe{{width:100%;height:100%;border:none;display:block;background:white}}
@@ -538,8 +550,9 @@ body{{height:100dvh;font-family:var(--font-body);font-size:var(--text-sm);color:
 {translate_script_tag}
 
 <script>
-const PAGES  = {pages_json};
-const LABELS = {labels_json};
+const PAGES     = {pages_json};
+const LABELS    = {labels_json};
+const GRADIENTS = {gradients_json};
 let current = 0;
 const track       = document.getElementById('track');
 const strip       = document.getElementById('strip');
@@ -580,8 +593,7 @@ function init() {{
     thumb.setAttribute('tabindex', '0');
     thumb.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + LABELS[i]);
     thumb.innerHTML = `<span class="thumb-num">${{i + 1}}</span>
-      <div class="thumb-preview"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="3"/></svg></div>
+      <div class="thumb-preview" style="background:${{GRADIENTS[i]}}"></div>
       <div class="thumb-label">${{LABELS[i]}}</div>`;
     thumb.addEventListener('click', () => goTo(i));
     thumb.addEventListener('keydown', e => {{ if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); goTo(i); }} }});
@@ -605,6 +617,13 @@ function goTo(index, animate = true) {{
   btnNext.disabled = current === PAGES.length - 1;
   curPageEl.textContent  = current + 1;
   pageTitleEl.textContent = LABELS[current];
+  // Re-apply active translation to this slide
+  if (typeof currentLang !== 'undefined' && currentLang !== 'en') {{
+    var _tf = track.querySelectorAll('.slide iframe')[index];
+    if (_tf) setTimeout(function() {{
+      try {{ _tf.contentWindow.postMessage({{type:'translate',lang:currentLang}},'*'); }} catch(ex) {{}}
+    }}, 400);
+  }}
 }}
 
 function loadSlide(index) {{
@@ -621,7 +640,7 @@ function loadSlide(index) {{
   }}
 }}
 
-// Hide loader when page signals DOMContentLoaded via postMessage
+// Hide loader and re-apply active language when a page signals DOMContentLoaded
 window.addEventListener('message', function(e) {{
   if (!e.data || e.data.type !== 'page-ready') return;
   document.querySelectorAll('.slide iframe').forEach(function(f) {{
@@ -629,6 +648,12 @@ window.addEventListener('message', function(e) {{
       if (f.contentWindow === e.source) {{
         var loader = f.parentElement.querySelector('.slide-loader');
         if (loader) loader.classList.add('hidden');
+        if (typeof currentLang !== 'undefined' && currentLang !== 'en') {{
+          var _pf = f;
+          setTimeout(function() {{
+            try {{ _pf.contentWindow.postMessage({{type:'translate',lang:currentLang}},'*'); }} catch(ex) {{}}
+          }}, 600);
+        }}
       }}
     }} catch(err) {{}}
   }});
