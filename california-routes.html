@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Road Trip · San Francisco → Los Angeles · July 2026</title>
+  <style>
+    :root {
+      --pacific: #0B4F6C;
+      --coastal: #1B7A9E;
+      --sunset: #C05621;
+      --golden: #B7730A;
+      --redwood: #3A6B4A;
+      --cream: #FDFBF7;
+      --sand: #F5E6D3;
+      --dark: #1A202C;
+      --mid: #4A5568;
+      --border: #C8D8EA;
+      --snow: #F0F7FF;
+      --amber: #92400E;
+      --green: #1F6B2A;
+      --red: #C0392B;
+      --gold: #D69E2E;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: var(--cream); color: var(--dark); }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 16px 48px; }
+    a { color: var(--pacific); text-decoration: none; }
+
+    /* HERO */
+    .hero { padding: 60px 24px 80px; text-align: center; color: white; position: relative;
+            background: linear-gradient(135deg, #0B4F6C 0%, #1B7A9E 40%, #C05621 80%, #B7730A 100%); }
+    .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 48px;
+                   background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+    .hero-sup { font-family: sans-serif; font-size: .78rem; text-transform: uppercase;
+                letter-spacing: 2px; opacity: .8; margin-bottom: 10px; }
+    .hero h1 { font-family: Georgia, serif; font-size: 3.2rem; text-shadow: 0 2px 16px rgba(0,0,0,.4);
+               letter-spacing: 1px; margin: 0 0 10px; }
+    .hero-sub { font-family: sans-serif; font-size: 1.05rem; opacity: .9; margin-bottom: 4px; }
+    .hero-dates { font-family: sans-serif; font-size: .9rem; opacity: .8; margin-bottom: 16px; }
+    .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .hchip { font-family: sans-serif; font-size: .76rem; background: rgba(255,255,255,.15);
+             border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 5px 14px; }
+
+    /* STATS STRIP */
+    .stats-strip { display: flex; background: white; border: 1px solid var(--border);
+                   border-radius: 12px; overflow: hidden; margin: 32px 0 28px; }
+    .stat-item { flex: 1; text-align: center; padding: 18px 10px; border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-val { font-family: Georgia, serif; font-size: 1.5rem; color: var(--pacific); display: block; }
+    .stat-lbl { font-family: sans-serif; font-size: .62rem; text-transform: uppercase;
+                letter-spacing: .8px; color: var(--mid); margin-top: 3px; display: block; }
+
+    /* CONFIRM NOTE */
+    .confirm-note { background: linear-gradient(135deg, #F0FFF4, #EBF8FF); border: 2px solid #68D391;
+                    border-radius: 12px; padding: 18px 22px; margin-bottom: 32px;
+                    font-family: sans-serif; font-size: .87rem; color: var(--dark); line-height: 1.8; }
+    .confirm-note strong { color: var(--green); font-size: .95rem; }
+
+    /* SECTION TITLE */
+    .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase;
+                     letter-spacing: 1.2px; color: var(--mid); font-weight: 700;
+                     margin: 36px 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+
+    /* SEGMENT CARDS */
+    .seg-cards { display: flex; flex-direction: column; gap: 20px; margin-bottom: 12px; }
+    .seg-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+                box-shadow: 0 2px 14px rgba(0,0,0,.07); }
+    .seg-card-hd { padding: 18px 20px; color: white; display: flex; align-items: flex-start; gap: 16px; }
+    .seg-icon { font-size: 2.0rem; flex-shrink: 0; line-height: 1; }
+    .seg-hd-main { flex: 1; }
+    .seg-title { font-family: Georgia, serif; font-size: 1.5rem; text-shadow: 0 1px 6px rgba(0,0,0,.3); }
+    .seg-dates { font-family: sans-serif; font-size: .8rem; opacity: .9; margin-top: 4px; }
+    .seg-badge { font-family: sans-serif; font-size: .7rem; font-weight: 700; padding: 4px 10px;
+                 border-radius: 20px; flex-shrink: 0; align-self: flex-start; margin-top: 4px; }
+    .seg-badge.booked { background: rgba(255,255,255,.92); color: var(--green); }
+    .seg-badge.pending { background: rgba(255,255,255,.92); color: var(--amber); }
+    .seg-card-body { background: white; padding: 16px 20px; }
+    .seg-hotel { font-family: sans-serif; font-size: .82rem; color: var(--mid); margin-bottom: 12px;
+                 border-bottom: 1px solid var(--border); padding-bottom: 10px; line-height: 1.6; }
+    .seg-hotel strong { color: var(--dark); }
+    .seg-stops { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
+    .seg-stop { font-family: sans-serif; font-size: .73rem; background: var(--snow);
+                border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; color: var(--dark); }
+    .seg-stop.ok { background: #C6F6D5; border-color: #68D391; color: #276749; font-weight: 600; }
+    .seg-stop.warn { background: #FEF3C7; border-color: #F6AD55; color: var(--amber); font-weight: 600; }
+    .seg-drive { font-family: sans-serif; font-size: .76rem; color: var(--mid); font-style: italic; }
+
+    /* DRIVE TABLE */
+    .drive-table-wrap { overflow-x: auto; margin: 14px 0 0; }
+    .drive-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: .79rem; }
+    .drive-table th { background: var(--pacific); color: white; padding: 9px 12px;
+                      text-align: left; font-size: .66rem; text-transform: uppercase; letter-spacing: .6px; }
+    .drive-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--dark); vertical-align: middle; }
+    .drive-table tr:nth-child(even) td { background: var(--snow); }
+    .drive-table tr td:nth-child(3) { font-weight: 700; color: var(--pacific); }
+    .seg-divider td { background: var(--sand) !important; font-family: sans-serif; font-size: .67rem;
+                      text-transform: uppercase; letter-spacing: .8px; color: var(--mid); font-weight: 700; }
+
+    /* ALERTS */
+    .alerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                   gap: 14px; margin: 14px 0; }
+    .ac { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); border-left-width: 4px; }
+    .ac.red { background: #FEF2F2; border-left-color: var(--red); }
+    .ac.amb { background: #FFFBEB; border-left-color: #D97706; }
+    .ac.grn { background: #F0FFF4; border-left-color: var(--green); }
+    .ac-icon { font-size: 1.2rem; margin-bottom: 6px; }
+    .ac-title { font-family: sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase;
+                letter-spacing: .5px; color: var(--dark); margin-bottom: 4px; }
+    .ac-text { font-family: sans-serif; font-size: .8rem; color: var(--mid); line-height: 1.55; }
+
+    /* FOOTER */
+    .footer { background: var(--pacific); color: rgba(255,255,255,.6); text-align: center;
+              font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
+    .footer strong { color: white; }
+
+    @media (max-width: 620px) {
+      .hero h1 { font-size: 2.2rem; }
+      .stats-strip { flex-wrap: wrap; }
+      .stat-item { min-width: 45%; border-bottom: 1px solid var(--border); }
+      .seg-card-hd { flex-direction: column; gap: 8px; }
+      .alerts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-sup">Family Road Trip · July 2026</div>
+    <h1>California</h1>
+    <div class="hero-sub">San Francisco → Big Sur → Santa Barbara → San Diego → Los Angeles</div>
+    <div class="hero-dates">July 2–12, 2026 · Family of 4 · Marina, Adam, Vadim &amp; Liam</div>
+    <div class="hero-chips">
+      <span class="hchip">10 days</span>
+      <span class="hchip">~900 miles</span>
+      <span class="hchip">5 hotels</span>
+      <span class="hchip">PCH southbound</span>
+      <span class="hchip">Depart LAX Jul 12</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Trip Stats -->
+    <div class="stats-strip">
+      <div class="stat-item"><span class="stat-val">10</span><span class="stat-lbl">Days</span></div>
+      <div class="stat-item"><span class="stat-val">~900</span><span class="stat-lbl">Miles</span></div>
+      <div class="stat-item"><span class="stat-val">5</span><span class="stat-lbl">Hotels</span></div>
+      <div class="stat-item"><span class="stat-val">3</span><span class="stat-lbl">Pre-Booked Activities</span></div>
+      <div class="stat-item"><span class="stat-val">Jul 2–12</span><span class="stat-lbl">Dates</span></div>
+    </div>
+
+    <!-- Confirmed Reservations -->
+    <div class="confirm-note">
+      <strong>✅ CONFIRMED RESERVATIONS:</strong><br>
+      🏨 Hyatt Regency SF (Jul 2–5) · Conf. 40023B19345813 &nbsp;·&nbsp;
+      🏨 Castle Inn Cambria (Jul 5–6) · Booking.com Conf. 6459555758 &nbsp;·&nbsp;
+      🏨 Beachside Inn Santa Barbara (Jul 6–7) · Conf. 1075827673 &nbsp;·&nbsp;
+      🏨 Best Western Plus Coronado (Jul 7–8) · Conf. 6459555758<br>
+      🏝️ Alcatraz Ferry (Jul 3 · 9:20 AM) · Conf. i77487162 &nbsp;·&nbsp;
+      🌲 Muir Woods parking (Jul 3 · 4:00–4:30 PM) &nbsp;·&nbsp;
+      🍷 Sterling Vineyards (Jul 4 · 10:45 AM) · TOCK-R-AE87DB44
+    </div>
+
+    <!-- Segment Cards -->
+    <div class="section-title">5 Segments — Hotels &amp; Key Stops</div>
+    <div class="seg-cards">
+
+      <!-- Segment 1: San Francisco -->
+      <div class="seg-card">
+        <div class="seg-card-hd" style="background: linear-gradient(160deg, #0B4F6C, #1B7A9E, #3A6B4A);">
+          <div class="seg-icon">🌉</div>
+          <div class="seg-hd-main">
+            <div class="seg-title">San Francisco</div>
+            <div class="seg-dates">July 2–5, 2026 · 3 Nights · Days 1–3</div>
+          </div>
+          <span class="seg-badge booked">✅ Booked</span>
+        </div>
+        <div class="seg-card-body">
+          <div class="seg-hotel">
+            <strong>Hyatt Regency San Francisco</strong> · 50 Third St, Union Square, SF, CA 94103 · Conf. 40023B19345813<br>
+            Check-in: Jul 2 3:00 PM · Check-out: Jul 5 12:00 PM · $157.46 + $184.92 + $184.92 = $527.30 + taxes · <strong style="color:var(--red);">NON-REFUNDABLE</strong>
+          </div>
+          <div class="seg-stops">
+            <span class="seg-stop">Jul 2 · Chinatown · Palace of Fine Arts · Cable Car ($24)</span>
+            <span class="seg-stop">Jul 2 · Lombard St · Painted Ladies · Twin Peaks SUNSET</span>
+            <span class="seg-stop ok">✅ Jul 3 · Alcatraz 9:20 AM · Conf. i77487162</span>
+            <span class="seg-stop ok">✅ Jul 3 · Fort Point NHS · Muir Woods 4:00 PM</span>
+            <span class="seg-stop ok">✅ Jul 4 🎂 · Sterling Vineyards 10:45 AM · TOCK-R-AE87DB44</span>
+            <span class="seg-stop">Jul 4 · Bouchon Bakery + Napa Oxbow</span>
+            <span class="seg-stop warn">⚠️ Jul 4 · Scoma's Birthday Dinner · NOT BOOKED — URGENT</span>
+          </div>
+          <div class="seg-drive">~4h 45m total driving · Day 2: 3h 46m · Day 3: ~3h 39m</div>
+        </div>
+      </div>
+
+      <!-- Segment 2: Big Sur -->
+      <div class="seg-card">
+        <div class="seg-card-hd" style="background: linear-gradient(160deg, #1A3D2B, #3A6B4A, #6B4226);">
+          <div class="seg-icon">🌊</div>
+          <div class="seg-hd-main">
+            <div class="seg-title">Big Sur → Cambria</div>
+            <div class="seg-dates">July 5, 2026 · 1 Night · Day 4</div>
+          </div>
+          <span class="seg-badge booked">✅ Booked</span>
+        </div>
+        <div class="seg-card-body">
+          <div class="seg-hotel">
+            <strong>Castle Inn</strong> · 6620 Moonstone Beach Dr, Cambria, CA 93428 · +1 805-927-8605<br>
+            Booking.com · Conf. 6459555758 · PIN: 8199 · Check-in Jul 5 3:00–9:00 PM · Check-out Jul 6 7:30–11:00 AM · $274.50 PREPAID · Breakfast included
+          </div>
+          <div class="seg-stops">
+            <span class="seg-stop">17-Mile Drive · $12.25/vehicle · Pacific Grove Gate</span>
+            <span class="seg-stop">Carmel-by-the-Sea · Free · Ocean Ave</span>
+            <span class="seg-stop warn">⚠️ Point Lobos · $10/vehicle · NOT BOOKED — reservecalifornia.com</span>
+            <span class="seg-stop">Bixby Creek Bridge · Free · North turnout</span>
+            <span class="seg-stop">Hurricane Point · Free · 1 min from Bixby</span>
+            <span class="seg-stop">Pfeiffer Beach · $12/vehicle cash · Purple sand</span>
+            <span class="seg-stop">McWay Falls · $12/vehicle · 80-ft waterfall onto beach</span>
+            <span class="seg-stop">Secret Swing/Plasket Ridge · Optional · 4WD confirmed</span>
+            <span class="seg-stop">Elephant Seals Vista Point · Free · Piedras Blancas</span>
+          </div>
+          <div class="seg-drive">~4h 36m driving · Depart SF 7:00 AM · Arrive Cambria ~6:21 PM</div>
+        </div>
+      </div>
+
+      <!-- Segment 3: Central Coast / Santa Barbara -->
+      <div class="seg-card">
+        <div class="seg-card-hd" style="background: linear-gradient(160deg, #5C3A1E, #B7730A, #C05621);">
+          <div class="seg-icon">🏛️</div>
+          <div class="seg-hd-main">
+            <div class="seg-title">Central Coast · Santa Barbara</div>
+            <div class="seg-dates">July 6, 2026 · 1 Night · Day 5</div>
+          </div>
+          <span class="seg-badge booked">✅ Booked</span>
+        </div>
+        <div class="seg-card-body">
+          <div class="seg-hotel">
+            <strong>Beachside Inn</strong> · 336 W Cabrillo Blvd, Santa Barbara, CA 93101 · (805) 965-6556<br>
+            Conf. 1075827673 · Check-in Jul 6 after 4:00 PM · Check-out Jul 7 before 12:00 PM · $274.07 · Breakfast + free parking + wine &amp; cheese happy hour nightly
+          </div>
+          <div class="seg-stops">
+            <span class="seg-stop warn">⚠️ Hearst Castle · ~$30/adult · NOT BOOKED — hearstcastle.org · 9:30 AM slot</span>
+            <span class="seg-stop">Solvang · Ostrichland USA · Windmill · Aebleskivers</span>
+            <span class="seg-stop">Old Mission Santa Barbara · $10/adult · 1786</span>
+            <span class="seg-stop">El Presidio State Historic Park · FREE</span>
+            <span class="seg-stop">Santa Barbara County Courthouse · FREE · Clock tower panorama</span>
+            <span class="seg-stop">State Street + Stearns Wharf · Free</span>
+            <span class="seg-stop">Santa Barbara Fish Market · 117 Harbor Way · Fresh uni, crab</span>
+            <span class="seg-stop">Funk Zone dinner (near train station)</span>
+          </div>
+          <div class="seg-drive">~3h 54m driving · Depart Cambria 8:45 AM · Arrive Santa Barbara ~3:15 PM</div>
+        </div>
+      </div>
+
+      <!-- Segment 4: San Diego / Coronado -->
+      <div class="seg-card">
+        <div class="seg-card-hd" style="background: linear-gradient(160deg, #0B4F6C, #1B7A9E, #0D6B7A);">
+          <div class="seg-icon">🏖️</div>
+          <div class="seg-hd-main">
+            <div class="seg-title">San Diego · Coronado Island</div>
+            <div class="seg-dates">July 7, 2026 · 1 Night · Day 6</div>
+          </div>
+          <span class="seg-badge booked">✅ Booked</span>
+        </div>
+        <div class="seg-card-body">
+          <div class="seg-hotel">
+            <strong>Best Western Plus Suites Hotel Coronado Island</strong> · 275 Orange Ave, Coronado, CA 92118 · +1 619-437-1666<br>
+            Booking.com · Conf. 6459555758 · PIN: 8199 · Check-in Jul 7 3:00 PM · Check-out Jul 8 12:00 PM · $307.12 PAID · Grab-and-go breakfast ·
+            <strong style="color:var(--red);">⚠️ Pool &amp; hot tub CLOSED until December</strong>
+          </div>
+          <div class="seg-stops">
+            <span class="seg-stop">El Matador Beach, Malibu · $8–12/vehicle · Arrive before 10 AM</span>
+            <span class="seg-stop">Newport Beach · Balboa Island · Balboa Bar</span>
+            <span class="seg-stop">Laguna Beach · Heisler Park · Main Beach</span>
+            <span class="seg-stop">Coronado Beach · Hotel del Coronado (1888)</span>
+            <span class="seg-stop">Little Italy San Diego (dinner) · 5 min via bridge</span>
+          </div>
+          <div class="seg-drive">~4h 32m driving · Depart Santa Barbara 8:00 AM · Arrive Coronado ~6:00 PM</div>
+        </div>
+      </div>
+
+      <!-- Segment 5: Los Angeles -->
+      <div class="seg-card">
+        <div class="seg-card-hd" style="background: linear-gradient(160deg, #3D1F00, #C05621, #B7730A);">
+          <div class="seg-icon">🎬</div>
+          <div class="seg-hd-main">
+            <div class="seg-title">Los Angeles</div>
+            <div class="seg-dates">July 8–12, 2026 · 3 Nights · Days 7–10 + Departure Jul 12</div>
+          </div>
+          <span class="seg-badge pending">⚠️ Hotel TBD</span>
+        </div>
+        <div class="seg-card-body">
+          <div class="seg-hotel" style="color:var(--amber);">
+            <strong style="color:var(--dark);">Hotel: NOT YET BOOKED</strong> — Mom researching budget options · Neighborhoods: Culver City / Hollywood / Downtown / Koreatown<br>
+            Avoid: Beverly Hills, Santa Monica, West Hollywood (too expensive for 3 nights)
+          </div>
+          <div class="seg-stops">
+            <span class="seg-stop">Jul 8 · Arrival from Coronado · 2h 31m · I-5 N → I-405 N</span>
+            <span class="seg-stop">Jul 9 · Beverly Hills · Rodeo Drive</span>
+            <span class="seg-stop">Jul 9 · Hollywood Walk of Fame · Chinese Theatre</span>
+            <span class="seg-stop">Jul 9 · Walt Disney Concert Hall · Free exterior</span>
+            <span class="seg-stop">Jul 10 · Griffith Observatory · Free admission</span>
+            <span class="seg-stop">Jul 10 · Santa Monica Pier · Venice Boardwalk · Abbot Kinney</span>
+            <span class="seg-stop ok">✅ Jul 11 · Santa Monica Farmers Market 8 AM–1 PM</span>
+            <span class="seg-stop warn">⚠️ Getty Center · NOT BOOKED · getty.edu · Free admission</span>
+            <span class="seg-stop warn">⚠️ Final dinner Jul 11 · NOT BOOKED</span>
+            <span class="seg-stop">Jul 12 · In-N-Out LAX (9149 S Sepulveda) · Animal Style</span>
+          </div>
+          <div class="seg-drive">Arrive from Coronado 2h 31m Jul 8 · Depart AA 3319 12:17 PM Jul 12</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drive Times Summary Table -->
+    <div class="section-title">Complete Verified Drive Times — All Routes API</div>
+    <div class="drive-table-wrap">
+      <table class="drive-table">
+        <thead>
+          <tr>
+            <th>Leg</th>
+            <th>Day &amp; Departure Time</th>
+            <th>Verified Time</th>
+            <th>Miles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="seg-divider"><td colspan="4">SAN FRANCISCO — Days 2 &amp; 3</td></tr>
+          <tr><td>Pier 33 → Fort Point NHS</td><td>Jul 3 Fri ~noon</td><td>17 min</td><td>4.4</td></tr>
+          <tr><td>Fort Point → UC Berkeley</td><td>Jul 3 Fri ~1:15 PM</td><td>48 min</td><td>29.9</td></tr>
+          <tr><td>UC Berkeley → Muir Woods</td><td>Jul 3 Fri ~3:30 PM</td><td>65 min</td><td>28.2</td></tr>
+          <tr><td>Muir Woods → Hyatt SF</td><td>Jul 3 Fri ~7:00 PM</td><td>56 min</td><td>18.7</td></tr>
+          <tr><td>Hyatt SF → Bouchon Bakery, Yountville</td><td>Jul 4 Sat 8:00 AM</td><td>61 min</td><td>54.5</td></tr>
+          <tr><td>Yountville → Sterling Vineyards, Calistoga</td><td>Jul 4 Sat ~9:46 AM</td><td>26 min</td><td>17.0</td></tr>
+          <tr><td>Sterling → Napa Oxbow Public Market</td><td>Jul 4 Sat ~noon</td><td>38 min</td><td>27.5</td></tr>
+          <tr><td>Napa → Hyatt SF</td><td>Jul 4 Sat PM (heavy)</td><td>~74 min</td><td>46.3</td></tr>
+          <tr class="seg-divider"><td colspan="4">BIG SUR — Day 4 · Depart SF 7:00 AM</td></tr>
+          <tr><td>Hyatt SF → 17-Mile Drive (Pacific Grove Gate)</td><td>Jul 5 Sun 7:00 AM</td><td>1h 53m</td><td>123.9</td></tr>
+          <tr><td>17-Mile Drive (Carmel Gate) → Carmel</td><td>Jul 5 Sun</td><td>3 min</td><td>0.5</td></tr>
+          <tr><td>Carmel → Point Lobos</td><td>Jul 5 Sun ~11 AM</td><td>13 min</td><td>4.3</td></tr>
+          <tr><td>Point Lobos → Bixby Creek Bridge</td><td>Jul 5 Sun ~12:15 PM</td><td>19 min</td><td>11.2</td></tr>
+          <tr><td>Bixby Bridge → Hurricane Point</td><td>Jul 5 Sun ~1 PM</td><td>1 min</td><td>0.7</td></tr>
+          <tr><td>Hurricane Point → Pfeiffer Beach</td><td>Jul 5 Sun ~1:30 PM</td><td>33 min</td><td>15.3</td></tr>
+          <tr><td>Pfeiffer Beach → McWay Falls</td><td>Jul 5 Sun ~2:30 PM</td><td>25 min</td><td>11.9</td></tr>
+          <tr><td>McWay Falls → Elephant Seals (Piedras Blancas)</td><td>Jul 5 Sun ~3:30 PM</td><td>1h 17m</td><td>57.3</td></tr>
+          <tr><td>Elephant Seals → Castle Inn, Cambria</td><td>Jul 5 Sun ~6:00 PM</td><td>25 min</td><td>20.0</td></tr>
+          <tr class="seg-divider"><td colspan="4">CENTRAL COAST — Day 5 · Depart Cambria 8:45 AM</td></tr>
+          <tr><td>Cambria → Hearst Castle, San Simeon</td><td>Jul 6 Mon ~8:45 AM</td><td>15 min</td><td>9.6</td></tr>
+          <tr><td>Hearst Castle → Solvang</td><td>Jul 6 Mon ~noon</td><td>1h 54m</td><td>108.1</td></tr>
+          <tr><td>Solvang → Santa Barbara</td><td>Jul 6 Mon ~2:30 PM</td><td>45 min</td><td>33.3</td></tr>
+          <tr class="seg-divider"><td colspan="4">SAN DIEGO — Day 6 · Depart Santa Barbara 8:00 AM</td></tr>
+          <tr><td>Santa Barbara → El Matador Beach, Malibu</td><td>Jul 7 Tue 8:00 AM</td><td>1h 5m</td><td>60.7</td></tr>
+          <tr><td>El Matador Beach → Newport Beach/Balboa Island</td><td>Jul 7 Tue ~10:30 AM</td><td>1h 40m</td><td>76.7</td></tr>
+          <tr><td>Newport Beach → Laguna Beach</td><td>Jul 7 Tue ~12:15 PM</td><td>23 min</td><td>10.7</td></tr>
+          <tr><td>Laguna Beach → San Diego/Coronado</td><td>Jul 7 Tue ~1:30 PM</td><td>1h 24m</td><td>79.3</td></tr>
+          <tr class="seg-divider"><td colspan="4">LOS ANGELES — Day 7 · Depart Coronado ~noon</td></tr>
+          <tr><td>Coronado → Los Angeles (Beverly Hills)</td><td>Jul 8 Wed ~noon</td><td>2h 31m</td><td>139.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- All Gaps -->
+    <div class="section-title">All Gaps — Pending Actions Required</div>
+    <div class="alerts-grid">
+      <div class="ac red">
+        <div class="ac-icon">🔴</div>
+        <div class="ac-title">Scoma's Birthday Dinner — Book Immediately</div>
+        <div class="ac-text">Jul 4 evening · Pier 47, Al Scoma Way, SF · OpenTable or call (415) 771-4383 · Saturday 12:00 PM–10:00 PM (call to confirm Jul 4 hours) · July 4 at Fisherman's Wharf fills completely · ~$250–350 family of 4</div>
+      </div>
+      <div class="ac red">
+        <div class="ac-icon">🔴</div>
+        <div class="ac-title">LA Hotel — 3 Nights Unbooked</div>
+        <div class="ac-text">Jul 8–11 · Not yet booked · Mom researching: Culver City, Hollywood, Downtown, Koreatown · Avoid Beverly Hills / Santa Monica / WeHo (too expensive)</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Point Lobos State Reserve (Jul 5)</div>
+        <div class="ac-text">reservecalifornia.com · $10/vehicle · China Cove Bird Island Trail 1 mi · Sea lions, otters, seals · Fills on summer weekends — book now</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Hearst Castle Tour (Jul 6)</div>
+        <div class="ac-text">hearstcastle.org · First slot 9:30–10:00 AM · Grand Rooms Tour 1.5–2 hrs including shuttle · ~$30/adult · Book a slot immediately</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Getty Center Timed Entry (Jul 10–11)</div>
+        <div class="ac-text">getty.edu · Free admission · Timed entry required — book in advance · Hilltop campus · City views · World-class collection</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">LA Final Dinner (Jul 11) — Book 1–2 Weeks Out</div>
+        <div class="ac-text">Options: Nobu Malibu (ocean views), Bestia (Italian, downtown), Republique (French, Hollywood), Craig's (WeHo celebrity) · All require advance reservation</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>California Road Trip · San Francisco → Los Angeles · July 2–12, 2026</strong><br>
+      Marina, Adam, Vadim &amp; Liam · ~900 miles · 5 hotels · All drive times verified via Google Maps Routes API · 2026-06-10
+    </div>
+
+  </div>
+</body>
+</html>

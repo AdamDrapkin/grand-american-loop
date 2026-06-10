@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Coast · Santa Barbara · California Road Trip · July 6, 2026</title>
+  <style>
+    :root {
+      --pacific: #0B4F6C; --coastal: #1B7A9E; --sunset: #C05621; --golden: #B7730A;
+      --redwood: #3A6B4A; --cream: #FDFBF7; --sand: #F5E6D3; --dark: #1A202C;
+      --mid: #4A5568; --border: #C8D8EA; --snow: #F0F7FF; --amber: #92400E;
+      --green: #1F6B2A; --red: #C0392B; --gold: #D69E2E;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: var(--cream); color: var(--dark); }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px 48px; }
+    section { margin: 0 0 8px; }
+    .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--mid); font-weight: 700; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    a { color: var(--golden); }
+
+    .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative; background: linear-gradient(160deg, #5C3A1E, #B7730A, #C05621); }
+    .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+    .hero-sup { font-family: sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: .8; margin-bottom: 8px; }
+    .hero h1 { font-family: Georgia, serif; font-size: 2.8rem; text-shadow: 0 2px 12px rgba(0,0,0,.4); letter-spacing: 1px; margin: 0 0 8px; }
+    .hero-dates { font-family: sans-serif; font-size: 1.0rem; opacity: .9; margin-bottom: 6px; }
+    .hero-base { font-family: sans-serif; font-size: .85rem; opacity: .8; margin-bottom: 16px; }
+    .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .hchip { font-family: sans-serif; font-size: .76rem; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 4px 12px; }
+
+    .booking-banner { background: linear-gradient(135deg, #FFF9F0, #FFFBEB); border: 2px solid #F6AD55; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .bb-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--golden); font-weight: 700; margin-bottom: 12px; }
+    .bb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+    .bb-item { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .bb-item.confirmed { border-left: 3px solid var(--green); }
+    .bb-item.pending { border-left: 3px solid #D97706; background: #FFFBEB; }
+    .bb-name { font-family: sans-serif; font-size: .88rem; font-weight: 700; color: var(--dark); margin: 4px 0 2px; }
+    .bb-detail { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.5; }
+    .badge { font-family: sans-serif; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+    .badge.booked { background: #C6F6D5; color: #276749; border: 1px solid #68D391; }
+    .badge.pending { background: #FEF3C7; color: #92400E; border: 1px solid #F6AD55; }
+
+    .overview-strip { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 24px 0; }
+    .ov-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .ov-card.d5 { background: linear-gradient(135deg, #FFF9F0, #FFF5E6); border-color: var(--golden); }
+    .ov-date { font-family: sans-serif; font-size: .72rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: .5px; }
+    .ov-label { font-family: Georgia, serif; font-size: .95rem; color: var(--dark); margin: 3px 0; }
+    .ov-note { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.4; }
+
+    .day-section { margin-bottom: 40px; }
+    .day-hd { border-radius: 10px 10px 0 0; padding: 16px 20px; color: white; }
+    .day-hd.coast { background: linear-gradient(135deg, #5C3A1E, #B7730A); }
+    .day-hd-label { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: .8px; opacity: .8; }
+    .day-hd-title { font-family: Georgia, serif; font-size: 1.35rem; margin: 4px 0; }
+    .day-hd-sub { font-family: sans-serif; font-size: .82rem; opacity: .85; }
+    .day-body { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; padding: 24px; }
+
+    .time-block { margin-bottom: 22px; }
+    .tb-hd { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; padding-bottom: 8px; margin-bottom: 12px; border-bottom: 2px solid; }
+    .tb-hd.coast { color: var(--golden); border-color: var(--golden); }
+    .tb-list { list-style: none; padding: 0; }
+    .tb-list li { font-family: sans-serif; font-size: .85rem; line-height: 1.65; padding-left: 14px; margin-bottom: 6px; color: var(--dark); }
+    .tb-list li::before { content: '→ '; color: var(--golden); font-weight: 700; margin-left: -14px; }
+    .tb-list li strong { color: var(--golden); }
+    .tb-list li em { color: var(--amber); font-weight: 600; }
+
+    .stop-card { background: var(--snow); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .sc-hd { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .sc-name { font-family: Georgia, serif; font-size: 1.1rem; margin-bottom: 6px; }
+    .sc-name.coast { color: var(--golden); }
+    .sc-stats { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sc-stat { font-family: sans-serif; font-size: .72rem; background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; color: var(--mid); }
+    .sc-stat.booked { background: #C6F6D5; color: #276749; border-color: #68D391; font-weight: 700; }
+    .sc-stat.pending { background: #FEF3C7; color: #92400E; border-color: #F6AD55; font-weight: 700; }
+    .sc-stat.free { background: #EBF8FF; color: #2B6CB0; border-color: #90CDF4; }
+    .sc-body { background: white; padding: 16px; }
+    .sc-notes p { font-family: sans-serif; font-size: .84rem; line-height: 1.65; color: var(--dark); margin-bottom: 8px; }
+    .sc-notes p strong { color: var(--golden); }
+    .sc-tip { font-family: sans-serif; font-size: .8rem; font-style: italic; padding: 10px 14px; border-left: 3px solid var(--golden); background: var(--snow); border-radius: 0 6px 6px 0; margin-top: 8px; color: var(--dark); }
+
+    .map-section { margin: 24px 0; }
+    .map-embed-wrap { border-radius: 10px; overflow: hidden; margin-bottom: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+    .map-caption { font-family: sans-serif; font-size: .78rem; color: var(--mid); margin-bottom: 12px; line-height: 1.4; }
+    .map-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .mab { font-family: sans-serif; font-size: .78rem; font-weight: 600; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
+    .mab.route { background: #1A73E8; color: white; }
+    .mab.gmaps { background: white; color: #1A73E8; border: 1px solid #1A73E8; }
+    .route-strip { display: flex; flex-direction: column; gap: 0; padding: 18px 0; }
+    .rs-node { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; }
+    .rs-badge { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: sans-serif; font-size: .85rem; font-weight: 700; color: white; background: var(--golden); flex-shrink: 0; }
+    .rs-badge.home { background: #2D3748; }
+    .rs-badge.hotel { background: #553C9A; }
+    .rs-info { flex: 1; }
+    .rs-name { font-family: sans-serif; font-size: .9rem; font-weight: 700; color: var(--dark); }
+    .rs-sub { font-family: sans-serif; font-size: .75rem; color: var(--mid); margin-top: 2px; }
+    .rs-leg { display: flex; align-items: center; gap: 12px; padding-left: 46px; margin: 2px 0; }
+    .rs-leg-line { width: 2px; height: 28px; background: var(--border); flex-shrink: 0; }
+    .rs-leg-time { font-family: sans-serif; font-size: .78rem; font-weight: 700; color: var(--golden); }
+    .rs-leg-note { font-family: sans-serif; font-size: .68rem; color: var(--mid); }
+
+    .drive-stat { font-family: sans-serif; font-size: .82rem; color: var(--mid); background: var(--sand); border-radius: 8px; padding: 10px 16px; margin: 16px 0; }
+    .drive-val { font-weight: 700; color: var(--golden); }
+
+    .hc { border: 2px solid #68D391; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+    .hc-hd { background: linear-gradient(135deg, #FFF9F0, #FFFBEB); padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .hc-name { font-family: Georgia, serif; font-size: 1.15rem; color: var(--dark); margin: 6px 0 2px; }
+    .hc-loc { font-family: sans-serif; font-size: .78rem; color: var(--mid); }
+    .hc-body { background: white; padding: 16px; }
+    .hc-row { display: flex; gap: 12px; margin-bottom: 7px; align-items: baseline; }
+    .hc-lbl { font-family: sans-serif; font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--mid); font-weight: 700; min-width: 80px; flex-shrink: 0; }
+    .hc-val { font-family: sans-serif; font-size: .82rem; color: var(--dark); }
+
+    .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+    .fc { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    .fc-hd { background: linear-gradient(135deg, #5C3A1E, #B7730A); padding: 14px 16px; }
+    .fc-name { font-family: Georgia, serif; font-size: 1.0rem; color: white; }
+    .fc-loc { font-family: sans-serif; font-size: .72rem; color: rgba(255,255,255,.8); margin-top: 4px; }
+    .fc-body { background: white; padding: 14px 16px; }
+    .fc-rating { font-family: sans-serif; font-size: .78rem; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+    .fc-order { font-family: sans-serif; font-size: .82rem; color: var(--dark); line-height: 1.5; margin-bottom: 6px; }
+    .fc-order strong { color: var(--golden); }
+    .fc-hours { font-family: sans-serif; font-size: .75rem; color: var(--mid); margin-bottom: 10px; }
+
+    .alerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+    .ac { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); border-left-width: 4px; }
+    .ac.red { background: #FEF2F2; border-left-color: var(--red); }
+    .ac.amb { background: #FFFBEB; border-left-color: #D97706; }
+    .ac.blu { background: #EBF8FF; border-left-color: #2B6CB0; }
+    .ac.grn { background: #F0FFF4; border-left-color: var(--green); }
+    .ac-icon { font-size: 1.2rem; margin-bottom: 6px; }
+    .ac-title { font-family: sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--dark); margin-bottom: 4px; }
+    .ac-text { font-family: sans-serif; font-size: .8rem; color: var(--mid); line-height: 1.55; }
+
+    .si-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+    .si-card { background: var(--snow); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .si-quote { font-family: Georgia, serif; font-size: .85rem; color: var(--dark); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
+    .si-source { font-family: sans-serif; font-size: .7rem; color: var(--golden); font-weight: 600; }
+    .si-location { font-family: sans-serif; font-size: .7rem; color: var(--mid); margin-top: 2px; }
+
+    .footer { background: linear-gradient(135deg, #5C3A1E, #B7730A); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
+    .footer strong { color: white; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.0rem; }
+      .day-hd-title { font-size: 1.1rem; }
+      .alerts-grid, .food-grid, .si-grid { grid-template-columns: 1fr; }
+      .hc-row { flex-direction: column; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-sup">California Road Trip · San Francisco → Los Angeles</div>
+    <h1>Central Coast</h1>
+    <div class="hero-dates">July 6, 2026 · 1 Night · Santa Barbara</div>
+    <div class="hero-base">Overnight: Beachside Inn · 336 W Cabrillo Blvd, Santa Barbara</div>
+    <div class="hero-chips">
+      <span class="hchip">Day 5</span>
+      <span class="hchip">✅ Booked · Conf. 1075827673</span>
+      <span class="hchip">Hearst Castle · Solvang · Santa Barbara</span>
+      <span class="hchip">Depart Cambria 8:45 AM</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- BOOKING BANNER -->
+    <div class="booking-banner">
+      <div class="bb-title">Booking Status — Central Coast / Santa Barbara</div>
+      <div class="bb-grid">
+        <div class="bb-item confirmed">
+          <span class="badge booked">✅ Booked</span>
+          <div class="bb-name">Beachside Inn, Santa Barbara</div>
+          <div class="bb-detail">Conf. 1075827673 · Jul 6–7 · $274.07 · Breakfast + free parking + wine &amp; cheese nightly</div>
+        </div>
+        <div class="bb-item pending">
+          <span class="badge pending">⚠️ Not Yet Booked</span>
+          <div class="bb-name">Hearst Castle Tour</div>
+          <div class="bb-detail">hearstcastle.org · First slot 9:30–10:00 AM · ~$30/adult · Grand Rooms Tour 1.5–2 hrs · Book now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW STRIP -->
+    <div class="overview-strip">
+      <div class="ov-card d5">
+        <div class="ov-date">Mon, Jul 6</div>
+        <div class="ov-label">Day 5 — Hearst Castle · Solvang · Santa Barbara</div>
+        <div class="ov-note">Depart Cambria 8:45 AM · Hearst Castle 9:00 AM ⚠️ · Solvang 1:30 PM · Santa Barbara 3:15 PM · Hotel after 4:00 PM · Wine &amp; cheese happy hour nightly</div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <section>
+      <div class="day-section">
+        <div class="day-hd coast">
+          <div class="day-hd-label">Monday, July 6, 2026</div>
+          <div class="day-hd-title">Hearst Castle · Solvang · Santa Barbara</div>
+          <div class="day-hd-sub">~3h 54m driving total · Depart Cambria 8:45 AM · Arrive Santa Barbara ~3:15 PM</div>
+        </div>
+        <div class="day-body">
+
+          <!-- DAY 5 MAP -->
+          <div class="map-section">
+            <div class="map-embed-wrap">
+              <iframe width="100%" height="360" style="border:0;" loading="lazy" allowfullscreen
+                src="https://www.google.com/maps/embed/v1/directions?key={{GMAPS_KEY}}&origin=6620+Moonstone+Beach+Dr+Cambria+CA&destination=336+W+Cabrillo+Blvd+Santa+Barbara+CA&waypoints=750+Hearst+Castle+Rd+San+Simeon+CA|Solvang+CA&mode=driving">
+              </iframe>
+            </div>
+            <p class="map-caption">Day 5 route: Castle Inn Cambria → Hearst Castle (San Simeon) → Solvang → Beachside Inn Santa Barbara · ~3h 54m driving</p>
+            <div class="route-strip">
+              <div class="rs-node start">
+                <span class="rs-badge home">🏠</span>
+                <div class="rs-info">
+                  <div class="rs-name">Castle Inn, Cambria</div>
+                  <div class="rs-sub">Depart 8:45 AM · Check-out 7:30–11:00 AM</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">15 min · 9.6 mi</div>
+                <div class="rs-leg-note">Routes API · Jul 6 Mon ~8:45 AM</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">1</span>
+                <div class="rs-info">
+                  <div class="rs-name">Hearst Castle</div>
+                  <div class="rs-sub">⚠️ NOT BOOKED · Arrive ~9:00 AM · First tour 9:30–10:00 AM · ~$30/adult · 1.5–2 hrs</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">1h 54m · 108.1 mi</div>
+                <div class="rs-leg-note">Routes API · Jul 6 Mon ~noon</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">2</span>
+                <div class="rs-info">
+                  <div class="rs-name">Solvang</div>
+                  <div class="rs-sub">Arrive ~1:30–2:00 PM · Danish village · Ostrichland + windmill + aebleskivers · 1–1.5 hrs</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">45 min · 33.3 mi</div>
+                <div class="rs-leg-note">Routes API · Jul 6 Mon ~2:30 PM</div>
+              </div>
+              <div class="rs-node overnight">
+                <span class="rs-badge hotel">🏨</span>
+                <div class="rs-info">
+                  <div class="rs-name">Beachside Inn, Santa Barbara</div>
+                  <div class="rs-sub">Arrive ~3:15 PM · Hotel opens at 4:00 PM · Explore SB while waiting · Wine &amp; cheese happy hour every evening</div>
+                </div>
+              </div>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/dir/6620+Moonstone+Beach+Dr+Cambria+CA/750+Hearst+Castle+Rd+San+Simeon+CA/Solvang+CA/336+W+Cabrillo+Blvd+Santa+Barbara+CA" target="_blank" class="mab route">Open Day 5 Route in Google Maps →</a>
+            </div>
+          </div>
+
+          <!-- MORNING: Hearst Castle -->
+          <div class="time-block">
+            <div class="tb-hd coast">Morning — Hearst Castle (Arrive 9:00 AM)</div>
+            <ul class="tb-list">
+              <li>Drive from Cambria: <strong>15 min (9.6 mi)</strong> — verified Routes API, Jul 6 Mon ~8:45 AM. Arrive ~9:00 AM.</li>
+              <li>⚠️ <em>Book at hearstcastle.org before the trip.</em> First tour slot is 9:30–10:00 AM. Without a reservation you may wait for a later slot or miss entry entirely on a Monday in July.</li>
+            </ul>
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name coast">Hearst Castle — La Cuesta Encantada</div>
+                <div class="sc-stats">
+                  <span class="sc-stat pending">⚠️ NOT BOOKED — hearstcastle.org</span>
+                  <span class="sc-stat">750 Hearst Castle Rd, San Simeon, CA</span>
+                  <span class="sc-stat">~$30/adult · ~$15/child</span>
+                  <span class="sc-stat">Grand Rooms Tour · 1.5–2 hrs incl. shuttle</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>William Randolph Hearst's 165-room estate "The Enchanted Hill" — built 1919–1947 on a 1,600-foot hilltop with views 50 miles in every direction. The Neptune Pool (Greco-Roman columns, marble figures, turquoise water, 345,000 gallons) is the most photographed feature. The Assembly Room has a 16th-century ceiling shipped from Europe and installed intact.</p>
+                  <p><strong>Recommended tour: Grand Rooms Tour</strong> — covers the main house (Assembly Room, Refectory/Dining Room, Billiard Room, Theatre, Neptune Pool). Shuttle to the hilltop from the visitor center below. 1.5–2 hours total.</p>
+                </div>
+                <div class="sc-tip">Book at hearstcastle.org. Ticket office opens at the visitor center — arrive by 9:00 AM for the first 9:30 AM tour. Finish ~11:30 AM–12:00 PM and proceed to Solvang.</div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=750+Hearst+Castle+Rd+San+Simeon+CA" target="_blank" class="mab gmaps">📍 Hearst Castle</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MIDDAY: Solvang -->
+          <div class="time-block">
+            <div class="tb-hd coast">Midday — Solvang (Arrive ~1:30 PM)</div>
+            <ul class="tb-list">
+              <li>Drive from Hearst Castle: <strong>1h 54m (108.1 mi)</strong> — verified Routes API, Jul 6 Mon ~noon. Arrive Solvang ~1:30–2:00 PM.</li>
+            </ul>
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name coast">Solvang — The Danish Capital of America</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">Copenhagen Drive + Mission Drive · Main village</span>
+                  <span class="sc-stat">1–1.5 hrs</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>Founded 1911 by Danish immigrants who wanted to preserve their heritage. Today: half-timbered buildings, working windmills, Hans Christian Andersen statues, Danish bakeries, and aebleskiver stands every 50 feet. Genuinely unlike anywhere else in California.</p>
+                  <p><strong>Ostrichland USA</strong> (610 E Hwy 246) — you can feed ostriches and emus from a container of food. The birds are aggressive and the beaks are surprisingly large. Memorable and weird in the best way. 15–20 min, small admission fee.</p>
+                  <p>@a.nj.a.l.i._ (122K, 14,488 views): "Stepped into Solvang, suddenly Denmark"</p>
+                </div>
+                <div class="sc-tip">Olsen's Danish Village Bakery or Solvang Restaurant for aebleskivers (Danish pancake balls with powdered sugar and jam). Paula's Pancake House is also good. Get food to go and walk around the village.</div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Ostrichland+USA+610+E+Hwy+246+Solvang+CA" target="_blank" class="mab gmaps">📍 Ostrichland USA</a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Solvang+CA+Danish+village" target="_blank" class="mab gmaps">📍 Solvang Village</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AFTERNOON: Santa Barbara -->
+          <div class="time-block">
+            <div class="tb-hd coast">Afternoon — Santa Barbara (Arrive ~3:15 PM)</div>
+            <ul class="tb-list">
+              <li>Drive from Solvang: <strong>45 min (33.3 mi)</strong> — verified Routes API, Jul 6 Mon ~2:30 PM. Arrive Santa Barbara ~3:15 PM.</li>
+              <li>⚠️ Hotel check-in opens 4:00 PM — 45 min early arrival. Drop bags at front desk if available, or leave car at hotel and walk to nearby attractions.</li>
+              <li>All Santa Barbara stops below are walkable from the hotel (0.5–1.5 miles). No car needed after arriving.</li>
+            </ul>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name coast">Santa Barbara County Courthouse</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">1100 Anacapa St, Santa Barbara, CA</span>
+                  <span class="sc-stat free">Free</span>
+                  <span class="sc-stat">30–45 min</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>The most stunning courthouse in the United States — 1929 Spanish Colonial Revival architecture with hand-painted Tunisian tile ceilings, sunken gardens, and a clock tower. Take the elevator to the clock tower (El Mirador) for a 360° panoramic view of Santa Barbara, the Pacific, and the Santa Ynez mountains behind. Free. Open during court hours.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Santa+Barbara+County+Courthouse+1100+Anacapa+St" target="_blank" class="mab gmaps">📍 Santa Barbara Courthouse</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name coast">Old Mission Santa Barbara 1786</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">2201 Laguna St, Santa Barbara, CA</span>
+                  <span class="sc-stat">$10/adult</span>
+                  <span class="sc-stat">30–45 min</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>Founded 1786 — the only California mission with twin bell towers. Called "Queen of the Missions." The rose garden, the fountain in the forecourt, and the original church interior are the highlights. Still an active parish. The museum section explains the Chumash history and the Spanish colonial system. Best viewed from the garden across the street for the classic photo.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Old+Mission+Santa+Barbara+2201+Laguna+St" target="_blank" class="mab gmaps">📍 Old Mission Santa Barbara</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name coast">El Presidio State Historic Park</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">123 E Canon Perdido St, Santa Barbara, CA</span>
+                  <span class="sc-stat free">Free</span>
+                  <span class="sc-stat">20–30 min</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>Founded 1782 — one of four Spanish military forts built in Alta California. The original adobe walls and the chapel have been reconstructed on the original site in the heart of downtown. The archaeology of the site is visible through transparent floor panels. Free. Small but historically significant as the nucleus from which Santa Barbara grew.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=El+Presidio+Santa+Barbara+123+E+Canon+Perdido" target="_blank" class="mab gmaps">📍 El Presidio</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AFTERNOON: Stearns Wharf + Beach -->
+          <div class="time-block">
+            <div class="tb-hd coast">Late Afternoon — State Street · Stearns Wharf · Beach</div>
+            <ul class="tb-list">
+              <li><strong>State Street</strong> — the main commercial street, Spanish Colonial architecture, bougainvillea overhanging the sidewalks, wine bars, boutiques, cafes. Walk a few blocks between the Mission and the waterfront.</li>
+              <li><strong>Stearns Wharf</strong> (1872) — California's oldest operating wooden pier. Walk to the end for Channel Islands views on clear days. Sea lions occasionally visible under the pier. Free to walk.</li>
+              <li><strong>Santa Barbara West Beach</strong> — wide, protected, calm water. Swim, sit, watch the harbor. Across the street from the hotel.</li>
+            </ul>
+          </div>
+
+          <!-- EVENING -->
+          <div class="time-block">
+            <div class="tb-hd coast">Evening — Funk Zone Dinner + Hotel Check-In</div>
+            <ul class="tb-list">
+              <li><strong>Hotel check-in at 4:00 PM</strong> — Beachside Inn, 336 W Cabrillo Blvd. Complimentary wine &amp; cheese happy hour every evening upon arrival.</li>
+              <li><strong>Funk Zone</strong> (near the Amtrak station, 5–10 min walk from hotel) — Santa Barbara's hip arts and food neighborhood. Converted industrial buildings housing wine tasting rooms, breweries, restaurants. The SB Wine Collective, Lama Dog Tap Room. Good dinner options with no reservations needed typically on a Monday.</li>
+              <li>Alternatively: State Street restaurant row for a broader selection.</li>
+            </ul>
+          </div>
+
+          <div class="drive-stat">
+            <span class="drive-val">~3h 54m total driving</span> · Depart Cambria 8:45 AM · Arrive Santa Barbara ~3:15 PM · All times Routes API verified with traffic
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOTEL CARD -->
+    <div class="section-title">Overnight — Beachside Inn, Santa Barbara</div>
+    <div class="hc">
+      <div class="hc-hd">
+        <span class="badge booked">✅ Booked</span>
+        <div class="hc-name">Beachside Inn</div>
+        <div class="hc-loc">336 W Cabrillo Blvd, Santa Barbara, CA 93101 · (805) 965-6556</div>
+      </div>
+      <div class="hc-body">
+        <div class="hc-row"><span class="hc-lbl">Conf #</span><span class="hc-val">1075827673 · Ref: 1075827673/3207970001 · Marina Drapkin · marin4ik10@gmail.com</span></div>
+        <div class="hc-row"><span class="hc-lbl">Check-in</span><span class="hc-val">Jul 6 after 4:00 PM</span></div>
+        <div class="hc-row"><span class="hc-lbl">Check-out</span><span class="hc-val">Jul 7 before 12:00 PM noon — depart 8:00 AM for El Matador Beach</span></div>
+        <div class="hc-row"><span class="hc-lbl">Rate</span><span class="hc-val">$240.00 + $34.07 tax = $274.07 · Charged to Visa 9942</span></div>
+        <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2 Queen Beds · Parkside with Balcony · Faces Plaza Del Mar park</span></div>
+        <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast included ✓ · Free self-parking ✓ · Complimentary wine &amp; cheese happy hour every evening ✓ · Air conditioning · Bathtub + shower</span></div>
+        <div class="hc-row"><span class="hc-lbl">Deposit</span><span class="hc-val">$150 incidentals deposit at check-in (credit/debit card only)</span></div>
+        <div class="hc-row"><span class="hc-lbl">Cancel</span><span class="hc-val">Free until Jul 5; after: first night + tax charged</span></div>
+        <div class="hc-row"><span class="hc-lbl">Location</span><span class="hc-val">Cabrillo Blvd · West Beach directly across street · 11 min walk to Stearns Wharf · 11 min walk to Funk Zone</span></div>
+        <div class="map-actions" style="margin-top:10px;">
+          <a href="https://www.google.com/maps/search/?api=1&query=336+W+Cabrillo+Blvd+Santa+Barbara+CA+93101" target="_blank" class="mab gmaps">📍 Beachside Inn on Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOD: Santa Barbara Fish Market -->
+    <div class="section-title">Food &amp; Markets — Central Coast</div>
+    <div class="food-grid">
+      <div class="fc">
+        <div class="fc-hd">
+          <div class="fc-name">Santa Barbara Fish Market ⭐</div>
+          <div class="fc-loc">117 Harbor Way, Santa Barbara, CA 93109 · Day 5 (Jul 6) afternoon or Jul 7 morning</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-rating">Primary Uni Destination · (805) 965-9564 · Mon–Fri 9 AM–6:30 PM · Sat 7:30 AM–6:30 PM</div>
+          <div class="fc-order"><strong>Order:</strong> Fresh Santa Barbara Channel Islands red sea urchin (bright gold, firm, buttery, sweet, briny — local commercial divers bring it to this dock). Live rock crab, oysters, lobster in season. Eat at the harbor — no seats needed, benches along the waterfront.</div>
+          <div class="fc-hours">Est. cost: $60–100 family · @rockstareater (80K, 13,104 views): "Best fish market in Santa Barbara" · @sbshellfishco: "Top uni regions in world"</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=117+Harbor+Way+Santa+Barbara+CA+93109" target="_blank" class="mab gmaps">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-hd">
+          <div class="fc-name">Ostrichland USA</div>
+          <div class="fc-loc">610 E Hwy 246, Solvang, CA · Day 5 Midday</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-rating">Family attraction · Ostrich &amp; emu feeding · 15–20 min · Small admission fee</div>
+          <div class="fc-order"><strong>Experience:</strong> Buy a container of feed at the entrance and extend it toward the ostriches through the fence. The birds are fast and aggressive — they will try to take the whole container. Emus are calmer. Memorable and genuinely unique.</div>
+          <div class="fc-hours">On the drive through Solvang · Right on Hwy 246 (easy stop)</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=610+E+Hwy+246+Solvang+CA" target="_blank" class="mab gmaps">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="section-title">Alerts &amp; Notes</div>
+    <div class="alerts-grid">
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Hearst Castle — Book Now</div>
+        <div class="ac-text">hearstcastle.org · First slot 9:30–10:00 AM · Grand Rooms Tour ~$30/adult, ~$15/child · Without reservation you may wait hours or miss entry. Book immediately — Monday slots can fill.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-icon">ℹ️</div>
+        <div class="ac-title">Hotel Opens 4:00 PM — 30–45 Min Early</div>
+        <div class="ac-text">Arrive Santa Barbara ~3:15 PM. Leave car at hotel, check bags with front desk, walk to the Courthouse clock tower while waiting for room. Ask about early check-in on the day of arrival.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-icon">ℹ️</div>
+        <div class="ac-title">Beachside Inn — Incidentals Deposit</div>
+        <div class="ac-text">$150 incidentals hold at check-in. Credit or debit card required. Released at checkout. Free parking on-site — use it (parking in Santa Barbara can be $3–5/hr on State Street).</div>
+      </div>
+      <div class="ac grn">
+        <div class="ac-icon">✅</div>
+        <div class="ac-title">Day 6 Departure — 8:00 AM</div>
+        <div class="ac-text">Check-out before 12 PM but depart 8:00 AM for El Matador Beach (1h 5m drive). Grab hotel breakfast early, fuel up, and leave by 8:00 AM for Malibu timing.</div>
+      </div>
+    </div>
+
+    <!-- SOCIAL INTEL -->
+    <div class="section-title">Social Intelligence</div>
+    <div class="si-grid">
+      <div class="si-card">
+        <div class="si-quote">"Stepped into Solvang, and suddenly I was in Denmark."</div>
+        <div class="si-source">@a.nj.a.l.i._ · 122K followers · 14,488 views</div>
+        <div class="si-location">Solvang, CA</div>
+      </div>
+      <div class="si-card">
+        <div class="si-quote">Santa Barbara Fish Market — local commercial divers bringing in uni from Channel Islands. "Best fish market in Santa Barbara."</div>
+        <div class="si-source">@rockstareater · 80K followers · 13,104 views</div>
+        <div class="si-location">Santa Barbara Fish Market · 117 Harbor Way</div>
+      </div>
+      <div class="si-card">
+        <div class="si-quote">Santa Barbara Channel Islands — among the top sea urchin regions in the world for quality.</div>
+        <div class="si-source">@sbshellfishco · 8K followers · 5,800 views</div>
+        <div class="si-location">Santa Barbara Channel Islands Uni</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>Central Coast · Santa Barbara · California Road Trip · July 6, 2026</strong><br>
+      Beachside Inn · 336 W Cabrillo Blvd · Day 5 · All times Routes API verified
+    </div>
+
+  </div>
+</body>
+</html>

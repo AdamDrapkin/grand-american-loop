@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Angeles · California Road Trip · July 8–12, 2026</title>
+  <style>
+    :root {
+      --pacific: #0B4F6C; --coastal: #1B7A9E; --sunset: #C05621; --golden: #B7730A;
+      --redwood: #3A6B4A; --cream: #FDFBF7; --sand: #F5E6D3; --dark: #1A202C;
+      --mid: #4A5568; --border: #C8D8EA; --snow: #F0F7FF; --amber: #92400E;
+      --green: #1F6B2A; --red: #C0392B; --gold: #D69E2E;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: var(--cream); color: var(--dark); }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px 48px; }
+    section { margin: 0 0 8px; }
+    .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--mid); font-weight: 700; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    a { color: var(--sunset); }
+
+    .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative; background: linear-gradient(160deg, #3D1F00, #C05621, #B7730A); }
+    .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+    .hero-sup { font-family: sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: .8; margin-bottom: 8px; }
+    .hero h1 { font-family: Georgia, serif; font-size: 2.8rem; text-shadow: 0 2px 12px rgba(0,0,0,.4); letter-spacing: 1px; margin: 0 0 8px; }
+    .hero-dates { font-family: sans-serif; font-size: 1.0rem; opacity: .9; margin-bottom: 6px; }
+    .hero-base { font-family: sans-serif; font-size: .85rem; opacity: .8; margin-bottom: 16px; }
+    .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .hchip { font-family: sans-serif; font-size: .76rem; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 4px 12px; }
+
+    /* TBD Hotel Banner */
+    .tbd-banner { background: linear-gradient(135deg, #FEF3C7, #FFF9F0); border: 2px solid #F6AD55; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .tbd-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); font-weight: 700; margin-bottom: 10px; }
+    .tbd-body { font-family: sans-serif; font-size: .87rem; color: var(--dark); line-height: 1.7; }
+    .tbd-body strong { color: var(--amber); }
+
+    /* Booking items */
+    .booking-banner { background: linear-gradient(135deg, #FFF3E0, #FFF9F0); border: 2px solid #F6AD55; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+    .bb-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); font-weight: 700; margin-bottom: 12px; }
+    .bb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+    .bb-item { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .bb-item.confirmed { border-left: 3px solid var(--green); }
+    .bb-item.pending { border-left: 3px solid #D97706; background: #FFFBEB; }
+    .bb-name { font-family: sans-serif; font-size: .88rem; font-weight: 700; color: var(--dark); margin: 4px 0 2px; }
+    .bb-detail { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.5; }
+    .badge { font-family: sans-serif; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+    .badge.booked { background: #C6F6D5; color: #276749; border: 1px solid #68D391; }
+    .badge.pending { background: #FEF3C7; color: #92400E; border: 1px solid #F6AD55; }
+
+    .overview-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 24px 0; }
+    .ov-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .ov-card.d7 { background: linear-gradient(135deg, #FFF3E0, #FFF9F0); border-color: var(--sunset); }
+    .ov-card.d8 { background: linear-gradient(135deg, #FFF3E0, #FFF0EB); border-color: var(--sunset); }
+    .ov-card.d9 { background: linear-gradient(135deg, #FFF3E0, #FFF9F0); border-color: var(--sunset); }
+    .ov-card.d10 { background: linear-gradient(135deg, #FFF3E0, #FFF5E0); border-color: var(--golden); }
+    .ov-date { font-family: sans-serif; font-size: .72rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: .5px; }
+    .ov-label { font-family: Georgia, serif; font-size: .95rem; color: var(--dark); margin: 3px 0; }
+    .ov-note { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.4; }
+
+    .day-section { margin-bottom: 40px; }
+    .day-hd { border-radius: 10px 10px 0 0; padding: 16px 20px; color: white; }
+    .day-hd.la { background: linear-gradient(135deg, #3D1F00, #C05621); }
+    .day-hd-label { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: .8px; opacity: .8; }
+    .day-hd-title { font-family: Georgia, serif; font-size: 1.35rem; margin: 4px 0; }
+    .day-hd-sub { font-family: sans-serif; font-size: .82rem; opacity: .85; }
+    .day-body { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; padding: 24px; }
+
+    .time-block { margin-bottom: 22px; }
+    .tb-hd { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; padding-bottom: 8px; margin-bottom: 12px; border-bottom: 2px solid; }
+    .tb-hd.la { color: var(--sunset); border-color: var(--sunset); }
+    .tb-list { list-style: none; padding: 0; }
+    .tb-list li { font-family: sans-serif; font-size: .85rem; line-height: 1.65; padding-left: 14px; margin-bottom: 6px; color: var(--dark); }
+    .tb-list li::before { content: '→ '; color: var(--sunset); font-weight: 700; margin-left: -14px; }
+    .tb-list li strong { color: var(--sunset); }
+    .tb-list li em { color: var(--amber); font-weight: 600; }
+
+    .stop-card { background: var(--snow); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .sc-hd { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .sc-name { font-family: Georgia, serif; font-size: 1.1rem; margin-bottom: 6px; }
+    .sc-name.la { color: var(--sunset); }
+    .sc-stats { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sc-stat { font-family: sans-serif; font-size: .72rem; background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; color: var(--mid); }
+    .sc-stat.booked { background: #C6F6D5; color: #276749; border-color: #68D391; font-weight: 700; }
+    .sc-stat.pending { background: #FEF3C7; color: #92400E; border-color: #F6AD55; font-weight: 700; }
+    .sc-stat.free { background: #EBF8FF; color: #2B6CB0; border-color: #90CDF4; }
+    .sc-body { background: white; padding: 16px; }
+    .sc-notes p { font-family: sans-serif; font-size: .84rem; line-height: 1.65; color: var(--dark); margin-bottom: 8px; }
+    .sc-notes p strong { color: var(--sunset); }
+    .sc-tip { font-family: sans-serif; font-size: .8rem; font-style: italic; padding: 10px 14px; border-left: 3px solid var(--sunset); background: var(--snow); border-radius: 0 6px 6px 0; margin-top: 8px; color: var(--dark); }
+
+    .map-section { margin: 24px 0; }
+    .map-embed-wrap { border-radius: 10px; overflow: hidden; margin-bottom: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+    .map-caption { font-family: sans-serif; font-size: .78rem; color: var(--mid); margin-bottom: 12px; line-height: 1.4; }
+    .map-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .mab { font-family: sans-serif; font-size: .78rem; font-weight: 600; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
+    .mab.route { background: #1A73E8; color: white; }
+    .mab.gmaps { background: white; color: #1A73E8; border: 1px solid #1A73E8; }
+    .route-strip { display: flex; flex-direction: column; gap: 0; padding: 18px 0; }
+    .rs-node { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; }
+    .rs-badge { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: sans-serif; font-size: .85rem; font-weight: 700; color: white; background: var(--sunset); flex-shrink: 0; }
+    .rs-badge.home { background: #2D3748; }
+    .rs-badge.hotel { background: #553C9A; }
+    .rs-info { flex: 1; }
+    .rs-name { font-family: sans-serif; font-size: .9rem; font-weight: 700; color: var(--dark); }
+    .rs-sub { font-family: sans-serif; font-size: .75rem; color: var(--mid); margin-top: 2px; }
+    .rs-leg { display: flex; align-items: center; gap: 12px; padding-left: 46px; margin: 2px 0; }
+    .rs-leg-line { width: 2px; height: 28px; background: var(--border); flex-shrink: 0; }
+    .rs-leg-time { font-family: sans-serif; font-size: .78rem; font-weight: 700; color: var(--sunset); }
+    .rs-leg-note { font-family: sans-serif; font-size: .68rem; color: var(--mid); }
+
+    .drive-stat { font-family: sans-serif; font-size: .82rem; color: var(--mid); background: var(--sand); border-radius: 8px; padding: 10px 16px; margin: 16px 0; }
+    .drive-val { font-weight: 700; color: var(--sunset); }
+
+    /* TBD Hotel Card */
+    .hc { border: 2px solid #F6AD55; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+    .hc-hd { background: linear-gradient(135deg, #FEF3C7, #FFF9F0); padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .hc-name { font-family: Georgia, serif; font-size: 1.15rem; color: var(--dark); margin: 6px 0 2px; }
+    .hc-loc { font-family: sans-serif; font-size: .78rem; color: var(--mid); }
+    .hc-body { background: white; padding: 16px; }
+    .hc-row { display: flex; gap: 12px; margin-bottom: 7px; align-items: baseline; }
+    .hc-lbl { font-family: sans-serif; font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--mid); font-weight: 700; min-width: 80px; flex-shrink: 0; }
+    .hc-val { font-family: sans-serif; font-size: .82rem; color: var(--dark); }
+
+    .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+    .fc { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    .fc-hd { background: linear-gradient(135deg, #3D1F00, #C05621); padding: 14px 16px; }
+    .fc-name { font-family: Georgia, serif; font-size: 1.0rem; color: white; }
+    .fc-loc { font-family: sans-serif; font-size: .72rem; color: rgba(255,255,255,.8); margin-top: 4px; }
+    .fc-body { background: white; padding: 14px 16px; }
+    .fc-rating { font-family: sans-serif; font-size: .78rem; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+    .fc-order { font-family: sans-serif; font-size: .82rem; color: var(--dark); line-height: 1.5; margin-bottom: 6px; }
+    .fc-order strong { color: var(--sunset); }
+    .fc-hours { font-family: sans-serif; font-size: .75rem; color: var(--mid); margin-bottom: 10px; }
+
+    .alerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+    .ac { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); border-left-width: 4px; }
+    .ac.red { background: #FEF2F2; border-left-color: var(--red); }
+    .ac.amb { background: #FFFBEB; border-left-color: #D97706; }
+    .ac.blu { background: #EBF8FF; border-left-color: #2B6CB0; }
+    .ac.grn { background: #F0FFF4; border-left-color: var(--green); }
+    .ac-icon { font-size: 1.2rem; margin-bottom: 6px; }
+    .ac-title { font-family: sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--dark); margin-bottom: 4px; }
+    .ac-text { font-family: sans-serif; font-size: .8rem; color: var(--mid); line-height: 1.55; }
+
+    .si-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+    .si-card { background: var(--snow); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .si-quote { font-family: Georgia, serif; font-size: .85rem; color: var(--dark); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
+    .si-source { font-family: sans-serif; font-size: .7rem; color: var(--sunset); font-weight: 600; }
+    .si-location { font-family: sans-serif; font-size: .7rem; color: var(--mid); margin-top: 2px; }
+
+    .departure-card { background: linear-gradient(135deg, #1A202C, #2D3748); border-radius: 12px; padding: 22px 24px; margin: 24px 0; color: white; }
+    .dep-title { font-family: Georgia, serif; font-size: 1.2rem; margin-bottom: 14px; }
+    .dep-row { font-family: sans-serif; font-size: .84rem; margin-bottom: 8px; line-height: 1.5; }
+    .dep-row strong { color: #90CDF4; }
+    .dep-note { font-family: sans-serif; font-size: .78rem; opacity: .8; margin-top: 14px; line-height: 1.6; }
+
+    .footer { background: linear-gradient(135deg, #3D1F00, #C05621); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
+    .footer strong { color: white; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.0rem; }
+      .day-hd-title { font-size: 1.1rem; }
+      .overview-strip { grid-template-columns: 1fr 1fr; }
+      .alerts-grid, .food-grid, .si-grid { grid-template-columns: 1fr; }
+      .hc-row { flex-direction: column; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-sup">California Road Trip · San Francisco → Los Angeles</div>
+    <h1>Los Angeles</h1>
+    <div class="hero-dates">July 8–12, 2026 · 3 Nights · Days 7–10 + Departure</div>
+    <div class="hero-base">Hotel: TBD — Mom researching · Culver City / Hollywood / Downtown / Koreatown</div>
+    <div class="hero-chips">
+      <span class="hchip">Days 7–10</span>
+      <span class="hchip">⚠️ Hotel Not Yet Booked</span>
+      <span class="hchip">Beverly Hills · Hollywood · Griffith · Santa Monica · Venice</span>
+      <span class="hchip">Depart LAX Jul 12 · 12:17 PM</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- TBD HOTEL BANNER -->
+    <div class="tbd-banner">
+      <div class="tbd-title">⚠️ Hotel — Not Yet Booked</div>
+      <div class="tbd-body">
+        <strong>3 nights required: Jul 8–11 (Wed → Sat)</strong><br>
+        Mom is researching budget-conscious options. Candidate neighborhoods:
+        <strong>Culver City</strong> (mid-range, 10 min to Venice Beach, good restaurants),
+        <strong>Hollywood</strong> (affordable, 10 min to Griffith, central to everything),
+        <strong>Downtown LA</strong> (cheapest per night, near Grand Central Market and Disney Concert Hall),
+        <strong>Koreatown</strong> (excellent value, central location, best Korean BBQ in the US nearby).<br><br>
+        <strong>Avoid:</strong> Beverly Hills, Santa Monica, West Hollywood — 3 nights there will be $700–$1,000+/night.
+      </div>
+    </div>
+
+    <!-- BOOKING STATUS -->
+    <div class="booking-banner">
+      <div class="bb-title">Booking Status — Los Angeles</div>
+      <div class="bb-grid">
+        <div class="bb-item pending">
+          <span class="badge pending">⚠️ Not Booked</span>
+          <div class="bb-name">LA Hotel — 3 Nights</div>
+          <div class="bb-detail">Jul 8–11 · Wed–Sat · Mom researching neighborhood and price</div>
+        </div>
+        <div class="bb-item pending">
+          <span class="badge pending">⚠️ Not Booked</span>
+          <div class="bb-name">Getty Center Timed Entry</div>
+          <div class="bb-detail">getty.edu · Free admission · Timed entry required in advance · Jul 10–11</div>
+        </div>
+        <div class="bb-item pending">
+          <span class="badge pending">⚠️ Not Booked</span>
+          <div class="bb-name">LA Final Dinner (Jul 11)</div>
+          <div class="bb-detail">Book 1–2 weeks in advance · Options: Nobu Malibu, Bestia, Republique, Craig's</div>
+        </div>
+        <div class="bb-item confirmed">
+          <span class="badge booked">✅ Works</span>
+          <div class="bb-name">Santa Monica Farmers Market</div>
+          <div class="bb-detail">Jul 11 (Sat) · 8 AM–1 PM · Arizona Ave &amp; 3rd St · No reservation needed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW STRIP -->
+    <div class="overview-strip">
+      <div class="ov-card d7">
+        <div class="ov-date">Wed, Jul 8</div>
+        <div class="ov-label">Day 7 — Arrival</div>
+        <div class="ov-note">Drive from Coronado 2h 31m · Arrive ~3:00 PM · Settle in, explore neighborhood</div>
+      </div>
+      <div class="ov-card d8">
+        <div class="ov-date">Thu, Jul 9</div>
+        <div class="ov-label">Day 8 — Hollywood</div>
+        <div class="ov-note">Beverly Hills · Rodeo Drive · Hollywood Walk of Fame · Chinese Theatre · Disney Concert Hall</div>
+      </div>
+      <div class="ov-card d9">
+        <div class="ov-date">Fri, Jul 10</div>
+        <div class="ov-label">Day 9 — Coast</div>
+        <div class="ov-note">Griffith Observatory · Santa Monica Pier · Venice Boardwalk · Abbot Kinney</div>
+      </div>
+      <div class="ov-card d10">
+        <div class="ov-date">Sat, Jul 11</div>
+        <div class="ov-label">Day 10 — Last Day</div>
+        <div class="ov-note">Farmers Market 8 AM · Getty Center ⚠️ · LACMA Urban Light · Final LA dinner ⚠️ · Pack</div>
+      </div>
+    </div>
+
+    <!-- DAY 7 -->
+    <section>
+      <div class="day-section">
+        <div class="day-hd la">
+          <div class="day-hd-label">Wednesday, July 8, 2026</div>
+          <div class="day-hd-title">Arrival from Coronado</div>
+          <div class="day-hd-sub">Drive: 2h 31m · 139.7 mi · Depart Coronado ~noon · Arrive LA ~3:00 PM</div>
+        </div>
+        <div class="day-body">
+          <div class="map-section">
+            <div class="map-embed-wrap">
+              <iframe width="100%" height="300" style="border:0;" loading="lazy" allowfullscreen
+                src="https://www.google.com/maps/embed/v1/directions?key={{GMAPS_KEY}}&origin=275+Orange+Ave+Coronado+CA&destination=Los+Angeles+CA&mode=driving">
+              </iframe>
+            </div>
+            <p class="map-caption">Coronado → Los Angeles · 2h 31m · 139.7 mi · I-5 N → I-405 N · Jul 8 Wed ~noon · Routes API verified</p>
+          </div>
+          <div class="time-block">
+            <div class="tb-hd la">Arrival — Depart Coronado ~Noon</div>
+            <ul class="tb-list">
+              <li><strong>Depart Best Western Plus Coronado before 12:30 PM</strong> — drive 2h 31m (139.7 mi) verified Routes API, Jul 8 Wed ~noon. The I-405 through South Bay/Inglewood can slow down on weekday afternoons.</li>
+              <li>Route: Coronado Bridge → I-5 North → I-405 North → hotel neighborhood. Allow 3 hours to be safe.</li>
+              <li>Arrive hotel ~3:00 PM. Check in. Explore the neighborhood in the evening.</li>
+              <li>Dinner: Whatever is good in the hotel neighborhood. Grand Central Market (downtown, open until 10 PM) or a neighborhood option based on where you're staying.</li>
+            </ul>
+          </div>
+          <div class="drive-stat">
+            <span class="drive-val">2h 31m · 139.7 mi</span> · Coronado → Los Angeles · Routes API verified · Jul 8 Wed ~noon
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 8 -->
+    <section>
+      <div class="day-section">
+        <div class="day-hd la">
+          <div class="day-hd-label">Thursday, July 9, 2026</div>
+          <div class="day-hd-title">Beverly Hills · Hollywood · Disney Concert Hall</div>
+          <div class="day-hd-sub">Rideshare recommended in LA — parking is expensive and traffic is real</div>
+        </div>
+        <div class="day-body">
+          <div class="time-block">
+            <div class="tb-hd la">Morning — Beverly Hills</div>
+            <ul class="tb-list">
+              <li><strong>Rodeo Drive</strong> (Wilshire Blvd to Santa Monica Blvd) — the 3-block famous luxury shopping street. Free to walk. Flagship stores for everything. The architecture at the north end (the curved two-story retail street) is the classic photo spot.</li>
+              <li><strong>Beverly Hills residential streets</strong> north of Sunset Blvd — massive hedged estates, Rolls Royces in driveways, some of the most expensive real estate in the world on streets designed for meandering.</li>
+              <li><strong>The Beverly Hills Hotel "The Pink Palace"</strong> (9641 Sunset Blvd) — the iconic pink and green 1912 hotel. The lobby and Polo Lounge are open to non-guests for drinks/food. The banana leaf wallpaper in the Polo Lounge is instantly recognizable.</li>
+            </ul>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Midday — Hollywood</div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Hollywood Walk of Fame</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">Hollywood Blvd · La Brea Ave to Vine St · 15 blocks</span>
+                  <span class="sc-stat free">Free</span>
+                  <span class="sc-stat">1 hr walk</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>2,700+ stars embedded in the sidewalk honoring entertainers across film, television, music, radio, and theater. Walk the Hollywood Blvd section between La Brea and Vine for the highest concentration. The stars are organized by category (each has a symbol). Look for favorites by name.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Hollywood+Walk+of+Fame+Hollywood+Blvd+CA" target="_blank" class="mab gmaps">📍 Hollywood Walk of Fame</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Grauman's Chinese Theatre</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">6925 Hollywood Blvd, Hollywood, CA</span>
+                  <span class="sc-stat free">Free to view forecourt</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>The famous forecourt with hand and footprints of over 200 Hollywood celebrities in cement — since 1927. Find the prints of your favorites. The theatre exterior is the grand 1920s Chinese imperial architecture. IMAX screenings inside (optional). The forecourt itself is free to enter and walk.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=TCL+Chinese+Theatre+Hollywood+CA" target="_blank" class="mab gmaps">📍 Grauman's Chinese Theatre</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Walt Disney Concert Hall</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">111 S Grand Ave, Downtown LA</span>
+                  <span class="sc-stat free">Free exterior &amp; gardens</span>
+                  <span class="sc-stat">30–45 min</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>Frank Gehry's stainless steel masterpiece (2003) — billowing curves of brushed steel that look different from every angle and in every light. The rooftop garden (accessible free) has a Blue Ribbon Garden and a view of the surrounding downtown. The interior is open for self-guided tours when no performance is scheduled.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Walt+Disney+Concert+Hall+111+S+Grand+Ave+Los+Angeles" target="_blank" class="mab gmaps">📍 Walt Disney Concert Hall</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Evening</div>
+            <ul class="tb-list">
+              <li><strong>Sunset Strip</strong> (West Hollywood, Sunset Blvd between Crescent Heights and Doheny) — the Whisky a Go Go, Roxy, Rainbow Bar &amp; Grill, the history of rock and roll. Walk a stretch of it after dinner.</li>
+              <li><strong>Little Tokyo</strong> (Downtown, 5 min from Disney Hall) — ramen, udon, Japanese grocery stores, Mikawaya ice cream (mochi originator).</li>
+              <li><strong>Grand Central Market</strong> (317 S Broadway, Downtown) — 40+ food vendors in a 1917 market hall. Open until 10 PM. DTLA's best casual food hall. Eggslut, Wexler's Deli, Belcampo, Horse Thief BBQ.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 9 -->
+    <section>
+      <div class="day-section">
+        <div class="day-hd la">
+          <div class="day-hd-label">Friday, July 10, 2026</div>
+          <div class="day-hd-title">Griffith Observatory · Santa Monica · Venice · Abbot Kinney</div>
+          <div class="day-hd-sub">The coast and the hills</div>
+        </div>
+        <div class="day-body">
+          <div class="time-block">
+            <div class="tb-hd la">Morning — Griffith Observatory</div>
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Griffith Observatory</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">2800 E Observatory Rd, Los Angeles</span>
+                  <span class="sc-stat free">Free Admission</span>
+                  <span class="sc-stat">Opens 10:00 AM weekdays</span>
+                  <span class="sc-stat">Planetarium shows: $10/adult</span>
+                  <span class="sc-stat">1.5–2 hrs</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>The city's greatest view point — the 1935 Art Deco observatory on the southern slope of Mount Hollywood with a 360° panorama of the LA basin, the Hollywood Hills, and the Pacific on clear days. The Hollywood Sign is visible from the front lawn looking northwest (this is the most accessible good angle on the sign).</p>
+                  <p>Inside: the Zeiss telescope in the dome (public viewing nights), the Tesla coil, the Foucault pendulum, the triple beam coelostat. Planetarium shows are ticketed ($10/adult) and worth it for the laser show at night — but the building itself is free.</p>
+                  <p>@thisblisslife: "Sunset = best views. Arrive early." — the observatory is at its most dramatic at sunset when the city lights below match the darkening sky. If energy allows, return for the evening.</p>
+                </div>
+                <div class="sc-tip">Drive up or take the DASH Griffith Park shuttle from Vermont/Sunset (free). Parking is limited and fills by noon on weekdays. The Mt. Hollywood Trail (2.5 mi round trip, easy) starts from the observatory and goes to the summit for an even higher view.</div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Griffith+Observatory+2800+E+Observatory+Rd+Los+Angeles" target="_blank" class="mab gmaps">📍 Griffith Observatory</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Afternoon — Santa Monica · Venice · Abbot Kinney</div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Santa Monica Pier</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">200 Santa Monica Pier, Santa Monica, CA</span>
+                  <span class="sc-stat free">Free to walk · Pacific Park rides separate</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>The western terminus of Route 66 — a sign at the end of the pier marks it. Pacific Park's Ferris wheel and rollercoaster are on the pier (tickets optional). 3rd Street Promenade is 2 blocks east — outdoor pedestrian mall with restaurants, performers, shops.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Santa+Monica+Pier+CA" target="_blank" class="mab gmaps">📍 Santa Monica Pier</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Venice Boardwalk + Abbot Kinney</div>
+                <div class="sc-stats">
+                  <span class="sc-stat">Ocean Front Walk · Venice, CA</span>
+                  <span class="sc-stat">5–10 min from Santa Monica Pier</span>
+                  <span class="sc-stat free">Free</span>
+                  <span class="sc-stat">1–2 hrs</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p><strong>Venice Boardwalk</strong> — Muscle Beach outdoor gym, street performers, roller skaters, fortune tellers, artists, vendors. Chaotic, colorful, uniquely LA. Walk south from the Santa Monica border.</p>
+                  <p><strong>Abbot Kinney Blvd</strong> (3–5 min from boardwalk) — Venice's coolest street. Independent boutiques, coffee roasters (Intelligentsia Venice), bookstores, galleries, farm-to-table restaurants. Named "coolest block in America" by GQ. No chains.</p>
+                  <p>@mini.jetsetter (291K, 23,338 views): "LOS ANGELES WITH KIDS GUIDE"</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Venice+Boardwalk+Venice+CA" target="_blank" class="mab gmaps">📍 Venice Boardwalk</a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Abbot+Kinney+Blvd+Venice+CA" target="_blank" class="mab gmaps">📍 Abbot Kinney Blvd</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Evening</div>
+            <ul class="tb-list">
+              <li>Dinner: Venice neighborhood (lots of great options on Abbot Kinney and nearby), <strong>Culver City</strong> (10 min south — excellent restaurant density, lower key than WeHo), or <strong>Malibu</strong> for sunset over the ocean (20 min north on PCH).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY 10 -->
+    <section>
+      <div class="day-section">
+        <div class="day-hd la">
+          <div class="day-hd-label">Saturday, July 11, 2026 — Last Full Day</div>
+          <div class="day-hd-title">Farmers Market · Getty Center · Final Dinner</div>
+          <div class="day-hd-sub">Pack tonight — depart hotel by 9:00 AM tomorrow for LAX</div>
+        </div>
+        <div class="day-body">
+          <div class="time-block">
+            <div class="tb-hd la">Morning — Santa Monica Farmers Market (8 AM–1 PM)</div>
+            <div class="stop-card">
+              <div class="sc-hd">
+                <div class="sc-name la">Santa Monica Farmers Market</div>
+                <div class="sc-stats">
+                  <span class="sc-stat booked">✅ Works — Saturday only</span>
+                  <span class="sc-stat">Arizona Ave &amp; 3rd St, Santa Monica</span>
+                  <span class="sc-stat">Sat 8:00 AM–1:00 PM · Year-round</span>
+                  <span class="sc-stat">~$30–50 family</span>
+                </div>
+              </div>
+              <div class="sc-body">
+                <div class="sc-notes">
+                  <p>Founded 1991 — one of California's most celebrated certified farmers markets. 40+ organic farm stands, fresh produce, flowers, honey, artisan goods. The Wednesday version is larger but Saturday works for this trip. Top LA chefs shop here Saturday morning. Walk the whole market, get produce for snacks, buy honey, watch the farmers interact with chefs.</p>
+                </div>
+                <div class="map-actions">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Arizona+Ave+and+3rd+St+Santa+Monica+CA+Farmers+Market" target="_blank" class="mab gmaps">📍 Santa Monica Farmers Market</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Late Morning / Afternoon — Options</div>
+            <ul class="tb-list">
+              <li>⚠️ <strong>Getty Center</strong> (getty.edu) — NOT BOOKED. Free admission but timed entry required — book in advance. Hilltop campus connected by aerial tram. World-class collection (Impressionists, decorative arts), Richard Meier travertine architecture, formal gardens, panoramic city views. Allow 2–3 hours.</li>
+              <li><strong>LACMA Urban Light</strong> (5905 Wilshire Blvd) — 238 vintage street lamps arranged in a grid, free and accessible 24/7. Iconic LA photo. Takes 20 minutes. The permanent collection inside is also good (admission fee).</li>
+              <li><strong>Koreatown</strong> — best Korean BBQ in the US. All-you-can-eat KBBQ lunch is the move. Jongro BBQ or Soowon Galbi are excellent.</li>
+              <li><strong>Olvera Street</strong> (125 Paseo de la Plaza, Downtown) — LA's oldest street, original 1820s Mexican marketplace. Adobe buildings, folk art, handmade crafts. Free.</li>
+            </ul>
+          </div>
+
+          <div class="time-block">
+            <div class="tb-hd la">Evening — Final LA Dinner</div>
+            <ul class="tb-list">
+              <li>⚠️ <em>NOT BOOKED — Book 1–2 weeks in advance.</em></li>
+              <li><strong>Nobu Malibu</strong> (22706 PCH, Malibu) — Over-water deck above the Pacific. Japanese-Peruvian fusion. The Black Cod with Miso. Sunset views. Requires advance booking.</li>
+              <li><strong>Bestia</strong> (2121 E 7th Pl, Downtown) — Rustic Italian in the Arts District. Pasta, wood-fire meats, excellent wine list. One of the hardest reservations in LA.</li>
+              <li><strong>Republique</strong> (624 S La Brea Ave, Hollywood) — Walter Manzke's French bistro. Exceptional all-day restaurant. Great for a group dinner.</li>
+              <li><strong>Craig's</strong> (8826 Melrose Ave, West Hollywood) — The celebrity haunt. Classic American food in a red-leather booth restaurant. Fun for a special night.</li>
+              <li>Pack tonight — depart hotel no later than 9:00 AM tomorrow.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOTEL CARD (TBD) -->
+    <div class="section-title">Overnight — Los Angeles Hotel (Pending)</div>
+    <div class="hc">
+      <div class="hc-hd">
+        <span class="badge pending">⚠️ Not Yet Booked</span>
+        <div class="hc-name">Los Angeles Hotel — TBD</div>
+        <div class="hc-loc">Neighborhood TBD · Culver City / Hollywood / Downtown / Koreatown</div>
+      </div>
+      <div class="hc-body">
+        <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Wed Jul 8 – Sat Jul 11 · 3 nights</span></div>
+        <div class="hc-row"><span class="hc-lbl">Status</span><span class="hc-val" style="color:var(--amber);font-weight:700;">⚠️ Mom researching budget-conscious options — booking pending</span></div>
+        <div class="hc-row"><span class="hc-lbl">Avoid</span><span class="hc-val">Beverly Hills, Santa Monica, West Hollywood — too expensive for 3 nights</span></div>
+        <div class="hc-row"><span class="hc-lbl">Target</span><span class="hc-val">Culver City (mid-range, near Venice) · Hollywood (affordable, central) · Downtown (cheapest) · Koreatown (value, central)</span></div>
+        <div class="hc-row"><span class="hc-lbl">Check-out</span><span class="hc-val">Jul 11 morning · Leave hotel by 9:00 AM Jul 12 for LAX</span></div>
+      </div>
+    </div>
+
+    <!-- DEPARTURE CARD -->
+    <div class="section-title">Departure — Sunday, July 12</div>
+    <div class="departure-card">
+      <div class="dep-title">🏁 Final Morning — In-N-Out + LAX Farewell</div>
+      <div class="dep-row"><strong>Leave hotel no later than 9:00 AM</strong> — LAX traffic is unpredictable and the 12:17 PM flight check-in closes 45 min before departure. Terminal 4, American Airlines.</div>
+      <div class="dep-row"><strong>In-N-Out Burger LAX:</strong> 9149 S Sepulveda Blvd · ~0.2 mi from LAX Terminal entrance · The last California meal.</div>
+      <div class="dep-row"><strong>Order:</strong> Double-Double Animal Style (mustard grilled into patty, secret spread, pickles, grilled caramelized onions). Fries well-done or Animal Style. "Animal Style" is not on the menu board — ask by name.</div>
+      <div class="dep-row"><strong>Marina &amp; Liam:</strong> AA 3319 · 12:17 PM → PHL 8:39 PM · Seats 28F &amp; 28E · Conf. KYUXME · American Airlines Terminal 4</div>
+      <div class="dep-row"><strong>Adam &amp; Vadim:</strong> Drop Marina &amp; Liam at Terminal 4, then drive home.</div>
+      <div class="dep-note">Drive time from hotel to LAX: ~20–45 min depending on neighborhood and traffic. Add buffer. The 405 to LAX interchange can be very slow on a Sunday morning. Leave by 9:00 AM at the absolute latest.</div>
+      <div class="map-actions" style="margin-top:14px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=9149+S+Sepulveda+Blvd+Los+Angeles+CA+In-N-Out+Burger" target="_blank" class="mab gmaps">📍 In-N-Out Burger LAX</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=LAX+Terminal+4+American+Airlines" target="_blank" class="mab gmaps">📍 LAX Terminal 4</a>
+      </div>
+    </div>
+
+    <!-- FOOD STRIP -->
+    <div class="section-title">Food &amp; Markets — Los Angeles</div>
+    <div class="food-grid">
+      <div class="fc">
+        <div class="fc-hd">
+          <div class="fc-name">In-N-Out Burger — Final Meal</div>
+          <div class="fc-loc">9149 S Sepulveda Blvd (across from LAX entrance) · Departure Day Jul 12</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-rating">California institution · Departure morning · Last California food</div>
+          <div class="fc-order"><strong>Order:</strong> Double-Double Animal Style — mustard grilled into the patty, secret spread, pickles, and grilled caramelized onions. Fries: well-done (extra crispy) or Animal Style (cheese sauce, spread, grilled onions). Animal Style is not on the board — ask by name.</div>
+          <div class="fc-hours">Open early AM · Drive-through + dine-in · ~0.2 mi from LAX terminals</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=9149+S+Sepulveda+Blvd+Los+Angeles+CA" target="_blank" class="mab gmaps">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-hd">
+          <div class="fc-name">Santa Monica Farmers Market</div>
+          <div class="fc-loc">Arizona Ave &amp; 3rd St, Santa Monica · Sat Jul 11 · 8 AM–1 PM</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-rating">Since 1991 · 40+ certified organic farms · Rain or shine · Year-round</div>
+          <div class="fc-order"><strong>Browse:</strong> Stone fruits, berries, specialty vegetables, local honey, cut flowers, artisan goods. No specific order — walk the whole market and buy what looks extraordinary. Top LA chefs are here Saturday AM.</div>
+          <div class="fc-hours">$30–50 for a full family browse · Walk 3rd Street Promenade after</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Arizona+Ave+3rd+St+Santa+Monica+CA+Farmers+Market" target="_blank" class="mab gmaps">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-hd">
+          <div class="fc-name">Grand Central Market</div>
+          <div class="fc-loc">317 S Broadway, Downtown LA · Any Day · Open till 10 PM</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-rating">Since 1917 · 40+ vendors · Best casual food variety in DTLA</div>
+          <div class="fc-order"><strong>Highlights:</strong> Eggslut (egg sandwiches, always a line), Wexler's Deli (NYC-style Jewish deli with LA sensibility), Horse Thief BBQ, DTLA Cheese, Sticky Rice. Go for lunch or an early dinner with the group.</div>
+          <div class="fc-hours">Open late · Near Disney Concert Hall · After the Hollywood day</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=317+S+Broadway+Downtown+Los+Angeles+Grand+Central+Market" target="_blank" class="mab gmaps">📍 Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="section-title">Alerts &amp; Action Items</div>
+    <div class="alerts-grid">
+      <div class="ac red">
+        <div class="ac-icon">🔴</div>
+        <div class="ac-title">LA Hotel — Book Now</div>
+        <div class="ac-text">Jul 8–11 · 3 nights · Not yet booked. July hotel prices in LA rise as dates approach. Choose neighborhood and book as soon as Mom has researched options.</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Getty Center — Book Timed Entry</div>
+        <div class="ac-text">getty.edu · Free admission but timed entry required · Jul 10 or 11 · The Getty is one of the world's best museums and the hilltop view of the city is extraordinary. Don't skip due to lack of booking.</div>
+      </div>
+      <div class="ac amb">
+        <div class="ac-icon">⚠️</div>
+        <div class="ac-title">Final LA Dinner — Book 1–2 Weeks Out</div>
+        <div class="ac-text">Jul 11 · Best options require advance booking: Nobu Malibu (ocean views), Bestia (Italian, Arts District), Republique (French, Hollywood), Craig's (WeHo celebrity). Don't leave this for last minute.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-icon">ℹ️</div>
+        <div class="ac-title">LAX Departure — Leave Hotel by 9:00 AM Jul 12</div>
+        <div class="ac-text">AA 3319 departs 12:17 PM. Check-in closes 45 min before. LAX traffic on Sunday AM is real. In-N-Out is 0.2 mi from the terminals — eat there before drop-off. Terminal 4 for American Airlines.</div>
+      </div>
+      <div class="ac blu">
+        <div class="ac-icon">ℹ️</div>
+        <div class="ac-title">LA Rideshare vs Driving</div>
+        <div class="ac-text">Rideshare is recommended for most LA days. Parking is expensive ($25–50/day near Hollywood or Beverly Hills) and traffic can make driving more stressful than it's worth. Use the hotel parking as a base and rideshare to attractions.</div>
+      </div>
+    </div>
+
+    <!-- SOCIAL INTEL -->
+    <div class="section-title">Social Intelligence</div>
+    <div class="si-grid">
+      <div class="si-card">
+        <div class="si-quote">"Sunset = best views at Griffith. Arrive early before the crowds."</div>
+        <div class="si-source">@thisblisslife · 4K followers · 319 views</div>
+        <div class="si-location">Griffith Observatory, Los Angeles</div>
+      </div>
+      <div class="si-card">
+        <div class="si-quote">LOS ANGELES WITH KIDS GUIDE — Santa Monica Pier, Venice Boardwalk, Griffith, The Grove.</div>
+        <div class="si-source">@mini.jetsetter · 291K followers · 23,338 views</div>
+        <div class="si-location">Venice / Santa Monica, Los Angeles</div>
+      </div>
+      <div class="si-card">
+        <div class="si-quote">El Matador Beach: "High tides and good vibes" — the most dramatic beach in Southern California.</div>
+        <div class="si-source">@visitcalifornia · 825K followers · 8,150 views</div>
+        <div class="si-location">El Matador Beach, Malibu (Day 6)</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>Los Angeles · California Road Trip · July 8–12, 2026</strong><br>
+      Days 7–10 + Departure · Hotel TBD · AA 3319 12:17 PM Jul 12 → PHL 8:39 PM · Marina &amp; Liam seats 28F/28E · Conf. KYUXME
+    </div>
+
+  </div>
+</body>
+</html>
