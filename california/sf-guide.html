@@ -337,7 +337,7 @@
                   <div class="ds-info">
                     <div class="ds-name">Golden Gate Park</div>
                     <div class="ds-drive">From Mission Dolores · ~7 min rideshare</div>
-                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.7728,-122.4682" target="_blank">Music Concourse Garage</a> · 55 Hagiwara Tea Garden Dr</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.7700,-122.4683" target="_blank">Music Concourse Garage</a> · Music Concourse Dr, GG Park</div>
                   </div>
                 </div>
                 <div class="drive-stop">
@@ -349,7 +349,7 @@
                   </div>
                 </div>
                 <div class="nav-col-action">
-                  <a class="mab route" href="https://www.google.com/maps/dir/37.786587,-122.403097/37.794558,-122.404698/37.802931,-122.448423/37.784874,-122.407696/37.802059,-122.419555/37.776369,-122.434819/37.752915,-122.447413" target="_blank">Open Day 1 Points in Google Maps 🗺️</a>
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.7866,-122.4031/37.7953,-122.3937/37.8024,-122.4484/37.8008,-122.4116/37.7760,-122.4344/37.7700,-122.4683/37.7529,-122.4475" target="_blank">Open Day 1 Points in Google Maps 🗺️</a>
                 </div>
               </div>
               <!-- RIGHT: Walking clusters -->
@@ -1533,7 +1533,7 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,stops,col,drawRoute){
+  function mkMap(id,center,zoom,stops,col,drawRoute,walkStops){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
@@ -1543,6 +1543,7 @@
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
+    if(walkStops&&walkStops.length)walkStops.forEach(function(s){var wi=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[20,20],iconAnchor:[10,10],className:''});L.marker([s.a,s.o],{icon:wi}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));});
   }
   window.addEventListener('load',function(){
     // Day 1: SF arrival day — hotel base + stops (all transit/walk)
@@ -1552,9 +1553,19 @@
       {a:37.802,o:-122.449,n:'2',name:'Palace of Fine Arts',note:'Free · 30–45 min',p:[37.8023,-122.4493]},
       {a:37.784,o:-122.408,n:'3',name:'Russian Hill / Cable Car',note:'$24 all-day · Lombard St · Fisherman\'s Wharf',p:[37.8008,-122.4116]},
       {a:37.776,o:-122.434,n:'4',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo',p:[37.7817,-122.4320]},
-      {a:37.769,o:-122.486,n:'5',name:'Golden Gate Park',note:'Free · 1,017 acres · Music Concourse',p:[37.7728,-122.4682]},
+      {a:37.769,o:-122.486,n:'5',name:'Golden Gate Park',note:'Free · 1,017 acres · Music Concourse',p:[37.7700,-122.4683]},
       {a:37.752,o:-122.447,n:'6',name:'Twin Peaks',note:'Free · Sunset panorama',p:[37.7546,-122.4463]}
-    ],'#0B4F6C',true);
+    ],'#0B4F6C',true,[
+      {a:37.794,o:-122.408,n:'1',name:'Chinatown — Dragon Gate',note:'Grant Ave · 45–60 min'},
+      {a:37.809,o:-122.410,n:'2',name:'Pier 39',note:'Sea lions · Fisherman\'s Wharf area'},
+      {a:37.808,o:-122.417,n:'3',name:'Fisherman\'s Wharf',note:'Jefferson St · Crab stands'},
+      {a:37.806,o:-122.423,n:'4',name:'Ghirardelli Square',note:'Historic chocolate factory'},
+      {a:37.802,o:-122.419,n:'5',name:'Lombard Street',note:'Russian Hill · Walk down'},
+      {a:37.782,o:-122.438,n:'6',name:'Full House House',note:'1709 Broderick St · Exterior only'},
+      {a:37.760,o:-122.427,n:'7',name:'Mission Dolores Park',note:'Sunny hillside · City views'},
+      {a:37.770,o:-122.470,n:'8',name:'Japanese Tea Garden',note:'$15 adults'},
+      {a:37.770,o:-122.466,n:'9',name:'CA Academy of Sciences',note:'$40 adults · Aquarium · Planetarium'}
+    ]);
     // Day 2: Pier 33 → Alcatraz → Fort Point → GGB → Baker Beach → Presidio → UC Berkeley → Muir Woods → Hyatt SF
     mkMap('map-day2',[37.855,-122.43],10,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:35 AM'},
@@ -1563,7 +1574,11 @@
       {a:37.872,o:-122.260,n:'3',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM',p:[37.8734,-122.2629]},
       {a:37.891,o:-122.571,n:'4',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot',p:[37.8913,-122.5688]},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
-    ],'#0B4F6C',true);
+    ],'#0B4F6C',true,[
+      {a:37.820,o:-122.478,n:'1',name:'Golden Gate Bridge',note:'Walk the span · North tower views'},
+      {a:37.794,o:-122.484,n:'2',name:'Baker Beach',note:'GGB backdrop · Best angle on bridge'},
+      {a:37.799,o:-122.458,n:'3',name:'Presidio / Crissy Field',note:'National Park · Scenic walk'}
+    ]);
     // Day 3: SF → Yountville → Calistoga → Napa → SF
     mkMap('map-day3',[38.15,-122.38],9,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:00 AM'},

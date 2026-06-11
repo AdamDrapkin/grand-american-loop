@@ -809,7 +809,7 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,stops,col,drawRoute){
+  function mkMap(id,center,zoom,stops,col,drawRoute,walkStops){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
@@ -819,6 +819,7 @@
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
+    if(walkStops&&walkStops.length)walkStops.forEach(function(s){var wi=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[20,20],iconAnchor:[10,10],className:''});L.marker([s.a,s.o],{icon:wi}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));});
   }
   window.addEventListener('load',function(){
     // Day 4: SF → 17-Mile Drive → Carmel → Point Lobos → Bixby → Pfeiffer → McWay → Elephant Seals → Cambria
@@ -833,7 +834,13 @@
       {a:35.793,o:-121.331,n:'7',name:'Ragged Point',note:'58 min from McWay · 37.4 mi · 15–20 min',p:[35.7806,-121.3300]},
       {a:35.665,o:-121.254,n:'8',name:'Elephant Seals — Piedras Blancas',note:'Free · 18 min from Ragged Point',p:[35.665,-121.254]},
       {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:30 PM · Breakfast included'}
-    ],'#3A6B4A',true);
+    ],'#3A6B4A',true,[
+      {a:36.553,o:-121.928,n:'1',name:'Carmel Scenic Road Walkway',note:'Bluff path · 30–45 min'},
+      {a:36.555,o:-121.922,n:'2',name:'Carmel Beach Boardwalk',note:'End of Ocean Ave'},
+      {a:36.555,o:-121.920,n:'3',name:'Carmel Walks / Pine Inn',note:'$30/person · Sun 10 AM'},
+      {a:36.556,o:-121.920,n:'4',name:'Carmel Plaza',note:'Ocean Ave at Mission'},
+      {a:36.233,o:-121.792,n:'5',name:'Big Sur Station',note:'Visitor info · Road conditions'}
+    ]);
   });
   </script>
 </body>
