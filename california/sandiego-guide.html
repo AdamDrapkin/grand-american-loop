@@ -19,6 +19,9 @@
     .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--mid); font-weight: 700; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--coastal); }
     .seg-map { height: 360px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
+    .map-legend{display:flex;align-items:center;gap:18px;font-family:sans-serif;font-size:.72rem;color:var(--dark);margin:3px 0 12px;flex-wrap:wrap}
+    .map-legend .leg{display:flex;align-items:center;gap:5px}
+    .map-legend .dot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);flex-shrink:0}
 
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative; background: linear-gradient(160deg, #0B4F6C, #1B7A9E, #0D6B7A); }
     .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
@@ -200,6 +203,7 @@
           <!-- DAY 6 MAP -->
           <div class="map-section">
             <div id="map-day6" class="seg-map"></div>
+            <div class="map-legend"><div class="leg"><div class="dot" style="background:#1B7A9E"></div>🚗 Driving (Coastal Hwy)</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking (at each beach)</div></div>
             <p class="map-caption">Day 6 route: Beachside Inn Santa Barbara → El Matador Beach (Malibu) → Newport Beach/Balboa Island → Laguna Beach → La Jolla Cove → Best Western Plus Coronado · ~4h 48m driving</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -486,27 +490,41 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,stops,col,drawRoute){
+  function mkMap(id,center,zoom,driveStops,col,drawRoute,walkStops){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
-    stops.forEach(function(s){
+    driveStops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
       L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
+    if(walkStops&&walkStops.length>1){
+      var wpts=[];
+      walkStops.forEach(function(s){
+        var icon=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+        L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+        wpts.push([s.a,s.o]);
+      });
+      L.polyline(wpts,{color:'#276749',weight:2,dashArray:'4,6',opacity:.75}).addTo(m);
+    }
   }
   window.addEventListener('load',function(){
     // Day 6: Beachside Inn SB → El Matador → Newport Beach → Laguna Beach → Best Western Coronado
     mkMap('map-day6',[33.8,-118.45],7,[
       {a:34.415,o:-119.701,n:'🏠',name:'Beachside Inn, Santa Barbara',note:'Depart 8:00 AM'},
-      {a:34.029,o:-118.879,n:'1',name:'El Matador State Beach, Malibu',note:'Arrive ~9:05 AM · $8–12/vehicle · Before 10 AM'},
-      {a:33.604,o:-117.897,n:'2',name:'Newport Beach / Balboa Island',note:'Arrive ~12:10 PM · Balboa Bar'},
-      {a:33.542,o:-117.782,n:'3',name:'Laguna Beach — Heisler Park',note:'Arrive ~12:45 PM · Depart ~2:00 PM'},
-      {a:32.850,o:-117.272,n:'4',name:'La Jolla Cove',note:'Arrive ~3:16 PM · Free · Sea lions · 1 hr'},
+      {a:34.029,o:-118.879,n:'1',name:'El Matador State Beach, Malibu',note:'🚗 Arrive ~9:05 AM · $8–12/vehicle · Before 10 AM'},
+      {a:33.604,o:-117.897,n:'2',name:'Newport Beach / Balboa Island',note:'🚗 Arrive ~12:10 PM · Balboa Bar'},
+      {a:33.542,o:-117.782,n:'3',name:'Laguna Beach — Heisler Park',note:'🚗 Arrive ~12:45 PM · Depart ~2:00 PM'},
+      {a:32.850,o:-117.272,n:'4',name:'La Jolla Cove',note:'🚗 Arrive ~3:16 PM · Free · Sea lions · 1 hr'},
       {a:32.683,o:-117.177,n:'🏨',name:'Best Western Plus Coronado Island',note:'Arrive ~4:40 PM · Conf. 6459555758'}
-    ],'#1B7A9E',true);
+    ],'#1B7A9E',true,[
+      {a:34.029,o:-118.879,n:'1',name:'El Matador Beach trail',note:'🚶 Sea cave & cove trail · 45–60 min'},
+      {a:33.604,o:-117.897,n:'2',name:'Balboa Island walk',note:'🚶 Marine Ave · Ferry ride · 1–1.5 hrs'},
+      {a:33.542,o:-117.782,n:'3',name:'Heisler Park cliff walk',note:'🚶 Coastal bluff trail · 30–45 min'},
+      {a:32.850,o:-117.272,n:'4',name:'La Jolla Cove coast walk',note:'🚶 Coast Blvd · Sea caves · 45 min'}
+    ]);
   });
   </script>
 </body>

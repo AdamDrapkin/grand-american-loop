@@ -97,6 +97,17 @@
     .seg-divider td { background: var(--sand) !important; font-family: sans-serif; font-size: .67rem;
                       text-transform: uppercase; letter-spacing: .8px; color: var(--mid); font-weight: 700; }
 
+    /* WALK TABLE */
+    .walk-table-wrap { overflow-x: auto; margin: 14px 0 0; }
+    .walk-table { width: 100%; border-collapse: collapse; font-family: sans-serif; font-size: .79rem; }
+    .walk-table th { background: #276749; color: white; padding: 9px 12px;
+                     text-align: left; font-size: .66rem; text-transform: uppercase; letter-spacing: .6px; }
+    .walk-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--dark); vertical-align: middle; }
+    .walk-table tr:nth-child(even) td { background: #F0FFF4; }
+    .walk-table tr td:nth-child(3) { font-weight: 700; color: #276749; }
+    .walk-divider td { background: #C6F6D5 !important; font-family: sans-serif; font-size: .67rem;
+                       text-transform: uppercase; letter-spacing: .8px; color: #276749; font-weight: 700; }
+
     /* ALERTS */
     .alerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
                    gap: 14px; margin: 14px 0; }
@@ -369,6 +380,54 @@
           <tr><td>Laguna Beach → San Diego/Coronado</td><td>Jul 7 Tue ~1:30 PM</td><td>1h 24m</td><td>79.3</td></tr>
           <tr class="seg-divider"><td colspan="4">LOS ANGELES — Day 7 · Depart Coronado ~noon</td></tr>
           <tr><td>Coronado → Los Angeles (Beverly Hills)</td><td>Jul 8 Wed ~noon</td><td>2h 31m</td><td>139.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Walking Routes Table -->
+    <div class="section-title" style="color:#276749">🚶 Walking Routes — By Day</div>
+    <div class="walk-table-wrap">
+      <table class="walk-table">
+        <thead>
+          <tr>
+            <th>Walking Segment</th>
+            <th>Day / Time</th>
+            <th>Duration</th>
+            <th>Distance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="walk-divider"><td colspan="4">SF CITY WALKS — Day 1 · Thu Jul 2</td></tr>
+          <tr><td>Hotel → Ferry Building</td><td>Jul 2 ~3:30 PM</td><td>15 min</td><td>0.7 mi</td></tr>
+          <tr><td>Ferry Building → Chinatown (Dragon Gate)</td><td>Jul 2 ~4 PM</td><td>12 min</td><td>0.5 mi</td></tr>
+          <tr><td>Chinatown → Pier 39</td><td>Jul 2 ~4:30 PM</td><td>16 min</td><td>0.8 mi</td></tr>
+          <tr><td>Pier 39 → Fisherman's Wharf → Ghirardelli</td><td>Jul 2 ~5 PM</td><td>14 min</td><td>0.6 mi</td></tr>
+          <tr><td>Lombard St → Full House → Painted Ladies</td><td>Jul 2 eve</td><td>18 min</td><td>0.9 mi</td></tr>
+          <tr><td>Painted Ladies → Mission Dolores Park</td><td>Jul 2 eve</td><td>8 min</td><td>0.4 mi</td></tr>
+          <tr><td>Golden Gate Park (Tea Garden → Academy of Sciences)</td><td>Jul 2 ~7 PM</td><td>4 min</td><td>0.2 mi</td></tr>
+          <tr class="walk-divider"><td colspan="4">GGB AREA WALKS — Day 2 · Fri Jul 3</td></tr>
+          <tr><td>Fort Point → Golden Gate Bridge walkway</td><td>Jul 3 ~noon</td><td>10 min</td><td>0.5 mi</td></tr>
+          <tr><td>GGB → Baker Beach (rideshare back)</td><td>Jul 3 ~1 PM</td><td>25 min</td><td>1.2 mi</td></tr>
+          <tr><td>Baker Beach → Presidio / Crissy Field</td><td>Jul 3 ~2 PM</td><td>20 min</td><td>0.9 mi</td></tr>
+          <tr><td>Muir Woods Cathedral Grove loop trail</td><td>Jul 3 ~4:30 PM</td><td>60 min</td><td>2.0 mi</td></tr>
+          <tr class="walk-divider"><td colspan="4">CARMEL TOWN WALK — Day 4 · Sun Jul 5</td></tr>
+          <tr><td>Carmel Scenic Road bluff walkway</td><td>Jul 5 ~10 AM</td><td>35 min</td><td>1.0 mi</td></tr>
+          <tr><td>Carmel Beach Boardwalk → Carmel Walks / Pine Inn</td><td>Jul 5 ~10:35 AM</td><td>10 min</td><td>0.4 mi</td></tr>
+          <tr><td>Carmel Walks → Carmel Plaza (Ocean Ave)</td><td>Jul 5 ~11 AM</td><td>5 min</td><td>0.2 mi</td></tr>
+          <tr><td>Point Lobos Sea Lion Cove trail</td><td>Jul 5 ~11:30 AM</td><td>55 min</td><td>2.0 mi</td></tr>
+          <tr><td>McWay Falls viewpoint trail</td><td>Jul 5 ~3:30 PM</td><td>12 min</td><td>0.5 mi</td></tr>
+          <tr class="walk-divider"><td colspan="4">COASTAL BEACH WALKS — Day 6 · Tue Jul 7</td></tr>
+          <tr><td>El Matador Beach — cove & sea cave trail</td><td>Jul 7 ~9:30 AM</td><td>45 min</td><td>1.2 mi</td></tr>
+          <tr><td>Balboa Island — Marine Ave walk + ferry</td><td>Jul 7 ~11:30 AM</td><td>50 min</td><td>1.8 mi</td></tr>
+          <tr><td>Laguna Beach — Heisler Park cliff trail</td><td>Jul 7 ~1:15 PM</td><td>30 min</td><td>0.8 mi</td></tr>
+          <tr><td>La Jolla Cove — Coast Blvd coastal walk</td><td>Jul 7 ~3 PM</td><td>40 min</td><td>1.4 mi</td></tr>
+          <tr class="walk-divider"><td colspan="4">BEVERLY HILLS · HOLLYWOOD · DOWNTOWN LA WALKS — Day 8 · Thu Jul 9</td></tr>
+          <tr><td>Rodeo Drive → Beverly Hills Hotel (Polo Lounge)</td><td>Jul 9 AM</td><td>8 min</td><td>0.4 mi</td></tr>
+          <tr><td>Hollywood Walk of Fame → Grauman's Chinese Theatre</td><td>Jul 9 midday</td><td>3 min</td><td>0.2 mi</td></tr>
+          <tr><td>Disney Concert Hall → Chinatown → Little Tokyo → Grand Central Market</td><td>Jul 9 PM</td><td>20 min</td><td>0.9 mi</td></tr>
+          <tr class="walk-divider"><td colspan="4">GRIFFITH + VENICE WALKS — Day 9 · Fri Jul 10</td></tr>
+          <tr><td>Griffith Observatory → Griffith Park trails</td><td>Jul 10 AM</td><td>15 min</td><td>0.7 mi</td></tr>
+          <tr><td>Venice Boardwalk → Venice Canals → Abbot Kinney Blvd</td><td>Jul 10 PM</td><td>20 min</td><td>0.9 mi</td></tr>
         </tbody>
       </table>
     </div>
