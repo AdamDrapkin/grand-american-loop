@@ -34,6 +34,14 @@
     .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
     .hchip { font-family: sans-serif; font-size: .76rem; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 4px 12px; }
 
+    /* FIREWORKS BANNER */
+    .fireworks-banner { background: linear-gradient(135deg, #0d1b2a 0%, #1a3050 60%, #0d1b2a 100%); border: 2px solid #F6AD55; border-radius: 14px; padding: 22px 26px; margin: 20px 0; display: flex; align-items: flex-start; gap: 18px; box-shadow: 0 4px 20px rgba(246,173,85,.25); }
+    .fw-emoji { font-size: 2.8rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .fw-title { font-family: sans-serif; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: #F6AD55; margin-bottom: 10px; }
+    .fw-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .fw-pill { background: rgba(246,173,85,.15); border: 1px solid rgba(246,173,85,.45); border-radius: 20px; padding: 3px 11px; font-family: sans-serif; font-size: .72rem; color: #FBD38D; font-weight: 600; }
+    .fw-note { font-family: sans-serif; font-size: .8rem; color: #BEE3F8; line-height: 1.65; }
+
     /* BOOKING BANNER */
     .booking-banner { background: linear-gradient(135deg, #F0FFF4, #EBF8FF); border: 2px solid #68D391; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
     .bb-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); font-weight: 700; margin-bottom: 12px; }
@@ -1191,10 +1199,9 @@
           </div>
 
           <div class="time-block">
-            <div class="tb-hd sf">Evening — Birthday Dinner at The Waterfront Seafood Grill</div>
+            <div class="tb-hd sf">Evening — Birthday Dinner + July 4th Fireworks</div>
             <ul class="tb-list">
               <li>A 5-minute drive (or short walk) from Oxbow Market brings you to the Waterfront Seafood Grill — right on the Napa River. Birthday dinner here (closes 9 PM).</li>
-              <li><strong>🎆 July 4th Fireworks — stay in Napa.</strong> The Napa Valley Expo fireworks launch just 5 blocks from the restaurant (~9:30 PM), best viewed from the riverfront boardwalk outside. Walk out after dinner, watch the show over the river, then make the easy ~74 min drive back to SF around 10:30 PM.</li>
             </ul>
             <div class="stop-card">
               <div class="sc-hd">
@@ -1215,7 +1222,21 @@
                 <div class="map-actions">
                   <a href="https://www.google.com/maps/search/?api=1&query=38.297359,-122.283712" target="_blank" class="mab gmaps">📍 The Waterfront Seafood Grill</a>
                 </div>
-                <div class="sc-tip">You're already in Napa after Oxbow Market — just a 5-min drive south on Main St. After dinner, the return drive to SF is ~74 min (heavy holiday traffic — leave by 9 PM).</div>
+                <div class="sc-tip">You're already in Napa after Oxbow Market — just a 5-min drive south on Main St.</div>
+              </div>
+            </div>
+
+            <div class="fireworks-banner">
+              <div class="fw-emoji">🎆</div>
+              <div>
+                <div class="fw-title">July 4th Fireworks — Napa Riverfront · Adam's 22nd Birthday</div>
+                <div class="fw-pills">
+                  <span class="fw-pill">~9:30 PM launch</span>
+                  <span class="fw-pill">Napa Valley Expo · 5 blocks from dinner</span>
+                  <span class="fw-pill">Free · Riverfront boardwalk</span>
+                  <span class="fw-pill">Drive back to SF ~10:30 PM · 74 min</span>
+                </div>
+                <div class="fw-note">Walk straight out of The Waterfront after dinner and cross to the riverfront boardwalk — the Napa Valley Expo fireworks launch directly over the river. Best seats in the city, on your birthday. Leave around 10:30 PM for the smooth ~74 min return to the Hyatt.</div>
               </div>
             </div>
           </div>
@@ -1549,10 +1570,10 @@
     // Day 1: SF arrival day — hotel base + stops (all transit/walk)
     mkMap('map-day1',[37.78,-122.44],12,[
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Base hotel · Check-in 3:00 PM'},
-      {a:37.795,o:-122.394,n:'1',name:'Ferry Building',note:'Free · Marketplace · Farmers Market Sat',p:[37.7951,-122.3963]},
+      {a:37.795,o:-122.394,n:'1',name:'Ferry Building',note:'Free · Marketplace · Farmers Market Sat',p:[37.7955,-122.3990]},
       {a:37.802,o:-122.449,n:'2',name:'Palace of Fine Arts',note:'Free · 30–45 min',p:[37.8023,-122.4493]},
-      {a:37.784,o:-122.408,n:'3',name:'Russian Hill / Cable Car',note:'$24 all-day · Lombard St · Fisherman\'s Wharf',p:[37.8008,-122.4116]},
-      {a:37.776,o:-122.434,n:'4',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo',p:[37.7817,-122.4320]},
+      {a:37.784,o:-122.408,n:'3',name:'Russian Hill / Cable Car',note:'$24 all-day · Lombard St · Fisherman\'s Wharf',p:[37.8077,-122.4148]},
+      {a:37.776,o:-122.434,n:'4',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo',p:[37.7756,-122.4329]},
       {a:37.769,o:-122.486,n:'5',name:'Golden Gate Park',note:'Free · 1,017 acres · Music Concourse',p:[37.7700,-122.4683]},
       {a:37.752,o:-122.447,n:'6',name:'Twin Peaks',note:'Free · Sunset panorama',p:[37.7546,-122.4463]}
     ],'#0B4F6C',true,[
@@ -1573,10 +1594,10 @@
     // Day 2: Pier 33 → Alcatraz → Fort Point → GGB → Baker Beach → Presidio → UC Berkeley → Muir Woods → Hyatt SF
     mkMap('map-day2',[37.855,-122.43],10,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:35 AM'},
-      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure · 2.5 hr tour',p:[37.8064,-122.4103]},
+      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure · 2.5 hr tour',p:[37.8067,-122.4044]},
       {a:37.811,o:-122.477,n:'2',name:'Fort Point NHS',note:'FREE · Under GGB · 10 AM–5 PM Fri',p:[37.8063,-122.4760]},
-      {a:37.872,o:-122.260,n:'3',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM',p:[37.8734,-122.2629]},
-      {a:37.891,o:-122.571,n:'4',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot',p:[37.8913,-122.5688]},
+      {a:37.872,o:-122.260,n:'3',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM',p:[37.8712,-122.2555]},
+      {a:37.891,o:-122.571,n:'4',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot',p:[37.8970,-122.5811]},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
     ],'#0B4F6C',true,[
       {a:37.827,o:-122.423,n:'1',name:'Alcatraz Cell House Tour',note:'9:20 AM ferry · 2.5 hrs on island'},
@@ -1588,9 +1609,9 @@
     // Day 3: SF → Yountville → Calistoga → Napa → SF
     mkMap('map-day3',[38.15,-122.38],9,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:00 AM'},
-      {a:38.407,o:-122.361,n:'1',name:'Bouchon Bakery, Yountville',note:'Arrive 9:01 AM · 45 min',p:[38.4035,-122.3616]},
+      {a:38.407,o:-122.361,n:'1',name:'Bouchon Bakery, Yountville',note:'Arrive 9:01 AM · 45 min',p:[38.4032,-122.3632]},
       {a:38.557,o:-122.572,n:'2',name:'Sterling Vineyards, Calistoga',note:'✅ 10:45 AM · TOCK-R-AE87DB44',p:[38.5697,-122.5472]},
-      {a:38.298,o:-122.285,n:'3',name:'Napa Oxbow Public Market',note:'Arrive ~12:38 PM',p:[38.2964,-122.2857]},
+      {a:38.298,o:-122.285,n:'3',name:'Napa Oxbow Public Market',note:'Arrive ~12:38 PM',p:[38.3017,-122.2819]},
       {a:38.297,o:-122.284,n:'🎆',name:'Napa Riverfront — July 4th Fireworks',note:'Watch from riverfront after birthday dinner · Napa Valley Expo fireworks ~9:30 PM'},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return from Napa after fireworks · ~74 min'}
     ],'#0B4F6C',true,[
