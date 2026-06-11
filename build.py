@@ -576,7 +576,7 @@ function init() {{
     slide.appendChild(loader);
     const iframe = document.createElement('iframe');
     iframe.title = 'Slide ' + (i + 1);
-    iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
+    iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox');
     if (i === 0) {{
       const hide0 = () => loader.classList.add('hidden');
       iframe.onload = hide0;
