@@ -157,6 +157,14 @@
     .si-location { font-family: sans-serif; font-size: .7rem; color: var(--mid); margin-top: 2px; }
 
     /* FOOTER */
+    /* WALKING PLANNER */
+    .walk-planner { background: #F0FFF4; border: 1px solid #48BB78; border-left: 4px solid #276749; border-radius: 8px; padding: 14px 16px; margin: 16px 0; }
+    .wp-title { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #276749; margin-bottom: 10px; }
+    .wp-row { display: flex; justify-content: space-between; align-items: baseline; font-family: sans-serif; font-size: .79rem; padding: 5px 0; border-bottom: 1px dashed #C6F6D5; color: var(--dark); gap: 12px; }
+    .wp-row:last-of-type { border-bottom: none; }
+    .wp-row span:last-child { font-weight: 700; color: #276749; white-space: nowrap; }
+    .wp-total { font-family: sans-serif; font-size: .82rem; font-weight: 700; color: #276749; background: #C6F6D5; padding: 7px 12px; border-radius: 6px; margin-top: 10px; text-align: center; }
+
     .footer { background: var(--pacific); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
@@ -595,6 +603,20 @@
           <div class="drive-stat">
             <span class="drive-val">No driving required today</span> · All stops by transit, rideshare, or walking · Hotel check-in 3:00 PM · Pack bags tonight (Day 2 departs early)
           </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 1 — On Your Feet (Routes API Verified)</div>
+            <div class="wp-row"><span>🚶 Hyatt → Ferry Building (Embarcadero)</span><span>25 min · 1.1 mi</span></div>
+            <div class="wp-row"><span>🚶 Ferry Building → Chinatown / Dragon Gate</span><span>21 min · 0.8 mi</span></div>
+            <div class="wp-row"><span>🚶 Chinatown → Pier 39 (via North Beach)</span><span>24 min · 1.1 mi</span></div>
+            <div class="wp-row"><span>🚶 Pier 39 → Ghirardelli Square (waterfront path)</span><span>19 min · 0.8 mi</span></div>
+            <div class="wp-row"><span>🚶 Ghirardelli → Palace of Fine Arts (Marina walk)</span><span>39 min · 1.8 mi</span></div>
+            <div class="wp-row"><span>🚗 Palace → Lombard St — Cable Car ($8/person) or Lyft</span><span>1.8 mi uphill · don't walk</span></div>
+            <div class="wp-row"><span>🚶 Painted Ladies → Mission Dolores Park</span><span>30 min · 1.4 mi</span></div>
+            <div class="wp-row"><span>🚗 Mission Dolores Park → Golden Gate Park — Lyft 9 min</span><span>4.1 mi · not walkable</span></div>
+            <div class="wp-row"><span>🥾 GG Park: Music Concourse + Tea Garden + CA Academy</span><span>~0.8 mi · 30 min</span></div>
+            <div class="wp-row"><span>🚗 Golden Gate Park → Twin Peaks — Lyft 10 min</span><span>steep hill · car needed</span></div>
+            <div class="wp-total">Day 1: ~6.0 mi walking · ~3 rideshares · ~13,000 steps · 4+ hrs on feet</div>
+          </div>
         </div>
       </div>
     </section>
@@ -876,6 +898,18 @@
           <div class="drive-stat">
             <span class="drive-val">~3h 46m total driving</span> · Day 2: Depart 8:35 AM · Return ~7:10 PM · All times Routes API verified with traffic
           </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 2 — On Your Feet (Routes API Verified)</div>
+            <div class="wp-row"><span>🥾 Alcatraz Island self-guided audio tour</span><span>1.3 mi · ~2 hrs</span></div>
+            <div class="wp-row"><span>🚶 Fort Point NHS → Golden Gate Bridge south tower</span><span>14 min · 0.6 mi</span></div>
+            <div class="wp-row"><span>🚶 GGB bridge walk (midspan and back)</span><span>~30 min · 1.3 mi optional</span></div>
+            <div class="wp-row"><span>🚗 GGB → Baker Beach — drive 7 min</span><span>2.5 mi walk via trails · take car</span></div>
+            <div class="wp-row"><span>🚶 Baker Beach (along the sand · GGB backdrop)</span><span>~0.5 mi · 15 min</span></div>
+            <div class="wp-row"><span>🚶 Presidio / Crissy Field stroll</span><span>~0.8 mi · 20 min</span></div>
+            <div class="wp-row"><span>🥾 UC Berkeley campus (Campanile + Sather Gate)</span><span>~0.5 mi · 20 min</span></div>
+            <div class="wp-row"><span>🥾 Muir Woods Cathedral Grove loop</span><span>1.8 mi · 1 hr</span></div>
+            <div class="wp-total">Day 2: ~5.3 mi walking · ~11,000 steps · ~4 hrs on feet</div>
+          </div>
         </div>
       </div>
     </section>
@@ -1072,6 +1106,13 @@
 
           <div class="drive-stat">
             <span class="drive-val">~3h 39m total driving</span> · Depart 8:00 AM · Return SF evening · All times Routes API verified · Pack bags tonight — depart 7:00 AM tomorrow
+          </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 3 — On Your Feet</div>
+            <div class="wp-row"><span>🚶 Bouchon Bakery area, Yountville village</span><span>~0.2 mi · 10 min</span></div>
+            <div class="wp-row"><span>🥾 Sterling Vineyards — gondola + vineyard grounds</span><span>~0.4 mi · 20 min</span></div>
+            <div class="wp-row"><span>🚶 Napa Oxbow Public Market (browsing stalls)</span><span>~0.3 mi · 30 min</span></div>
+            <div class="wp-total">Day 3: ~1.0 mi walking · ~2,200 steps · Light day — mostly scenic driving</div>
           </div>
         </div>
       </div>

@@ -155,6 +155,14 @@
     .dep-row strong { color: #90CDF4; }
     .dep-note { font-family: sans-serif; font-size: .78rem; opacity: .8; margin-top: 14px; line-height: 1.6; }
 
+    /* WALKING PLANNER */
+    .walk-planner { background: #F0FFF4; border: 1px solid #48BB78; border-left: 4px solid #276749; border-radius: 8px; padding: 14px 16px; margin: 16px 0; }
+    .wp-title { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #276749; margin-bottom: 10px; }
+    .wp-row { display: flex; justify-content: space-between; align-items: baseline; font-family: sans-serif; font-size: .79rem; padding: 5px 0; border-bottom: 1px dashed #C6F6D5; color: var(--dark); gap: 12px; }
+    .wp-row:last-of-type { border-bottom: none; }
+    .wp-row span:last-child { font-weight: 700; color: #276749; white-space: nowrap; }
+    .wp-total { font-family: sans-serif; font-size: .82rem; font-weight: 700; color: #276749; background: #C6F6D5; padding: 7px 12px; border-radius: 6px; margin-top: 10px; text-align: center; }
+
     .footer { background: linear-gradient(135deg, #3D1F00, #C05621); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
@@ -274,6 +282,12 @@
           <div class="drive-stat">
             <span class="drive-val">2h 31m · 139.7 mi</span> · Coronado → Los Angeles · Routes API verified · Jul 8 Wed ~noon
           </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 7 — On Your Feet (Arrival Day)</div>
+            <div class="wp-row"><span>🚶 Hotel neighborhood explore (evening)</span><span>~0.5 mi · 15 min</span></div>
+            <div class="wp-row"><span>🚶 Grand Central Market if near DTLA (dinner)</span><span>~0.2 mi inside market</span></div>
+            <div class="wp-total">Day 7: ~0.7 mi · ~1,500 steps · Rest day — long drive from Coronado</div>
+          </div>
         </div>
       </div>
     </section>
@@ -290,6 +304,19 @@
           <div class="map-section">
             <div id="map-day8" class="seg-map"></div>
             <p class="map-caption">Day 8: Beverly Hills (Rodeo Drive) → Hollywood (Walk of Fame · Grauman's) → Downtown LA (Disney Concert Hall · Little Tokyo · Chinatown · Grand Central Market)</p>
+          </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 8 — On Your Feet (Routes API Verified)</div>
+            <div class="wp-row"><span>🚶 Beverly Hills Hotel → Rodeo Drive</span><span>18 min · 0.8 mi</span></div>
+            <div class="wp-row"><span>🚶 Rodeo Drive full strip (Wilshire → Santa Monica)</span><span>11 min · 0.5 mi</span></div>
+            <div class="wp-row"><span>🚗 Beverly Hills → Hollywood — Lyft ~20 min (~$14–18)</span><span>4.0 mi · not walkable</span></div>
+            <div class="wp-row"><span>🚶 Hollywood Walk of Fame (full La Brea → Grauman's)</span><span>~0.8 mi · 20 min</span></div>
+            <div class="wp-row"><span>🚗 Hollywood → Downtown LA — Lyft ~20 min (~$14–18)</span><span>7.2 mi walking per API · completely impractical</span></div>
+            <div class="wp-row"><span>🚶 Disney Concert Hall + rooftop garden</span><span>~0.3 mi · 15 min</span></div>
+            <div class="wp-row"><span>🚶 Disney Concert Hall → Little Tokyo</span><span>21 min · 0.9 mi</span></div>
+            <div class="wp-row"><span>🚶 Little Tokyo → Grand Central Market</span><span>17 min · 0.7 mi</span></div>
+            <div class="wp-row"><span>🚶 Grand Central Market → Chinatown</span><span>27 min · 1.2 mi</span></div>
+            <div class="wp-total">Day 8: ~4.7 mi walking · ~10,000 steps · 2 rideshares: BH→Hollywood · Hollywood→DTLA</div>
           </div>
           <div class="time-block">
             <div class="tb-hd la">Morning — Beverly Hills</div>
@@ -386,6 +413,19 @@
           <div class="map-section">
             <div id="map-day9" class="seg-map"></div>
             <p class="map-caption">Day 9: Griffith Observatory (Hollywood Sign views) → Santa Monica Pier → Venice Boardwalk + Canals → Abbot Kinney Blvd</p>
+          </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 9 — On Your Feet (Routes API Verified)</div>
+            <div class="wp-row"><span>🚗 Hotel → Griffith Observatory — Lyft ~25 min</span><span>parking limited · rideshare recommended</span></div>
+            <div class="wp-row"><span>🥾 Griffith Observatory grounds + viewpoints</span><span>~0.3 mi · 20 min</span></div>
+            <div class="wp-row"><span>🥾 Mt. Hollywood Trail to summit (optional, strenuous)</span><span>2.5 mi RT · 1.5 hrs · best Hollywood Sign view</span></div>
+            <div class="wp-row"><span>🚗 Griffith → Santa Monica Pier — Lyft ~35 min</span><span>across town · rideshare</span></div>
+            <div class="wp-row"><span>🚶 Santa Monica Pier → Venice Boardwalk (beach path)</span><span>44 min · 2.0 mi</span></div>
+            <div class="wp-row"><span>🚶 Venice Boardwalk (Muscle Beach to south end)</span><span>~1.0 mi · 20 min</span></div>
+            <div class="wp-row"><span>🚶 Venice Boardwalk → Abbot Kinney Blvd</span><span>21 min · 1.0 mi</span></div>
+            <div class="wp-row"><span>🚶 Venice Canals (all 6 canals loop)</span><span>~1.0 mi · 25 min</span></div>
+            <div class="wp-row"><span>🚶 Venice Canals → Abbot Kinney Blvd</span><span>7 min · 0.3 mi</span></div>
+            <div class="wp-total">Day 9: ~5.6 mi base · ~12,000 steps · +2.5 mi if Observatory trail · 2 rideshares</div>
           </div>
           <div class="time-block">
             <div class="tb-hd la">Morning — Griffith Observatory</div>
@@ -542,6 +582,14 @@
           <div class="map-section">
             <div id="map-day10" class="seg-map"></div>
             <p class="map-caption">Day 10: Santa Monica Farmers Market (8 AM) → Getty Center (hilltop museum, free admission) → Final dinner</p>
+          </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 10 — On Your Feet</div>
+            <div class="wp-row"><span>🚶 Santa Monica Farmers Market (stall browsing)</span><span>~0.4 mi · 45 min leisurely</span></div>
+            <div class="wp-row"><span>🚗 Santa Monica → Getty Center — Lyft ~15 min (~$12–15)</span><span>7.6 mi · not walkable</span></div>
+            <div class="wp-row"><span>🥾 Getty Center campus + Central Garden + galleries</span><span>~0.8 mi · 1.5–2 hrs</span></div>
+            <div class="wp-row"><span>🚶 Getty tram (parking lot → museum entrance)</span><span>Free · included · scenic approach</span></div>
+            <div class="wp-total">Day 10: ~1.5 mi walking · ~3,500 steps · Light final day — pack tonight for LAX</div>
           </div>
           <div class="time-block">
             <div class="tb-hd la">Morning — Santa Monica Farmers Market (8 AM–1 PM)</div>

@@ -131,6 +131,14 @@
     .si-source { font-family: sans-serif; font-size: .7rem; color: var(--redwood); font-weight: 600; }
     .si-location { font-family: sans-serif; font-size: .7rem; color: var(--mid); margin-top: 2px; }
 
+    /* WALKING PLANNER */
+    .walk-planner { background: #F0FFF4; border: 1px solid #48BB78; border-left: 4px solid #276749; border-radius: 8px; padding: 14px 16px; margin: 16px 0; }
+    .wp-title { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #276749; margin-bottom: 10px; }
+    .wp-row { display: flex; justify-content: space-between; align-items: baseline; font-family: sans-serif; font-size: .79rem; padding: 5px 0; border-bottom: 1px dashed #C6F6D5; color: var(--dark); gap: 12px; }
+    .wp-row:last-of-type { border-bottom: none; }
+    .wp-row span:last-child { font-weight: 700; color: #276749; white-space: nowrap; }
+    .wp-total { font-family: sans-serif; font-size: .82rem; font-weight: 700; color: #276749; background: #C6F6D5; padding: 7px 12px; border-radius: 6px; margin-top: 10px; text-align: center; }
+
     .footer { background: var(--redwood); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
@@ -677,6 +685,19 @@
 
           <div class="drive-stat">
             <span class="drive-val">~4h 36m total driving</span> · Depart SF 7:00 AM · Arrive Cambria ~6:30 PM · 10 stops including Ragged Point · Hwy 1 Pacific Coast Highway
+          </div>
+          <div class="walk-planner">
+            <div class="wp-title">🚶 Day 4 — On Your Feet (Routes API Verified)</div>
+            <div class="wp-row"><span>🚶 Carmel village — Ocean Ave + shops</span><span>~0.5 mi · 20 min</span></div>
+            <div class="wp-row"><span>🚶 Carmel Beach → Scenic Road bluff path</span><span>9 min · 0.4 mi</span></div>
+            <div class="wp-row"><span>🚶 Carmel Beach Boardwalk (foot of Ocean Ave)</span><span>~0.2 mi · 10 min</span></div>
+            <div class="wp-row"><span>🥾 Point Lobos China Cove Bird Island Trail</span><span>1 mi flat · 45 min</span></div>
+            <div class="wp-row"><span>🥾 Pfeiffer Beach (lot to Keyhole Arch)</span><span>~0.3 mi · 10 min</span></div>
+            <div class="wp-row"><span>🥾 McWay Falls Overlook Trail</span><span>0.5 mi RT flat · 20 min</span></div>
+            <div class="wp-row"><span>🚶 Ragged Point clifftop overlook</span><span>~0.3 mi · 10 min</span></div>
+            <div class="wp-row"><span>🥾 Ragged Point beach trail (optional — steep)</span><span>+0.5 mi steep · 20 min each way</span></div>
+            <div class="wp-row"><span>🚶 Elephant Seals viewing platform (from lot)</span><span>~0.1 mi · 5 min</span></div>
+            <div class="wp-total">Day 4: ~3.6 mi walking · ~8,000 steps · ~3 hrs on feet between stops</div>
           </div>
         </div>
       </div>
