@@ -21,9 +21,6 @@
                      margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--pacific); }
     .seg-map { height: 360px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
-    .map-legend{display:flex;align-items:center;gap:18px;font-family:sans-serif;font-size:.72rem;color:var(--dark);margin:3px 0 12px;flex-wrap:wrap}
-    .map-legend .leg{display:flex;align-items:center;gap:5px}
-    .map-legend .dot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);flex-shrink:0}
 
     /* HERO */
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative;
@@ -274,7 +271,6 @@
           <!-- DAY 1 MAP -->
           <div class="map-section">
             <div id="map-day1" class="seg-map"></div>
-            <div class="map-legend"><div class="leg"><div class="dot" style="background:#0B4F6C"></div>🚗 Driving / Rideshare</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking</div></div>
             <p class="map-caption">Day 1 stops: Hyatt SF → Chinatown → Palace of Fine Arts → Powell-Hyde Cable Car → Lombard St → Painted Ladies → Twin Peaks · All transit, rideshare, or walking — no driving required</p>
             <div class="route-strip">
               <div class="rs-node">
@@ -641,7 +637,6 @@
           <!-- DAY 2 MAP -->
           <div class="map-section">
             <div id="map-day2" class="seg-map"></div>
-            <div class="map-legend"><div class="leg"><div class="dot" style="background:#0B4F6C"></div>🚗 Driving / Rideshare</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking</div></div>
             <p class="map-caption">Day 2 route: Pier 33 (Alcatraz return) → Fort Point NHS → UC Berkeley → Muir Woods → Hyatt SF · ~3h 46m total driving</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -1429,38 +1424,21 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,driveStops,col,drawRoute,walkStops){
+  function mkMap(id,center,zoom,stops,col,drawRoute){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
-    driveStops.forEach(function(s){
+    stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
       L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
-    if(walkStops&&walkStops.length>1){
-      var wpts=[];
-      walkStops.forEach(function(s){
-        var icon=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-        L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
-        wpts.push([s.a,s.o]);
-      });
-      L.polyline(wpts,{color:'#276749',weight:2,dashArray:'4,6',opacity:.75}).addTo(m);
-    }
   }
   window.addEventListener('load',function(){
-    // Day 1: SF arrival day — blue=rideshare hops, green=walking stops
+    // Day 1: SF arrival day — hotel base + stops (all transit/walk)
     mkMap('map-day1',[37.78,-122.44],12,[
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Base hotel · Check-in 3:00 PM'},
-      {a:37.793,o:-122.396,n:'1',name:'Embarcadero',note:'🚗 Short walk from hotel · Ferry Bldg + Chinatown area'},
-      {a:37.808,o:-122.417,n:'2',name:'Fisherman\'s Wharf',note:'🚶 Walk north along waterfront · Pier 39 · Ghirardelli'},
-      {a:37.802,o:-122.449,n:'3',name:'Palace of Fine Arts',note:'🚗 Rideshare from Wharf · ~12 min'},
-      {a:37.793,o:-122.413,n:'4',name:'Russian Hill',note:'🚗 Rideshare · Cable Car + Lombard St'},
-      {a:37.776,o:-122.434,n:'5',name:'Alamo Square',note:'🚗 Rideshare · Painted Ladies + Mission Dolores'},
-      {a:37.769,o:-122.486,n:'6',name:'Golden Gate Park',note:'🚗 Rideshare · Tea Garden · Academy · Twin Peaks'}
-    ],'#0B4F6C',true,[
-      {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Walk start'},
       {a:37.795,o:-122.394,n:'1',name:'Ferry Building',note:'Free · Marketplace · Farmers Market Sat'},
       {a:37.794,o:-122.408,n:'2',name:'Chinatown — Dragon Gate',note:'Grant Ave · 45–60 min'},
       {a:37.809,o:-122.410,n:'3',name:'Pier 39',note:'Free · Sea lions · Fisherman\'s Wharf area'},
@@ -1476,18 +1454,11 @@
       {a:37.770,o:-122.470,n:'13',name:'Japanese Tea Garden',note:'$15 adults · Oldest public Japanese garden in US'},
       {a:37.770,o:-122.466,n:'14',name:'CA Academy of Sciences',note:'$40 adults · Aquarium · Planetarium'},
       {a:37.752,o:-122.447,n:'15',name:'Twin Peaks',note:'Free · Sunset panorama'}
-    ]);
-    // Day 2: blue=ferry+drive backbone, green=detailed walking sequence
+    ],'#0B4F6C',true);
+    // Day 2: Pier 33 → Alcatraz → Fort Point → GGB → Baker Beach → Presidio → UC Berkeley → Muir Woods → Hyatt SF
     mkMap('map-day2',[37.855,-122.43],10,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:35 AM'},
-      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'🚢 9:20 AM ferry · 2.5 hr island tour'},
-      {a:37.811,o:-122.477,n:'2',name:'Fort Point / GGB area',note:'🚗 Rideshare after Alcatraz'},
-      {a:37.872,o:-122.260,n:'3',name:'UC Berkeley',note:'🚗 Drive across Bay'},
-      {a:37.891,o:-122.571,n:'4',name:'Muir Woods',note:'🚗 ✅ Booked · 4:00–4:30 PM'},
-      {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
-    ],'#0B4F6C',true,[
-      {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Walk start'},
-      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM ferry · 2.5 hr tour'},
+      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure · 2.5 hr tour'},
       {a:37.811,o:-122.477,n:'2',name:'Fort Point NHS',note:'FREE · Under GGB · 10 AM–5 PM Fri'},
       {a:37.820,o:-122.478,n:'3',name:'Golden Gate Bridge',note:'Free · Walk the span · North tower views'},
       {a:37.794,o:-122.484,n:'4',name:'Baker Beach',note:'Free · GGB backdrop · Best angle on bridge'},
@@ -1495,7 +1466,7 @@
       {a:37.872,o:-122.260,n:'6',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM'},
       {a:37.891,o:-122.571,n:'7',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot'},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
-    ]);
+    ],'#0B4F6C',true);
     // Day 3: SF → Yountville → Calistoga → Napa → SF
     mkMap('map-day3',[38.15,-122.38],9,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:00 AM'},

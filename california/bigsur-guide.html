@@ -21,9 +21,6 @@
                      margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--pacific); }
     .seg-map { height: 380px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
-    .map-legend{display:flex;align-items:center;gap:18px;font-family:sans-serif;font-size:.72rem;color:var(--dark);margin:3px 0 12px;flex-wrap:wrap}
-    .map-legend .leg{display:flex;align-items:center;gap:5px}
-    .map-legend .dot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);flex-shrink:0}
 
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative;
             background: linear-gradient(160deg, #1A3D2B, #3A6B4A, #6B4226); }
@@ -215,7 +212,6 @@
           <!-- DAY 4 MAP -->
           <div class="map-section">
             <div id="map-day4" class="seg-map"></div>
-            <div class="map-legend"><div class="leg"><div class="dot" style="background:#3A6B4A"></div>🚗 Driving (Hwy 1)</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking (Carmel town + Big Sur)</div></div>
             <p class="map-caption">Day 4 route: Hyatt SF → 17-Mile Drive → Carmel → Point Lobos → Bixby Bridge → Pfeiffer Beach → McWay Falls → Ragged Point → Elephant Seals → Castle Inn Cambria · ~4h 36m driving + stops</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -789,47 +785,36 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,driveStops,col,drawRoute,walkStops){
+  function mkMap(id,center,zoom,stops,col,drawRoute){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
-    driveStops.forEach(function(s){
+    stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
       L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
-    if(walkStops&&walkStops.length>1){
-      var wpts=[];
-      walkStops.forEach(function(s){
-        var icon=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-        L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
-        wpts.push([s.a,s.o]);
-      });
-      L.polyline(wpts,{color:'#276749',weight:2,dashArray:'4,6',opacity:.75}).addTo(m);
-    }
   }
   window.addEventListener('load',function(){
     // Day 4: SF → 17-Mile Drive → Carmel → Point Lobos → Bixby → Pfeiffer → McWay → Elephant Seals → Cambria
     mkMap('map-day4',[36.5,-121.75],7,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt SF — Depart 7:00 AM',note:'1h 53m · 123.9 mi'},
-      {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'🚗 $12.25/vehicle · 45 min–1 hr'},
-      {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'🚗 Park here · Walk the town'},
-      {a:36.515,o:-121.938,n:'3',name:'Point Lobos State Reserve',note:'🚗 $10/vehicle · ⚠️ NOT BOOKED'},
-      {a:36.374,o:-121.902,n:'4',name:'Bixby Creek Bridge',note:'🚗 Free · North turnout'},
-      {a:36.283,o:-121.820,n:'5',name:'Pfeiffer Beach',note:'🚗 $12 cash · Purple sand'},
-      {a:36.157,o:-121.670,n:'6',name:'McWay Falls',note:'🚗 $12/vehicle · 80-ft waterfall'},
-      {a:35.793,o:-121.331,n:'7',name:'Ragged Point',note:'🚗 58 min from McWay · 15–20 min stop'},
-      {a:35.665,o:-121.254,n:'8',name:'Elephant Seals — Piedras Blancas',note:'🚗 Free · 18 min from Ragged Point'},
+      {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'$12.25/vehicle · 45 min–1 hr'},
+      {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'Free · Ocean Ave · 45 min–1 hr'},
+      {a:36.553,o:-121.928,n:'3',name:'Carmel Scenic Road Walkway',note:'Free · Bluff path · 30–45 min'},
+      {a:36.555,o:-121.922,n:'4',name:'Carmel Beach Boardwalk',note:'Free · End of Ocean Ave'},
+      {a:36.555,o:-121.920,n:'5',name:'Carmel Walks / Pine Inn',note:'$30/person · Sun 10 AM'},
+      {a:36.556,o:-121.920,n:'6',name:'Carmel Plaza',note:'Free · Ocean Ave at Mission'},
+      {a:36.515,o:-121.938,n:'7',name:'Point Lobos State Reserve',note:'$10/vehicle · ⚠️ NOT BOOKED'},
+      {a:36.374,o:-121.902,n:'8',name:'Bixby Creek Bridge',note:'Free · North turnout'},
+      {a:36.283,o:-121.820,n:'9',name:'Pfeiffer Beach',note:'$12 cash · Purple sand'},
+      {a:36.233,o:-121.792,n:'10',name:'Big Sur Station',note:'Free · Visitor info · Road conditions'},
+      {a:36.157,o:-121.670,n:'11',name:'McWay Falls',note:'$12/vehicle · 80-ft waterfall'},
+      {a:35.793,o:-121.331,n:'12',name:'Ragged Point',note:'58 min from McWay · 37.4 mi · 15–20 min'},
+      {a:35.665,o:-121.254,n:'13',name:'Elephant Seals — Piedras Blancas',note:'Free · 18 min from Ragged Point'},
       {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:30 PM · Breakfast included'}
-    ],'#3A6B4A',true,[
-      {a:36.555,o:-121.923,n:'🏠',name:'Carmel · Walk start',note:'Park on Ocean Ave'},
-      {a:36.553,o:-121.928,n:'1',name:'Carmel Scenic Road Walkway',note:'Free · Bluff path · 30–45 min'},
-      {a:36.555,o:-121.922,n:'2',name:'Carmel Beach Boardwalk',note:'Free · End of Ocean Ave'},
-      {a:36.555,o:-121.920,n:'3',name:'Carmel Walks / Pine Inn',note:'$30/person · Sun 10 AM'},
-      {a:36.556,o:-121.920,n:'4',name:'Carmel Plaza',note:'Free · Ocean Ave at Mission'},
-      {a:36.233,o:-121.792,n:'5',name:'Big Sur Station',note:'Free · Visitor info · Check road conditions'}
-    ]);
+    ],'#3A6B4A',true);
   });
   </script>
 </body>

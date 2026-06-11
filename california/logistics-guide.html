@@ -162,14 +162,6 @@
         <div class="ov-row"><span class="ov-lbl">Drive Home</span><span class="ov-val">Adam &amp; Vadim drive home from LAX after dropping Marina &amp; Liam on Jul 12.</span></div>
       </div>
 
-      <div class="grp-hd">🗺️ California Route Map — SF to LA</div>
-      <div id="map-california" style="height:400px;border-radius:10px;margin:8px 0 4px;border:1px solid var(--border);overflow:hidden"></div>
-      <div style="display:flex;gap:18px;font-family:sans-serif;font-size:.72rem;color:var(--dark);margin:4px 0 16px;flex-wrap:wrap">
-        <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#0B4F6C;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)"></span> Major stop</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#3A6B4A;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)"></span> Overnight hotel</span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#B7730A;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)"></span> 🎂 Special (birthday)</span>
-      </div>
-
       <div class="grp-hd">Outbound — Thu Jul 2</div>
       <table class="stop-table">
         <tr><th>Who</th><th>Flight</th><th>Route</th><th>Times</th><th>Details</th></tr>
@@ -844,35 +836,6 @@ function mkMap(id, center, zoom, stops) {
 }
 
 window.addEventListener('load', function(){
-
-  // California full-route overview map
-  (function(){
-    var m=L.map('map-california',{scrollWheelZoom:false}).setView([36.0,-120.5],6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(m);
-    var stops=[
-      {lat:37.784,lng:-122.398,lbl:'SF',color:'#0B4F6C',name:'San Francisco (Days 1–3)',note:'Jul 2–4 · Hyatt Regency · Embarcadero · GGB · Alcatraz · Muir Woods'},
-      {lat:38.557,lng:-122.572,lbl:'🎂',color:'#B7730A',name:'Napa Valley — Sterling Vineyards (Day 3)',note:'Jul 4 · Birthday! · ✅ 10:45 AM booked'},
-      {lat:36.617,lng:-121.921,lbl:'M',color:'#0B4F6C',name:'Monterey — 17-Mile Drive (Day 4)',note:'Jul 5 AM · $12.25/vehicle'},
-      {lat:36.555,lng:-121.923,lbl:'C',color:'#0B4F6C',name:'Carmel-by-the-Sea (Day 4)',note:'Jul 5 · Town walk · Point Lobos'},
-      {lat:36.374,lng:-121.902,lbl:'BS',color:'#0B4F6C',name:'Big Sur — Bixby Bridge · McWay Falls (Day 4)',note:'Jul 5 · Bixby · Pfeiffer · McWay · Ragged Point · Elephant Seals'},
-      {lat:35.564,lng:-121.081,lbl:'H',color:'#3A6B4A',name:'Castle Inn, Cambria (Night 4–5)',note:'Jul 5–6 · Overnight · Breakfast included'},
-      {lat:35.685,lng:-121.168,lbl:'HC',color:'#0B4F6C',name:'Hearst Castle (Day 5)',note:'Jul 6 · ⚠️ NOT BOOKED · hearstcastle.org'},
-      {lat:34.596,lng:-120.138,lbl:'SV',color:'#0B4F6C',name:'Solvang (Day 5)',note:'Jul 6 · Danish village · Ostrichland USA'},
-      {lat:34.415,lng:-119.701,lbl:'H',color:'#3A6B4A',name:'Beachside Inn, Santa Barbara (Night 5–6)',note:'Jul 6–7 · Overnight · Conf. 1075827673'},
-      {lat:34.029,lng:-118.879,lbl:'EM',color:'#0B4F6C',name:'El Matador Beach (Day 6)',note:'Jul 7 · $8–12/vehicle · Before 10 AM'},
-      {lat:33.604,lng:-117.897,lbl:'NB',color:'#0B4F6C',name:'Newport Beach / Balboa Island (Day 6)',note:'Jul 7 · Balboa Bar · Ferry'},
-      {lat:32.850,lng:-117.272,lbl:'LJ',color:'#0B4F6C',name:'La Jolla Cove (Day 6)',note:'Jul 7 · Free · Sea lions · Coast walk'},
-      {lat:32.683,lng:-117.177,lbl:'H',color:'#3A6B4A',name:'Best Western Coronado (Night 6–7)',note:'Jul 7–8 · Overnight · Conf. 6459555758'},
-      {lat:34.052,lng:-118.244,lbl:'LA',color:'#0B4F6C',name:'Los Angeles (Days 7–10)',note:'Jul 8–12 · Hotel TBD · Beverly Hills · Hollywood · Griffith · Venice'}
-    ];
-    var pts=[];
-    stops.forEach(function(s){
-      var icon=L.divIcon({html:'<div style="background:'+s.color+';color:#fff;border-radius:50%;min-width:26px;height:26px;padding:0 3px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.lbl+'</div>',iconSize:null,iconAnchor:[13,13],className:''});
-      L.marker([s.lat,s.lng],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:11px;color:#555">'+s.note+'</span>':''));
-      pts.push([s.lat,s.lng]);
-    });
-    L.polyline(pts,{color:'#0B4F6C',weight:2,dashArray:'6,9',opacity:.65}).addTo(m);
-  })();
 
   _pendingMaps['book'] = function() { mkMap('map-book',[37.0,-121.5],7,[
     {lat:37.806672,lng:-122.404443,type:'hotel',lbl:'✓',name:'Alcatraz Ferry — Pier 33',note:'Jul 3 · 9:20 AM · CONFIRMED'},

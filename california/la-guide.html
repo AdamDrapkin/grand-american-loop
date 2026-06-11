@@ -19,9 +19,6 @@
     .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--mid); font-weight: 700; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--sunset); }
     .seg-map { height: 300px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
-    .map-legend{display:flex;align-items:center;gap:18px;font-family:sans-serif;font-size:.72rem;color:var(--dark);margin:3px 0 12px;flex-wrap:wrap}
-    .map-legend .leg{display:flex;align-items:center;gap:5px}
-    .map-legend .dot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);flex-shrink:0}
 
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative; background: linear-gradient(160deg, #3D1F00, #C05621, #B7730A); }
     .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
@@ -306,7 +303,6 @@
         <div class="day-body">
           <div class="map-section">
             <div id="map-day8" class="seg-map"></div>
-            <div class="map-legend"><div class="leg"><div class="dot" style="background:#C05621"></div>🚗 Rideshare hops</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking within each district</div></div>
             <p class="map-caption">Day 8: Beverly Hills (Rodeo Drive) → Hollywood (Walk of Fame · Grauman's) → Downtown LA (Disney Concert Hall · Little Tokyo · Chinatown · Grand Central Market)</p>
           </div>
           <div class="walk-planner">
@@ -416,7 +412,6 @@
         <div class="day-body">
           <div class="map-section">
             <div id="map-day9" class="seg-map"></div>
-            <div class="map-legend"><div class="leg"><div class="dot" style="background:#C05621"></div>🚗 Rideshare hops</div><div class="leg"><div class="dot" style="background:#276749"></div>🚶 Walking within each area</div></div>
             <p class="map-caption">Day 9: Griffith Observatory (Hollywood Sign views) → Santa Monica Pier → Venice Boardwalk + Canals → Abbot Kinney Blvd</p>
           </div>
           <div class="walk-planner">
@@ -789,25 +784,16 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-  function mkMap(id,center,zoom,driveStops,col,drawRoute,walkStops){
+  function mkMap(id,center,zoom,stops,col,drawRoute){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
-    driveStops.forEach(function(s){
+    stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
       L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
-    if(walkStops&&walkStops.length>1){
-      var wpts=[];
-      walkStops.forEach(function(s){
-        var icon=L.divIcon({html:'<div style="background:#276749;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-        L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
-        wpts.push([s.a,s.o]);
-      });
-      L.polyline(wpts,{color:'#276749',weight:2,dashArray:'4,6',opacity:.75}).addTo(m);
-    }
   }
   window.addEventListener('load',function(){
     // Day 7: Best Western Coronado → Los Angeles (hotel TBD)
@@ -815,14 +801,9 @@
       {a:32.683,o:-117.177,n:'🏠',name:'Best Western Plus Coronado Island',note:'Depart ~noon · Jul 8 Wed'},
       {a:34.052,o:-118.244,n:'🏨',name:'Los Angeles Hotel (TBD)',note:'Arrive ~3:00 PM · 2h 31m · 139.7 mi · I-5 N → I-405 N'}
     ],'#C05621',true);
-    // Day 8: blue=rideshare hops between LA districts, green=walking stops
+    // Day 8: Beverly Hills → Hollywood → Downtown LA
     mkMap('map-day8',[34.08,-118.30],11,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart morning'},
-      {a:34.074,o:-118.407,n:'1',name:'Beverly Hills',note:'🚗 Rideshare ~15 min · Rodeo Dr + BH Hotel'},
-      {a:34.102,o:-118.339,n:'2',name:'Hollywood',note:'🚗 Rideshare · Walk of Fame + Grauman\'s'},
-      {a:34.052,o:-118.247,n:'3',name:'Downtown LA',note:'🚗 Rideshare · Disney Hall · Chinatown · Little Tokyo'}
-    ],'#C05621',true,[
-      {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Walk start'},
       {a:34.071,o:-118.401,n:'1',name:'Rodeo Drive, Beverly Hills',note:'Free · Luxury shopping strip'},
       {a:34.077,o:-118.412,n:'2',name:'Beverly Hills Hotel (Pink Palace)',note:'9641 Sunset Blvd · Polo Lounge'},
       {a:34.102,o:-118.337,n:'3',name:'Hollywood Walk of Fame',note:'Free · 2,700+ stars · Hollywood Blvd'},
@@ -831,14 +812,10 @@
       {a:34.063,o:-118.237,n:'6',name:'LA Chinatown',note:'Broadway & Hill · 5 min from Disney Hall'},
       {a:34.050,o:-118.238,n:'7',name:'Little Tokyo',note:'Ramen · Mochi originator · Nisei Week'},
       {a:34.050,o:-118.247,n:'8',name:'Grand Central Market',note:'317 S Broadway · Open to 10 PM · 40+ vendors'}
-    ]);
-    // Day 9: blue=rideshare hops, green=walking stops within each LA area
+    ],'#C05621',true);
+    // Day 9: Griffith Hills → Santa Monica → Venice
     mkMap('map-day9',[34.06,-118.40],10,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart morning'},
-      {a:34.128,o:-118.297,n:'1',name:'Griffith Park area',note:'🚗 Rideshare ~15 min · Observatory + Sign + Park'},
-      {a:33.998,o:-118.488,n:'2',name:'Santa Monica / Venice',note:'🚗 Rideshare ~30–40 min · Pier + Boardwalk + Canals + Abbot Kinney'}
-    ],'#C05621',true,[
-      {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Walk start'},
       {a:34.118,o:-118.300,n:'1',name:'Griffith Observatory',note:'Free · Opens 10 AM · Hollywood Sign view · 1.5–2 hrs'},
       {a:34.134,o:-118.322,n:'2',name:'Hollywood Sign (view)',note:'Best view from Observatory lawn'},
       {a:34.137,o:-118.294,n:'3',name:'Griffith Park',note:'Free · 4,107 acres · Largest urban park in US'},
@@ -846,7 +823,7 @@
       {a:33.991,o:-118.477,n:'5',name:'Venice Boardwalk',note:'Free · Muscle Beach · Street performers'},
       {a:33.987,o:-118.468,n:'6',name:'Venice Canals',note:'Free · 30–45 min · Century-old canal network'},
       {a:33.989,o:-118.463,n:'7',name:'Abbot Kinney Blvd',note:'Independent shops · Intelligentsia Coffee · "Coolest block in America"'}
-    ]);
+    ],'#C05621',true);
     // Day 10: Santa Monica Farmers Market → Getty Center
     mkMap('map-day10',[34.05,-118.48],11,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart early'},
