@@ -170,13 +170,13 @@
           <td><div class="stop-name">AA 1524</div><div class="stop-sub">Conf: KYUXME</div></td>
           <td>PHL → SFO</td>
           <td>8:26 AM → 11:27 AM</td>
-          <td>Seats 29B / 29A · Checked bag $45 (Doc 0014498078664)<br><span style="font-family:sans-serif;font-size:.76rem;color:var(--hotel)">Meet at Hyatt Regency SF ~1:00 PM</span></td>
+          <td>Seats 29B / 29A · Checked bag $45 (Doc 0014498078664)<br><span style="font-family:sans-serif;font-size:.76rem;color:var(--hotel)">Adam &amp; Vadim pick up at SFO baggage claim ~12:00 PM · drive together to Hyatt</span></td>
         </tr>
         <tr>
           <td><div class="stop-name">Adam &amp; Vadim</div></td>
           <td colspan="2"><em style="font-size:.82rem;color:var(--mid)">Driving from home — no flight</em></td>
           <td>—</td>
-          <td>Arrive SF to meet Marina &amp; Liam at Hyatt by 1:00 PM Jul 2</td>
+          <td>Pick up Marina &amp; Liam at SFO baggage claim ~12:00 PM · drive together to Hyatt</td>
         </tr>
       </table>
 
@@ -330,6 +330,11 @@
     <div class="wrap">
       <div class="sec-hd book">Activities &amp; Bookings</div>
       <div class="sec-sub">3 confirmed · 6 still to book · LA hotel TBD.</div>
+
+      <div id="map-book" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/37.806672,-122.404443/37.897020,-122.581118/38.569682,-122.547173/38.297359,-122.283712/36.516500,-121.944700/35.685400,-121.166500/34.077008,-118.473978" target="_blank" class="mab book">🗺️ All Activity Sites in Google Maps</a>
+      </div>
 
       <div class="grp-hd">✅ Confirmed — 3 Activities</div>
       <table class="stop-table">
@@ -743,6 +748,16 @@ function mkMap(id, center, zoom, stops) {
 }
 
 window.addEventListener('load', function(){
+
+  _pendingMaps['book'] = function() { mkMap('map-book',[37.0,-121.5],7,[
+    {lat:37.806672,lng:-122.404443,type:'hotel',lbl:'✓',name:'Alcatraz Ferry — Pier 33',note:'Jul 3 · 9:20 AM · CONFIRMED'},
+    {lat:37.897020,lng:-122.581118,type:'hotel',lbl:'✓',name:'Muir Woods Parking',note:'Jul 3 · 4:00 PM · CONFIRMED'},
+    {lat:38.569682,lng:-122.547173,type:'hotel',lbl:'✓',name:'Sterling Vineyards',note:'Jul 4 · 10:45 AM · CONFIRMED · $192.53 paid'},
+    {lat:38.297359,lng:-122.283712,type:'food',lbl:'!',name:'The Waterfront Seafood Grill',note:'Jul 4 evening · BOOK NOW · (707) 699-2452'},
+    {lat:36.516500,lng:-121.944700,type:'food',lbl:'!',name:'Point Lobos State Reserve',note:'Jul 5 · reservecalifornia.com · $10/vehicle'},
+    {lat:35.685400,lng:-121.166500,type:'food',lbl:'!',name:'Hearst Castle Tour',note:'Jul 6 · hearstcastle.org · ~$30/adult'},
+    {lat:34.077008,lng:-118.473978,type:'food',lbl:'!',name:'Getty Center Timed Entry',note:'Jul 10 or 11 · getty.edu · free but required'}
+  ]); };
 
   _pendingMaps['hotel'] = function() { mkMap('map-hotel',[36.5,-120.0],6,[
     {lat:37.786587,lng:-122.403097,type:'hotel',lbl:'1',name:'Hyatt Regency SF',note:'Jul 2–5 · 3 nights'},
