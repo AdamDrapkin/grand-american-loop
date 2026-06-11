@@ -3,712 +3,769 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Logistics · California Road Trip · July 2–12, 2026</title>
+  <title>Logistics Guide · California Road Trip · July 2–12, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
-      --pacific: #0B4F6C; --coastal: #1B7A9E; --sunset: #C05621; --golden: #B7730A;
-      --redwood: #3A6B4A; --cream: #FDFBF7; --sand: #F5E6D3; --dark: #1A202C;
-      --mid: #4A5568; --border: #C8D8EA; --snow: #F0F7FF; --amber: #92400E;
-      --green: #1F6B2A; --red: #C0392B; --gold: #D69E2E;
+      --over:   #0B4F6C;
+      --hotel:  #3A6B4A;
+      --book:   #553C9A;
+      --food:   #C05621;
+      --gold:   #D69E2E;
+      --cream:  #FDFAF4;
+      --dark:   #1A202C;
+      --mid:    #5A4A3A;
+      --border: #E4D0BC;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Georgia, serif; background: var(--cream); color: var(--dark); }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px 48px; }
-    section { margin: 0 0 8px; }
-    .section-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase;
-                     letter-spacing: 1.2px; color: var(--mid); font-weight: 700;
-                     margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-    a { color: var(--pacific); }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Georgia,serif;background:var(--cream);color:var(--dark);line-height:1.6}
+    a{color:var(--over)}
 
     /* HERO */
-    .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative;
-            background: linear-gradient(135deg, #0B4F6C 0%, #1B7A9E 40%, #C05621 80%, #B7730A 100%); }
-    .hero::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px;
-                   background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
-    .hero-sup { font-family: sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: .8; margin-bottom: 8px; }
-    .hero h1 { font-family: Georgia, serif; font-size: 2.6rem; text-shadow: 0 2px 12px rgba(0,0,0,.4); letter-spacing: 1px; margin: 0 0 8px; }
-    .hero-dates { font-family: sans-serif; font-size: 1.0rem; opacity: .9; margin-bottom: 6px; }
-    .hero-base { font-family: sans-serif; font-size: .85rem; opacity: .8; margin-bottom: 16px; }
-    .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    .hchip { font-family: sans-serif; font-size: .76rem; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 20px; padding: 4px 12px; }
+    .hero{background:linear-gradient(135deg,#0B4F6C 0%,#1B7A9E 40%,#C05621 80%,#B7730A 100%);color:white;padding:52px 24px 60px;text-align:center;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .hero-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+    .hero h1{font-size:2.6rem;font-weight:normal;letter-spacing:.5px;margin-bottom:8px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+    .hero-sub{font-family:sans-serif;font-size:1rem;opacity:.85;margin-bottom:6px}
+    .hero-note{font-family:sans-serif;font-size:.82rem;opacity:.62;margin-bottom:22px}
+    .hero-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+    .hchip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 14px;font-family:sans-serif;font-size:.78rem}
+
+    /* LAYOUT */
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+    section{padding:40px 0}
+    .sec-hd{font-size:1.55rem;margin-bottom:4px}
+    .sec-hd.over{color:var(--over)}.sec-hd.hotel{color:var(--hotel)}.sec-hd.book{color:var(--book)}.sec-hd.food{color:var(--food)}
+    .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:26px}
+
+    /* TAB NAV */
+    .tab-nav{position:sticky;top:0;z-index:100;background:white;border-bottom:2px solid var(--border);padding:0 20px;display:flex;gap:0;overflow-x:auto}
+    .tab-btn{font-family:sans-serif;font-size:.82rem;font-weight:700;padding:12px 20px;border:none;background:none;cursor:pointer;color:var(--mid);border-bottom:3px solid transparent;white-space:nowrap;transition:all .15s}
+    .tab-btn:hover{color:var(--dark)}
+    .tab-btn.active.over{color:var(--over);border-bottom-color:var(--over)}
+    .tab-btn.active.hotel{color:var(--hotel);border-bottom-color:var(--hotel)}
+    .tab-btn.active.book{color:var(--book);border-bottom-color:var(--book)}
+    .tab-btn.active.food{color:var(--food);border-bottom-color:var(--food)}
+    .tab-pane{display:none}.tab-pane.active{display:block}
+
+    /* MAP */
+    .log-map{height:380px;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:16px}
+
+    /* MAP ACTION BUTTONS */
+    .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+    .mab{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:6px 14px;font-family:sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+    .mab:hover{opacity:.82}
+    .mab.over{background:white;border:1.5px solid var(--over);color:var(--over)}
+    .mab.hotel{background:white;border:1.5px solid var(--hotel);color:var(--hotel)}
+    .mab.book{background:white;border:1.5px solid var(--book);color:var(--book)}
+    .mab.food{background:white;border:1.5px solid var(--food);color:var(--food)}
+
+    /* STOP TABLES */
+    .stop-table{width:100%;border-collapse:collapse;font-family:sans-serif;font-size:.83rem;margin-top:4px}
+    .stop-table th{text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--mid);font-weight:700}
+    .stop-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--dark);line-height:1.5}
+    .stop-table tr:last-child td{border-bottom:none}
+    .stop-table tr:hover td{background:#FAFAF8}
+    .stop-name{font-weight:700;color:var(--dark)}
+    .stop-sub{font-size:.76rem;color:var(--mid);margin-top:2px}
+    .gmap-link{display:inline-block;margin-top:4px;font-size:.74rem;font-weight:700;text-decoration:none;border-radius:12px;padding:2px 8px;transition:background .12s}
+    .gmap-link.over{color:var(--over);border:1px solid #BEE3F8}.gmap-link.over:hover{background:#EBF8FF}
+    .gmap-link.hotel{color:var(--hotel);border:1px solid #C6F6D5}.gmap-link.hotel:hover{background:#F0FFF4}
+    .gmap-link.book{color:var(--book);border:1px solid #E9D8FD}.gmap-link.book:hover{background:#FAF5FF}
+    .gmap-link.food{color:var(--food);border:1px solid #FEEBC8}.gmap-link.food:hover{background:#FFFAF0}
+
+    /* STATUS BADGES */
+    .badge{display:inline-block;font-family:sans-serif;font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:12px}
+    .badge.ok{background:#C6F6D5;color:#276749;border:1px solid #68D391}
+    .badge.warn{background:#FEF3C7;color:#92400E;border:1px solid #F6AD55}
+    .badge.alert{background:#FEF2F2;color:#C0392B;border:1px solid #FC8181}
+
+    /* SECTION LABEL */
+    .grp-hd{font-family:sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--mid);padding:7px 14px;background:var(--border);border-radius:6px;margin:28px 0 12px}
+    .grp-hd:first-child{margin-top:0}
 
     /* OVERVIEW CARD */
-    .ov-wide { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 16px 0; }
-    .ov-wide-row { display: flex; gap: 12px; margin-bottom: 8px; align-items: baseline; }
-    .ov-lbl { font-family: sans-serif; font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: var(--mid); font-weight: 700; min-width: 90px; flex-shrink: 0; }
-    .ov-val { font-family: sans-serif; font-size: .84rem; color: var(--dark); line-height: 1.5; }
+    .ov-card{background:white;border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:14px}
+    .ov-row{display:flex;gap:12px;margin-bottom:7px;align-items:baseline}
+    .ov-lbl{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mid);font-weight:700;min-width:100px;flex-shrink:0}
+    .ov-val{font-family:sans-serif;font-size:.84rem;color:var(--dark);line-height:1.5}
 
-    /* BOOKING BANNER */
-    .booking-banner { background: linear-gradient(135deg, #F0FFF4, #EBF8FF); border: 2px solid #68D391; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
-    .bb-title { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); font-weight: 700; margin-bottom: 12px; }
-    .bb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-    .bb-item { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-    .bb-item.confirmed { border-left: 3px solid var(--green); }
-    .bb-item.pending { border-left: 3px solid #D97706; background: #FFFBEB; }
-    .bb-item.tbd { border-left: 3px solid var(--red); background: #FEF2F2; }
-    .bb-name { font-family: sans-serif; font-size: .88rem; font-weight: 700; color: var(--dark); margin: 4px 0 2px; }
-    .bb-detail { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.5; }
-    .badge { font-family: sans-serif; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; }
-    .badge.booked { background: #C6F6D5; color: #276749; border: 1px solid #68D391; }
-    .badge.pending { background: #FEF3C7; color: #92400E; border: 1px solid #F6AD55; }
-    .badge.tbd { background: #FEF2F2; color: var(--red); border: 1px solid var(--red); }
+    /* HOTEL DETAIL CARDS */
+    .hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:4px}
+    .hc{background:white;border:2px solid #68D391;border-radius:12px;overflow:hidden}
+    .hc.tbd{border-color:#FC8181}
+    .hc-hd{background:linear-gradient(135deg,#F0FFF4,#EBF8FF);padding:12px 16px;border-bottom:1px solid var(--border)}
+    .hc.tbd .hc-hd{background:linear-gradient(135deg,#FFF5F5,#FFF9F0)}
+    .hc-name{font-family:Georgia,serif;font-size:1rem;color:var(--dark);margin:4px 0 2px}
+    .hc-loc{font-family:sans-serif;font-size:.72rem;color:var(--mid)}
+    .hc-body{padding:12px 16px;font-family:sans-serif;font-size:.8rem}
+    .hc-row{display:flex;gap:10px;margin-bottom:5px;align-items:baseline}
+    .hc-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--mid);font-weight:700;min-width:70px;flex-shrink:0}
+    .hc-val{font-size:.78rem;color:var(--dark);line-height:1.4}
 
-    /* HOTEL GRID */
-    .hotel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 16px 0; }
-    .hc-card { border-radius: 10px; overflow: hidden; border: 2px solid #68D391; }
-    .hc-card.tbd { border-color: var(--red); }
-    .hc-card-hd { background: linear-gradient(135deg, #F0FFF4, #EBF8FF); padding: 12px 14px; border-bottom: 1px solid var(--border); }
-    .hc-card.tbd .hc-card-hd { background: linear-gradient(135deg, #FEF2F2, #FFF9F0); }
-    .hc-card-name { font-family: Georgia, serif; font-size: .98rem; color: var(--dark); margin: 4px 0 2px; }
-    .hc-card-loc { font-family: sans-serif; font-size: .72rem; color: var(--mid); }
-    .hc-card-body { background: white; padding: 12px 14px; }
-    .hc-row { display: flex; gap: 10px; margin-bottom: 5px; align-items: baseline; }
-    .hc-lbl { font-family: sans-serif; font-size: .65rem; text-transform: uppercase; letter-spacing: .5px; color: var(--mid); font-weight: 700; min-width: 70px; flex-shrink: 0; }
-    .hc-val { font-family: sans-serif; font-size: .78rem; color: var(--dark); line-height: 1.4; }
-
-    /* ACTIVITIES */
-    .act-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 16px 0; }
-    .act-item { border-radius: 8px; padding: 12px 14px; border: 1px solid var(--border); }
-    .act-item.confirmed { border-left: 3px solid var(--green); background: #F0FFF4; }
-    .act-item.pending { border-left: 3px solid #D97706; background: #FFFBEB; }
-    .act-item.urgent { border-left: 3px solid var(--red); background: #FEF2F2; }
-    .act-name { font-family: sans-serif; font-size: .86rem; font-weight: 700; color: var(--dark); margin: 4px 0 2px; }
-    .act-detail { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.5; }
-
-    /* MAP ACTIONS */
-    .map-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .mab { font-family: sans-serif; font-size: .78rem; font-weight: 600; padding: 8px 16px; border-radius: 8px; text-decoration: none; }
-    .mab.route { background: #1A73E8; color: white; }
-    .mab.gmaps { background: white; color: #1A73E8; border: 1px solid #1A73E8; }
-
-    /* FOOD GRID */
-    .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
-    .fc { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-    .fc-hd { background: linear-gradient(135deg, #0B4F6C, #1B7A9E); padding: 14px 16px; }
-    .fc-name { font-family: Georgia, serif; font-size: 1.0rem; color: white; }
-    .fc-loc { font-family: sans-serif; font-size: .72rem; color: rgba(255,255,255,.8); margin-top: 4px; }
-    .fc-body { background: white; padding: 14px 16px; }
-    .fc-rating { font-family: sans-serif; font-size: .78rem; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
-    .fc-order { font-family: sans-serif; font-size: .82rem; color: var(--dark); line-height: 1.5; margin-bottom: 6px; }
-    .fc-order strong { color: var(--pacific); }
-    .fc-hours { font-family: sans-serif; font-size: .75rem; color: var(--mid); margin-bottom: 10px; }
-
-    /* ALERTS */
-    .alerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
-    .ac { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); border-left-width: 4px; }
-    .ac.red { background: #FEF2F2; border-left-color: var(--red); }
-    .ac.amb { background: #FFFBEB; border-left-color: #D97706; }
-    .ac.blu { background: #EBF8FF; border-left-color: #2B6CB0; }
-    .ac.grn { background: #F0FFF4; border-left-color: var(--green); }
-    .ac-icon { font-size: 1.2rem; margin-bottom: 6px; }
-    .ac-title { font-family: sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--dark); margin-bottom: 4px; }
-    .ac-text { font-family: sans-serif; font-size: .8rem; color: var(--mid); line-height: 1.55; }
+    /* FOOD CARDS */
+    .food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;margin-top:4px}
+    .fc{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .fc-hd{background:linear-gradient(135deg,#7B341E,#C05621);color:white;padding:12px 16px}
+    .fc-name{font-size:1rem;font-weight:600;margin-bottom:2px}
+    .fc-loc{font-family:sans-serif;font-size:.74rem;opacity:.82}
+    .fc-body{padding:14px 16px}
+    .fc-rating{font-family:sans-serif;font-size:.78rem;color:var(--gold);font-weight:700;margin-bottom:5px}
+    .fc-order{font-family:sans-serif;font-size:.82rem;color:var(--dark);margin-bottom:6px;line-height:1.5}
+    .fc-hours{font-family:sans-serif;font-size:.76rem;color:var(--mid);margin-bottom:8px}
 
     /* FOOTER */
-    .footer { background: var(--pacific); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
-    .footer strong { color: white; }
+    .footer{background:#1A202C;color:rgba(255,255,255,.55);text-align:center;padding:22px;font-family:sans-serif;font-size:.77rem}
+    .footer strong{color:white}
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.9rem; }
-      .bb-grid, .hotel-grid, .act-grid, .food-grid, .alerts-grid { grid-template-columns: 1fr; }
-      .ov-wide-row, .hc-row { flex-direction: column; gap: 2px; }
+    @media(max-width:600px){
+      .hero h1{font-size:1.9rem}
+      .ov-row,.hc-row{flex-direction:column;gap:2px}
+      .hotel-grid,.food-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-sup">California Road Trip · San Francisco → Los Angeles</div>
-    <h1>Complete Logistics</h1>
-    <div class="hero-dates">July 2–12, 2026 · 10 Days</div>
-    <div class="hero-base">Flights · Hotels · Activities · Dining</div>
-    <div class="hero-chips">
-      <span class="hchip">4 travelers</span>
-      <span class="hchip">Own vehicle</span>
-      <span class="hchip">10 nights</span>
-      <span class="hchip">900+ miles</span>
-    </div>
+<div class="hero">
+  <div class="hero-sup">Logistics Guide · California Road Trip</div>
+  <h1>Flights · Hotels · Bookings · Food</h1>
+  <div class="hero-sub">July 2–12, 2026 · San Francisco → Los Angeles</div>
+  <div class="hero-note">All stops confirmed · coordinates pinned · Google Maps links for every location</div>
+  <div class="hero-chips">
+    <span class="hchip" style="background:rgba(11,79,108,.35);border-color:rgba(99,179,237,.5)">✈️ 2 Flights Booked</span>
+    <span class="hchip" style="background:rgba(58,107,74,.35);border-color:rgba(104,211,145,.5)">🏨 5 Hotels · 4 Confirmed</span>
+    <span class="hchip" style="background:rgba(85,60,154,.35);border-color:rgba(183,148,244,.5)">🎟️ 3 Activities Confirmed</span>
+    <span class="hchip" style="background:rgba(192,86,33,.35);border-color:rgba(246,173,85,.5)">🍽️ 18+ Restaurants</span>
   </div>
+</div>
 
-  <div class="wrap">
+<div class="tab-nav">
+  <button class="tab-btn active over" onclick="showTab('over',this)">🗓️ Overview &amp; Flights</button>
+  <button class="tab-btn hotel" onclick="showTab('hotel',this)">🏨 Hotels</button>
+  <button class="tab-btn book" onclick="showTab('book',this)">🎟️ Bookings</button>
+  <button class="tab-btn food" onclick="showTab('food',this)">🍽️ Restaurants</button>
+</div>
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 1 — TRIP OVERVIEW                  -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Trip Overview</div>
-    <div class="ov-wide">
-      <div class="ov-wide-row"><span class="ov-lbl">Travelers</span><span class="ov-val">Marina Drapkin · Liam · Adam Drapkin (🎂 Birthday Jul 4) · Vadim</span></div>
-      <div class="ov-wide-row"><span class="ov-lbl">Vehicle</span><span class="ov-val">Own car — no rental needed. Adam &amp; Vadim drive the entire route; Marina &amp; Liam fly PHL→SFO / LAX→PHL. Adam &amp; Vadim drive home from LAX Jul 12 after drop-off.</span></div>
-      <div class="ov-wide-row"><span class="ov-lbl">Arrival</span><span class="ov-val">Marina &amp; Liam: AA 1524 lands SFO 11:27 AM Thu Jul 2 · Baggage claim ~12:00 PM · Meet at Hyatt Regency SF by ~1:00 PM</span></div>
-      <div class="ov-wide-row"><span class="ov-lbl">Departure</span><span class="ov-val">Marina &amp; Liam: AA 3319 departs LAX 12:17 PM Sun Jul 12 · Leave hotel by 9:00 AM · Drop-off, In-N-Out, airport by 10:30 AM</span></div>
-      <div class="ov-wide-row"><span class="ov-lbl">Route Arc</span><span class="ov-val">SF (Jul 2–5) → Big Sur / Cambria (Jul 5–6) → Santa Barbara (Jul 6–7) → Coronado / San Diego (Jul 7–8) → Los Angeles (Jul 8–11) → Depart Jul 12</span></div>
-    </div>
+<!-- ═══ OVERVIEW & FLIGHTS ═══ -->
+<div id="pane-over" class="tab-pane active">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd over">Trip Overview</div>
+      <div class="sec-sub">Jul 2–12 · 10 days · 4 travelers · own vehicle · 900+ miles · San Francisco → Los Angeles</div>
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 2 — FLIGHTS                        -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Flights — Marina &amp; Liam</div>
-    <div class="bb-grid">
-      <div class="bb-item confirmed">
-        <span class="badge booked">✅ Booked</span>
-        <div class="bb-name">Outbound — PHL → SFO</div>
-        <div class="bb-detail">
-          AA 1524 · Thu Jul 2 · Departs 8:26 AM PHL → Arrives 11:27 AM SFO<br>
-          Marina &amp; Liam · Conf: KYUXME · Seats 29B / 29A<br>
-          Checked bag $45 paid (Doc 0014498078664)
-        </div>
+      <div class="ov-card">
+        <div class="ov-row"><span class="ov-lbl">Travelers</span><span class="ov-val">Marina Drapkin · Liam · Adam Drapkin (🎂 Birthday Jul 4) · Vadim</span></div>
+        <div class="ov-row"><span class="ov-lbl">Vehicle</span><span class="ov-val">Own car — no rental. Adam &amp; Vadim drive the full route; Marina &amp; Liam fly PHL→SFO / LAX→PHL.</span></div>
+        <div class="ov-row"><span class="ov-lbl">Route Arc</span><span class="ov-val">SF (Jul 2–5) → Big Sur / Cambria (Jul 5–6) → Santa Barbara (Jul 6–7) → Coronado / SD (Jul 7–8) → Los Angeles (Jul 8–11) → Depart Jul 12</span></div>
+        <div class="ov-row"><span class="ov-lbl">Drive Home</span><span class="ov-val">Adam &amp; Vadim drive home from LAX after dropping Marina &amp; Liam on Jul 12.</span></div>
       </div>
-      <div class="bb-item confirmed">
-        <span class="badge booked">✅ Booked</span>
-        <div class="bb-name">Return — LAX → PHL</div>
-        <div class="bb-detail">
-          AA 3319 · Sun Jul 12 · Departs 12:17 PM LAX → Arrives 8:39 PM PHL<br>
-          Marina &amp; Liam · Conf: KYUXME · Seats 28F / 28E · Terminal 4<br>
-          Checked bag $45 paid (Doc 0014498078665)
-        </div>
-      </div>
-    </div>
-    <p style="font-family:sans-serif;font-size:.78rem;color:var(--mid);margin:8px 0 0;"><strong>Adam &amp; Vadim:</strong> Driving the full trip — no flights. Drive home from LAX after Jul 12 drop-off.</p>
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 3 — HOTELS                         -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Hotels — 5 Stops · 10 Nights</div>
-    <div class="hotel-grid">
-      <div class="hc-card">
-        <div class="hc-card-hd">
-          <span class="badge booked">✅ Booked · NON-REFUNDABLE</span>
-          <div class="hc-card-name">Hyatt Regency San Francisco</div>
-          <div class="hc-card-loc">50 Third St, Union Square, SF, CA 94103</div>
+      <div class="grp-hd">Outbound — Thu Jul 2</div>
+      <table class="stop-table">
+        <tr><th>Who</th><th>Flight</th><th>Route</th><th>Times</th><th>Details</th></tr>
+        <tr>
+          <td><div class="stop-name">Marina &amp; Liam</div></td>
+          <td><div class="stop-name">AA 1524</div><div class="stop-sub">Conf: KYUXME</div></td>
+          <td>PHL → SFO</td>
+          <td>8:26 AM → 11:27 AM</td>
+          <td>Seats 29B / 29A · Checked bag $45 (Doc 0014498078664)<br><span style="font-family:sans-serif;font-size:.76rem;color:var(--hotel)">Meet at Hyatt Regency SF ~1:00 PM</span></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Adam &amp; Vadim</div></td>
+          <td colspan="2"><em style="font-size:.82rem;color:var(--mid)">Driving from home — no flight</em></td>
+          <td>—</td>
+          <td>Arrive SF to meet Marina &amp; Liam at Hyatt by 1:00 PM Jul 2</td>
+        </tr>
+      </table>
+
+      <div class="grp-hd">Return — Sun Jul 12</div>
+      <table class="stop-table">
+        <tr><th>Who</th><th>Flight</th><th>Route</th><th>Times</th><th>Details</th></tr>
+        <tr>
+          <td><div class="stop-name">Marina &amp; Liam</div></td>
+          <td><div class="stop-name">AA 3319</div><div class="stop-sub">Conf: KYUXME</div></td>
+          <td>LAX → PHL</td>
+          <td>12:17 PM → 8:39 PM</td>
+          <td>Seats 28F / 28E · Terminal 4 · Checked bag $45 (Doc 0014498078665)<br><span style="font-family:sans-serif;font-size:.76rem;color:var(--food)">Leave hotel 9:00 AM → In-N-Out → drop-off by 10:30 AM</span></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Adam &amp; Vadim</div></td>
+          <td colspan="2"><em style="font-size:.82rem;color:var(--mid)">Driving home after LAX drop-off</em></td>
+          <td>—</td>
+          <td>Drop Marina &amp; Liam at LAX Terminal 4 by 10:30 AM · drive home</td>
+        </tr>
+      </table>
+
+      <div class="grp-hd">Jul 12 Departure Timeline</div>
+      <table class="stop-table">
+        <tr><th>Time</th><th>Action</th><th>Notes</th></tr>
+        <tr><td><strong>9:00 AM</strong></td><td>Leave LA hotel</td><td>Check all rooms before departing</td></tr>
+        <tr><td><strong>9:30 AM</strong></td><td>In-N-Out Burger</td><td>9149 S Sepulveda Blvd — 0.2 mi from LAX · last California meal<br><a href="https://www.google.com/maps/search/?api=1&query=33.953641,-118.396780" target="_blank" class="gmap-link over">📍 Map</a></td></tr>
+        <tr><td><strong>10:30 AM</strong></td><td>LAX Terminal 4 drop-off</td><td>AA 3319 check-in · Marina &amp; Liam · 90-min buffer before 12:17 PM departure<br><a href="https://www.google.com/maps/search/?api=1&query=33.941923,-118.406960" target="_blank" class="gmap-link over">📍 Map</a></td></tr>
+        <tr style="background:#F0FFF4"><td><strong>12:17 PM</strong></td><td>AA 3319 departs LAX</td><td>Marina &amp; Liam airborne · Adam &amp; Vadim begin drive home</td></tr>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ HOTELS ═══ -->
+<div id="pane-hotel" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd hotel">Hotels — 5 Stops · 10 Nights</div>
+      <div class="sec-sub">4 confirmed bookings + 1 TBD in Los Angeles. All coordinates pinned on map.</div>
+
+      <div id="map-hotel" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/37.786587,-122.403097/35.578058,-121.114827/34.408427,-119.693869/32.695999,-117.173380/34.050872,-118.249055" target="_blank" class="mab hotel">🗺️ Hotel Route in Google Maps</a>
+      </div>
+
+      <div class="grp-hd">✅ Confirmed — 4 Hotels</div>
+      <table class="stop-table">
+        <tr><th>Dates</th><th>Hotel</th><th>Confirmation</th><th>Rate</th><th>Key Notes</th><th>Map</th></tr>
+        <tr>
+          <td><strong>Jul 2–5</strong><div class="stop-sub">3 nights</div></td>
+          <td><div class="stop-name">Hyatt Regency San Francisco</div><div class="stop-sub">50 Third St, Union Square</div></td>
+          <td><div class="stop-sub">40023B19345813</div><div class="stop-sub">Marina Drapkin · World of Hyatt</div></td>
+          <td><span class="badge alert">NON-REFUNDABLE</span><div class="stop-sub">$527.30 + taxes</div></td>
+          <td>2 Queen Beds · Yerba Buena view · La Société restaurant on-site · 55" SMART TV</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=37.786587,-122.403097" target="_blank" class="gmap-link hotel">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 5–6</strong><div class="stop-sub">1 night</div></td>
+          <td><div class="stop-name">Castle Inn — Cambria</div><div class="stop-sub">6620 Moonstone Beach Dr</div></td>
+          <td><div class="stop-sub">Booking.com #6459555758</div><div class="stop-sub">PIN 8199 · Marina Drapkin</div></td>
+          <td><span class="badge warn">PREPAID</span><div class="stop-sub">$274.50 ($244 + $30.50 tax)</div></td>
+          <td>2-Queen Partial Oceanview · Breakfast ✓ · Check-in 3–9 PM · Check-out 11 AM</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=35.578058,-121.114827" target="_blank" class="gmap-link hotel">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 6–7</strong><div class="stop-sub">1 night</div></td>
+          <td><div class="stop-name">Beachside Inn — Santa Barbara</div><div class="stop-sub">336 W Cabrillo Blvd</div></td>
+          <td><div class="stop-sub">Booking.com #1075827673</div><div class="stop-sub">Visa 9942 · Marina Drapkin</div></td>
+          <td><span class="badge warn">PREPAID</span><div class="stop-sub">$274.07 ($240 + $34.07 tax)</div></td>
+          <td>2 Queen · Balcony (Plaza Del Mar view) · Breakfast ✓ · Free parking ✓ · Wine &amp; cheese happy hour ✓ · $150 deposit at check-in</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.408427,-119.693869" target="_blank" class="gmap-link hotel">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 7–8</strong><div class="stop-sub">1 night</div></td>
+          <td><div class="stop-name">Best Western Plus — Coronado</div><div class="stop-sub">275 Orange Ave, Coronado</div></td>
+          <td><div class="stop-sub">Booking.com #6459555758</div><div class="stop-sub">PIN 8199 · Marina Drapkin</div></td>
+          <td><span class="badge warn">PAID IN FULL</span><div class="stop-sub">$307.12 ($279.20 + $27.92 tax)</div></td>
+          <td>Suite · 2 Queens · Breakfast ✓ · $250 damage hold · <span style="color:#C0392B;font-weight:700">⚠️ Pool &amp; hot tub closed until December</span></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=32.695999,-117.173380" target="_blank" class="gmap-link hotel">📍 Map</a></td>
+        </tr>
+      </table>
+
+      <div class="grp-hd" style="background:#FEF2F2;color:#C0392B">🔴 Not Yet Booked — Los Angeles</div>
+      <table class="stop-table">
+        <tr><th>Dates</th><th>Status</th><th>Notes</th></tr>
+        <tr style="background:#FFF5F5">
+          <td><strong>Jul 8–11</strong><div class="stop-sub">3 nights</div></td>
+          <td><span class="badge alert">⚠️ BOOK IMMEDIATELY</span></td>
+          <td>Mom researching Culver City / Hollywood / Downtown / Koreatown.<br>Avoid Beverly Hills, Santa Monica, West Hollywood (too expensive for 3 nights).<br>LA July hotel prices rise daily — book as soon as neighborhood is chosen.</td>
+        </tr>
+      </table>
+
+      <div class="grp-hd">Hotel Details</div>
+      <div class="hotel-grid">
+        <div class="hc">
+          <div class="hc-hd"><span class="badge alert">NON-REFUNDABLE</span><div class="hc-name">Hyatt Regency San Francisco</div><div class="hc-loc">50 Third St · Union Square · SF</div></div>
+          <div class="hc-body">
+            <div class="hc-row"><span class="hc-lbl">Jul 2–5</span><span class="hc-val">3 nights · Arrive from PHL 1:00 PM · Depart Jul 5 toward Cambria (3h 45min)</span></div>
+            <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">40023B19345813 · World of Hyatt</span></div>
+            <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2 Queen Beds · Yerba Buena Park / City View · 55" SMART TV</span></div>
+            <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">La Société restaurant · parking (fee) · WiFi · 24hr desk</span></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.786587,-122.403097" target="_blank" class="gmap-link hotel">📍 Google Maps</a>
+          </div>
         </div>
-        <div class="hc-card-body">
-          <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Jul 2–5 · 3 nights</span></div>
-          <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">40023B19345813 · Marina Drapkin · World of Hyatt</span></div>
-          <div class="hc-row"><span class="hc-lbl">Rate</span><span class="hc-val">$527.30 + taxes · NON-REFUNDABLE · full prepayment charged</span></div>
-          <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2 Queen Beds · Yerba Buena Park / City View · 55" SMART TV</span></div>
-          <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">La Société restaurant · parking (fee) · WiFi · 24hr desk</span></div>
-          <div class="map-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=37.786587,-122.403097" target="_blank" class="mab gmaps">📍 Maps</a>
+        <div class="hc">
+          <div class="hc-hd"><span class="badge warn">Prepaid</span><div class="hc-name">Castle Inn — Cambria</div><div class="hc-loc">6620 Moonstone Beach Dr · Cambria</div></div>
+          <div class="hc-body">
+            <div class="hc-row"><span class="hc-lbl">Jul 5–6</span><span class="hc-val">1 night · Arrive evening after Big Sur · 15 min from Hearst Castle</span></div>
+            <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">Booking.com #6459555758 · PIN 8199</span></div>
+            <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2-Queen Partial Oceanview</span></div>
+            <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast included · Check-in 3–9 PM · Check-out 11 AM</span></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=35.578058,-121.114827" target="_blank" class="gmap-link hotel">📍 Google Maps</a>
+          </div>
+        </div>
+        <div class="hc">
+          <div class="hc-hd"><span class="badge warn">Prepaid</span><div class="hc-name">Beachside Inn — Santa Barbara</div><div class="hc-loc">336 W Cabrillo Blvd · Santa Barbara</div></div>
+          <div class="hc-body">
+            <div class="hc-row"><span class="hc-lbl">Jul 6–7</span><span class="hc-val">1 night · Arrive after Hearst Castle · Beach + State St walkable</span></div>
+            <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">Booking.com #1075827673 · Visa 9942</span></div>
+            <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2 Queen · Balcony (Plaza Del Mar view)</span></div>
+            <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast ✓ · Free parking ✓ · Wine &amp; cheese happy hour ✓ · $150 deposit</span></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=34.408427,-119.693869" target="_blank" class="gmap-link hotel">📍 Google Maps</a>
+          </div>
+        </div>
+        <div class="hc">
+          <div class="hc-hd"><span class="badge warn">Paid in Full</span><div class="hc-name">Best Western Plus — Coronado Island</div><div class="hc-loc">275 Orange Ave · Coronado</div></div>
+          <div class="hc-body">
+            <div class="hc-row"><span class="hc-lbl">Jul 7–8</span><span class="hc-val">1 night · 10-min ferry to San Diego Gaslamp · Naval base views</span></div>
+            <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">Booking.com #6459555758 · PIN 8199</span></div>
+            <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">Suite · 2 Queens · Non-smoking · $250 damage hold at check-in</span></div>
+            <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast ✓ · <span style="color:#C0392B;font-weight:600">⚠️ Pool &amp; hot tub CLOSED until December</span></span></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=32.695999,-117.173380" target="_blank" class="gmap-link hotel">📍 Google Maps</a>
+          </div>
+        </div>
+        <div class="hc tbd">
+          <div class="hc-hd"><span class="badge alert">🔴 NOT BOOKED</span><div class="hc-name">Los Angeles Hotel — TBD</div><div class="hc-loc">Culver City / Hollywood / Downtown / Koreatown</div></div>
+          <div class="hc-body">
+            <div class="hc-row"><span class="hc-lbl">Jul 8–11</span><span class="hc-val">3 nights · Most expensive unbooked item on the trip</span></div>
+            <div class="hc-row"><span class="hc-lbl">Avoid</span><span class="hc-val">Beverly Hills, Santa Monica, West Hollywood — too expensive for 3 nights</span></div>
+            <div class="hc-row"><span class="hc-lbl">Action</span><span class="hc-val" style="color:#C0392B;font-weight:600">Mom researching — book immediately, prices rising</span></div>
           </div>
         </div>
       </div>
-      <div class="hc-card">
-        <div class="hc-card-hd">
-          <span class="badge booked">✅ Booked · Prepaid</span>
-          <div class="hc-card-name">Castle Inn — Cambria</div>
-          <div class="hc-card-loc">6620 Moonstone Beach Dr, Cambria, CA 93428</div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ BOOKINGS ═══ -->
+<div id="pane-book" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd book">Activities &amp; Bookings</div>
+      <div class="sec-sub">3 confirmed · 6 still to book · LA hotel TBD.</div>
+
+      <div class="grp-hd">✅ Confirmed — 3 Activities</div>
+      <table class="stop-table">
+        <tr><th>Date</th><th>Activity</th><th>Confirmation</th><th>Logistics</th><th>Map</th></tr>
+        <tr style="background:#F0FFF4">
+          <td><strong>Jul 3</strong><div class="stop-sub">9:20 AM departure</div></td>
+          <td><div class="stop-name">Alcatraz Ferry</div><div class="stop-sub">Pier 33 Alcatraz Landing</div></td>
+          <td><span class="badge ok">✅ Booked</span><div class="stop-sub">i77487162 / i77487159 · 4 adults</div></td>
+          <td>Arrive Pier 33 by <strong>8:35 AM</strong> (45 min early).<br>No parking at Pier 33 — rideshare or 18-min walk from Hyatt.<br>No food on island — eat first.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=37.806672,-122.404443" target="_blank" class="gmap-link book">📍 Pier 33</a></td>
+        </tr>
+        <tr style="background:#F0FFF4">
+          <td><strong>Jul 3</strong><div class="stop-sub">4:00–4:30 PM</div></td>
+          <td><div class="stop-name">Muir Woods Parking</div><div class="stop-sub">Mill Valley, CA</div></td>
+          <td><span class="badge ok">✅ Booked</span><div class="stop-sub">$15/person · gomuirwoods.com</div></td>
+          <td>Depart Berkeley <strong>3:00 PM sharp</strong> (65 min, 28.2 mi).<br>No cell service inside — download NPS offline map first.<br>Redwood Cathedral trail 1.0 mi roundtrip.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=37.897020,-122.581118" target="_blank" class="gmap-link book">📍 Muir Woods</a></td>
+        </tr>
+        <tr style="background:#F0FFF4">
+          <td><strong>Jul 4 🎂</strong><div class="stop-sub">10:45 AM check-in</div></td>
+          <td><div class="stop-name">Sterling Vineyards</div><div class="stop-sub">Calistoga, Napa Valley</div></td>
+          <td><span class="badge ok">✅ Booked · $192.53 paid</span><div class="stop-sub">TOCK-R-AE87DB44 · Visa 9942</div></td>
+          <td>Arrive by <strong>10:30 AM</strong> (15 min early). Sterling Stroll ×2 + Non-taster ×1 + Guest 10–20 ×1.<br>⚠️ Gondola pauses if temp exceeds 100°F.<br>Manage at tock.com.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=38.569682,-122.547173" target="_blank" class="gmap-link book">📍 Sterling</a></td>
+        </tr>
+      </table>
+
+      <div class="grp-hd" style="background:#FEF3C7;color:#92400E">⚠️ Still to Book — 6 Items</div>
+      <table class="stop-table">
+        <tr><th>Date</th><th>Activity</th><th>How to Book</th><th>Notes</th><th>Map</th></tr>
+        <tr style="background:#FFF5F5">
+          <td><strong>Jul 4 Eve</strong></td>
+          <td><div class="stop-name" style="color:#C0392B">🔴 The Waterfront Seafood Grill</div><div class="stop-sub">Birthday Dinner · Napa</div></td>
+          <td><strong>Call (707) 699-2452</strong><div class="stop-sub">720 Main St, Napa · Sat 11:30 AM–9 PM</div></td>
+          <td>BOOK NOW — Saturday evenings fill fast.<br>5-min drive from Oxbow Market on the same street.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=38.297359,-122.283712" target="_blank" class="gmap-link book">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 5</strong></td>
+          <td><div class="stop-name">Point Lobos State Reserve</div><div class="stop-sub">Carmel-by-the-Sea</div></td>
+          <td>reservecalifornia.com<div class="stop-sub">$10/vehicle · day-use</div></td>
+          <td>Book 1–2 weeks ahead — summer weekends fill.<br>China Cove Bird Island Trail (1 mi) · sea lions, otters, seals.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=36.516500,-121.944700" target="_blank" class="gmap-link book">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 6</strong></td>
+          <td><div class="stop-name">Hearst Castle Tour</div><div class="stop-sub">San Simeon, CA</div></td>
+          <td>hearstcastle.org<div class="stop-sub">~$30/adult · Grand Rooms Tour</div></td>
+          <td>First slot 9:30 AM (15 min from Castle Inn Cambria).<br>Book 1–2 weeks out · 1.5–2 hr tour.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=35.685400,-121.166500" target="_blank" class="gmap-link book">📍 Map</a></td>
+        </tr>
+        <tr style="background:#FFF5F5">
+          <td><strong>Jul 8–11</strong></td>
+          <td><div class="stop-name" style="color:#C0392B">🔴 LA Hotel — 3 Nights</div><div class="stop-sub">Neighborhood TBD</div></td>
+          <td>Hotels.com, Booking.com</td>
+          <td>Mom researching Culver City / Hollywood / Downtown / Koreatown.<br>Avoid Beverly Hills, Santa Monica, West Hollywood.</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Jul 10 or 11</strong></td>
+          <td><div class="stop-name">Getty Center Timed Entry</div></td>
+          <td>getty.edu<div class="stop-sub">Free · timed entry required</div></td>
+          <td>Opens 10 AM · Book online after LA hotel is confirmed.<br>40-min walk from tram to galleries — wear good shoes.</td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.077008,-118.473978" target="_blank" class="gmap-link book">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><strong>Jul 11</strong></td>
+          <td><div class="stop-name">LA Final Dinner</div></td>
+          <td>OpenTable or direct<div class="stop-sub">1–2 weeks advance</div></td>
+          <td>Options: Nobu Malibu · Bestia · Republique · Craig's<br>All fill fast on weekend evenings.</td>
+          <td>—</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ RESTAURANTS ═══ -->
+<div id="pane-food" class="tab-pane">
+  <section>
+    <div class="wrap">
+      <div class="sec-hd food">Restaurants &amp; Food — Full Route</div>
+      <div class="sec-sub">On-route dining · fish markets · farmers markets · mom's SF wishlist. Every stop mapped.</div>
+
+      <div id="map-food" class="log-map"></div>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/37.790971,-122.420965/38.402446,-122.361795/38.297359,-122.283712/34.403661,-119.693660/33.848919,-118.397224/34.016960,-118.497742/33.953641,-118.396780" target="_blank" class="mab food">🗺️ Food Stops Route in Google Maps</a>
+      </div>
+
+      <div class="grp-hd">🗓️ On-Route Meals — In Order</div>
+      <div class="food-grid">
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A)">
+            <div class="fc-name">Bouchon Bakery</div>
+            <div class="fc-loc">6528 Washington St, Yountville · Jul 4 · Birthday Breakfast</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Thomas Keller · Opens 7:00 AM · Arrive 9:01 AM · 45-min stop</div>
+            <div class="fc-order"><strong>Order:</strong> Croissants, TKO cookies (Thomas Keller Oreo), seasonal pastries. Eat outside on Washington St. French Laundry is across the street.</div>
+            <div class="fc-hours">Depart by 9:46 AM for Sterling · Walk-in only</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.402446,-122.361795" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
         </div>
-        <div class="hc-card-body">
-          <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Jul 5–6 · 1 night</span></div>
-          <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">6459555758 · PIN 8199 · Booking.com · Marina Drapkin</span></div>
-          <div class="hc-row"><span class="hc-lbl">Rate</span><span class="hc-val">$274.50 ($244 + $30.50 tax) · PREPAID</span></div>
-          <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2-Queen Partial Oceanview</span></div>
-          <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast included · Check-in 3–9 PM · Check-out by 11 AM</span></div>
-          <div class="map-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=35.578058,-121.114827" target="_blank" class="mab gmaps">📍 Maps</a>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Hog Island Oyster Bar — Oxbow Market</div>
+            <div class="fc-loc">610 1st St, Napa · Jul 4 Midday · Post-Sterling</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Live Pacific oysters from Tomales Bay · Arrive ~12:38 PM</div>
+            <div class="fc-order"><strong>Order:</strong> Raw oysters (Pacific, Sweetwater), clam chowder, wine by the glass. Multiple vendors in Oxbow for a full lunch spread.</div>
+            <div class="fc-hours">Napa River views · 10-min drive south to birthday dinner after</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.301932,-122.281754" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+        <div class="fc" style="border-color:#C05621;border-width:2px">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#0B4F6C,#3A6B4A)">
+            <div class="fc-name">The Waterfront Seafood Grill <span style="background:#fff;color:#0B4F6C;font-family:sans-serif;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:12px;margin-left:6px;">🎂 BIRTHDAY</span></div>
+            <div class="fc-loc">720 Main St, Napa · Jul 4 Evening · ⚠️ CALL NOW</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.2★ TripAdvisor · (707) 699-2452 · ⚠️ Reserve by phone</div>
+            <div class="fc-order"><strong>Order:</strong> Chilean Sea Bass, Seafood Cioppino, Crab Enchiladas, Linguine with Clams, Lobster Bisque. Finish with the Mocha Cake. Dining over the Napa River.</div>
+            <div class="fc-hours">Sat 11:30 AM–9 PM · $$ – $$$ · 18% auto-gratuity for 6+ · Corkage $25</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.297359,-122.283712" target="_blank" class="gmap-link food">📍 Google Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#B7730A)">
+            <div class="fc-name">In-N-Out Burger — Final Meal</div>
+            <div class="fc-loc">9149 S Sepulveda Blvd (0.2 mi from LAX) · Jul 12 Departure</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">California tradition · last California food before the flight</div>
+            <div class="fc-order"><strong>Order:</strong> Double-Double Animal Style — mustard-grilled patty, secret spread, pickles, caramelized onions. Fries: well-done or Animal Style. Ask by name — not on the menu board.</div>
+            <div class="fc-hours">Open early · Drive-through + dine-in · Jul 12 · 9:30 AM stop</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=33.953641,-118.396780" target="_blank" class="gmap-link food">📍 Google Maps</a>
           </div>
         </div>
       </div>
-      <div class="hc-card">
-        <div class="hc-card-hd">
-          <span class="badge booked">✅ Booked · Prepaid</span>
-          <div class="hc-card-name">Beachside Inn — Santa Barbara</div>
-          <div class="hc-card-loc">336 W Cabrillo Blvd, Santa Barbara, CA 93101</div>
+
+      <div class="grp-hd">🐟 Fish Markets — Route-Wide</div>
+      <table class="stop-table">
+        <tr><th>Stop</th><th>Location</th><th>Best Order</th><th>When</th><th>Map</th></tr>
+        <tr style="background:#FFFFF0">
+          <td><div class="stop-name">⭐ Santa Barbara Fish Market</div><div class="stop-sub">FEATURED · PRIMARY fish stop</div></td>
+          <td>117 Harbor Way, Santa Barbara</td>
+          <td>Local Channel Islands red sea urchin (from divers) · live rock crab · oysters · lobster. Buy at the counter, eat at the harbor. $60–100 family.</td>
+          <td>Jul 6 or 7<div class="stop-sub">Mon–Fri 9–6:30 · Sat 7:30–6:30 · (805) 965-9564</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.403661,-119.693660" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Swan Oyster Depot</div></td>
+          <td>1517 Polk St, San Francisco</td>
+          <td>Uni cracked fresh at marble counter · Dungeness crab legs · half-shell oysters · chowder. Cash only. No reservations.</td>
+          <td>Jul 3 8 AM (optional)<div class="stop-sub">Mon–Sat 8 AM–2:30 PM · Cash only</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=37.790971,-122.420965" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Quality Seafood</div><div class="stop-sub">Redondo Beach Pier</div></td>
+          <td>130 International Boardwalk, Redondo Beach</td>
+          <td>Red sea urchin · live blue crab · rock cod · lobster. Buy and eat on the pier boards. $40–60 solo outing. (310) 372-6408.</td>
+          <td>LA days · early AM<div class="stop-sub">~30 min from most LA hotels</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=33.848919,-118.397224" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Santa Monica Seafood</div></td>
+          <td>1000 Wilshire Blvd, Santa Monica</td>
+          <td>Whatever's freshest — ask the counter staff. Full market + café in back for quick seafood lunch.</td>
+          <td>LA days · family option<div class="stop-sub">(310) 393-5244 · call to confirm hours</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.023693,-118.492331" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+      </table>
+
+      <div class="grp-hd">🥬 Farmers Markets &amp; Food Halls</div>
+      <table class="stop-table">
+        <tr><th>Stop</th><th>Location</th><th>Highlights</th><th>When</th><th>Map</th></tr>
+        <tr style="background:#F0FFF4">
+          <td><div class="stop-name">Santa Monica Farmers Market</div><div class="stop-sub">✅ Confirmed on route</div></td>
+          <td>Arizona Ave &amp; 3rd St, Santa Monica</td>
+          <td>40+ certified organic farms · Stone fruits, berries, artisan breads, cheeses. Top LA chefs shop here Saturday mornings. Walk 3rd Street Promenade after.</td>
+          <td><strong>Sat Jul 11 · 8 AM–1 PM</strong><div class="stop-sub">$30–50 family browse · rain or shine · since 1991</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.016960,-118.497742" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+        <tr>
+          <td><div class="stop-name">Grand Central Market</div></td>
+          <td>317 S Broadway, Downtown LA</td>
+          <td>Eggslut · Wexler's Deli (NYC-style) · Horse Thief BBQ · DTLA Cheese · Sticky Rice. 40+ vendors, open late. Near Disney Concert Hall.</td>
+          <td>Any day Jul 8–11<div class="stop-sub">Daily 8 AM–10 PM · since 1917</div></td>
+          <td><a href="https://www.google.com/maps/search/?api=1&query=34.050872,-118.249055" target="_blank" class="gmap-link food">📍 Map</a></td>
+        </tr>
+      </table>
+
+      <div class="grp-hd">📋 Mom's San Francisco Wishlist — All 15</div>
+      <div class="food-grid">
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A)">
+            <div class="fc-name">Sotto Mare</div>
+            <div class="fc-loc">552 Green St, North Beach · Cioppino Specialist</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.6★ Google · $30–50/person · SF institution</div>
+            <div class="fc-order"><strong>Order:</strong> The Best Damn Crab Cioppino — whole Dungeness crab, clams, shrimp in rich Italian tomato broth. Min. 2 people for the full pot.</div>
+            <div class="fc-hours">Daily 11:30 AM–9 PM (Fri–Sat until 10 PM) · No rez for 1–2 · (415) 398-3181</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.799798,-122.408342" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
         </div>
-        <div class="hc-card-body">
-          <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Jul 6–7 · 1 night</span></div>
-          <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">1075827673 · Visa 9942 · Marina Drapkin</span></div>
-          <div class="hc-row"><span class="hc-lbl">Rate</span><span class="hc-val">$274.07 ($240 + $34.07 tax) · Prepaid</span></div>
-          <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">2 Queen Beds · Parkside with Balcony (Plaza Del Mar view)</span></div>
-          <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Breakfast ✓ · Free parking ✓ · Wine &amp; cheese happy hour nightly ✓ · $150 deposit at check-in</span></div>
-          <div class="map-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=34.408427,-119.693869" target="_blank" class="mab gmaps">📍 Maps</a>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A)">
+            <div class="fc-name">Arsicault Bakery</div>
+            <div class="fc-loc">397 Arguello Blvd (original) · Best Croissants in the US</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Bon Appétit: Best Croissants in the US · Line 10–30 min</div>
+            <div class="fc-order"><strong>Order:</strong> Plain croissant, almond croissant, kouign amann, morning bun, ham &amp; cheese croissant.</div>
+            <div class="fc-hours">Mon–Fri 8 AM–3 PM · Sat–Sun 8 AM–3:30 PM · (415) 750-9460</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.783440,-122.459237" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc" style="border-color:#C05621;border-width:2px">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#B7730A)">
+            <div class="fc-name">Ebisu Sushi <span style="background:#fff;color:#C05621;font-family:sans-serif;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:12px;margin-left:6px;">MUST GO</span></div>
+            <div class="fc-loc">1283 9th Ave, Inner Sunset · 40+ Years · Family-Owned</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">SF landmark · Near Golden Gate Park · No reservations</div>
+            <div class="fc-order"><strong>Order:</strong> Sashimi omakase set, double hamachi roll, rainbow roll, Agedashi Tofu, Toro Nigiri. Kushiyaki bites $4. Top-shelf sake.</div>
+            <div class="fc-hours">Tue–Sat: lunch 11:30 AM–2 PM, dinner 5–9 PM · Closed Sun &amp; Mon · No rez — arrive early · (415) 566-1770</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.764457,-122.466660" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">El Farolito</div>
+            <div class="fc-loc">2779 Mission St, Mission District · Open Until 3:45 AM</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">SF's most beloved late-night taqueria · Cash only</div>
+            <div class="fc-order"><strong>Order:</strong> Super burrito (carne asada or al pastor), quesadilla, tacos. Open until 3:45 AM weekends.</div>
+            <div class="fc-hours">Daily 10 AM–2:45 AM (Fri–Sat until 3:45 AM) · Cash only · (415) 824-7877</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.752653,-122.418223" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Scoma's</div>
+            <div class="fc-loc">1965 Al Scoma Way, Fisherman's Wharf · Since 1965</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">4.7★ / 6,492 OpenTable reviews · SF Chronicle Top 100 2026 · $$$</div>
+            <div class="fc-order"><strong>Order:</strong> Lazy Man's Cioppino (whole Dungeness, clams, mussels, shrimp), Prawns Annuzzi, Dungeness Crab, Clam Chowder. Complimentary valet parking.</div>
+            <div class="fc-hours">Daily 12–9 PM (Fri–Sat until 10 PM) · Reserve OpenTable or (415) 771-4383</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.808907,-122.418455" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Flour + Water</div>
+            <div class="fc-loc">2401 Harrison St, Mission District · Michelin-Selected</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Michelin selection · Handmade pasta changes daily</div>
+            <div class="fc-order"><strong>Order:</strong> Pasta tasting menu — changes daily; half-portions available. Neapolitan-style pizza also excellent.</div>
+            <div class="fc-hours">Daily 5–9:30 PM · Reserve on Resy · (415) 826-7000</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.758937,-122.412283" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A)">
+            <div class="fc-name">Dandelion Chocolate</div>
+            <div class="fc-loc">740 Valencia St, Mission District · Bean-to-Bar</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Mission District institution · Factory tours at 2600 16th St</div>
+            <div class="fc-order"><strong>Order:</strong> Single-origin hot chocolate, mocha, seasonal bonbons.</div>
+            <div class="fc-hours">Valencia: Daily 7:30 AM–9 PM (Fri–Sat until 10 PM) · (415) 349-0942</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.761034,-122.421861" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#553C9A,#2D3748)">
+            <div class="fc-name">Tonga Room &amp; Hurricane Bar</div>
+            <div class="fc-loc">950 Mason St, Nob Hill · Fairmont Hotel · Since 1945</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Anthony Bourdain: "Greatest place in the history of the world" · $20 cover after 7 PM</div>
+            <div class="fc-order"><strong>Order:</strong> Mai Tai, Zombie. Indoor lagoon with tropical rainstorms every ~30 min. Band plays from a floating boat.</div>
+            <div class="fc-hours">Wed–Thu 5–10 PM · Fri–Sat 5–11 PM · Closed Mon–Tue &amp; Sun · Reserve OpenTable · (415) 772-5278</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.792388,-122.410092" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#0D6B7A,#0B4F6C)">
+            <div class="fc-name">Smuggler's Cove</div>
+            <div class="fc-loc">650 Gough St, Hayes Valley · World's 50 Best Bars</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">World's 50 Best Bars (2011–2016) · Largest rum selection in the US</div>
+            <div class="fc-order"><strong>Order:</strong> Painkiller, Zombie, or Scorpion Bowl. 500+ rums. Vintage tiki décor.</div>
+            <div class="fc-hours">Daily 5 PM–1:15 AM · Walk-in only · Adults only · (415) 869-1900</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.779413,-122.423377" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#2D3748,#4A5568)">
+            <div class="fc-name">Akiko's Restaurant</div>
+            <div class="fc-loc">430 Folsom St, SoMa · First Omakase in SF</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Fish sourced from Toyosu Market, Tokyo · Omakase only</div>
+            <div class="fc-order"><strong>Order:</strong> Nigiri-Centric Omakase $170/pp (14 courses) or Full Omakase $270/pp (18 courses). Book via Tock — fills weeks ahead.</div>
+            <div class="fc-hours">Mon 5:30–8:30 PM · Tue–Fri lunch + dinner · Sat 5:30–8:30 PM · Closed Sun · (415) 397-3218</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.787873,-122.394194" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#2D3748,#4A5568)">
+            <div class="fc-name">Boulevard</div>
+            <div class="fc-loc">1 Mission St, Embarcadero · James Beard Award · <em style="opacity:.8">Prix fixe — expensive</em></div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">James Beard: Best Chef CA (2001) · Outstanding Restaurant (2012)</div>
+            <div class="fc-order"><strong>Prix fixe dinner</strong> ~$96/person (3 courses). Bar/lounge à la carte as walk-in.</div>
+            <div class="fc-hours">Mon–Sat 5–9:30 PM · Closed Sunday · (415) 543-6084 · Reserve OpenTable</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.793270,-122.392868" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#92400E)">
+            <div class="fc-name">Butter &amp; Crumble</div>
+            <div class="fc-loc">271 Francisco St, North Beach · Sells Out by Noon</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Elevated laminated pastries · Buttercream layer cakes</div>
+            <div class="fc-order"><strong>Order:</strong> Whatever's in the case. Check @butter.and.crumble for daily menu the night before.</div>
+            <div class="fc-hours">Thu–Sun 9 AM until sold out (~noon) · Closed Mon–Wed · (415) 874-9484</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.805052,-122.409694" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">The Bird</div>
+            <div class="fc-loc">115 New Montgomery St, SoMa · Free-Range Fried Chicken</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Best fried chicken sandwich in SF · Fresh bun baked daily</div>
+            <div class="fc-order"><strong>Order:</strong> The Bird sandwich — free-range chicken, berbere spice rub, fresh apple slaw.</div>
+            <div class="fc-hours">Mon–Fri 10 AM–9 PM · Sat–Sun 11 AM–9 PM · (415) 872-9825</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.787307,-122.400016" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd">
+            <div class="fc-name">Gott's Roadside — St. Helena</div>
+            <div class="fc-loc">933 Main St, St. Helena, Napa Valley · James Beard Classic</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">James Beard America's Classic · Since 1999 · On-route for Napa day</div>
+            <div class="fc-order"><strong>Order:</strong> California Burger (fried egg + Zoe's bacon), Ahi Poke Crispy Tacos, Chicken Schnitzel Sandwich, organic shakes.</div>
+            <div class="fc-hours">Mon–Thu 11 AM–9 PM · Fri–Sat until 9:30 PM · (707) 963-3486</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=38.501899,-122.465498" target="_blank" class="gmap-link food">📍 Maps</a>
+          </div>
+        </div>
+        <div class="fc">
+          <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A)">
+            <div class="fc-name">Taishoken</div>
+            <div class="fc-loc">665 Valencia St, Mission District · Inventor of Tsukemen</div>
+          </div>
+          <div class="fc-body">
+            <div class="fc-rating">Founded 1951 · Invented tsukemen (dipping noodles)</div>
+            <div class="fc-order"><strong>Order:</strong> Tsukemen — thick housemade noodles dipped in rich chicken-and-pork broth. Also: 5 styles of ramen.</div>
+            <div class="fc-hours">Mon–Thu 5–9:30 PM · Fri lunch+dinner · Sat–Sun 12–9 PM · (415) 400-5336</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=37.762224,-122.421497" target="_blank" class="gmap-link food">📍 Maps</a>
           </div>
         </div>
       </div>
-      <div class="hc-card">
-        <div class="hc-card-hd">
-          <span class="badge booked">✅ Booked · Paid in Full</span>
-          <div class="hc-card-name">Best Western Plus — Coronado Island</div>
-          <div class="hc-card-loc">275 Orange Ave, Coronado, CA 92118</div>
-        </div>
-        <div class="hc-card-body">
-          <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Jul 7–8 · 1 night</span></div>
-          <div class="hc-row"><span class="hc-lbl">Conf</span><span class="hc-val">6459555758 · PIN 8199 · Booking.com · Marina Drapkin</span></div>
-          <div class="hc-row"><span class="hc-lbl">Rate</span><span class="hc-val">$307.12 ($279.20 + $27.92 tax) · PAID IN FULL</span></div>
-          <div class="hc-row"><span class="hc-lbl">Room</span><span class="hc-val">Suite · 2 Queen Beds · Non-Smoking · $250 damage hold at check-in</span></div>
-          <div class="hc-row"><span class="hc-lbl">Amenities</span><span class="hc-val">Grab-and-go breakfast ✓ · <span style="color:var(--red);font-weight:600;">⚠️ POOL &amp; HOT TUB CLOSED UNTIL DECEMBER</span></span></div>
-          <div class="map-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=32.695999,-117.173380" target="_blank" class="mab gmaps">📍 Maps</a>
-          </div>
-        </div>
-      </div>
-      <div class="hc-card tbd">
-        <div class="hc-card-hd">
-          <span class="badge tbd">🔴 NOT YET BOOKED</span>
-          <div class="hc-card-name">Los Angeles Hotel — TBD</div>
-          <div class="hc-card-loc">Neighborhood TBD · Culver City / Hollywood / Downtown / Koreatown</div>
-        </div>
-        <div class="hc-card-body">
-          <div class="hc-row"><span class="hc-lbl">Dates</span><span class="hc-val">Jul 8–11 · 3 nights</span></div>
-          <div class="hc-row"><span class="hc-lbl">Status</span><span class="hc-val" style="color:var(--red);font-weight:600;">⚠️ Mom researching options — book immediately</span></div>
-          <div class="hc-row"><span class="hc-lbl">Budget</span><span class="hc-val">Avoid Beverly Hills, Santa Monica, West Hollywood (too expensive for 3 nights)</span></div>
-        </div>
-      </div>
     </div>
+  </section>
+</div>
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 4 — ACTIVITIES & BOOKINGS          -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Activities &amp; Bookings</div>
+<div class="footer">
+  <strong>California Road Trip · Logistics Guide · July 2–12, 2026</strong><br>
+  <span style="font-size:.7rem;opacity:.6">4 travelers · Own vehicle · SF → Big Sur → Santa Barbara → Coronado → Los Angeles · 900+ miles</span>
+</div>
 
-    <p style="font-family:sans-serif;font-size:.75rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin:12px 0 8px;">✅ Confirmed</p>
-    <div class="act-grid">
-      <div class="act-item confirmed">
-        <span class="badge booked">✅ Booked</span>
-        <div class="act-name">Alcatraz Ferry</div>
-        <div class="act-detail">Jul 3 · 9:20 AM departure · Pier 33 Alcatraz Landing · 4 adults<br>Conf: i77487162 / i77487159 · Arrive Pier 33 by 8:35 AM — 45 min early<br>No parking at Pier 33 — rideshare or 18-min walk</div>
-        <div class="map-actions">
-          <a href="https://www.google.com/maps/search/?api=1&query=37.806672,-122.404443" target="_blank" class="mab gmaps">📍 Pier 33</a>
-        </div>
-      </div>
-      <div class="act-item confirmed">
-        <span class="badge booked">✅ Booked</span>
-        <div class="act-name">Muir Woods Parking</div>
-        <div class="act-detail">Jul 3 · 4:00–4:30 PM parking slot · $15/person · gomuirwoods.com<br>Depart Berkeley 3:00 PM sharp — 65 min drive (28.2 mi)<br>No cell service inside — download NPS offline map first</div>
-        <div class="map-actions">
-          <a href="https://www.google.com/maps/search/?api=1&query=37.897020,-122.581118" target="_blank" class="mab gmaps">📍 Muir Woods</a>
-        </div>
-      </div>
-      <div class="act-item confirmed">
-        <span class="badge booked">✅ Booked · $192.53 Paid</span>
-        <div class="act-name">Sterling Vineyards</div>
-        <div class="act-detail">Jul 4 🎂 · 10:45 AM check-in · Arrive by 10:30 AM (15 min early)<br>Conf: TOCK-R-AE87DB44 · Visa 9942 · Manage at tock.com<br>Sterling Stroll ×2 + Non-taster ×1 + Guest 10–20 ×1<br>⚠️ Gondola pauses if temperature exceeds 100°F</div>
-        <div class="map-actions">
-          <a href="https://www.google.com/maps/search/?api=1&query=38.569682,-122.547173" target="_blank" class="mab gmaps">📍 Sterling Vineyards</a>
-        </div>
-      </div>
-    </div>
+<script>
+var _pendingMaps = {};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active','over','hotel','book','food')});
+  document.getElementById('pane-'+name).classList.add('active');
+  btn.classList.add('active', name);
+  if (_pendingMaps[name]) {
+    var fn = _pendingMaps[name];
+    delete _pendingMaps[name];
+    setTimeout(fn, 60);
+  }
+}
 
-    <p style="font-family:sans-serif;font-size:.75rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.8px;margin:20px 0 8px;">⚠️ Still to Book</p>
-    <div class="act-grid">
-      <div class="act-item urgent">
-        <span class="badge tbd">🔴 BOOK NOW</span>
-        <div class="act-name">The Waterfront Seafood Grill — Birthday Dinner</div>
-        <div class="act-detail">Jul 4 evening · 720 Main St, Napa, CA · (707) 699-2452<br>Sat 11:30 AM–9 PM · $$ – $$$ · Napa River views<br>Reserve by phone — Saturday evenings fill fast</div>
-        <div class="map-actions">
-          <a href="https://www.google.com/maps/search/?api=1&query=38.297359,-122.283712" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="act-item pending">
-        <span class="badge pending">⚠️ Book 1–2 Weeks Out</span>
-        <div class="act-name">Point Lobos State Reserve</div>
-        <div class="act-detail">Jul 5 · reservecalifornia.com · $10/vehicle<br>China Cove Bird Island Trail (1 mi) · sea lions, otters, seals<br>Book online — day-use fills on weekends</div>
-      </div>
-      <div class="act-item pending">
-        <span class="badge pending">⚠️ Book 1–2 Weeks Out</span>
-        <div class="act-name">Hearst Castle Tour</div>
-        <div class="act-detail">Jul 6 · hearstcastle.org · ~$30/adult<br>First slot 9:30 AM (arrive from Cambria 15 min away)<br>Grand Rooms Tour recommended · 1.5–2 hrs</div>
-      </div>
-      <div class="act-item urgent">
-        <span class="badge tbd">🔴 BOOK NOW</span>
-        <div class="act-name">LA Hotel — 3 Nights</div>
-        <div class="act-detail">Jul 8–11 · Not yet booked<br>Mom researching Culver City / Hollywood / Downtown / Koreatown<br>Avoid Beverly Hills / Santa Monica / West Hollywood (too expensive)</div>
-      </div>
-      <div class="act-item pending">
-        <span class="badge pending">⚠️ Book in Advance</span>
-        <div class="act-name">Getty Center Timed Entry</div>
-        <div class="act-detail">Jul 10 or 11 · getty.edu · Free admission but timed entry required<br>Book online in advance · Opens 10 AM</div>
-        <div class="map-actions">
-          <a href="https://www.google.com/maps/search/?api=1&query=34.077008,-118.473978" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="act-item pending">
-        <span class="badge pending">⚠️ Book 1–2 Weeks Out</span>
-        <div class="act-name">LA Final Dinner — Jul 11</div>
-        <div class="act-detail">Options: Nobu Malibu · Bestia · Republique · Craig's<br>Book 1–2 weeks in advance — all fill fast on weekends</div>
-      </div>
-    </div>
+function mkMap(id, center, zoom, stops) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
+  var colors = {over:'#0B4F6C', hotel:'#3A6B4A', book:'#553C9A', food:'#C05621', gold:'#B7730A'};
+  stops.forEach(function(s){
+    var bg = colors[s.type] || '#0B4F6C';
+    var icon = L.divIcon({html:'<div style="background:'+bg+';color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:10px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)">'+s.lbl+'</div>',iconSize:[24,24],iconAnchor:[12,12],className:''});
+    L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:11px;color:#666">'+s.note+'</span>':''));
+  });
+}
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 5 — DINING HIGHLIGHTS              -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Dining Highlights — On-Route Meals</div>
-    <div class="food-grid">
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A);">
-          <div class="fc-name">Bouchon Bakery</div>
-          <div class="fc-loc">6528 Washington St, Yountville, CA · Day 3 · Birthday Breakfast</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Thomas Keller · Opens 7:00 AM · Arrive 9:01 AM · 45 min stop</div>
-          <div class="fc-order"><strong>Order:</strong> Croissants, TKO cookies (Thomas Keller Oreo), seasonal pastries. Eat outside on Washington St. French Laundry is across the street.</div>
-          <div class="fc-hours">Depart by 9:46 AM sharp for Sterling · Walk-in only</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=38.402446,-122.361795" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Hog Island Oyster Bar — Oxbow Market</div>
-          <div class="fc-loc">610 1st St, Napa, CA · Day 3 Midday · Arrive ~12:38 PM</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Live Pacific oysters from Tomales Bay · Post-Sterling lunch</div>
-          <div class="fc-order"><strong>Order:</strong> Raw oysters (Pacific, Sweetwater), clam chowder, wine by the glass. Multiple vendors in the market for a full lunch spread.</div>
-          <div class="fc-hours">Napa River views · Market vendors all around</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=38.301932,-122.281754" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc" style="border-color:#C05621;border-width:2px;">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#0B4F6C,#3A6B4A);">
-          <div class="fc-name">The Waterfront Seafood Grill <span style="background:#fff;color:#0B4F6C;font-family:sans-serif;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:12px;margin-left:6px;">🎂 BIRTHDAY</span></div>
-          <div class="fc-loc">720 Main St, Napa, CA · Day 3 Evening · ⚠️ BOOK NOW</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">4.2★ TripAdvisor · (707) 699-2452 · ⚠️ Reserve immediately</div>
-          <div class="fc-order"><strong>Order:</strong> Chilean Sea Bass, Seafood Cioppino, Crab Enchiladas, Linguine with Clams, Lobster Bisque. Finish with the Mocha Cake. Dining over the Napa River.</div>
-          <div class="fc-hours">Sat 11:30 AM–9 PM · $$ – $$$ · 18% gratuity auto-added for 6+ · Corkage $25</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=38.297359,-122.283712" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#B7730A);">
-          <div class="fc-name">In-N-Out Burger — Final Meal</div>
-          <div class="fc-loc">9149 S Sepulveda Blvd (across from LAX) · Jul 12 Departure</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">California tradition · Last California food before the flight</div>
-          <div class="fc-order"><strong>Order:</strong> Double-Double Animal Style — mustard-grilled patty, secret spread, pickles, caramelized onions. Fries: well-done or Animal Style. Not on the menu board — ask by name.</div>
-          <div class="fc-hours">~0.2 mi from LAX terminals · Open early · Drive-through + dine-in</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=33.953641,-118.396780" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-    </div>
+window.addEventListener('load', function(){
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 6 — FISH MARKETS                   -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Fish Markets — Route-Wide</div>
-    <div class="food-grid">
-      <div class="fc" style="border-color:var(--gold);border-width:2px;">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A);">
-          <div class="fc-name">⭐ Santa Barbara Fish Market <span style="background:var(--gold);color:#fff;font-family:sans-serif;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:12px;margin-left:6px;">PRIMARY</span></div>
-          <div class="fc-loc">117 Harbor Way, Santa Barbara, CA · Jul 6 evening or Jul 7 morning</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">"Best fish market in Santa Barbara" — @rockstareater, 80K followers · 13,104 views</div>
-          <div class="fc-order"><strong>Order:</strong> Local Channel Islands red sea urchin (from divers who sell directly to this market), live rock crab, oysters, lobster. Buy at the counter and eat at the harbor.</div>
-          <div class="fc-hours">Mon–Fri 9 AM–6:30 PM · Sat 7:30 AM–6:30 PM · Sun 9 AM–6:30 PM · (805) 965-9564 · $60–100 family · Eat at the harbor</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=34.403661,-119.693660" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Swan Oyster Depot</div>
-          <div class="fc-loc">1517 Polk St, San Francisco · Optional Day 2 Morning</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Cash only · No reservations · Line before 8 AM · SF institution</div>
-          <div class="fc-order"><strong>Order:</strong> Uni cracked fresh at the marble counter, Dungeness crab legs, half-shell oysters, chowder. Counter service only.</div>
-          <div class="fc-hours">Mon–Sat 8 AM–2:30 PM · Closed Sunday · Best window: Jul 3, 8 AM, done by 9 AM → Uber to Pier 33 for Alcatraz · Cash only</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.790971,-122.420965" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Quality Seafood — Redondo Beach Pier</div>
-          <div class="fc-loc">130 International Boardwalk, Redondo Beach · LA early AM</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Multi-level pier fish market · Live tanks · Eat on the pier</div>
-          <div class="fc-order"><strong>Order:</strong> Red sea urchin, live blue crab, rock cod, lobster. Buy and eat right on the pier boards. Early AM solo option for Adam or Vadim.</div>
-          <div class="fc-hours">~30 min from most LA hotels · $40–60 solo outing · (310) 372-6408</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=33.848919,-118.397224" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Santa Monica Seafood</div>
-          <div class="fc-loc">1000 Wilshire Blvd, Santa Monica · LA Family Option</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Full-service fish market + seafood café · Santa Monica institution</div>
-          <div class="fc-order"><strong>Order:</strong> Whatever's freshest — ask the counter staff. Whole fish, shellfish, sushi-grade cuts. Café in back for quick seafood lunch.</div>
-          <div class="fc-hours">Call to confirm hours · (310) 393-5244 · Near the hotel strip</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=34.023693,-118.492331" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-    </div>
+  _pendingMaps['hotel'] = function() { mkMap('map-hotel',[36.5,-120.0],6,[
+    {lat:37.786587,lng:-122.403097,type:'hotel',lbl:'1',name:'Hyatt Regency SF',note:'Jul 2–5 · 3 nights'},
+    {lat:35.578058,lng:-121.114827,type:'hotel',lbl:'2',name:'Castle Inn Cambria',note:'Jul 5–6 · 1 night'},
+    {lat:34.408427,lng:-119.693869,type:'hotel',lbl:'3',name:'Beachside Inn Santa Barbara',note:'Jul 6–7 · 1 night'},
+    {lat:32.695999,lng:-117.173380,type:'hotel',lbl:'4',name:'Best Western Plus Coronado',note:'Jul 7–8 · 1 night'},
+    {lat:34.050872,lng:-118.249055,type:'hotel',lbl:'?',name:'LA Hotel TBD',note:'Jul 8–11 · 3 nights · NOT BOOKED'}
+  ]); };
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 7 — FARMERS MARKETS & FOOD HALLS   -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Farmers Markets &amp; Food Halls</div>
-    <div class="food-grid">
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A);">
-          <div class="fc-name">Santa Monica Farmers Market</div>
-          <div class="fc-loc">Arizona Ave &amp; 3rd St, Santa Monica · Sat Jul 11 · 8 AM–1 PM</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Since 1991 · 40+ certified organic farms · Rain or shine</div>
-          <div class="fc-order"><strong>Browse:</strong> Stone fruits, berries, specialty vegetables, local honey, cut flowers, artisan breads and cheeses. Top LA chefs shop here Saturday mornings. Walk 3rd Street Promenade after.</div>
-          <div class="fc-hours">✅ Confirmed on route · $30–50 family browse · Year-round</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=34.016960,-118.497742" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Grand Central Market</div>
-          <div class="fc-loc">317 S Broadway, Downtown LA · Any Day Jul 8–11 · Open till 10 PM</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Since 1917 · 40+ vendors · Best casual food variety in DTLA</div>
-          <div class="fc-order"><strong>Highlights:</strong> Eggslut (egg sandwiches), Wexler's Deli (NYC-style), Horse Thief BBQ, DTLA Cheese, Sticky Rice. Go for lunch or early dinner with the group.</div>
-          <div class="fc-hours">Daily 8 AM–10 PM · Near Disney Concert Hall · After the Hollywood day</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=34.050872,-118.249055" target="_blank" class="mab gmaps">📍 Google Maps</a>
-        </div>
-      </div>
-    </div>
+  _pendingMaps['food'] = function() { mkMap('map-food',[36.5,-120.0],6,[
+    {lat:37.790971,lng:-122.420965,type:'food',lbl:'F',name:'Swan Oyster Depot SF',note:'Jul 3 optional'},
+    {lat:38.402446,lng:-122.361795,type:'food',lbl:'F',name:'Bouchon Bakery Yountville',note:'Jul 4 breakfast'},
+    {lat:38.301932,lng:-122.281754,type:'food',lbl:'F',name:'Hog Island / Oxbow Market Napa',note:'Jul 4 midday'},
+    {lat:38.297359,lng:-122.283712,type:'food',lbl:'🎂',name:'The Waterfront Seafood Grill Napa',note:'Jul 4 birthday dinner'},
+    {lat:34.403661,lng:-119.693660,type:'gold',lbl:'★',name:'Santa Barbara Fish Market',note:'Jul 6–7 · FEATURED'},
+    {lat:34.023693,lng:-118.492331,type:'food',lbl:'F',name:'Santa Monica Seafood',note:'LA days'},
+    {lat:33.848919,lng:-118.397224,type:'food',lbl:'F',name:'Quality Seafood Redondo Beach',note:'LA early AM'},
+    {lat:34.016960,lng:-118.497742,type:'food',lbl:'F',name:'Santa Monica Farmers Market',note:'Sat Jul 11 · 8 AM–1 PM'},
+    {lat:34.050872,lng:-118.249055,type:'food',lbl:'F',name:'Grand Central Market DTLA',note:'Any day Jul 8–11'},
+    {lat:33.953641,lng:-118.396780,type:'food',lbl:'F',name:"In-N-Out Burger LAX",note:'Jul 12 departure meal'}
+  ]); };
 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- SECTION 8 — MOM'S SF RESTAURANT WISHLIST   -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="section-title">Mom's San Francisco Restaurant Wishlist — All 15</div>
-    <div class="food-grid">
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A);">
-          <div class="fc-name">Sotto Mare</div>
-          <div class="fc-loc">552 Green St, North Beach · Cioppino Specialist</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">4.6★ Google · $30–50/person · North Beach institution</div>
-          <div class="fc-order"><strong>Order:</strong> The Best Damn Crab Cioppino — whole Dungeness crab, clams, shrimp in rich Italian tomato broth. Min. 2 people for the full pot. Also: fresh oysters, clam linguine.</div>
-          <div class="fc-hours">Daily 11:30 AM–9 PM (Fri–Sat until 10 PM) · No rez for 1–2 — arrive early, wait 45–60 min · (415) 398-3181</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.799798,-122.408342" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A);">
-          <div class="fc-name">Arsicault Bakery</div>
-          <div class="fc-loc">397 Arguello Blvd, SF (original) · French Bakery</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Best croissants in the US (Bon Appétit) · Line 10–30 min</div>
-          <div class="fc-order"><strong>Order:</strong> Plain croissant, almond croissant, kouign amann, morning bun, ham &amp; cheese croissant. Pre-order online to skip the wait.</div>
-          <div class="fc-hours">Mon–Fri 8 AM–3 PM · Sat–Sun 8 AM–3:30 PM · arsicault-bakery.com · (415) 750-9460</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.783440,-122.459237" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">El Farolito</div>
-          <div class="fc-loc">2779 Mission St, Mission District · Open Late</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">SF's most beloved late-night taqueria · Cash only</div>
-          <div class="fc-order"><strong>Order:</strong> Super burrito (carne asada or al pastor), quesadilla, tacos. Open until 3:45 AM on weekends — perfect after a night out.</div>
-          <div class="fc-hours">Daily 10 AM–2:45 AM (Fri–Sat until 3:45 AM) · Cash only · (415) 824-7877</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.752653,-122.418223" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Scoma's</div>
-          <div class="fc-loc">1965 Al Scoma Way, Fisherman's Wharf · Since 1965</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">4.7★ / 6,492 OpenTable reviews · SF Chronicle Top 100 2026 · $$$</div>
-          <div class="fc-order"><strong>Order:</strong> Lazy Man's Cioppino (whole Dungeness crab, clams, mussels, shrimp), Prawns Annuzzi, Dungeness Crab, Clam Chowder. Complimentary valet parking.</div>
-          <div class="fc-hours">Daily 12 PM–9 PM (Fri–Sat until 10 PM) · Reserve OpenTable or (415) 771-4383</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.808907,-122.418455" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Flour + Water</div>
-          <div class="fc-loc">2401 Harrison St, Mission District · Michelin-Selected</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Michelin selection · Handmade pasta changes daily</div>
-          <div class="fc-order"><strong>Order:</strong> The pasta tasting menu — it changes daily. Half-portions available to try multiple pastas. Neapolitan-style pizza also excellent.</div>
-          <div class="fc-hours">Daily 5 PM–9:30 PM · Reserve on Resy · (415) 826-7000</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.758937,-122.412283" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#5C3A1E,#B7730A);">
-          <div class="fc-name">Dandelion Chocolate</div>
-          <div class="fc-loc">740 Valencia St, Mission District · Bean-to-Bar</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Mission District institution · See cacao roasting live at 16th St Factory</div>
-          <div class="fc-order"><strong>Order:</strong> Single-origin hot chocolate, mocha, seasonal bonbons. Factory at 2600 16th St has tours — see the bean-to-bar process.</div>
-          <div class="fc-hours">Valencia: Daily 7:30 AM–9 PM (Fri–Sat until 10 PM) · (415) 349-0942</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.761034,-122.421861" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#553C9A,#2D3748);">
-          <div class="fc-name">Tonga Room &amp; Hurricane Bar</div>
-          <div class="fc-loc">950 Mason St, Nob Hill · Fairmont Hotel · Since 1945</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Anthony Bourdain: "Greatest place in the history of the world" · $20 entertainment cover</div>
-          <div class="fc-order"><strong>Order:</strong> Mai Tai, Zombie. Indoor lagoon with tropical rainstorms every ~30 min. Band plays from a floating boat. The full tiki experience.</div>
-          <div class="fc-hours">Wed–Thu 5–10 PM · Fri–Sat 5–11 PM · Closed Mon–Tue &amp; Sun · Reserve OpenTable · $20/person cover after 7 PM · (415) 772-5278</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.792388,-122.410092" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#0D6B7A,#0B4F6C);">
-          <div class="fc-name">Smuggler's Cove</div>
-          <div class="fc-loc">650 Gough St, Hayes Valley · World's 50 Best Bars</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">World's 50 Best Bars (2011–2016) · Largest rum selection in the US</div>
-          <div class="fc-order"><strong>Order:</strong> Painkiller, Zombie, or Scorpion Bowl. 500+ rums from 3 centuries of rum history. Vintage tiki décor.</div>
-          <div class="fc-hours">Daily 5 PM–1:15 AM · Walk-in only · Adults only · Hayes Valley · (415) 869-1900</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.779413,-122.423377" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#2D3748,#4A5568);">
-          <div class="fc-name">Akiko's Restaurant</div>
-          <div class="fc-loc">430 Folsom St, SoMa · First Omakase Restaurant in SF</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Fish sourced from Toyosu Market Tokyo · Omakase only</div>
-          <div class="fc-order"><strong>Order:</strong> Nigiri-Centric Omakase $170/person (14 courses) or Full Omakase $270/person (18 courses). Chef Shinsuke Hayashi. Book via Tock — fills weeks ahead.</div>
-          <div class="fc-hours">Mon 5:30–8:30 PM · Tue–Fri lunch + dinner · Sat 5:30–8:30 PM · Closed Sun · (415) 397-3218</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.787873,-122.394194" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#2D3748,#4A5568);">
-          <div class="fc-name">Boulevard</div>
-          <div class="fc-loc">1 Mission St, Embarcadero · James Beard Award · <em style="opacity:.85;">Prix fixe — expensive</em></div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">James Beard: Best Chef CA (2001) · Outstanding Restaurant (2012)</div>
-          <div class="fc-order"><strong>Prix fixe dinner</strong> from ~$96/person (3 courses). Bar/lounge à la carte available as walk-in. Quintessentially Californian New American cuisine.</div>
-          <div class="fc-hours">Mon–Sat 5–9:30 PM · Closed Sunday · (415) 543-6084 · Reserve OpenTable</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.793270,-122.392868" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#92400E);">
-          <div class="fc-name">Butter &amp; Crumble</div>
-          <div class="fc-loc">271 Francisco St, North Beach · Sells Out by Noon</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Elevated laminated pastries · Buttercream layer cakes</div>
-          <div class="fc-order"><strong>Order:</strong> Whatever's in the case — croissants, crumble cakes, vegan/GF options. Check @butter.and.crumble for daily menu the night before.</div>
-          <div class="fc-hours">Thu–Sun 9 AM until sold out (usually by noon) · Closed Mon–Wed · Don't line up before 7:45 AM · (415) 874-9484</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.805052,-122.409694" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">The Bird</div>
-          <div class="fc-loc">115 New Montgomery St, SoMa · Free-Range Fried Chicken</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Best fried chicken sandwich in SF · Fresh bun baked daily</div>
-          <div class="fc-order"><strong>Order:</strong> The Bird sandwich — free-range chicken, berbere spice rub, fresh apple slaw. Simple and perfect. Also at 406 Hayes St.</div>
-          <div class="fc-hours">SoMa: Mon–Fri 10 AM–9 PM · Sat–Sun 11 AM–9 PM · (415) 872-9825</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.787307,-122.400016" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd">
-          <div class="fc-name">Gott's Roadside — St. Helena</div>
-          <div class="fc-loc">933 Main St, St. Helena, Napa Valley · James Beard Classic</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">James Beard America's Classic · Since 1999 · Wine country lunch stop</div>
-          <div class="fc-order"><strong>Order:</strong> California Burger (fried egg + Zoe's bacon), Ahi Poke Crispy Tacos, Chicken Schnitzel Sandwich, organic shakes. On-route for Day 3 Napa.</div>
-          <div class="fc-hours">Mon–Thu 11 AM–9 PM · Fri–Sat until 9:30 PM · Sun until 8:30 PM · (707) 963-3486</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=38.501899,-122.465498" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#1A3D2B,#3A6B4A);">
-          <div class="fc-name">Taishoken</div>
-          <div class="fc-loc">665 Valencia St, Mission District · Original Tsukemen</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Founded 1951 · Inventor of tsukemen (dipping noodles)</div>
-          <div class="fc-order"><strong>Order:</strong> Tsukemen — thick housemade noodles dipped in rich chicken-and-pork broth. Also: 5 styles of ramen. Book ahead — packed on weeknights.</div>
-          <div class="fc-hours">Mon–Thu 5–9:30 PM · Fri lunch+dinner · Sat–Sun 12–9 PM · (415) 400-5336</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.762224,-122.421497" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-      <div class="fc" style="border-color:#C05621;border-width:2px;">
-        <div class="fc-hd" style="background:linear-gradient(135deg,#C05621,#B7730A);">
-          <div class="fc-name">Ebisu Sushi <span style="background:#fff;color:#C05621;font-family:sans-serif;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:12px;margin-left:6px;">MUST GO</span></div>
-          <div class="fc-loc">1283 9th Ave, Inner Sunset · 40+ Years · Family-Owned · No Reservations</div>
-        </div>
-        <div class="fc-body">
-          <div class="fc-rating">Landmark for 40+ years · Near Golden Gate Park · No reservations</div>
-          <div class="fc-order"><strong>Order:</strong> Sashimi omakase set (exceptional value in groups), double hamachi roll, rainbow roll, Agedashi Tofu, Toro Nigiri. Kushiyaki bites $4 each. Top-shelf sake selection.</div>
-          <div class="fc-hours">Tue–Sat: lunch 11:30 AM–2 PM, dinner 5–9 PM · Closed Sun &amp; Mon · No reservations — arrive early and wait · (415) 566-1770</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=37.764457,-122.466660" target="_blank" class="mab gmaps">📍 Maps</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ALERTS -->
-    <div class="section-title">Booking Alerts</div>
-    <div class="alerts-grid">
-      <div class="ac red">
-        <div class="ac-icon">🔴</div>
-        <div class="ac-title">Waterfront Seafood Grill — Book Now</div>
-        <div class="ac-text">Birthday dinner Jul 4 evening. Call (707) 699-2452 — 720 Main St, Napa. Saturday evenings fill fast. Confirm July 4 hours.</div>
-      </div>
-      <div class="ac red">
-        <div class="ac-icon">🔴</div>
-        <div class="ac-title">LA Hotel — Book Immediately</div>
-        <div class="ac-text">Jul 8–11, 3 nights. July LA hotel prices rise as dates approach. Mom researching Culver City / Hollywood / Downtown / Koreatown. Book as soon as a neighborhood is chosen.</div>
-      </div>
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Point Lobos State Reserve</div>
-        <div class="ac-text">Jul 5. Book at reservecalifornia.com — $10/vehicle. Day-use fills on summer weekends. Book 1–2 weeks ahead.</div>
-      </div>
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Hearst Castle Tour</div>
-        <div class="ac-text">Jul 6 · hearstcastle.org · ~$30/adult. First slot is 9:30 AM — 15 min from Castle Inn Cambria. Book 1–2 weeks out.</div>
-      </div>
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Getty Center Timed Entry</div>
-        <div class="ac-text">Jul 10 or 11 · getty.edu · Free but required. Timed entry fills. Book online as soon as LA hotel is confirmed.</div>
-      </div>
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">LA Final Dinner — Jul 11</div>
-        <div class="ac-text">Options: Nobu Malibu, Bestia, Republique, Craig's. Book 1–2 weeks in advance — all fill on weekends.</div>
-      </div>
-      <div class="ac blu">
-        <div class="ac-icon">ℹ️</div>
-        <div class="ac-title">Coronado — Pool Closed</div>
-        <div class="ac-text">Best Western Plus pool &amp; hot tub are closed until December. Flagged explicitly — set expectations before check-in on Jul 7.</div>
-      </div>
-      <div class="ac blu">
-        <div class="ac-icon">ℹ️</div>
-        <div class="ac-title">Jul 12 Departure Timeline</div>
-        <div class="ac-text">Leave hotel 9:00 AM → In-N-Out LAX (~0.2 mi from terminals) → drop Marina &amp; Liam by 10:30 AM → AA 3319 departs 12:17 PM Terminal 4. Adam &amp; Vadim drive home after drop-off.</div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <strong>California Road Trip · Complete Logistics · July 2–12, 2026</strong><br>
-      4 travelers · Own vehicle · 900+ miles · SF → Big Sur → Santa Barbara → San Diego → Los Angeles
-    </div>
-
-  </div>
+});
+</script>
 </body>
 </html>
