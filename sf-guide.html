@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>San Francisco · California Road Trip · July 2–5, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
       --pacific: #0B4F6C; --coastal: #1B7A9E; --sunset: #C05621; --golden: #B7730A;
@@ -19,6 +20,7 @@
                      letter-spacing: 1.2px; color: var(--mid); font-weight: 700;
                      margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--pacific); }
+    .seg-map { height: 360px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
 
     /* HERO */
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative;
@@ -248,6 +250,96 @@
         </div>
         <div class="day-body">
 
+          <!-- DAY 1 MAP -->
+          <div class="map-section">
+            <div id="map-day1" class="seg-map"></div>
+            <p class="map-caption">Day 1 stops: Hyatt SF → Chinatown → Palace of Fine Arts → Powell-Hyde Cable Car → Lombard St → Painted Ladies → Twin Peaks · All transit, rideshare, or walking — no driving required</p>
+            <div class="route-strip">
+              <div class="rs-node">
+                <span class="rs-badge hotel">🏨</span>
+                <div class="rs-info">
+                  <div class="rs-name">Hyatt Regency SF</div>
+                  <div class="rs-sub">Arrive from SFO ~1:00 PM · Check-in 3:00 PM · 50 Third St, Union Square</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Walk or rideshare</div>
+                <div class="rs-leg-note">All Day 1 stops — no car needed</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">1</span>
+                <div class="rs-info">
+                  <div class="rs-name">Chinatown — Dragon Gate</div>
+                  <div class="rs-sub">Grant Ave + Stockton St · 45–60 min · America's oldest Chinatown</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Walk or transit</div>
+                <div class="rs-leg-note">~10 min to Palace of Fine Arts</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">2</span>
+                <div class="rs-info">
+                  <div class="rs-name">Palace of Fine Arts</div>
+                  <div class="rs-sub">3601 Lyon St · Free · 30–45 min · 1915 Panama-Pacific Exposition colonnade</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Rideshare or bus</div>
+                <div class="rs-leg-note">~15 min to Powell &amp; Market</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">3</span>
+                <div class="rs-info">
+                  <div class="rs-name">Powell-Hyde Cable Car</div>
+                  <div class="rs-sub">Powell &amp; Market turnaround · $24 all-day Muni · Ride up &amp; over to Fisherman's Wharf</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Walk</div>
+                <div class="rs-leg-note">Russian Hill</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">4</span>
+                <div class="rs-info">
+                  <div class="rs-name">Lombard Street</div>
+                  <div class="rs-sub">Russian Hill · Free · Walk down the switchbacks · 20 min</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Rideshare</div>
+                <div class="rs-leg-note">~10 min to Alamo Square</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">5</span>
+                <div class="rs-info">
+                  <div class="rs-name">Painted Ladies — Alamo Square</div>
+                  <div class="rs-sub">710 Steiner St · Free · Classic SF photo · 20 min</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">Rideshare</div>
+                <div class="rs-leg-note">~10 min to Twin Peaks</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">6</span>
+                <div class="rs-info">
+                  <div class="rs-name">Twin Peaks — Sunset</div>
+                  <div class="rs-sub">Twin Peaks Blvd · Free · 360° Bay panorama · 20 min</div>
+                </div>
+              </div>
+            </div>
+            <div class="map-actions">
+              <a href="https://www.google.com/maps/dir/50+Third+St+San+Francisco/Chinatown+San+Francisco+CA/Palace+of+Fine+Arts+San+Francisco/Powell+and+Market+San+Francisco/Lombard+Street+San+Francisco/Alamo+Square+Park+San+Francisco/Twin+Peaks+San+Francisco" target="_blank" class="mab route">Open Day 1 Points in Google Maps →</a>
+            </div>
+          </div>
+
           <div class="time-block">
             <div class="tb-hd sf">Arrival — SFO 11:27 AM</div>
             <ul class="tb-list">
@@ -362,11 +454,7 @@
 
           <!-- DAY 2 MAP -->
           <div class="map-section">
-            <div class="map-embed-wrap">
-              <iframe width="100%" height="360" style="border:0;" loading="lazy" allowfullscreen
-                src="https://www.google.com/maps/embed/v1/directions?key={{GMAPS_KEY}}&origin=Pier+33+Alcatraz+Landing+San+Francisco+CA&destination=50+Third+St+San+Francisco+CA&waypoints=201+Marine+Dr+San+Francisco+CA|2200+Piedmont+Ave+Berkeley+CA|Muir+Woods+National+Monument+Mill+Valley+CA&mode=driving">
-              </iframe>
-            </div>
+            <div id="map-day2" class="seg-map"></div>
             <p class="map-caption">Day 2 route: Pier 33 (Alcatraz return) → Fort Point NHS → UC Berkeley → Muir Woods → Hyatt SF · ~3h 46m total driving</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -587,11 +675,7 @@
 
           <!-- DAY 3 MAP -->
           <div class="map-section">
-            <div class="map-embed-wrap">
-              <iframe width="100%" height="360" style="border:0;" loading="lazy" allowfullscreen
-                src="https://www.google.com/maps/embed/v1/directions?key={{GMAPS_KEY}}&origin=50+Third+St+San+Francisco+CA&destination=50+Third+St+San+Francisco+CA&waypoints=6528+Washington+St+Yountville+CA|1111+Dunaweal+Ln+Calistoga+CA|610+1st+St+Napa+CA&mode=driving">
-              </iframe>
-            </div>
+            <div id="map-day3" class="seg-map"></div>
             <p class="map-caption">Day 3 route: Hyatt SF → Bouchon Bakery (Yountville) → Sterling Vineyards (Calistoga) → Napa Oxbow Public Market → return Hyatt SF · ~3h 39m driving</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -890,5 +974,48 @@
     </div>
 
   </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  function mkMap(id,center,zoom,stops,col,drawRoute){
+    var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
+    var pts=[];
+    stops.forEach(function(s){
+      var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      pts.push([s.a,s.o]);
+    });
+    if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
+  }
+  window.addEventListener('load',function(){
+    // Day 1: SF arrival day — hotel base + 6 stops (all transit/walk)
+    mkMap('map-day1',[37.78,-122.43],12,[
+      {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Base hotel · Check-in 3:00 PM'},
+      {a:37.794,o:-122.408,n:'1',name:'Chinatown — Dragon Gate',note:'Grant Ave · 45–60 min'},
+      {a:37.802,o:-122.449,n:'2',name:'Palace of Fine Arts',note:'Free · 30–45 min'},
+      {a:37.784,o:-122.408,n:'3',name:'Powell-Hyde Cable Car',note:'$24 all-day · Fisherman\'s Wharf'},
+      {a:37.802,o:-122.419,n:'4',name:'Lombard Street',note:'Russian Hill · Walk down'},
+      {a:37.776,o:-122.434,n:'5',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo'},
+      {a:37.752,o:-122.447,n:'6',name:'Twin Peaks',note:'Free · Sunset panorama'}
+    ],'#0B4F6C',true);
+    // Day 2: Pier 33 → Fort Point → UC Berkeley → Muir Woods → Hyatt SF
+    mkMap('map-day2',[37.855,-122.39],9,[
+      {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:35 AM'},
+      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure'},
+      {a:37.811,o:-122.477,n:'2',name:'Fort Point NHS',note:'FREE · 10 AM–5 PM Fri'},
+      {a:37.872,o:-122.260,n:'3',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM'},
+      {a:37.891,o:-122.571,n:'4',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot'},
+      {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
+    ],'#0B4F6C',true);
+    // Day 3: SF → Yountville → Calistoga → Napa → SF
+    mkMap('map-day3',[38.15,-122.38],9,[
+      {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:00 AM'},
+      {a:38.407,o:-122.361,n:'1',name:'Bouchon Bakery, Yountville',note:'Arrive 9:01 AM · 45 min'},
+      {a:38.557,o:-122.572,n:'2',name:'Sterling Vineyards, Calistoga',note:'✅ 10:45 AM · TOCK-R-AE87DB44'},
+      {a:38.298,o:-122.285,n:'3',name:'Napa Oxbow Public Market',note:'Arrive ~12:38 PM'},
+      {a:37.784,o:-122.398,n:'🏨',name:'Hyatt + Scoma\'s Birthday Dinner',note:'⚠️ Book Scoma\'s now'}
+    ],'#0B4F6C',true);
+  });
+  </script>
 </body>
 </html>

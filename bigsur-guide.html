@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Big Sur → Cambria · California Road Trip · July 5, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
       --pacific: #0B4F6C; --coastal: #1B7A9E; --sunset: #C05621; --golden: #B7730A;
@@ -19,6 +20,7 @@
                      letter-spacing: 1.2px; color: var(--mid); font-weight: 700;
                      margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     a { color: var(--pacific); }
+    .seg-map { height: 380px; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); overflow: hidden; }
 
     .hero { padding: 56px 24px 64px; text-align: center; color: white; position: relative;
             background: linear-gradient(160deg, #1A3D2B, #3A6B4A, #6B4226); }
@@ -196,11 +198,7 @@
 
           <!-- DAY 4 MAP -->
           <div class="map-section">
-            <div class="map-embed-wrap">
-              <iframe width="100%" height="380" style="border:0;" loading="lazy" allowfullscreen
-                src="https://www.google.com/maps/embed/v1/directions?key={{GMAPS_KEY}}&origin=50+Third+St+San+Francisco+CA&destination=6620+Moonstone+Beach+Dr+Cambria+CA&waypoints=17+Mile+Drive+Pacific+Grove+CA|Carmel+by+the+Sea+CA|Point+Lobos+State+Reserve+CA|Bixby+Creek+Bridge+Big+Sur+CA|Pfeiffer+Beach+Big+Sur+CA|McWay+Falls+Big+Sur+CA|Piedras+Blancas+Elephant+Seal+Vista+Point+CA&mode=driving">
-              </iframe>
-            </div>
+            <div id="map-day4" class="seg-map"></div>
             <p class="map-caption">Day 4 route: Hyatt SF → 17-Mile Drive → Carmel → Point Lobos → Bixby Bridge → Hurricane Point → Pfeiffer Beach → McWay Falls → Elephant Seals → Castle Inn Cambria · ~4h 36m driving</p>
             <div class="route-strip">
               <div class="rs-node start">
@@ -623,5 +621,33 @@
     </div>
 
   </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  function mkMap(id,center,zoom,stops,col,drawRoute){
+    var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
+    var pts=[];
+    stops.forEach(function(s){
+      var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      pts.push([s.a,s.o]);
+    });
+    if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
+  }
+  window.addEventListener('load',function(){
+    // Day 4: SF → 17-Mile Drive → Carmel → Point Lobos → Bixby → Pfeiffer → McWay → Elephant Seals → Cambria
+    mkMap('map-day4',[36.5,-121.75],7,[
+      {a:37.784,o:-122.398,n:'SF',name:'Hyatt SF — Depart 7:00 AM',note:'1h 53m · 123.9 mi'},
+      {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'$12.25/vehicle · 45 min–1 hr'},
+      {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'Free · Ocean Ave · 45 min–1 hr'},
+      {a:36.515,o:-121.938,n:'3',name:'Point Lobos State Reserve',note:'$10/vehicle · ⚠️ NOT BOOKED'},
+      {a:36.374,o:-121.902,n:'4',name:'Bixby Creek Bridge',note:'Free · North turnout'},
+      {a:36.283,o:-121.820,n:'5',name:'Pfeiffer Beach',note:'$12 cash · Purple sand'},
+      {a:36.157,o:-121.670,n:'6',name:'McWay Falls',note:'$12/vehicle · 80-ft waterfall'},
+      {a:35.665,o:-121.254,n:'7',name:'Elephant Seals — Piedras Blancas',note:'Free · July = juveniles'},
+      {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:21 PM · Breakfast included'}
+    ],'#3A6B4A',true);
+  });
+  </script>
 </body>
 </html>
