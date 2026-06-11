@@ -77,7 +77,8 @@ The hotel is technically in SoMa but at the northern edge, directly adjacent to 
 
 **Castle Inn**
 - **Address:** 6620 Moonstone Beach Drive, Cambria, CA 93428 · Phone: +1 805-927-8605
-- **Booking:** Booking.com (PIN confirmation — keep PIN confidential)
+- **Booking:** Booking.com
+- **Confirmation #:** 6935830439 · **PIN:** 4816 *(keep confidential)*
 - **Guest:** Marina Drapkin · 4 adults
 - **Room:** 2-Queen Partial Oceanview · No Pets
 - **Check-in:** Sunday, July 5 at 3:00–9:00 PM · **Check-out:** Monday, July 6 at 7:30–11:00 AM
@@ -181,18 +182,15 @@ Three hotel nights still need to be booked. Mom is researching. When confirmed, 
 
 ---
 
-### BIRTHDAY DINNER — July 4 Evening · San Francisco 🎂
+### BIRTHDAY DINNER — July 4 Evening · Napa 🎂
 
-**Scoma's Restaurant — Pier 47, Fisherman's Wharf** ⚠️ *Reserve on OpenTable immediately — July 4th at the Wharf fills completely*
-- **Address:** Pier 47, Al Scoma Way, San Francisco, CA 94133 · Phone: (415) 771-4383
-- **Reservations:** OpenTable (search "Scoma's San Francisco") or call direct. **Top 10 Most-Booked restaurants in SF.**
-- **Hours (Saturday):** 12:00 PM – 10:00 PM · Call to confirm July 4th holiday hours
-- **What it is:** On a working pier — fishing boats dock at their own receiving station outside the kitchen. Pier-to-plate is literal here. Founded 1965, family-owned, SF Chronicle Top 100 Bay Area for 2026.
-- **What to order:** Lazy Man's Cioppino (the signature — all crab meat pulled from the shell, in the rich tomato broth), Dungeness Crab, Clam Chowder, Prawns Annuzzi, Clams on the Half Shell
-- **Price:** ~$50–100/person · For 4: ~$250–350
-- **Rating:** 4.7★ / 6,492 OpenTable reviews · SF Chronicle Top 100 Bay Area 2026
-- **Social proof:** @bayarea.foodie.adventures (86,145f, 15,396 views) · @scomassf (10,675f)
-- **After dinner:** July 4th fireworks launch over the bay from Fisherman's Wharf — you're already standing on the pier. No commute, no scrambling. Just walk outside.
+**The Waterfront Seafood Grill** ⚠️ *Reserve immediately — Saturdays on the Napa River fill fast*
+- **Address:** 720 Main St, Napa, CA 94559 · Phone: (707) 699-2452
+- **Reservations:** Call direct or book online · **Hours (Saturday):** 11:30 AM – 9:00 PM
+- **What it is:** Napa River waterfront dining — full seafood menu, private dining rooms, river deck seating. After Sterling Vineyards and Oxbow Market, this is 5 minutes south on Main St. Birthday dinner, then the ~74 min drive back to SF.
+- **What to order:** Chilean Sea Bass, Seafood Cioppino, Crab Enchiladas, Linguine with Clams, Lobster Bisque · Finish with the Mocha Cake
+- **Price:** $$ – $$$
+- **Note:** 18% gratuity auto-added for parties of 6+. Corkage $25 if bringing wine from Sterling.
 
 ---
 
