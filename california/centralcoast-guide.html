@@ -141,11 +141,36 @@
     .footer { background: linear-gradient(135deg, #5C3A1E, #B7730A); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
+    /* DUAL-COL NAV (Driving | Walking) */
+    .dual-col-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .nav-col { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: white; }
+    .nav-col-hd { font-family:sans-serif; font-size:.7rem; font-weight:700; text-transform:uppercase;
+                  letter-spacing:.8px; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid; }
+    .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
+    .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
+    .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
+    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+                       color:#fff; flex-shrink:0; margin-top:2px; }
+    .drive-stop .ds-num { background:#0B4F6C; }
+    .walk-stop .ws-num  { background:#276749; }
+    .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
+    .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
+    .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
+    .ds-park a { color:#276749; text-decoration:underline; }
+    .ws-leg { font-family:sans-serif; font-size:.7rem; color:#276749; padding:3px 0 3px 32px;
+              font-style:italic; }
+    .wc-label { font-family:sans-serif; font-size:.67rem; font-weight:700; text-transform:uppercase;
+                letter-spacing:.6px; color:var(--mid); margin:10px 0 6px; border-top:1px dashed var(--border); padding-top:8px; }
+    .wc-label:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+    .nav-col-action { margin-top:12px; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.0rem; }
       .day-hd-title { font-size: 1.1rem; }
       .alerts-grid, .food-grid, .si-grid { grid-template-columns: 1fr; }
       .hc-row { flex-direction: column; gap: 2px; }
+      .dual-col-nav { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -211,53 +236,85 @@
           <div class="map-section">
             <div id="map-day5" class="seg-map"></div>
             <p class="map-caption">Day 5 route: Castle Inn Cambria → Hearst Castle (San Simeon) → Solvang → Beachside Inn Santa Barbara · ~3h 54m driving</p>
-            <div class="route-strip">
-              <div class="rs-node start">
-                <span class="rs-badge home">🏠</span>
-                <div class="rs-info">
-                  <div class="rs-name">Castle Inn, Cambria</div>
-                  <div class="rs-sub">Depart 8:45 AM · Check-out 7:30–11:00 AM</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Hearst Castle</div>
+                    <div class="ds-drive">From Cambria · 15 min · 9.6 mi · depart 8:45 AM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=35.6505,-121.1863" target="_blank">Visitor Center Lot</a> · 700 Hearst Castle Rd · ⚠️ NOT BOOKED</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Solvang</div>
+                    <div class="ds-drive">From Hearst Castle · 1h 54m · 108.1 mi · arrive ~1:30 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.5958,-120.1376" target="_blank">Municipal Parking</a> · Solvang town center</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Beachside Inn, Santa Barbara</div>
+                    <div class="ds-drive">From Solvang · 45 min · 33.3 mi · arrive ~3:15 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.4176,-119.6948" target="_blank">Lot 11</a> · 523 Anacapa St · hotel parking or street</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/35.578058,-121.114827/35.650635,-121.188229/34.595789,-120.137562/34.408356,-119.693916" target="_blank">Open Day 5 Route in Google Maps 🚗</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">15 min · 9.6 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 6 Mon ~8:45 AM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hearst Castle</div>
-                  <div class="rs-sub">⚠️ NOT BOOKED · Arrive ~9:00 AM · First tour 9:30–10:00 AM · ~$30/adult · 1.5–2 hrs</div>
+              <!-- RIGHT: Walking at each stop -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">Hearst Castle</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Grand Rooms Tour (or Neptune Pool Tour)</div>
+                    <div class="ws-from">Shuttle from visitor center · 1.5–2 hrs · indoor + outdoor areas</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ shuttle back to visitor center</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Visitor Center + Museum</div>
+                    <div class="ws-from">Exhibits on Hearst family · 20 min · depart ~noon</div>
+                  </div>
+                </div>
+                <div class="wc-label">Solvang</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Mission Dr village stroll</div>
+                    <div class="ws-from">Aebleskiver stands · windmills · Danish bakeries · 1–1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 10 min drive</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Ostrichland USA (optional)</div>
+                    <div class="ws-from">Feed ostriches · pure joy · $5 adults · 30 min</div>
+                  </div>
+                </div>
+                <div class="wc-label">Santa Barbara</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">State Street + Stearns Wharf</div>
+                    <div class="ws-from">Shops + restaurants · beach walk · 2+ hrs · evening wine &amp; cheese at hotel</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/35.650635,-121.188229/34.595789,-120.137562/34.408356,-119.693916/34.415,-119.698" target="_blank">Open Walking Stops 🚶</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 54m · 108.1 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 6 Mon ~noon</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Solvang</div>
-                  <div class="rs-sub">Arrive ~1:30–2:00 PM · Danish village · Ostrichland + windmill + aebleskivers · 1–1.5 hrs</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">45 min · 33.3 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 6 Mon ~2:30 PM</div>
-              </div>
-              <div class="rs-node overnight">
-                <span class="rs-badge hotel">🏨</span>
-                <div class="rs-info">
-                  <div class="rs-name">Beachside Inn, Santa Barbara</div>
-                  <div class="rs-sub">Arrive ~3:15 PM · Hotel opens at 4:00 PM · Explore SB while waiting · Wine &amp; cheese happy hour every evening</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/35.578058,-121.114827/35.650635,-121.188229/34.595789,-120.137562/34.408356,-119.693916" target="_blank" class="mab route">Open Day 5 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -565,7 +622,7 @@
     var pts=[];
     stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':'')+(s.p?'<br><a href="https://www.google.com/maps/search/?api=1&query='+s.p[0]+','+s.p[1]+'" target="_blank" style="font-size:11px;color:#276749">🅿️ Nearest parking</a>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
@@ -574,8 +631,8 @@
     // Day 5: Castle Inn Cambria → Hearst Castle → Solvang → Beachside Inn Santa Barbara
     mkMap('map-day5',[34.9,-120.45],7,[
       {a:35.564,o:-121.081,n:'🏠',name:'Castle Inn, Cambria',note:'Depart 8:45 AM · Breakfast included'},
-      {a:35.685,o:-121.168,n:'1',name:'Hearst Castle',note:'⚠️ NOT BOOKED · Arrive ~9:00 AM · ~$30/adult'},
-      {a:34.596,o:-120.138,n:'2',name:'Solvang',note:'Arrive ~1:30 PM · Danish village · Ostrichland USA'},
+      {a:35.685,o:-121.168,n:'1',name:'Hearst Castle',note:'⚠️ NOT BOOKED · Arrive ~9:00 AM · ~$30/adult',p:[35.6505,-121.1863]},
+      {a:34.596,o:-120.138,n:'2',name:'Solvang',note:'Arrive ~1:30 PM · Danish village · Ostrichland USA',p:[34.5958,-120.1376]},
       {a:34.415,o:-119.701,n:'🏨',name:'Beachside Inn, Santa Barbara',note:'Arrive ~3:15 PM · Conf. 1075827673'}
     ],'#B7730A',true);
   });

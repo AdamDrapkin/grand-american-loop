@@ -142,11 +142,36 @@
     .footer { background: var(--redwood); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
+    /* DUAL-COL NAV (Driving | Walking) */
+    .dual-col-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .nav-col { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: white; }
+    .nav-col-hd { font-family:sans-serif; font-size:.7rem; font-weight:700; text-transform:uppercase;
+                  letter-spacing:.8px; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid; }
+    .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
+    .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
+    .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
+    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+                       color:#fff; flex-shrink:0; margin-top:2px; }
+    .drive-stop .ds-num { background:#0B4F6C; }
+    .walk-stop .ws-num  { background:#276749; }
+    .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
+    .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
+    .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
+    .ds-park a { color:#276749; text-decoration:underline; }
+    .ws-leg { font-family:sans-serif; font-size:.7rem; color:#276749; padding:3px 0 3px 32px;
+              font-style:italic; }
+    .wc-label { font-family:sans-serif; font-size:.67rem; font-weight:700; text-transform:uppercase;
+                letter-spacing:.6px; color:var(--mid); margin:10px 0 6px; border-top:1px dashed var(--border); padding-top:8px; }
+    .wc-label:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+    .nav-col-action { margin-top:12px; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.0rem; }
       .day-hd-title { font-size: 1.1rem; }
       .alerts-grid, .si-grid { grid-template-columns: 1fr; }
       .hc-row { flex-direction: column; gap: 2px; }
+      .dual-col-nav { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -213,137 +238,149 @@
           <div class="map-section">
             <div id="map-day4" class="seg-map"></div>
             <p class="map-caption">Day 4 route: Hyatt SF → 17-Mile Drive → Carmel → Point Lobos → Bixby Bridge → Pfeiffer Beach → McWay Falls → Ragged Point → Elephant Seals → Castle Inn Cambria · ~4h 36m driving + stops</p>
-            <div class="route-strip">
-              <div class="rs-node start">
-                <span class="rs-badge home">🏠</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hyatt Regency SF</div>
-                  <div class="rs-sub">Depart 7:00 AM sharp · Sunday July 5</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">17-Mile Drive</div>
+                    <div class="ds-drive">From SF · 1h 53m · 123.9 mi · depart 7:00 AM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.5728,-121.9487" target="_blank">Pebble Beach Toll Gate</a> · $12.25/vehicle · 45 min–1 hr</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Carmel-by-the-Sea</div>
+                    <div class="ds-drive">From 17-Mile Drive · 3 min · 0.5 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.5558,-121.9243" target="_blank">Pine Inn / AirGarage</a> · 61 Lincoln St · 45 min–1 hr</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Point Lobos State Reserve</div>
+                    <div class="ds-drive">From Carmel · 13 min · 4.3 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.5155,-121.9478" target="_blank">Point Lobos Lot</a> · $10/vehicle · ⚠️ NOT BOOKED</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">4</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Bixby Bridge</div>
+                    <div class="ds-drive">From Point Lobos · 19 min · 11.2 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.3715,-121.9019" target="_blank">North Turnout</a> · roadside pullout · 15–20 min</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">5</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Pfeiffer Beach</div>
+                    <div class="ds-drive">From Bixby · 33 min · 15.3 mi (via Hurricane Point)</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.2381,-121.8162" target="_blank">Sycamore Canyon Rd Lot</a> · $12 cash · 1–1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">6</div>
+                  <div class="ds-info">
+                    <div class="ds-name">McWay Falls</div>
+                    <div class="ds-drive">From Pfeiffer Beach · 25 min · 11.9 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=36.1589,-121.6692" target="_blank">McWay Beach Lot</a> · Julia Pfeiffer Burns SP · $12/vehicle</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">7</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Ragged Point</div>
+                    <div class="ds-drive">From McWay · 58 min · 37.4 mi · arrive ~4:28 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=35.7806,-121.3300" target="_blank">Ragged Point Inn Lot</a> · clifftop overlook · 15–20 min</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">8</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Elephant Seals — Piedras Blancas</div>
+                    <div class="ds-drive">From Ragged Point · 18 min · 10.9 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=35.665,-121.254" target="_blank">Roadside Vista Pullout</a> · Free · 30 min</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.786587,-122.403097/36.623213,-121.928756/36.555093,-121.923288/36.517153,-121.944422/36.371355,-121.90186/36.238406,-121.815612/36.15994,-121.672535/35.793527,-121.330956/35.663792,-121.258537/35.578058,-121.114827" target="_blank">Open Day 4 Driving Route 🚗</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 53m · 123.9 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun 7:00 AM early Sunday — clear roads</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">17-Mile Drive — Pacific Grove Gate</div>
-                  <div class="rs-sub">Arrive ~8:53 AM · $12.25/vehicle · 45 min–1 hr · Exit Carmel Gate</div>
+              <!-- RIGHT: Walking at each stop -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">17-Mile Drive</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Lone Cypress + Pebble Beach scenic pullouts</div>
+                    <div class="ws-from">Drive the loop · stop at overlooks · 45 min–1 hr</div>
+                  </div>
+                </div>
+                <div class="wc-label">Carmel-by-the-Sea</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Ocean Ave village stroll</div>
+                    <div class="ws-from">Boutiques · galleries · no street addresses (town tradition)</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min walk downhill</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Carmel Beach Bluff Walkway</div>
+                    <div class="ws-from">Scenic road path · 30–45 min · white-sand beach below</div>
+                  </div>
+                </div>
+                <div class="wc-label">Point Lobos</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">China Cove + Bird Island Trail</div>
+                    <div class="ws-from">1 mi loop · sea otters · tidal pools · 1–1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="wc-label">Bixby Bridge</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">North Turnout Overlook</div>
+                    <div class="ws-from">Best framing for the arch · 15 min · photos only</div>
+                  </div>
+                </div>
+                <div class="wc-label">Pfeiffer Beach</div>
+                <div class="walk-stop">
+                  <div class="ws-num">6</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Purple Sand + Keyhole Arch</div>
+                    <div class="ws-from">Beach walk · manganese garnet sand · dramatic arch · 1–1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="wc-label">McWay Falls</div>
+                <div class="walk-stop">
+                  <div class="ws-num">7</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Overlook Trail</div>
+                    <div class="ws-from">0.5 mi flat · 80-ft waterfall onto the beach · 45 min</div>
+                  </div>
+                </div>
+                <div class="wc-label">Ragged Point + Elephant Seals</div>
+                <div class="walk-stop">
+                  <div class="ws-num">8</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Clifftop Overlook + Seal Vista</div>
+                    <div class="ws-from">Ragged Point 15 min · Elephant Seal platform 30 min · roadside paved viewing area</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/36.555093,-121.923288/36.553,-121.928/36.517153,-121.944422/36.371355,-121.90186/36.238406,-121.815612/36.15994,-121.672535/35.793527,-121.330956/35.663792,-121.258537" target="_blank">Open Walking Stops 🚶</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">3 min · 0.5 mi</div>
-                <div class="rs-leg-note">Routes API · Carmel Gate exit → Carmel</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Carmel-by-the-Sea</div>
-                  <div class="rs-sub">Ocean Ave · Free · 45 min–1 hr</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">13 min · 4.3 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~11 AM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">3</span>
-                <div class="rs-info">
-                  <div class="rs-name">Point Lobos State Natural Reserve</div>
-                  <div class="rs-sub">⚠️ NOT BOOKED · $10/vehicle · China Cove Bird Island Trail 1 mi · 1–1.5 hrs</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">19 min · 11.2 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~12:15 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">4</span>
-                <div class="rs-info">
-                  <div class="rs-name">Bixby Creek Bridge</div>
-                  <div class="rs-sub">Free · North turnout for full frame · 15–20 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1 min · 0.7 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~1 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">5</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hurricane Point</div>
-                  <div class="rs-sub">Free · Dramatic headland · 15 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">33 min · 15.3 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~1:30 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">6</span>
-                <div class="rs-info">
-                  <div class="rs-name">Pfeiffer Beach</div>
-                  <div class="rs-sub">$12/vehicle cash · Sycamore Canyon Rd · Purple sand · Keyhole Arch · 1–1.5 hrs</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">25 min · 11.9 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~2:30 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">7</span>
-                <div class="rs-info">
-                  <div class="rs-name">McWay Falls — Julia Pfeiffer Burns SP</div>
-                  <div class="rs-sub">$12/vehicle · Overlook Trail 0.5 mi flat · 80-ft waterfall onto beach · 45 min–1 hr</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">58 min · 37.4 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~3:30 PM · Hwy 1 south, remote stretch</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">8</span>
-                <div class="rs-info">
-                  <div class="rs-name">Ragged Point</div>
-                  <div class="rs-sub">CA-1, southern Big Sur terminus · Arrive ~4:28 PM · Free · Clifftop overlook · 15–20 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">18 min · 10.9 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~4:48 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">9</span>
-                <div class="rs-info">
-                  <div class="rs-name">Elephant Seal Vista Point — Piedras Blancas</div>
-                  <div class="rs-sub">Free · July = juveniles/sub-adults · Paved platform above beach · 30 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">25 min · 20.0 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~6:00 PM</div>
-              </div>
-              <div class="rs-node overnight">
-                <span class="rs-badge hotel">🏨</span>
-                <div class="rs-info">
-                  <div class="rs-name">Castle Inn, Cambria</div>
-                  <div class="rs-sub">Arrive ~6:21 PM · Check-in 3:00–9:00 PM · Moonstone Beach · Breakfast included</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/37.786587,-122.403097/36.623213,-121.928756/36.555093,-121.923288/36.517153,-121.944422/36.371355,-121.90186/36.238406,-121.815612/36.15994,-121.672535/35.793527,-121.330956/35.663792,-121.258537/35.578058,-121.114827" target="_blank" class="mab route">Open Day 4 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -791,7 +828,7 @@
     var pts=[];
     stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':'')+(s.p?'<br><a href="https://www.google.com/maps/search/?api=1&query='+s.p[0]+','+s.p[1]+'" target="_blank" style="font-size:11px;color:#276749">🅿️ Nearest parking</a>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
@@ -800,19 +837,19 @@
     // Day 4: SF → 17-Mile Drive → Carmel → Point Lobos → Bixby → Pfeiffer → McWay → Elephant Seals → Cambria
     mkMap('map-day4',[36.5,-121.75],7,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt SF — Depart 7:00 AM',note:'1h 53m · 123.9 mi'},
-      {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'$12.25/vehicle · 45 min–1 hr'},
-      {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'Free · Ocean Ave · 45 min–1 hr'},
+      {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'$12.25/vehicle · 45 min–1 hr',p:[36.5728,-121.9487]},
+      {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'Free · Ocean Ave · 45 min–1 hr',p:[36.5558,-121.9243]},
       {a:36.553,o:-121.928,n:'3',name:'Carmel Scenic Road Walkway',note:'Free · Bluff path · 30–45 min'},
       {a:36.555,o:-121.922,n:'4',name:'Carmel Beach Boardwalk',note:'Free · End of Ocean Ave'},
       {a:36.555,o:-121.920,n:'5',name:'Carmel Walks / Pine Inn',note:'$30/person · Sun 10 AM'},
       {a:36.556,o:-121.920,n:'6',name:'Carmel Plaza',note:'Free · Ocean Ave at Mission'},
-      {a:36.515,o:-121.938,n:'7',name:'Point Lobos State Reserve',note:'$10/vehicle · ⚠️ NOT BOOKED'},
-      {a:36.374,o:-121.902,n:'8',name:'Bixby Creek Bridge',note:'Free · North turnout'},
-      {a:36.283,o:-121.820,n:'9',name:'Pfeiffer Beach',note:'$12 cash · Purple sand'},
+      {a:36.515,o:-121.938,n:'7',name:'Point Lobos State Reserve',note:'$10/vehicle · ⚠️ NOT BOOKED',p:[36.5155,-121.9478]},
+      {a:36.374,o:-121.902,n:'8',name:'Bixby Creek Bridge',note:'Free · North turnout',p:[36.3715,-121.9019]},
+      {a:36.283,o:-121.820,n:'9',name:'Pfeiffer Beach',note:'$12 cash · Purple sand',p:[36.2381,-121.8162]},
       {a:36.233,o:-121.792,n:'10',name:'Big Sur Station',note:'Free · Visitor info · Road conditions'},
-      {a:36.157,o:-121.670,n:'11',name:'McWay Falls',note:'$12/vehicle · 80-ft waterfall'},
-      {a:35.793,o:-121.331,n:'12',name:'Ragged Point',note:'58 min from McWay · 37.4 mi · 15–20 min'},
-      {a:35.665,o:-121.254,n:'13',name:'Elephant Seals — Piedras Blancas',note:'Free · 18 min from Ragged Point'},
+      {a:36.157,o:-121.670,n:'11',name:'McWay Falls',note:'$12/vehicle · 80-ft waterfall',p:[36.1589,-121.6692]},
+      {a:35.793,o:-121.331,n:'12',name:'Ragged Point',note:'58 min from McWay · 37.4 mi · 15–20 min',p:[35.7806,-121.3300]},
+      {a:35.665,o:-121.254,n:'13',name:'Elephant Seals — Piedras Blancas',note:'Free · 18 min from Ragged Point',p:[35.665,-121.254]},
       {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:30 PM · Breakfast included'}
     ],'#3A6B4A',true);
   });

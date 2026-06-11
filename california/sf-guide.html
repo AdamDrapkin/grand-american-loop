@@ -168,12 +168,37 @@
     .footer { background: var(--pacific); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
+    /* DUAL-COL NAV (Driving | Walking) */
+    .dual-col-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .nav-col { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: white; }
+    .nav-col-hd { font-family:sans-serif; font-size:.7rem; font-weight:700; text-transform:uppercase;
+                  letter-spacing:.8px; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid; }
+    .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
+    .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
+    .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
+    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+                       color:#fff; flex-shrink:0; margin-top:2px; }
+    .drive-stop .ds-num { background:#0B4F6C; }
+    .walk-stop .ws-num  { background:#276749; }
+    .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
+    .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
+    .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
+    .ds-park a { color:#276749; text-decoration:underline; }
+    .ws-leg { font-family:sans-serif; font-size:.7rem; color:#276749; padding:3px 0 3px 32px;
+              font-style:italic; }
+    .wc-label { font-family:sans-serif; font-size:.67rem; font-weight:700; text-transform:uppercase;
+                letter-spacing:.6px; color:var(--mid); margin:10px 0 6px; border-top:1px dashed var(--border); padding-top:8px; }
+    .wc-label:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+    .nav-col-action { margin-top:12px; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.0rem; }
       .day-hd-title { font-size: 1.1rem; }
       .overview-strip { grid-template-columns: 1fr 1fr; }
       .bb-grid, .alerts-grid, .food-grid, .si-grid { grid-template-columns: 1fr; }
       .hc-row { flex-direction: column; gap: 2px; }
+      .dual-col-nav { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -272,89 +297,169 @@
           <div class="map-section">
             <div id="map-day1" class="seg-map"></div>
             <p class="map-caption">Day 1 stops: Hyatt SF → Chinatown → Palace of Fine Arts → Powell-Hyde Cable Car → Lombard St → Painted Ladies → Twin Peaks · All transit, rideshare, or walking — no driving required</p>
-            <div class="route-strip">
-              <div class="rs-node">
-                <span class="rs-badge hotel">🏨</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hyatt Regency SF</div>
-                  <div class="rs-sub">Arrive from SFO ~1:00 PM · Check-in 3:00 PM · 50 Third St, Union Square</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Transit / Rideshare clusters -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Transit / Rideshare</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Embarcadero / Waterfront</div>
+                    <div class="ds-drive">From hotel · ~10 min rideshare · 1.8 mi</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Palace of Fine Arts</div>
+                    <div class="ds-drive">From Ghirardelli · ~12 min rideshare</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8023,-122.4493" target="_blank">Palace of Fine Arts Lot</a> · Lyon St</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Russian Hill / Cable Car</div>
+                    <div class="ds-drive">From Palace · ~10 min rideshare</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8008,-122.4116" target="_blank">Public Garage</a> · 721 Filbert St</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">4</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Alamo Square</div>
+                    <div class="ds-drive">From Full House House · ~10 min rideshare</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.7817,-122.4320" target="_blank">Fillmore Heritage Garage</a> · 1310 Fillmore St</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">5</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Golden Gate Park</div>
+                    <div class="ds-drive">From Mission Dolores · ~7 min rideshare</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.7728,-122.4682" target="_blank">Music Concourse Garage</a> · 55 Hagiwara Tea Garden Dr</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">6</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Twin Peaks</div>
+                    <div class="ds-drive">From GG Park · ~8 min rideshare</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.7546,-122.4463" target="_blank">Twin Peaks Parking</a> · Twin Peaks Blvd</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.786587,-122.403097/37.794558,-122.404698/37.802931,-122.448423/37.784874,-122.407696/37.802059,-122.419555/37.776369,-122.434819/37.752915,-122.447413" target="_blank">Open Day 1 Points in Google Maps 🗺️</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Walk or rideshare</div>
-                <div class="rs-leg-note">All Day 1 stops — no car needed</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">Chinatown — Dragon Gate</div>
-                  <div class="rs-sub">Grant Ave + Stockton St · 45–60 min · America's oldest Chinatown</div>
+              <!-- RIGHT: Walking clusters -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Clusters</div>
+                <div class="wc-label">Cluster 1 — Embarcadero / Waterfront</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Ferry Building</div>
+                    <div class="ws-from">Start · Embarcadero waterfront</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 8 min · 0.4 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Chinatown — Dragon Gate</div>
+                    <div class="ws-from">Grant Ave &amp; Stockton St · 45–60 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 15 min · 0.7 mi to wharf</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Pier 39 / Sea Lions</div>
+                    <div class="ws-from">Fisherman's Wharf area</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min · 0.3 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Fisherman's Wharf</div>
+                    <div class="ws-from">Jefferson St · Crab stands</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min · 0.3 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Ghirardelli Square</div>
+                    <div class="ws-from">Historic chocolate factory · end cluster 1</div>
+                  </div>
+                </div>
+                <div class="wc-label">Cluster 2 — Russian Hill</div>
+                <div class="walk-stop">
+                  <div class="ws-num">6</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Powell-Hyde Cable Car</div>
+                    <div class="ws-from">Board at Powell &amp; Market · $24 all-day</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ ride to Russian Hill summit</div>
+                <div class="walk-stop">
+                  <div class="ws-num">7</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Lombard Street</div>
+                    <div class="ws-from">Walk down the switchbacks · 20 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min walk</div>
+                <div class="walk-stop">
+                  <div class="ws-num">8</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Full House House</div>
+                    <div class="ws-from">1709 Broderick St · exterior only</div>
+                  </div>
+                </div>
+                <div class="wc-label">Cluster 3 — Alamo Square</div>
+                <div class="walk-stop">
+                  <div class="ws-num">9</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Painted Ladies</div>
+                    <div class="ws-from">710 Steiner St · 20 min photo stop</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 15 min · 0.8 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">10</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Mission Dolores Park</div>
+                    <div class="ws-from">Sunny hillside · city views · end cluster 3</div>
+                  </div>
+                </div>
+                <div class="wc-label">Cluster 4 — Golden Gate Park</div>
+                <div class="walk-stop">
+                  <div class="ws-num">11</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Japanese Tea Garden</div>
+                    <div class="ws-from">$15 adults · oldest public Japanese garden in US</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min · 0.3 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">12</div>
+                  <div class="ws-info">
+                    <div class="ws-name">CA Academy of Sciences</div>
+                    <div class="ws-from">$40 adults · Aquarium + Planetarium · end cluster 4</div>
+                  </div>
+                </div>
+                <div class="wc-label">Summit Stop</div>
+                <div class="walk-stop">
+                  <div class="ws-num">13</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Twin Peaks</div>
+                    <div class="ws-from">360° Bay panorama · sunset viewpoint</div>
+                  </div>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Walk or transit</div>
-                <div class="rs-leg-note">~10 min to Palace of Fine Arts</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Palace of Fine Arts</div>
-                  <div class="rs-sub">3601 Lyon St · Free · 30–45 min · 1915 Panama-Pacific Exposition colonnade</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Rideshare or bus</div>
-                <div class="rs-leg-note">~15 min to Powell &amp; Market</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">3</span>
-                <div class="rs-info">
-                  <div class="rs-name">Powell-Hyde Cable Car</div>
-                  <div class="rs-sub">Powell &amp; Market turnaround · $24 all-day Muni · Ride up &amp; over to Fisherman's Wharf</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Walk</div>
-                <div class="rs-leg-note">Russian Hill</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">4</span>
-                <div class="rs-info">
-                  <div class="rs-name">Lombard Street</div>
-                  <div class="rs-sub">Russian Hill · Free · Walk down the switchbacks · 20 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Rideshare</div>
-                <div class="rs-leg-note">~10 min to Alamo Square</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">5</span>
-                <div class="rs-info">
-                  <div class="rs-name">Painted Ladies — Alamo Square</div>
-                  <div class="rs-sub">710 Steiner St · Free · Classic SF photo · 20 min</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Rideshare</div>
-                <div class="rs-leg-note">~10 min to Twin Peaks</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">6</span>
-                <div class="rs-info">
-                  <div class="rs-name">Twin Peaks — Sunset</div>
-                  <div class="rs-sub">Twin Peaks Blvd · Free · 360° Bay panorama · 20 min</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/37.786587,-122.403097/37.794558,-122.404698/37.802931,-122.448423/37.784874,-122.407696/37.802059,-122.419555/37.776369,-122.434819/37.752915,-122.447413" target="_blank" class="mab route">Open Day 1 Points in Google Maps →</a>
             </div>
           </div>
 
@@ -638,77 +743,94 @@
           <div class="map-section">
             <div id="map-day2" class="seg-map"></div>
             <p class="map-caption">Day 2 route: Pier 33 (Alcatraz return) → Fort Point NHS → UC Berkeley → Muir Woods → Hyatt SF · ~3h 46m total driving</p>
-            <div class="route-strip">
-              <div class="rs-node start">
-                <span class="rs-badge home">🏠</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hyatt Regency SF</div>
-                  <div class="rs-sub">Depart 8:35 AM · Walk or rideshare to Pier 33 (1.5 mi)</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Pier 33 — Alcatraz Ferry</div>
+                    <div class="ds-drive">From hotel · walk/rideshare 1.5 mi · no car park</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8064,-122.4103" target="_blank">Impark C Garage Lot 20</a> · 2210 Stockton St</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Fort Point NHS</div>
+                    <div class="ds-drive">From Pier 33 · 17 min · 4.4 mi · Routes API</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8063,-122.4760" target="_blank">Battery Cranston Rd Parking</a> · Presidio</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">UC Berkeley</div>
+                    <div class="ds-drive">From Fort Point · 48 min · 29.9 mi · Routes API</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8734,-122.2629" target="_blank">Wellman Courtyard Parking</a> · Berkeley</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">4</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Muir Woods</div>
+                    <div class="ds-drive">From Berkeley · 65 min · 28.2 mi · Routes API</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=37.8913,-122.5688" target="_blank">Muir Woods Overflow Lot</a> · ✅ Booked 4:00–4:30 PM slot</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.806526,-122.404512/37.810612,-122.47709/37.87131,-122.255275/37.906062,-122.57121/37.786587,-122.403097" target="_blank">Open Day 2 Route in Google Maps 🚗</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">Walk/rideshare · 1.5 mi</div>
-                <div class="rs-leg-note">No parking at Pier 33</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">Alcatraz Ferry — Pier 33</div>
-                  <div class="rs-sub">✅ Booked · 9:20 AM departure · Return ~12:00 PM · Conf. i77487162</div>
+              <!-- RIGHT: Walking at each stop -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">Pier 33 / Alcatraz Island</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Alcatraz Cell House Tour</div>
+                    <div class="ws-from">9:20 AM ferry · 2.5 hrs on island · full self-guided audio route</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ ferry return · arrive Pier 33 ~noon</div>
+                <div class="wc-label">Fort Point / Golden Gate Bridge</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Fort Point NHS</div>
+                    <div class="ws-from">201 Marine Dr · 45–55 min · 3-story fortification under GGB</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min walk to bridge overlook</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Golden Gate Bridge</div>
+                    <div class="ws-from">Walk the span · north tower views · Baker Beach below</div>
+                  </div>
+                </div>
+                <div class="wc-label">UC Berkeley Campus</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Sproul Plaza + Campanile</div>
+                    <div class="ws-from">Campanile $5 · Sproul Plaza free · 45 min campus stroll</div>
+                  </div>
+                </div>
+                <div class="wc-label">Muir Woods</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Cathedral Grove Trail</div>
+                    <div class="ws-from">$15/person · 1 mi flat · old-growth coast redwoods</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.810612,-122.47709/37.820066,-122.478394/37.872,-122.260/37.906062,-122.57121" target="_blank">Open Walking Stops 🚶</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">17 min · 4.4 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 3 Fri ~noon</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Fort Point NHS</div>
-                  <div class="rs-sub">201 Marine Dr · FREE · 10 AM–5 PM · 45–55 min · Depart by ~1:15 PM</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">48 min · 29.9 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 3 Fri ~1:15 PM with traffic</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">3</span>
-                <div class="rs-info">
-                  <div class="rs-name">UC Berkeley</div>
-                  <div class="rs-sub">Campanile $5 · Sproul Plaza free · Depart 3:00 PM sharp</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">65 min · 28.2 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 3 Fri ~3:30 PM Friday PM traffic</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">4</span>
-                <div class="rs-info">
-                  <div class="rs-name">Muir Woods National Monument</div>
-                  <div class="rs-sub">✅ Booked · 4:00–4:30 PM parking slot · $15/person · Cathedral Grove 1 mi flat</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">56 min · 18.7 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 3 Fri ~7:00 PM with traffic</div>
-              </div>
-              <div class="rs-node overnight">
-                <span class="rs-badge hotel">🏨</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hyatt Regency SF</div>
-                  <div class="rs-sub">Return ~7:10 PM · Dinner in North Beach or Fisherman's Wharf</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/37.806526,-122.404512/37.810612,-122.47709/37.87131,-122.255275/37.906062,-122.57121/37.786587,-122.403097" target="_blank" class="mab route">Open Day 2 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -931,65 +1053,85 @@
           <div class="map-section">
             <div id="map-day3" class="seg-map"></div>
             <p class="map-caption">Day 3 route: Hyatt SF → Bouchon Bakery (Yountville) → Sterling Vineyards (Calistoga) → Napa Oxbow Public Market → The Waterfront Seafood Grill (birthday dinner) → return Hyatt SF · ~3h 39m driving</p>
-            <div class="route-strip">
-              <div class="rs-node start">
-                <span class="rs-badge home">🏠</span>
-                <div class="rs-info">
-                  <div class="rs-name">Hyatt Regency SF</div>
-                  <div class="rs-sub">Depart 8:00 AM sharp · July 4 Saturday</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Bouchon Bakery, Yountville</div>
+                    <div class="ds-drive">From hotel · 61 min · 54.5 mi · Routes API · depart 8:00 AM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=38.4035,-122.3616" target="_blank">Public Parking Lot</a> · Yount Street</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Sterling Vineyards, Calistoga</div>
+                    <div class="ds-drive">From Yountville · 26 min · 17.0 mi · Routes API</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=38.5697,-122.5472" target="_blank">Winery Parking</a> · 1111 Dunaweal Lane · ✅ Booked 10:45 AM</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Napa Oxbow Public Market</div>
+                    <div class="ds-drive">From Calistoga · 38 min · 27.5 mi · Routes API</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=38.2964,-122.2857" target="_blank">Park and Ride Lot</a> · 1215 4th Street, Napa</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/37.786587,-122.403097/38.402434,-122.361784/38.568705,-122.54844/38.301679,-122.281915/37.786587,-122.403097" target="_blank">Open Day 3 Route in Google Maps 🚗</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">61 min · 54.5 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 4 Sat 8:00 AM with traffic</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">Bouchon Bakery, Yountville</div>
-                  <div class="rs-sub">Arrive ~9:01 AM · 45 min takeout · Depart 9:46 AM</div>
+              <!-- RIGHT: Walking at each stop -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">Yountville</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Bouchon Bakery</div>
+                    <div class="ws-from">6528 Washington St · takeout croissants + coffee · 45 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ short stroll on Washington St</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Yountville village</div>
+                    <div class="ws-from">Browse gallery row · 10 min · depart 9:46 AM</div>
+                  </div>
+                </div>
+                <div class="wc-label">Calistoga — Sterling Vineyards</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Aerial Tram + Tasting Room</div>
+                    <div class="ws-from">Tram ride up · vineyard walk · 4 wines · ~1 hour</div>
+                  </div>
+                </div>
+                <div class="wc-label">Napa — Oxbow Market</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Oxbow Public Market</div>
+                    <div class="ws-from">610 1st St · Hog Island Oyster Bar · 40+ vendors · 1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ short walk along Napa River</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">The Waterfront Seafood Grill</div>
+                    <div class="ws-from">720 Main St · birthday dinner on the river · ⚠️ MUST BOOK</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/38.402434,-122.361784/38.568705,-122.54844/38.301679,-122.281915/38.298,-122.284" target="_blank">Open Walking Stops 🚶</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">26 min · 17.0 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 4 Sat ~9:46 AM with traffic</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Sterling Vineyards, Calistoga</div>
-                  <div class="rs-sub">✅ Booked · 10:45 AM (arrive 10:30 AM) · Conf. TOCK-R-AE87DB44 · $192.53 paid · ~1 hour</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">38 min · 27.5 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 4 Sat ~noon</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">3</span>
-                <div class="rs-info">
-                  <div class="rs-name">Napa Oxbow Public Market</div>
-                  <div class="rs-sub">610 1st St, Napa · Arrive ~12:38 PM · Hog Island Oyster Bar</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">~74 min · 46.3 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 4 Sat PM — heavy holiday traffic</div>
-              </div>
-              <div class="rs-node overnight">
-                <span class="rs-badge hotel">🎂</span>
-                <div class="rs-info">
-                  <div class="rs-name">The Waterfront Seafood Grill — Birthday Dinner</div>
-                  <div class="rs-sub">720 Main St, Napa · ⚠️ MUST BOOK · (707) 699-2452 · Dinner on the Napa River · Then drive home to SF</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/37.786587,-122.403097/38.402434,-122.361784/38.568705,-122.54844/38.301679,-122.281915/37.786587,-122.403097" target="_blank" class="mab route">Open Day 3 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -1430,7 +1572,7 @@
     var pts=[];
     stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':'')+(s.p?'<br><a href="https://www.google.com/maps/search/?api=1&query='+s.p[0]+','+s.p[1]+'" target="_blank" style="font-size:11px;color:#276749">🅿️ Nearest parking</a>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
@@ -1439,40 +1581,40 @@
     // Day 1: SF arrival day — hotel base + stops (all transit/walk)
     mkMap('map-day1',[37.78,-122.44],12,[
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Base hotel · Check-in 3:00 PM'},
-      {a:37.795,o:-122.394,n:'1',name:'Ferry Building',note:'Free · Marketplace · Farmers Market Sat'},
+      {a:37.795,o:-122.394,n:'1',name:'Ferry Building',note:'Free · Marketplace · Farmers Market Sat',p:[37.7951,-122.3963]},
       {a:37.794,o:-122.408,n:'2',name:'Chinatown — Dragon Gate',note:'Grant Ave · 45–60 min'},
       {a:37.809,o:-122.410,n:'3',name:'Pier 39',note:'Free · Sea lions · Fisherman\'s Wharf area'},
       {a:37.808,o:-122.417,n:'4',name:'Fisherman\'s Wharf',note:'Free · Jefferson St · Crab stands'},
       {a:37.806,o:-122.423,n:'5',name:'Ghirardelli Square',note:'Free · Historic chocolate factory'},
-      {a:37.802,o:-122.449,n:'6',name:'Palace of Fine Arts',note:'Free · 30–45 min'},
-      {a:37.784,o:-122.408,n:'7',name:'Powell-Hyde Cable Car',note:'$24 all-day · Fisherman\'s Wharf'},
+      {a:37.802,o:-122.449,n:'6',name:'Palace of Fine Arts',note:'Free · 30–45 min',p:[37.8023,-122.4493]},
+      {a:37.784,o:-122.408,n:'7',name:'Powell-Hyde Cable Car',note:'$24 all-day · Fisherman\'s Wharf',p:[37.8008,-122.4116]},
       {a:37.802,o:-122.419,n:'8',name:'Lombard Street',note:'Russian Hill · Walk down'},
       {a:37.782,o:-122.438,n:'9',name:'Full House House',note:'1709 Broderick St · Exterior only'},
-      {a:37.776,o:-122.434,n:'10',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo'},
+      {a:37.776,o:-122.434,n:'10',name:'Painted Ladies — Alamo Square',note:'Free · Classic SF photo',p:[37.7817,-122.4320]},
       {a:37.760,o:-122.427,n:'11',name:'Mission Dolores Park',note:'Free · Sunny hillside · City views'},
-      {a:37.769,o:-122.486,n:'12',name:'Golden Gate Park',note:'Free · 1,017 acres · Music Concourse'},
+      {a:37.769,o:-122.486,n:'12',name:'Golden Gate Park',note:'Free · 1,017 acres · Music Concourse',p:[37.7728,-122.4682]},
       {a:37.770,o:-122.470,n:'13',name:'Japanese Tea Garden',note:'$15 adults · Oldest public Japanese garden in US'},
       {a:37.770,o:-122.466,n:'14',name:'CA Academy of Sciences',note:'$40 adults · Aquarium · Planetarium'},
-      {a:37.752,o:-122.447,n:'15',name:'Twin Peaks',note:'Free · Sunset panorama'}
+      {a:37.752,o:-122.447,n:'15',name:'Twin Peaks',note:'Free · Sunset panorama',p:[37.7546,-122.4463]}
     ],'#0B4F6C',true);
     // Day 2: Pier 33 → Alcatraz → Fort Point → GGB → Baker Beach → Presidio → UC Berkeley → Muir Woods → Hyatt SF
     mkMap('map-day2',[37.855,-122.43],10,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:35 AM'},
-      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure · 2.5 hr tour'},
-      {a:37.811,o:-122.477,n:'2',name:'Fort Point NHS',note:'FREE · Under GGB · 10 AM–5 PM Fri'},
+      {a:37.808,o:-122.412,n:'1',name:'Pier 33 — Alcatraz Ferry',note:'9:20 AM departure · 2.5 hr tour',p:[37.8064,-122.4103]},
+      {a:37.811,o:-122.477,n:'2',name:'Fort Point NHS',note:'FREE · Under GGB · 10 AM–5 PM Fri',p:[37.8063,-122.4760]},
       {a:37.820,o:-122.478,n:'3',name:'Golden Gate Bridge',note:'Free · Walk the span · North tower views'},
       {a:37.794,o:-122.484,n:'4',name:'Baker Beach',note:'Free · GGB backdrop · Best angle on bridge'},
       {a:37.799,o:-122.458,n:'5',name:'Presidio',note:'Free · National Park · Crissy Field'},
-      {a:37.872,o:-122.260,n:'6',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM'},
-      {a:37.891,o:-122.571,n:'7',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot'},
+      {a:37.872,o:-122.260,n:'6',name:'UC Berkeley',note:'Campanile $5 · Depart 3:00 PM',p:[37.8734,-122.2629]},
+      {a:37.891,o:-122.571,n:'7',name:'Muir Woods',note:'✅ Booked · 4:00–4:30 PM slot',p:[37.8913,-122.5688]},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return ~7:10 PM'}
     ],'#0B4F6C',true);
     // Day 3: SF → Yountville → Calistoga → Napa → SF
     mkMap('map-day3',[38.15,-122.38],9,[
       {a:37.784,o:-122.398,n:'🏠',name:'Hyatt Regency SF',note:'Depart 8:00 AM'},
-      {a:38.407,o:-122.361,n:'1',name:'Bouchon Bakery, Yountville',note:'Arrive 9:01 AM · 45 min'},
-      {a:38.557,o:-122.572,n:'2',name:'Sterling Vineyards, Calistoga',note:'✅ 10:45 AM · TOCK-R-AE87DB44'},
-      {a:38.298,o:-122.285,n:'3',name:'Napa Oxbow Public Market',note:'Arrive ~12:38 PM'},
+      {a:38.407,o:-122.361,n:'1',name:'Bouchon Bakery, Yountville',note:'Arrive 9:01 AM · 45 min',p:[38.4035,-122.3616]},
+      {a:38.557,o:-122.572,n:'2',name:'Sterling Vineyards, Calistoga',note:'✅ 10:45 AM · TOCK-R-AE87DB44',p:[38.5697,-122.5472]},
+      {a:38.298,o:-122.285,n:'3',name:'Napa Oxbow Public Market',note:'Arrive ~12:38 PM',p:[38.2964,-122.2857]},
       {a:37.784,o:-122.398,n:'🏨',name:'Hyatt Regency SF',note:'Return from Napa · ~74 min'}
     ],'#0B4F6C',true);
   });

@@ -131,11 +131,36 @@
     .footer { background: linear-gradient(135deg, #0B4F6C, #0D6B7A); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
+    /* DUAL-COL NAV (Driving | Walking) */
+    .dual-col-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .nav-col { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: white; }
+    .nav-col-hd { font-family:sans-serif; font-size:.7rem; font-weight:700; text-transform:uppercase;
+                  letter-spacing:.8px; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid; }
+    .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
+    .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
+    .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
+    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+                       color:#fff; flex-shrink:0; margin-top:2px; }
+    .drive-stop .ds-num { background:#0B4F6C; }
+    .walk-stop .ws-num  { background:#276749; }
+    .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
+    .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
+    .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
+    .ds-park a { color:#276749; text-decoration:underline; }
+    .ws-leg { font-family:sans-serif; font-size:.7rem; color:#276749; padding:3px 0 3px 32px;
+              font-style:italic; }
+    .wc-label { font-family:sans-serif; font-size:.67rem; font-weight:700; text-transform:uppercase;
+                letter-spacing:.6px; color:var(--mid); margin:10px 0 6px; border-top:1px dashed var(--border); padding-top:8px; }
+    .wc-label:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+    .nav-col-action { margin-top:12px; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.0rem; }
       .day-hd-title { font-size: 1.1rem; }
       .alerts-grid { grid-template-columns: 1fr; }
       .hc-row { flex-direction: column; gap: 2px; }
+      .dual-col-nav { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -201,77 +226,93 @@
           <div class="map-section">
             <div id="map-day6" class="seg-map"></div>
             <p class="map-caption">Day 6 route: Beachside Inn Santa Barbara → El Matador Beach (Malibu) → Newport Beach/Balboa Island → Laguna Beach → La Jolla Cove → Best Western Plus Coronado · ~4h 48m driving</p>
-            <div class="route-strip">
-              <div class="rs-node start">
-                <span class="rs-badge home">🏠</span>
-                <div class="rs-info">
-                  <div class="rs-name">Beachside Inn, Santa Barbara</div>
-                  <div class="rs-sub">Depart 8:00 AM · Check-out before 12:00 PM (leaving 8 AM)</div>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">El Matador Beach, Malibu</div>
+                    <div class="ds-drive">From Santa Barbara · 1h 5m · 60.7 mi · depart 8:00 AM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.0380,-118.8747" target="_blank">State Beach Lot</a> · 32350 PCH · $8–12/vehicle · arrive before 10 AM</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Newport Beach / Balboa Island</div>
+                    <div class="ds-drive">From El Matador · 1h 40m · 76.7 mi · arrive ~12:10 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=33.6158,-117.9284" target="_blank">Newport Visitor Parking</a> · 3142 Villa Way</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Laguna Beach</div>
+                    <div class="ds-drive">From Newport · 23 min · 10.7 mi · arrive ~12:45 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=33.5427,-117.7822" target="_blank">Mermaid Lot</a> · 348 Glenneyre St · Heisler Park + Main Beach</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">4</div>
+                  <div class="ds-info">
+                    <div class="ds-name">La Jolla Cove</div>
+                    <div class="ds-drive">From Laguna · 1h 16m · 70.9 mi · arrive ~3:16 PM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=32.8504,-117.2729" target="_blank">La Jolla Cove Lot</a> · 1100 Coast Blvd area</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.408356,-119.693916/34.040113,-118.874937/33.607326,-117.897101/33.543401,-117.790111/32.850278,-117.272202/32.695998,-117.173408" target="_blank">Open Day 6 Route in Google Maps 🚗</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 5m · 60.7 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 7 Tue 8:00 AM — clear Tuesday morning</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">1</span>
-                <div class="rs-info">
-                  <div class="rs-name">El Matador State Beach</div>
-                  <div class="rs-sub">32215 PCH, Malibu · Arrive ~9:05 AM · $8–12/vehicle · Arrive before 10 AM · 1.5–2 hrs</div>
+              <!-- RIGHT: Walking at each stop -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">El Matador Beach</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Sea Stacks + Tidal Caves</div>
+                    <div class="ws-from">Stairs down from lot · dramatic rock formations · 1.5–2 hrs</div>
+                  </div>
+                </div>
+                <div class="wc-label">Newport Beach / Balboa Island</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Marine Ave stroll</div>
+                    <div class="ws-from">Balboa Bar · Newport Pier · 1–1.5 hrs · casual beach town vibe</div>
+                  </div>
+                </div>
+                <div class="wc-label">Laguna Beach</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Heisler Park Bluff Walk</div>
+                    <div class="ws-from">Clifftop gardens · stairs to coves below · 1–1.5 hrs</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min walk</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Main Beach</div>
+                    <div class="ws-from">Volleyball + lifeguard tower · central Laguna · depart ~2:00 PM</div>
+                  </div>
+                </div>
+                <div class="wc-label">La Jolla Cove</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Cove + Children's Pool sea lion colony</div>
+                    <div class="ws-from">1100 Coast Blvd · free · sea lions on the beach · 1 hr · depart ~4:15 PM</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.040113,-118.874937/33.607326,-117.897101/33.543401,-117.790111/32.850278,-117.272202" target="_blank">Open Walking Stops 🚶</a>
                 </div>
               </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 40m · 76.7 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 7 Tue ~10:30 AM with traffic</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">2</span>
-                <div class="rs-info">
-                  <div class="rs-name">Newport Beach / Balboa Island</div>
-                  <div class="rs-sub">Marine Ave · Balboa Bar · Newport Pier · Arrive ~12:10 PM · 1–1.5 hrs</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">23 min · 10.7 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 7 Tue ~12:15 PM</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">3</span>
-                <div class="rs-info">
-                  <div class="rs-name">Laguna Beach</div>
-                  <div class="rs-sub">Heisler Park · Main Beach · Arrive ~12:45 PM · 1–1.5 hrs · Depart ~2:00 PM</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 16m · 70.9 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 7 Tue ~2:00 PM · I-5 South</div>
-              </div>
-              <div class="rs-node">
-                <span class="rs-badge">4</span>
-                <div class="rs-info">
-                  <div class="rs-name">La Jolla Cove</div>
-                  <div class="rs-sub">1100 Coast Blvd · Arrive ~3:16 PM · Free · Sea lions · 1 hr · Depart ~4:15 PM</div>
-                </div>
-              </div>
-              <div class="rs-leg">
-                <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">24 min · 17.5 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 7 Tue ~4:15 PM · I-5 → Coronado Bridge</div>
-              </div>
-              <div class="rs-node overnight">
-                <span class="rs-badge hotel">🏨</span>
-                <div class="rs-info">
-                  <div class="rs-name">Best Western Plus Coronado Island</div>
-                  <div class="rs-sub">275 Orange Ave, Coronado · Check-in 3:00 PM · Arrive ~4:40 PM</div>
-                </div>
-              </div>
-            </div>
-            <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/34.408356,-119.693916/34.040113,-118.874937/33.607326,-117.897101/33.543401,-117.790111/32.850278,-117.272202/32.695998,-117.173408" target="_blank" class="mab route">Open Day 6 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -492,7 +533,7 @@
     var pts=[];
     stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':'')+(s.p?'<br><a href="https://www.google.com/maps/search/?api=1&query='+s.p[0]+','+s.p[1]+'" target="_blank" style="font-size:11px;color:#276749">🅿️ Nearest parking</a>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
@@ -501,10 +542,10 @@
     // Day 6: Beachside Inn SB → El Matador → Newport Beach → Laguna Beach → Best Western Coronado
     mkMap('map-day6',[33.8,-118.45],7,[
       {a:34.415,o:-119.701,n:'🏠',name:'Beachside Inn, Santa Barbara',note:'Depart 8:00 AM'},
-      {a:34.029,o:-118.879,n:'1',name:'El Matador State Beach, Malibu',note:'Arrive ~9:05 AM · $8–12/vehicle · Before 10 AM'},
-      {a:33.604,o:-117.897,n:'2',name:'Newport Beach / Balboa Island',note:'Arrive ~12:10 PM · Balboa Bar'},
-      {a:33.542,o:-117.782,n:'3',name:'Laguna Beach — Heisler Park',note:'Arrive ~12:45 PM · Depart ~2:00 PM'},
-      {a:32.850,o:-117.272,n:'4',name:'La Jolla Cove',note:'Arrive ~3:16 PM · Free · Sea lions · 1 hr'},
+      {a:34.029,o:-118.879,n:'1',name:'El Matador State Beach, Malibu',note:'Arrive ~9:05 AM · $8–12/vehicle · Before 10 AM',p:[34.0380,-118.8747]},
+      {a:33.604,o:-117.897,n:'2',name:'Newport Beach / Balboa Island',note:'Arrive ~12:10 PM · Balboa Bar',p:[33.6158,-117.9284]},
+      {a:33.542,o:-117.782,n:'3',name:'Laguna Beach — Heisler Park',note:'Arrive ~12:45 PM · Depart ~2:00 PM',p:[33.5427,-117.7822]},
+      {a:32.850,o:-117.272,n:'4',name:'La Jolla Cove',note:'Arrive ~3:16 PM · Free · Sea lions · 1 hr',p:[32.8504,-117.2729]},
       {a:32.683,o:-117.177,n:'🏨',name:'Best Western Plus Coronado Island',note:'Arrive ~4:40 PM · Conf. 6459555758'}
     ],'#1B7A9E',true);
   });

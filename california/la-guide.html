@@ -166,12 +166,37 @@
     .footer { background: linear-gradient(135deg, #3D1F00, #C05621); color: rgba(255,255,255,.6); text-align: center; font-family: sans-serif; font-size: .77rem; padding: 22px 24px; margin-top: 48px; border-radius: 10px; }
     .footer strong { color: white; }
 
+    /* DUAL-COL NAV (Driving | Walking) */
+    .dual-col-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+    .nav-col { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: white; }
+    .nav-col-hd { font-family:sans-serif; font-size:.7rem; font-weight:700; text-transform:uppercase;
+                  letter-spacing:.8px; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid; }
+    .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
+    .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
+    .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
+    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+                       color:#fff; flex-shrink:0; margin-top:2px; }
+    .drive-stop .ds-num { background:#0B4F6C; }
+    .walk-stop .ws-num  { background:#276749; }
+    .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
+    .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
+    .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
+    .ds-park a { color:#276749; text-decoration:underline; }
+    .ws-leg { font-family:sans-serif; font-size:.7rem; color:#276749; padding:3px 0 3px 32px;
+              font-style:italic; }
+    .wc-label { font-family:sans-serif; font-size:.67rem; font-weight:700; text-transform:uppercase;
+                letter-spacing:.6px; color:var(--mid); margin:10px 0 6px; border-top:1px dashed var(--border); padding-top:8px; }
+    .wc-label:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+    .nav-col-action { margin-top:12px; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.0rem; }
       .day-hd-title { font-size: 1.1rem; }
       .overview-strip { grid-template-columns: 1fr 1fr; }
       .alerts-grid, .food-grid, .si-grid { grid-template-columns: 1fr; }
       .hc-row { flex-direction: column; gap: 2px; }
+      .dual-col-nav { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -304,6 +329,102 @@
           <div class="map-section">
             <div id="map-day8" class="seg-map"></div>
             <p class="map-caption">Day 8: Beverly Hills (Rodeo Drive) → Hollywood (Walk of Fame · Grauman's) → Downtown LA (Disney Concert Hall · Little Tokyo · Chinatown · Grand Central Market)</p>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving stops (rideshare recommended) -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Rideshare Stops</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Beverly Hills / Rodeo Drive</div>
+                    <div class="ds-drive">From hotel · rideshare recommended</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.0667,-118.3985" target="_blank">Public Lot</a> · 9454 Wilshire Blvd · or valet on Rodeo</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Hollywood</div>
+                    <div class="ds-drive">From Beverly Hills · Lyft ~20 min · ~$14–18 · 4.0 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.1021,-118.3270" target="_blank">Hollywood &amp; Vine Parking Lot</a> · 1721 Vine St</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">3</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Downtown LA</div>
+                    <div class="ds-drive">From Hollywood · Lyft ~20 min · ~$14–18 · 7.2 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.0521,-118.2476" target="_blank">Joe's Auto Parks</a> · 215 S Broadway · or Lyft back to hotel</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.052,-118.244/34.071,-118.401/34.102,-118.337/34.055,-118.250/34.050,-118.238" target="_blank">Open Day 8 Route in Google Maps 🚗</a>
+                </div>
+              </div>
+              <!-- RIGHT: Walking within each cluster -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Clusters</div>
+                <div class="wc-label">Beverly Hills Cluster</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Rodeo Drive</div>
+                    <div class="ws-from">Wilshire → Santa Monica · 3 blocks · 0.5 mi strip walk</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 18 min walk · 0.8 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Beverly Hills Hotel (Pink Palace)</div>
+                    <div class="ws-from">9641 Sunset Blvd · Polo Lounge for a drink</div>
+                  </div>
+                </div>
+                <div class="wc-label">Hollywood Cluster</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Walk of Fame</div>
+                    <div class="ws-from">La Brea → Gower · 15 blocks · 0.8 mi · 20 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 5 min walk</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Grauman's Chinese Theatre</div>
+                    <div class="ws-from">Hand + footprints · free forecourt · 6925 Hollywood Blvd</div>
+                  </div>
+                </div>
+                <div class="wc-label">Downtown LA Cluster</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Walt Disney Concert Hall</div>
+                    <div class="ws-from">111 S Grand Ave · rooftop garden · 0.3 mi · 15 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 21 min · 0.9 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">6</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Little Tokyo</div>
+                    <div class="ws-from">Ramen · mochi · Nisei Week district</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 17 min · 0.7 mi</div>
+                <div class="walk-stop">
+                  <div class="ws-num">7</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Grand Central Market + Chinatown</div>
+                    <div class="ws-from">317 S Broadway · 40+ vendors · open to 10 PM · then Chinatown 27 min 1.2 mi</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.071,-118.401/34.102,-118.337/34.055,-118.250/34.050,-118.238/34.063,-118.237" target="_blank">Open Walking Stops 🚶</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="walk-planner">
             <div class="wp-title">🚶 Day 8 — On Your Feet (Routes API Verified)</div>
@@ -413,6 +534,86 @@
           <div class="map-section">
             <div id="map-day9" class="seg-map"></div>
             <p class="map-caption">Day 9: Griffith Observatory (Hollywood Sign views) → Santa Monica Pier → Venice Boardwalk + Canals → Abbot Kinney Blvd</p>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving/Rideshare stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Rideshare Stops</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Griffith Observatory Area</div>
+                    <div class="ds-drive">From hotel · Lyft ~25 min · parking very limited</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.1210,-118.2965" target="_blank">Greek Theater Parking F</a> · 2700 N Vermont Ave</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Venice / Santa Monica</div>
+                    <div class="ds-drive">From Griffith · Lyft ~35 min · across town</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=33.9857,-118.4691" target="_blank">Venice Beach Lot</a> · N Venice Blvd · or Santa Monica Pier lot</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.052,-118.244/34.118,-118.300/34.008,-118.499/33.991,-118.477/33.987,-118.468/33.989,-118.463" target="_blank">Open Day 9 Route in Google Maps 🚗</a>
+                </div>
+              </div>
+              <!-- RIGHT: Walking clusters -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Clusters</div>
+                <div class="wc-label">Griffith Hills</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Griffith Observatory</div>
+                    <div class="ws-from">Opens 10 AM · grounds + viewpoints · 0.3 mi · 20 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ optional: Mt. Hollywood Trail 2.5 mi RT · 1.5 hrs</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Hollywood Sign Viewpoint</div>
+                    <div class="ws-from">Best view from Observatory lawn · no hiking required</div>
+                  </div>
+                </div>
+                <div class="wc-label">Santa Monica + Venice</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Santa Monica Pier</div>
+                    <div class="ws-from">End of Route 66 · Pacific Park ferris wheel · 30 min</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 44 min beach path · 2.0 mi south</div>
+                <div class="walk-stop">
+                  <div class="ws-num">4</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Venice Boardwalk</div>
+                    <div class="ws-from">Muscle Beach · street performers · skate park</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 3 blocks east</div>
+                <div class="walk-stop">
+                  <div class="ws-num">5</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Venice Canals</div>
+                    <div class="ws-from">Dell Ave · 30–45 min · century-old canal network</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ 8 min walk</div>
+                <div class="walk-stop">
+                  <div class="ws-num">6</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Abbot Kinney Blvd</div>
+                    <div class="ws-from">Independent shops · Intelligentsia Coffee · "Coolest block in America"</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.008,-118.499/33.991,-118.477/33.987,-118.468/33.989,-118.463" target="_blank">Open Walking Route 🚶</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="walk-planner">
             <div class="wp-title">🚶 Day 9 — On Your Feet (Routes API Verified)</div>
@@ -582,6 +783,62 @@
           <div class="map-section">
             <div id="map-day10" class="seg-map"></div>
             <p class="map-caption">Day 10: Santa Monica Farmers Market (8 AM) → Getty Center (hilltop museum, free admission) → Final dinner</p>
+            <div class="dual-col-nav">
+              <!-- LEFT: Driving/Rideshare stops -->
+              <div class="nav-col drive-col">
+                <div class="nav-col-hd">🚗 Driving Route</div>
+                <div class="drive-stop">
+                  <div class="ds-num">1</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Santa Monica Farmers Market</div>
+                    <div class="ds-drive">From hotel · rideshare or drive · early start 8 AM</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.0141,-118.4974" target="_blank">SP+ Parking</a> · 1401 Ocean Ave, Santa Monica</div>
+                  </div>
+                </div>
+                <div class="drive-stop">
+                  <div class="ds-num">2</div>
+                  <div class="ds-info">
+                    <div class="ds-name">Getty Center</div>
+                    <div class="ds-drive">From Santa Monica · Lyft ~15 min · 7.6 mi</div>
+                    <div class="ds-park">🅿️ <a href="https://www.google.com/maps/search/?api=1&query=34.0878,-118.4757" target="_blank">Getty Center Parking Structure</a> · 1200 Getty Center Dr · $20/car</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.017,-118.499/34.078,-118.474" target="_blank">Open Day 10 Route in Google Maps 🚗</a>
+                </div>
+              </div>
+              <!-- RIGHT: Walking -->
+              <div class="nav-col walk-col">
+                <div class="nav-col-hd">🚶 Walking Route</div>
+                <div class="wc-label">Santa Monica Farmers Market</div>
+                <div class="walk-stop">
+                  <div class="ws-num">1</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Arizona Ave & 3rd St</div>
+                    <div class="ws-from">Sat 8 AM–1 PM · produce · pastries · celebrity chef browse · 0.4 mi stroll</div>
+                  </div>
+                </div>
+                <div class="wc-label">Getty Center</div>
+                <div class="walk-stop">
+                  <div class="ws-num">2</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Getty Tram (lot → entrance)</div>
+                    <div class="ws-from">Free included · scenic hilltop approach</div>
+                  </div>
+                </div>
+                <div class="ws-leg">↓ explore at leisure</div>
+                <div class="walk-stop">
+                  <div class="ws-num">3</div>
+                  <div class="ws-info">
+                    <div class="ws-name">Central Garden + Galleries</div>
+                    <div class="ws-from">Free admission · timed entry req. · 0.8 mi campus · 1.5–2 hrs</div>
+                  </div>
+                </div>
+                <div class="nav-col-action">
+                  <a class="mab route" href="https://www.google.com/maps/dir/34.017,-118.499/34.078,-118.474" target="_blank">Open Walking Stops 🚶</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="walk-planner">
             <div class="wp-title">🚶 Day 10 — On Your Feet</div>
@@ -790,7 +1047,7 @@
     var pts=[];
     stops.forEach(function(s){
       var icon=L.divIcon({html:'<div style="background:'+col+';color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)">'+s.n+'</div>',iconSize:[26,26],iconAnchor:[13,13],className:''});
-      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':''));
+      L.marker([s.a,s.o],{icon:icon}).addTo(m).bindPopup('<strong>'+s.name+'</strong>'+(s.note?'<br><span style="font-size:12px">'+s.note+'</span>':'')+(s.p?'<br><a href="https://www.google.com/maps/search/?api=1&query='+s.p[0]+','+s.p[1]+'" target="_blank" style="font-size:11px;color:#276749">🅿️ Nearest parking</a>':''));
       pts.push([s.a,s.o]);
     });
     if(drawRoute&&pts.length>1)L.polyline(pts,{color:col,weight:3,dashArray:'6,8',opacity:.8}).addTo(m);
@@ -804,11 +1061,11 @@
     // Day 8: Beverly Hills → Hollywood → Downtown LA
     mkMap('map-day8',[34.08,-118.30],11,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart morning'},
-      {a:34.071,o:-118.401,n:'1',name:'Rodeo Drive, Beverly Hills',note:'Free · Luxury shopping strip'},
+      {a:34.071,o:-118.401,n:'1',name:'Rodeo Drive, Beverly Hills',note:'Free · Luxury shopping strip',p:[34.0667,-118.3985]},
       {a:34.077,o:-118.412,n:'2',name:'Beverly Hills Hotel (Pink Palace)',note:'9641 Sunset Blvd · Polo Lounge'},
-      {a:34.102,o:-118.337,n:'3',name:'Hollywood Walk of Fame',note:'Free · 2,700+ stars · Hollywood Blvd'},
+      {a:34.102,o:-118.337,n:'3',name:'Hollywood Walk of Fame',note:'Free · 2,700+ stars · Hollywood Blvd',p:[34.1021,-118.3270]},
       {a:34.102,o:-118.341,n:'4',name:'Grauman\'s Chinese Theatre',note:'Free forecourt · Hand/footprints since 1927'},
-      {a:34.055,o:-118.250,n:'5',name:'Walt Disney Concert Hall',note:'Free exterior + garden · Frank Gehry · 30–45 min'},
+      {a:34.055,o:-118.250,n:'5',name:'Walt Disney Concert Hall',note:'Free exterior + garden · Frank Gehry · 30–45 min',p:[34.0521,-118.2476]},
       {a:34.063,o:-118.237,n:'6',name:'LA Chinatown',note:'Broadway & Hill · 5 min from Disney Hall'},
       {a:34.050,o:-118.238,n:'7',name:'Little Tokyo',note:'Ramen · Mochi originator · Nisei Week'},
       {a:34.050,o:-118.247,n:'8',name:'Grand Central Market',note:'317 S Broadway · Open to 10 PM · 40+ vendors'}
@@ -816,19 +1073,19 @@
     // Day 9: Griffith Hills → Santa Monica → Venice
     mkMap('map-day9',[34.06,-118.40],10,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart morning'},
-      {a:34.118,o:-118.300,n:'1',name:'Griffith Observatory',note:'Free · Opens 10 AM · Hollywood Sign view · 1.5–2 hrs'},
+      {a:34.118,o:-118.300,n:'1',name:'Griffith Observatory',note:'Free · Opens 10 AM · Hollywood Sign view · 1.5–2 hrs',p:[34.1210,-118.2965]},
       {a:34.134,o:-118.322,n:'2',name:'Hollywood Sign (view)',note:'Best view from Observatory lawn'},
       {a:34.137,o:-118.294,n:'3',name:'Griffith Park',note:'Free · 4,107 acres · Largest urban park in US'},
       {a:34.008,o:-118.499,n:'4',name:'Santa Monica Pier',note:'Free · End of Route 66 · Pacific Park'},
-      {a:33.991,o:-118.477,n:'5',name:'Venice Boardwalk',note:'Free · Muscle Beach · Street performers'},
+      {a:33.991,o:-118.477,n:'5',name:'Venice Boardwalk',note:'Free · Muscle Beach · Street performers',p:[33.9857,-118.4691]},
       {a:33.987,o:-118.468,n:'6',name:'Venice Canals',note:'Free · 30–45 min · Century-old canal network'},
       {a:33.989,o:-118.463,n:'7',name:'Abbot Kinney Blvd',note:'Independent shops · Intelligentsia Coffee · "Coolest block in America"'}
     ],'#C05621',true);
     // Day 10: Santa Monica Farmers Market → Getty Center
     mkMap('map-day10',[34.05,-118.48],11,[
       {a:34.052,o:-118.244,n:'🏠',name:'LA Hotel (TBD)',note:'Depart early'},
-      {a:34.017,o:-118.499,n:'1',name:'Santa Monica Farmers Market',note:'Sat 8 AM–1 PM · Arizona Ave & 3rd St'},
-      {a:34.078,o:-118.474,n:'2',name:'Getty Center',note:'Free admission · Timed entry req. · Hilltop museum · 2–3 hrs'}
+      {a:34.017,o:-118.499,n:'1',name:'Santa Monica Farmers Market',note:'Sat 8 AM–1 PM · Arizona Ave & 3rd St',p:[34.0141,-118.4974]},
+      {a:34.078,o:-118.474,n:'2',name:'Getty Center',note:'Free admission · Timed entry req. · Hilltop museum · 2–3 hrs',p:[34.0878,-118.4757]}
     ],'#C05621',true);
   });
   </script>
