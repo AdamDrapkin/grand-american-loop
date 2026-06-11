@@ -204,7 +204,7 @@
           <!-- DAY 4 MAP -->
           <div class="map-section">
             <div id="map-day4" class="seg-map"></div>
-            <p class="map-caption">Day 4 route: Hyatt SF → 17-Mile Drive → Carmel → Point Lobos → Bixby Bridge → Hurricane Point → Pfeiffer Beach → McWay Falls → Elephant Seals → Castle Inn Cambria · ~4h 36m driving</p>
+            <p class="map-caption">Day 4 route: Hyatt SF → 17-Mile Drive → Carmel → Point Lobos → Bixby Bridge → Pfeiffer Beach → McWay Falls → Ragged Point → Elephant Seals → Castle Inn Cambria · ~4h 36m driving + stops</p>
             <div class="route-strip">
               <div class="rs-node start">
                 <span class="rs-badge home">🏠</span>
@@ -299,11 +299,23 @@
               </div>
               <div class="rs-leg">
                 <div class="rs-leg-line"></div>
-                <div class="rs-leg-time">1h 17m · 57.3 mi</div>
-                <div class="rs-leg-note">Routes API · Jul 5 Sun ~3:30 PM — remote, no change</div>
+                <div class="rs-leg-time">58 min · 37.4 mi</div>
+                <div class="rs-leg-note">Routes API · Jul 5 Sun ~3:30 PM · Hwy 1 south, remote stretch</div>
               </div>
               <div class="rs-node">
                 <span class="rs-badge">8</span>
+                <div class="rs-info">
+                  <div class="rs-name">Ragged Point</div>
+                  <div class="rs-sub">CA-1, southern Big Sur terminus · Arrive ~4:28 PM · Free · Clifftop overlook · 15–20 min</div>
+                </div>
+              </div>
+              <div class="rs-leg">
+                <div class="rs-leg-line"></div>
+                <div class="rs-leg-time">18 min · 10.9 mi</div>
+                <div class="rs-leg-note">Routes API · Jul 5 Sun ~4:48 PM</div>
+              </div>
+              <div class="rs-node">
+                <span class="rs-badge">9</span>
                 <div class="rs-info">
                   <div class="rs-name">Elephant Seal Vista Point — Piedras Blancas</div>
                   <div class="rs-sub">Free · July = juveniles/sub-adults · Paved platform above beach · 30 min</div>
@@ -323,7 +335,7 @@
               </div>
             </div>
             <div class="map-actions">
-              <a href="https://www.google.com/maps/dir/37.786587,-122.403097/36.623213,-121.928756/36.555093,-121.923288/36.517153,-121.944422/36.371355,-121.90186/36.238406,-121.815612/36.15994,-121.672535/35.663792,-121.258537/35.578058,-121.114827" target="_blank" class="mab route">Open Day 4 Route in Google Maps →</a>
+              <a href="https://www.google.com/maps/dir/37.786587,-122.403097/36.623213,-121.928756/36.555093,-121.923288/36.517153,-121.944422/36.371355,-121.90186/36.238406,-121.815612/36.15994,-121.672535/35.793527,-121.330956/35.663792,-121.258537/35.578058,-121.114827" target="_blank" class="mab route">Open Day 4 Route in Google Maps →</a>
             </div>
           </div>
 
@@ -628,9 +640,10 @@
 
           <!-- STOPS: Late Afternoon -->
           <div class="time-block">
-            <div class="tb-hd bigsur">Late Afternoon — Elephant Seals (Depart McWay ~3:30 PM)</div>
+            <div class="tb-hd bigsur">Late Afternoon — Ragged Point &amp; Elephant Seals (Depart McWay ~3:30 PM)</div>
             <ul class="tb-list">
-              <li>Drive: <strong>1h 17m (57.3 mi)</strong> from McWay — verified Routes API, Jul 5 Sun ~3:30 PM. Remote stretch, no traffic variation. Arrive ~4:47 PM.</li>
+              <li>Drive McWay → Ragged Point: <strong>58 min (37.4 mi)</strong> — Routes API verified, Jul 5 Sun ~3:30 PM. Remote Hwy 1, no traffic variation. Arrive Ragged Point ~4:28 PM. Stop 15–20 min for the clifftop views.</li>
+              <li>Drive Ragged Point → Elephant Seals: <strong>18 min (10.9 mi)</strong> — Routes API verified. Arrive Elephant Seals ~5:06 PM.</li>
             </ul>
             <div class="stop-card">
               <div class="sc-hd">
@@ -663,7 +676,7 @@
           </div>
 
           <div class="drive-stat">
-            <span class="drive-val">~4h 36m total driving</span> · Depart SF 7:00 AM · Arrive Cambria ~6:21 PM · 9 stops across 223.8 mi of Pacific Coast Highway
+            <span class="drive-val">~4h 36m total driving</span> · Depart SF 7:00 AM · Arrive Cambria ~6:30 PM · 10 stops including Ragged Point · Hwy 1 Pacific Coast Highway
           </div>
         </div>
       </div>
@@ -768,12 +781,18 @@
       {a:37.784,o:-122.398,n:'SF',name:'Hyatt SF — Depart 7:00 AM',note:'1h 53m · 123.9 mi'},
       {a:36.617,o:-121.921,n:'1',name:'17-Mile Drive',note:'$12.25/vehicle · 45 min–1 hr'},
       {a:36.555,o:-121.923,n:'2',name:'Carmel-by-the-Sea',note:'Free · Ocean Ave · 45 min–1 hr'},
+      {a:36.553,o:-121.928,n:'SR',name:'Carmel Scenic Road Walkway',note:'Free · Bluff path · 30–45 min'},
+      {a:36.555,o:-121.922,n:'CB',name:'Carmel Beach Boardwalk',note:'Free · End of Ocean Ave'},
+      {a:36.555,o:-121.920,n:'CW',name:'Carmel Walks / Pine Inn',note:'$30/person · Sun 10 AM'},
+      {a:36.556,o:-121.920,n:'CP',name:'Carmel Plaza',note:'Free · Ocean Ave at Mission'},
       {a:36.515,o:-121.938,n:'3',name:'Point Lobos State Reserve',note:'$10/vehicle · ⚠️ NOT BOOKED'},
       {a:36.374,o:-121.902,n:'4',name:'Bixby Creek Bridge',note:'Free · North turnout'},
       {a:36.283,o:-121.820,n:'5',name:'Pfeiffer Beach',note:'$12 cash · Purple sand'},
+      {a:36.233,o:-121.792,n:'BS',name:'Big Sur Station',note:'Free · Visitor info · Road conditions'},
       {a:36.157,o:-121.670,n:'6',name:'McWay Falls',note:'$12/vehicle · 80-ft waterfall'},
-      {a:35.665,o:-121.254,n:'7',name:'Elephant Seals — Piedras Blancas',note:'Free · July = juveniles'},
-      {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:21 PM · Breakfast included'}
+      {a:35.793,o:-121.331,n:'7',name:'Ragged Point',note:'58 min from McWay · 37.4 mi · 15–20 min'},
+      {a:35.665,o:-121.254,n:'8',name:'Elephant Seals — Piedras Blancas',note:'Free · 18 min from Ragged Point'},
+      {a:35.564,o:-121.081,n:'🏨',name:'Castle Inn, Cambria',note:'Arrive ~6:30 PM · Breakfast included'}
     ],'#3A6B4A',true);
   });
   </script>
