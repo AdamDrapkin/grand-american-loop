@@ -32,6 +32,7 @@ MANUAL_FILES = [
     "./california/centralcoast-guide.html",
     "./california/sandiego-guide.html",
     "./california/la-guide.html",
+    "./california/logistics-guide.html",
 ]
 
 OUTPUT_FILE  = "./docs/california-viewer.html"
