@@ -26,12 +26,12 @@ from build import build_viewer_html, build_translate_html
 # ════════════════════════════════════════════════════════════════
 
 MANUAL_FILES = [
-    "./california-routes.html",
-    "./sf-guide.html",
-    "./bigsur-guide.html",
-    "./centralcoast-guide.html",
-    "./sandiego-guide.html",
-    "./la-guide.html",
+    "./california/california-routes.html",
+    "./california/sf-guide.html",
+    "./california/bigsur-guide.html",
+    "./california/centralcoast-guide.html",
+    "./california/sandiego-guide.html",
+    "./california/la-guide.html",
 ]
 
 OUTPUT_FILE  = "./docs/california-viewer.html"

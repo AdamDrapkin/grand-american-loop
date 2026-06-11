@@ -1,7 +1,7 @@
 # California Road Trip — Planning Bible
 ### Family of 4 · San Francisco → Los Angeles · July 2–12, 2026
 *All driving times verified via Google Maps Directions API. Social media intel from Scrape Creators (Instagram/Reddit/TikTok). NPS data from NPS API. Hotel data verified via Booking.com (Playwright).*
-*Last updated: 2026-06-03*
+*Last updated: 2026-06-04*
 
 ---
 
@@ -14,20 +14,20 @@
 
 **Confirmation Code:** KYUXME
 
-**Passengers on these tickets:**
+**Passengers on these tickets (Marina & Liam only):**
 - Marina Drapkin — Seat 29B (outbound) / 28F (return)
 - Liam Drapkin — Seat 29A (outbound) / 28E (return)
 
-**Remaining 2 travelers:** Driving to airport separately — confirm whether they are on the same flights or separate.
+**Adam & Vadim Drapkin:** Driving the entire trip — pre-California road trip → California → drive home. Not flying.
 
 **Checked bags:** Pre-paid at $45/bag online:
 - Checked Bag PHL→SFO: $45.00 paid (Doc: 0014498078664)
 - Checked Bag LAX→PHL: $45.00 paid (Doc: 0014498078665)
 
 **Airport logistics:**
-- **SFO arrival**: Land 11:27 AM — baggage claim ~12:00–12:15 PM. Own car — no rental needed. Drive into SF (~30 min). Hotel check-in by 1:00 PM.
-- **LAX departure**: Flight at 12:17 PM. Must be at LAX by 10:00 AM per plan. From any LA hotel, budget 45-90 min for traffic + terminal. Leave hotel **no later than 9:00 AM** to be safe.
-- **Own vehicle:** No rental needed. Driving personal car the full trip.
+- **SFO arrival (Jul 2):** Marina & Liam land 11:27 AM, baggage claim ~12:00–12:15 PM. Adam & Vadim arrive by car (Route 11 ends SF July 2). Group meets at Hyatt.
+- **LAX departure (Jul 12):** Marina & Liam fly LAX → PHL at 12:17 PM. Must be at LAX by 10:00 AM — leave hotel no later than 9:00 AM. Adam & Vadim drop them at LAX, then drive home from LA.
+- **Vehicle:** Adam & Vadim's personal car — no rental, no return shuttle needed.
 
 ---
 
@@ -37,26 +37,17 @@
 
 **Hyatt Regency San Francisco Downtown SOMA**
 - **Address:** 50 Third Street, Union Square, San Francisco, CA 94103
-- **Booking Platform:** Booking.com
-- **Room:** Queen Room with Two Queen Beds and City View
+- **Booking:** Hyatt direct — World of Hyatt Members rate
+- **Confirmation #:** 40023B19345813 (Marina Drapkin · Membership #*****050M)
+- **Room:** 2 Queen Beds — Yerba Buena Park or City View · 55" SMART TV · Technology Hub
 - **Dates:** Thu Jul 2 → Sun Jul 5, 2026 (3 nights, 4 adults)
-- **Size:** 355 sq ft · 2 queen beds · sleeps 4
-- **Room features:** Air conditioning · Attached bathroom · Flat-screen TV · Free WiFi · City view
-- **Nightly rate:** $197/night
-- **Base total (3 nights):** $696 ← includes $35/night resort fee ($105 total)
-- **Additional taxes NOT included in $696:**
-  - Destination tax: $4.90/night
-  - 14% TAX + 1.25% GST + 2.25% City tax + 0.195% Municipality fee
-  - ⚠️ Estimated actual total with all taxes: ~$760–790
-- **Cancellation:** Cancel without fees within 24 hours of booking
-- **Optional breakfast:** $39/day (not included)
+- **Check-in:** Thursday, July 2 at 3:00 PM · **Check-out:** Sunday, July 5 at 12:00 PM
+- **Nightly rate:** $157.46 (Jul 2) · $184.92 (Jul 3) · $184.92 (Jul 4) · **Subtotal: $527.30**
+- **Taxes & fees per night:** Destination fee $35.00 · Dest. fee tax $4.90 · Occupancy tax 14% · Tourism fee 0.195% · SF CTID 2.25% · Moscone 1.25%
+- **⚠️ Cancellation: FULL PREPAYMENT — NON-REFUNDABLE. No changes permitted.**
 - **Hotel rating:** 8.7 Excellent · 2,916 reviews · Location 9.3/10 (2,873 reviews)
 
-**Alternative rate available (more flexible):**
-- $232/night · $800 total (same room) · **Free cancellation before June 30, 2026** · Pay nothing until June 28, 2026
-- Worth considering for $35 more/night if you want flexibility before the trip
-
-**Hotel amenities confirmed (Booking.com):**
+**Hotel amenities:**
 - Restaurant: La Société (on-site bar + full restaurant, globally influenced cuisine)
 - Private parking available (fee — verify rate)
 - Fitness center
@@ -82,9 +73,306 @@ The hotel is technically in SoMa but at the northern edge, directly adjacent to 
 
 ---
 
+### CAMBRIA — July 5–6 (1 night) ✅ CONFIRMED
+
+**Castle Inn**
+- **Address:** 6620 Moonstone Beach Drive, Cambria, CA 93428 · Phone: +1 805-927-8605
+- **Booking:** Booking.com (PIN confirmation — keep PIN confidential)
+- **Guest:** Marina Drapkin · 4 adults
+- **Room:** 2-Queen Partial Oceanview · No Pets
+- **Check-in:** Sunday, July 5 at 3:00–9:00 PM · **Check-out:** Monday, July 6 at 7:30–11:00 AM
+- **Room rate:** $244.00 · **Other tax:** $30.50 · **Total: $274.50** *(prepayment charged at time of booking)*
+- **Breakfast:** Included in total price ✓
+- **Cancellation:** Free until July 2, 2026 at 11:59 PM PDT · From July 3: full charge ($274.50) · No-show = full charge
+- **Location:** Moonstone Beach Drive — steps from Moonstone Beach boardwalk · 11 min from Elephant Seals · 14 min from Hearst Castle
+
+---
+
+### SANTA BARBARA — July 6–7 (1 night) ✅ CONFIRMED
+
+**Beachside Inn**
+- **Address:** 336 W Cabrillo Blvd, Santa Barbara, CA 93101 · Phone: (805) 965-6556
+- **Booking:** Direct (beachsideinn.com) · reservations@beachsideinn.com
+- **Confirmation #:** 1075827673 · Ref: 1075827673/3207970001
+- **Guest:** Marina Drapkin · marin4ik10@gmail.com · Visa 9942
+- **Room:** 2 Queen Beds — Parkside with Balcony (facing Plaza Del Mar park) · Air conditioning · Bathtub · Shower · Free local calls
+- **Dates:** Mon Jul 6 → Tue Jul 7, 2026 (1 night, 4 adults)
+- **Check-in:** July 6 after **4:00 PM** · **Check-out:** July 7 before **12:00 PM noon**
+- ⚠️ **Arrival timing note:** Day 5 plan arrives Santa Barbara ~3:15–3:30 PM — 30–45 min before check-in opens. Drop bags, explore the area on foot, return to check in at 4 PM.
+- **Room rate:** $240.00 · **Tax:** $34.07 · **Total: $274.07**
+- **Breakfast:** Included ✓ · **Parking:** Free self-parking ✓
+- **Happy hour:** Complimentary wine & cheese every evening ✓
+- **Incidentals deposit:** $150 at check-in (credit/debit card only)
+- **Cancellation:** Free cancellation up to 24 hours before arrival (by July 5). After that: first night + tax charged.
+- **Location:** Directly on Cabrillo Blvd · West Beach across the street · 11 min walk to Stearns Wharf · 11 min walk to Funk Zone
+
+---
+
+### CORONADO / SAN DIEGO — July 7–8 (1 night) ✅ CONFIRMED
+
+**Best Western Plus Suites Hotel Coronado Island**
+- **Address:** 275 Orange Ave, Coronado, San Diego, CA 92118 · Phone: +1 619-437-1666
+- **Booking:** Booking.com (fully paid)
+- **Confirmation #:** 6459555758 · **PIN:** 8199 *(keep confidential)*
+- **Guest:** Marina Drapkin · 4 adults
+- **Room:** Suite with Two Queen Beds — Non-Smoking
+- **Dates:** Tue Jul 7 → Wed Jul 8, 2026 (1 night)
+- **Check-in:** July 7 from **3:00 PM** · **Check-out:** July 8 by **12:00 PM noon**
+- **Room rate:** $279.20 · **Tax:** $27.92 · **Total: $307.12 — PAID IN FULL**
+- **Breakfast:** Grab-and-go breakfast included ✓
+- **Damage deposit:** $250 at check-in (credit card hold, refunded at checkout)
+- **Cancellation:** Free until July 3, 2026 at 11:59 PM PDT · From July 4: full charge ($307.12)
+- ⚠️ **Pool & hot tub CLOSED until December** — not available during this stay
+- **Location:** Coronado Island · 0.5 mi from Coronado Beach · 10-15 min from Downtown San Diego via Coronado Bridge
+
+---
+
+## HOTEL GAPS — PENDING FAMILY BOOKING
+
+Three hotel nights still need to be booked. Mom is researching. When confirmed, add to CONFIRMED HOTELS and the relevant day sections.
+
+| Night | Dates | City | Notes for Search |
+|---|---|---|---|
+| 1 night | Jul 6–7 (Mon→Tue) | **Santa Barbara** | Walkable to State Street + beach. The Funk Zone neighborhood is near the train station. State Street is the main corridor. |
+| ~~1 night · San Diego~~ | ~~Booking.com~~ | ✅ BOOKED | Conf. 6459555758 · Best Western Plus Coronado Island · $307.12 paid |
+| 3 nights | Jul 8–11 (Wed→Sat) | **Los Angeles** | Neighborhood TBD by family. Budget-conscious options: Culver City (mid-range, 10 min to Venice), Hollywood (affordable, near Griffith), Downtown LA (cheapest per night, near Grand Central Market/Disney Hall), Mid-Wilshire/Koreatown (value, central). Avoid: Beverly Hills, Santa Monica, West Hollywood — will be expensive for 3 nights. |
+
+---
+
+## CONFIRMED ACTIVITIES
+
+### STERLING VINEYARDS — July 4 ✅ BOOKED
+
+**Sterling Stroll Experience — Gondola + Wine Tasting**
+- **Confirmation #:** TOCK-R-AE87DB44 (Tock platform)
+- **Date:** Saturday, July 4, 2026 · **Start time: 10:45 AM**
+- **Duration:** ~1 hour · Experience window: 10:45 AM – 11:45 AM
+- **Address:** 1111 Dunaweal Ln, Calistoga, CA 94515
+- **Tickets:**
+  - Sterling Stroll × 2 — $110.00
+  - 21+ Non-taster × 1 — $25.00
+  - Guest Aged 10–20 × 1 — $25.00
+  - Gratuity (15%): $24.00 · Tax (7.75%): $8.53
+  - **Total paid: $192.53** (Visa 9942, charged 6/4/26)
+- **Arrive by 10:30 AM** (15 min early per Sterling instructions)
+- **Gondola note:** If temperatures exceed 100°F, gondola pauses for safety
+- **Important rules:** No outside food or alcohol · No pets (service animals OK) · No strong cologne/perfume
+- **Cancellation:** Can reschedule/cancel up to 1 day before (July 3). Can transfer to another person.
+- **Manage at:** tock.com (search TOCK-R-AE87DB44)
+
+---
+
+### ALCATRAZ — July 3 ✅ BOOKED
+
+**Alcatraz City Cruises — Alcatraz Day Tour**
+- **Confirmation #:** i77487162 / 77487159
+- **Date:** Friday, July 3, 2026 · **Departure:** 9:20 AM
+- **Departure point:** Pier 33 Alcatraz Landing, San Francisco, CA 94133 · Phone: 1-415-981-7625
+- **Tickets:** 4 Adults · Purchase date: June 3, 2026
+- **Booking account:** marin4ik10@gmail.com
+- **Arrival deadline:** Be at Pier 33 by **8:35 AM** (45 min before departure — mandatory per Alcatraz City Cruises)
+- **QR Code:** Valid for entire party — present on mobile device at the boarding gate. No need to print.
+- **What to bring:** Headphones (audio tour is app-based and multilingual) · Fully charged phone · Backpack max 16"×20"
+- **Key rules:** No weapons or restricted articles · No parking at Pier 33 (plan rideshare or walk) · Sails rain or shine · Non-refundable · No compensation for late arrivals
+
+---
+
+## FOOD & MARKETS
+
+---
+
+### BIRTHDAY DINNER — July 4 Evening · San Francisco 🎂
+
+**Scoma's Restaurant — Pier 47, Fisherman's Wharf** ⚠️ *Reserve on OpenTable immediately — July 4th at the Wharf fills completely*
+- **Address:** Pier 47, Al Scoma Way, San Francisco, CA 94133 · Phone: (415) 771-4383
+- **Reservations:** OpenTable (search "Scoma's San Francisco") or call direct. **Top 10 Most-Booked restaurants in SF.**
+- **Hours (Saturday):** 12:00 PM – 10:00 PM · Call to confirm July 4th holiday hours
+- **What it is:** On a working pier — fishing boats dock at their own receiving station outside the kitchen. Pier-to-plate is literal here. Founded 1965, family-owned, SF Chronicle Top 100 Bay Area for 2026.
+- **What to order:** Lazy Man's Cioppino (the signature — all crab meat pulled from the shell, in the rich tomato broth), Dungeness Crab, Clam Chowder, Prawns Annuzzi, Clams on the Half Shell
+- **Price:** ~$50–100/person · For 4: ~$250–350
+- **Rating:** 4.7★ / 6,492 OpenTable reviews · SF Chronicle Top 100 Bay Area 2026
+- **Social proof:** @bayarea.foodie.adventures (86,145f, 15,396 views) · @scomassf (10,675f)
+- **After dinner:** July 4th fireworks launch over the bay from Fisherman's Wharf — you're already standing on the pier. No commute, no scrambling. Just walk outside.
+
+---
+
+### FISH MARKETS & FRESH SEAFOOD
+
+*Adam's early-morning priority: fresh uni (sea urchin). Will walk from hotel if needed. Whole family can join if hours permit.*
+
+**Primary destination: Santa Barbara.** That's where the best uni on the trip is, right at the source, and the whole family can go. SF and LA are secondary options if the opportunity arises.
+
+---
+
+#### ⭐ SANTA BARBARA — July 6–7 · PRIMARY FISH MARKET DESTINATION
+
+**Santa Barbara Fish Market (@sbfishmarket)** — *This is the one.*
+- **Address:** 117 Harbor Way, Santa Barbara, CA 93109 (Santa Barbara Harbor)
+- **Phone:** (805) 965-9564
+- **Hours:** Mon–Fri 9:00 AM – 6:30 PM · **Sat 7:30 AM – 6:30 PM** · Sun 9:00 AM – 6:30 PM
+- **We're here:** Mon Jul 6 (arrive ~3:30 PM) and Tue Jul 7 (depart for San Diego). Both days the market is open.
+- **Why this is the best uni stop on the entire trip:** Santa Barbara Channel Islands produce some of the world's finest red sea urchin — local commercial divers harvest it and bring it directly to this market. The uni here is **bright gold, firm, buttery, sweet, and briny**. It's what high-end sushi restaurants in LA and NYC serve. Here you're buying it at the source.
+- **Social media validation:**
+  - @rockstareater (80,231f, 13,104 views): *"Best fish market in Santa Barbara. Live uni, rock crab, lobster and more."*
+  - @sbshellfishco (8,186f, 5,800 views): *"Santa Barbara is one of the top uni regions in the world!"*
+  - @visitsantabarbara (200,713f, 20,862 views): *"Have you ever tasted sea urchin — a Santa Barbara delicacy unlike any other?"*
+  - @china.marieee_ (28,592f, 34,227 views): *"What an amazing experience to get fresh seafood at @sbfishmarket"*
+- **What to get:** Fresh uni (in the tray or in the shell), live rock crab, oysters, lobster. Eat at the harbor. No seats needed.
+- **Cost estimate:** Fresh uni tray ~$20–30 · Crab ~$15–20 · Total for family outing ~$60–100
+- **Family visit:** Totally feasible. Harbor is a beautiful walk. Arrive Jul 6 evening (~4 PM) — perfect after checking in.
+
+**Santa Barbara Uni stand** (119 Harbor Way)
+- Open Sat 6:30 AM–12 PM and Sun 10 AM–4 PM. We're there Mon/Tue — **miss**. But the main SB Fish Market covers this.
+
+---
+
+#### SAN FRANCISCO — July 2–5 · Secondary Option
+
+**Swan Oyster Depot** — *If you want fresh uni before Santa Barbara*
+- **Address:** 1517 Polk St, San Francisco, CA 94109 (Polk Gulch / Russian Hill)
+- **Phone:** (415) 673-1101 · Cash only · No reservations
+- **Hours:** Mon–Sat 8:00 AM – 2:30 PM · Closed Sundays
+- **What it is:** 18-stool counter, century-old, staff cracks uni in front of you and serves it in the shell. Cash only. Lines before 8 AM on weekdays.
+- **Best window on this trip:** Jul 3 morning — 8:00 AM sharp, 20 min, then Uber to Pier 33. Or skip it and wait for Santa Barbara where it's fresher and less rushed.
+
+---
+
+#### LOS ANGELES — July 8–11 · Secondary Option
+
+**Santa Monica Seafood** — *Best LA option for the family*
+- **Address:** 1000 Wilshire Blvd, Santa Monica, CA 90401
+- **Hours:** Call to confirm — (310) 393-5244
+- **What it is:** The same distributor that supplies LA's top restaurants. Their retail market is open to the public. Fresh uni, local Santa Barbara spiny lobster, oysters, and whatever the boat brought in that morning.
+- **Family visit:** Daytime hours, walkable from Santa Monica hotels.
+- **Solo early AM:** This is not a fishing dock market — it opens during retail hours (likely 10 AM+). Best as a family afternoon stop.
+
+**Quality Seafood — Redondo Beach Pier** (for Adam solo early AM)
+- **Address:** 130 International Boardwalk, Redondo Beach, CA 90277 (Redondo Beach Pier)
+- **What it is:** Multi-level market on the pier. Widest seafood selection in LA. Red sea urchin, live blue crab, local rock cod, and lobsters. Can buy and eat right there on the pier.
+- **Why:** The pier experience + the fresh red sea urchin + the crab buckets make this one of the most authentic working-market experiences in Southern California. Brings an energy that's more like a real fish dock than a retail shop.
+- **Social proof:** @qualityseafd (35,797f) posts regularly about their lobster buckets and fresh stock.
+- **Cost estimate:** Red sea urchin ~$25–35/tray · Crab bucket ~$30–50 · Solo outing ~$40–60
+- **Note:** ~30 min from most LA hotels. Best early morning — call to verify hours: (310) 372-6408
+
+**Grand Central Market — Downtown LA** *(Family daytime option)*
+- **Address:** 317 S Broadway, Los Angeles, CA 90013 (Downtown LA)
+- **Hours:** Daily 8:00 AM – 9:00 PM (hours vary by vendor)
+- **What it is:** A food hall operating since 1917. 40+ vendors. Not a fish market, but has seafood vendors among its diverse mix. Also: incredible tacos, tamales, Japanese ramen, Southeast Asian food, fresh produce stalls.
+- **Family recommendation:** Open late, accessible all day, great energy. More of a food hall experience than a fish market. Good for a family lunch or wandering before dinner.
+- **Best day:** Any day Jul 8–11. Particularly good on Jul 11 (Sat) as a morning stop before Santa Monica Farmers Market.
+
+---
+
+### FARMERS MARKETS
+
+*Matching market days to actual days we're in each city.*
+
+**✅ WORKS — Santa Monica Farmers Market · Saturday, July 11**
+- **Location:** Arizona Avenue & 3rd Street, Santa Monica (adjacent to 3rd Street Promenade)
+- **Hours:** 8:00 AM – 1:00 PM · Rain or shine · Year-round
+- **What it is:** One of the best farmers markets in Southern California. 40+ certified organic farm stands. Fresh produce, flowers, local honey, artisan goods. Established 1991.
+- **Why go:** July 11 is our last full day in LA. A Saturday morning at the Santa Monica Farmers Market — fresh fruit, walking around, coffee from a vendor — is one of those effortless California family moments. The 3rd Street Promenade is right there, beach is a few blocks away.
+- **Cost:** Bring $30–50 for produce and snacks for 4.
+
+**✅ BONUS — Grand Central Market** (any day, see above)
+Not a traditional farmers market but always open and includes fresh produce vendors among its food stalls.
+
+**❌ SF Ferry Building Farmers Market** — Sat/Sun/Tue. We're in SF Thu–Sat. Saturday July 4 = market day BUT we depart 7:30 AM for Napa. Miss.
+
+**❌ Santa Barbara Saturday Market** — We arrive Monday, market is Saturday. Miss.
+
+---
+
+### CONFIRMED FOOD STOPS
+
+| Stop | Day | Location | What |
+|---|---|---|---|
+| Bouchon Bakery | Day 3 (Jul 4) · 8:30–9:30 AM | 6528 Washington St, Yountville | Croissants, TKO cookies, birthday breakfast |
+| Birthday Seafood Celebration | Day 3 (Jul 4) · ~3:30 PM | Napa (see options above) | Lobster roll / oysters — pick one of 4 options |
+| In-N-Out Burger | Day 11 (Jul 12) · departure | 9149 S Sepulveda Blvd, LAX | Double-Double Animal Style — last California meal |
+
+---
+
+### PENDING: MOM'S FOOD RECOMMENDATIONS
+
+Mom's suggested food stops are coming. When received, they'll be added here and matched to the appropriate days.
+
+---
+
+## ALL GAPS — EVERYTHING PENDING
+
+*One place to see everything that still needs action. Work through this list before the trip.*
+
+---
+
+### 🏨 HOTELS — Mom Researching & Booking
+
+| Night | Dates | City | Notes |
+|---|---|---|---|
+| ~~1 night · Santa Barbara~~ | ~~beachsideinn.com~~ | ✅ BOOKED | Conf. 1075827673 · Beachside Inn · $274.07 |
+| ~~1 night · San Diego~~ | ~~Booking.com~~ | ✅ BOOKED | Conf. 6459555758 · Best Western Plus Coronado Island · $307.12 paid |
+| 3 nights | Jul 8–11 (Wed→Sat) | **Los Angeles** | Budget-conscious: Culver City, Hollywood, Downtown LA, Koreatown. Family decides neighborhood. |
+
+---
+
+### 🎟️ ACTIVITIES — Book Today
+
+| Item | Where | Cost | Notes |
+|---|---|---|---|
+| Point Lobos State Reserve (Jul 5) | reservecalifornia.com | $10/vehicle | Required in advance — no walk-up |
+| ~~Sterling Vineyards (Jul 4)~~ | sterlingvineyards.com | ✅ BOOKED | TOCK-R-AE87DB44 · 10:45 AM |
+| Hearst Castle tour (Jul 6) | hearstcastle.org | ~$30/adult | Book 9:30 or 10:00 AM slot — Grand Rooms Tour |
+
+---
+
+### 🎟️ ACTIVITIES — Book Within 1–2 Weeks
+
+| Item | Where | Cost | Notes |
+|---|---|---|---|
+
+| Getty Center timed entry (Jul 10 or 11) | getty.edu | Free admission | Required in advance — no walk-up |
+| LA final dinner (Jul 11) | OpenTable / restaurant direct | varies | Nobu Malibu, Bestia, Republique, Craig's — book 1-2 weeks out |
+
+---
+
+### 🍽️ FOOD — Decision Needed
+
+| Item | Day | What's Needed |
+|---|---|---|
+| Scoma's birthday dinner | Jul 4 evening | **Book on OpenTable NOW.** Call (415) 771-4383 to confirm July 4th hours. Pier 47, Fisherman's Wharf. |
+| Day 1 evening dinner | Jul 2 | North Beach SF suggested — no specific restaurant chosen |
+| Day 2 evening dinner | Jul 3 | North Beach or Fisherman's Wharf — no specific restaurant |
+| Day 4 Cambria dinner | Jul 5 | Nothing planned. Burton Drive restaurants are the strip to walk. |
+| Day 5 Santa Barbara dinner | Jul 6 | Funk Zone mentioned — no specific restaurant |
+| Day 6 San Diego dinner | Jul 7 | Little Italy SD or Old Town SD — no specific restaurant |
+| LA dinners (Days 7–10) | Jul 8–11 | Grand Central Market and neighborhoods mentioned. No specific reservations. |
+| Mom's food recommendations | TBD | Waiting for mom's list — placeholder in Food & Markets section |
+
+---
+
+### 📞 CALLS TO MAKE (Verify Hours / Details)
+
+| Who | Number | Why |
+|---|---|---|
+| Scoma's SF (birthday dinner) | (415) 771-4383 | Confirm July 4th hours + book OpenTable NOW |
+| Santa Monica Seafood | (310) 393-5244 | Confirm hours for LA fish market visit |
+| Quality Seafood Redondo Beach | (310) 372-6408 | Confirm hours for early AM seafood visit |
+
+---
+
+### ❓ DECISIONS STILL OPEN
+
+| Decision | Details |
+|---|---|
+| **Coronado priority** | ✅ RESOLVED — Staying overnight in San Diego, going to Coronado. Firm. |
+| **4WD check** | ✅ RESOLVED — 4WD vehicle confirmed. Secret Swing is on. |
+| **Flight confirmation for Adam & Vadim** | ✅ RESOLVED — Adam and Vadim are driving the full trip. Not flying. Marina and Liam fly only. |
+
+---
+
 ## PARTY & LOGISTICS
 
-- **Size:** 4 travelers (names TBD for 2nd pair — confirm)
+- **Travelers:** Marina Drapkin · Liam Drapkin · Adam Drapkin (birthday boy, Jul 4) · Vadim Drapkin
 - **Vehicle:** Own car — arriving in San Francisco directly from the pre-California road trip (Route 11 ends SF July 2). No rental needed.
 - **Trip Character:** Family, unhurried, mix of nature + wine + beaches + cities
 - **Start:** SFO, July 2, ~12:00 PM
@@ -94,14 +382,14 @@ The hotel is technically in SoMa but at the northern edge, directly adjacent to 
 
 ## ⚠️ CRITICAL FLAGS (READ BEFORE PLANNING ANYTHING)
 
-### FLAG 1 — July 4th in Napa: Sterling Vineyards hours unverified
-The Napa Valley on **Independence Day weekend** is one of the busiest days in wine country all year. Social media confirms festivals, vineyard events, and heavy Bay Area → Napa traffic on US-101 and CA-29. Sterling Vineyards should be open but **must be verified** — call ahead or check their website. Expect 30-45 min additional driving time each way on July 4. Plan to depart SF early (by 8 AM) and book Sterling tram tickets in advance.
+### FLAG 1 — July 4th in Napa ✅ RESOLVED
+Sterling Vineyards is confirmed open — **Tock booking TOCK-R-AE87DB44, 10:45 AM.** Depart SF at 8:00 AM, Routes API confirms moderate holiday morning traffic. Drive times verified.
 
-### FLAG 2 — Alcatraz must be pre-booked NOW
-Summer tours sell out **3-4 weeks in advance.** July 3 at 9:20 or 10:10 AM — these specific ferries may already be filling. Book immediately at **alcatrazcruises.com**. The 9:20 AM departure is slightly less crowded than 10:10.
+### FLAG 2 — Alcatraz ✅ BOOKED
+9:20 AM ferry, July 3 — **Confirmation #i77487162 / 77487159.** 4 adults. Arrive Pier 33 by 8:35 AM. QR code on Marina's phone (marin4ik10@gmail.com). *(No further action needed.)*
 
-### FLAG 3 — Muir Woods timed entry required
-No walk-up parking. Must reserve a timed entry slot AND parking at **gomuirwoods.com** (not recreation.gov). Book the 4:00 PM entry slot to match the July 3 schedule. Summer hours confirmed 8:00 AM–8:00 PM (May 23–Sep 7) — arrival at 4:15 PM is fully inside the window.
+### FLAG 3 — Muir Woods ✅ BOOKED
+Parking slot: **4:00–4:30 PM** · Planned arrival: **4:00–4:15 PM** · gomuirwoods.com · $15/person. Depart Berkeley by 3:00 PM to arrive within the window. *(No further action needed.)*
 
 ---
 
@@ -114,14 +402,14 @@ No walk-up parking. Must reserve a timed entry slot AND parking at **gomuirwoods
 Arrive SFO 11:27 AM. Rental car pickup ~12:15–12:30 PM. In SF by 1:00 PM.
 
 **Afternoon (1:30 PM onward):**
+- **Chinatown** — Grant Avenue + Stockton Street. Oldest Chinatown in North America. Walk the main gate, the alleys, grab dim sum or bubble tea. 45 min–1 hour.
 - **Palace of Fine Arts** — 3601 Lyon St. The Greco-Roman rotunda on the lagoon. Free. Best visited as the sun goes down and the building turns gold. 30-45 minutes. Almost always uncrowded. *(On the way back from Fisherman's Wharf area — natural loop)*
 - **Powell-Hyde Cable Car** ("Powell Highline") — the most scenic cable car line in SF. Runs from Powell & Market turnaround up through Russian Hill all the way to Fisherman's Wharf. Buy an all-day Muni passport ($24/adult) for unlimited cable car + transit. Board at Powell & Market (7 min walk from Hyatt).
 - **Lombard Street** (Russian Hill) — the famous 8-hairpin crooked block. Walk up from the bottom for photos. **TIMING NOTE (@lifeofreillytv):** *"Visit early or late to beat the crowds."* Afternoon is fine — walk up, don't drive it in peak hour.
-- **Twin Peaks** — short drive above the city. 360° panoramic views of SF bay, bridges, and skyline. 20 minutes, completely free. Best at 4–5 PM for golden light.
-- **Chinatown** — Grant Avenue + Stockton Street. Oldest Chinatown in North America. Walk the main gate, the alleys, grab dim sum or bubble tea. 45 min–1 hour.
 - **Painted Ladies (Full House Houses)** — 710-720 Steiner St, Alamo Square Park. The seven Victorian row houses with the SF skyline behind them. Best photographed from the park across the street. 20 minutes.
 
-**Evening food:** North Beach (Broadway + Columbus Ave) — SF's Italian quarter. Bustling, family-friendly, great pasta and pizza. Or the Ferry Building Marketplace for snacks.
+**Evening:**
+- **Twin Peaks SUNSET** — short drive above the city. 360° panoramic views of SF bay, bridges, and skyline. 20 minutes, completely free. Best at 4–5 PM for golden light.
 - **Mission Dolores Park** — if energy allows, grassy hillside park with skyline views. 20-min drive.
 
 **Evening food:** North Beach (Broadway + Columbus Ave corridor) — SF's Italian quarter. Bustling, family-friendly, great pasta and pizza. Or the Ferry Building Marketplace along the Embarcadero for afternoon snacks.
@@ -129,9 +417,9 @@ Arrive SFO 11:27 AM. Rental car pickup ~12:15–12:30 PM. In SF by 1:00 PM.
 **Hotel Logistics — Nights 1, 2 & 3 (Jul 2–5):**
 - **Hyatt Regency San Francisco Downtown SOMA**
 - 50 Third Street, Union Square, San Francisco, CA 94103
-- Booking.com confirmation code: **KYUXME** (Marina & Liam Drapkin)
-- Room: Queen Room with Two Queen Beds and City View — 355 sq ft, 2 queen beds, sleeps 4
-- Rate: $197/night · Total base: $696 (3 nights, includes $35/night resort fee) · Est. all-in with taxes: ~$760–790
+- Hyatt confirmation: **40023B19345813** (Marina Drapkin · World of Hyatt #*****050M)
+- Room: 2 Queen Beds — Yerba Buena Park or City View · 55" SMART TV · Technology Hub
+- Rate: $157.46 (Jul 2) · $184.92 (Jul 3–4) · Subtotal $527.30 + taxes/fees · ⚠️ NON-REFUNDABLE
 - Check-in: Thu Jul 2 · Check-out: Sun Jul 5 (early 7:00 AM departure)
 - Free WiFi · Air conditioning · Restaurant on-site (La Société) · Private parking available
 - 14 min walk to Powell & Market cable car turnaround (Powell-Hyde line to Fisherman's Wharf)
@@ -143,18 +431,17 @@ Arrive SFO 11:27 AM. Rental car pickup ~12:15–12:30 PM. In SF by 1:00 PM.
 
 ### DAY 2 — Friday, July 3 · San Francisco: Alcatraz + Berkeley + Muir Woods
 **Overnight: Hyatt Regency San Francisco Downtown SOMA — Night 2 of 3**
-**Drive: 20 min (Pier 33 → Fort Point) + 43 min (Fort Point → UC Berkeley) + 47 min (Berkeley → Muir Woods) + 42 min (Muir Woods → SF) = ~2h 32m total driving**
+**Drive: 20 min (Pier 33 → Fort Point) + 43 min (Fort Point → UC Berkeley) + ~65 min w/traffic (Berkeley → Muir Woods, Routes API Friday PM) + 42 min (Muir Woods → SF) = ~2h 50m total driving**
 
 ⚠️ This is a pre-holiday Friday — July 3rd. Expect heavier than normal traffic starting afternoon.
 
-**Morning — Alcatraz (9:20 AM ferry recommended):**
-- Depart **Hyatt** by 8:30 AM to reach Pier 33 by 9:00 AM
-- Ferry: Pier 33 Alcatraz Landing, Embarcadero SF
-- **Book NOW at alcatrazcruises.com** — July 3 is a holiday weekend, slots fill weeks ahead
+**Morning — Alcatraz (9:20 AM ferry ✅ BOOKED):**
+- Depart **Hyatt** by **8:00 AM** to reach Pier 33 by **8:35 AM** *(45 min before departure — mandatory per Alcatraz City Cruises)*
+- Ferry: Pier 33 Alcatraz Landing, Embarcadero SF · **Confirmation #i77487162 / 77487159**
+- QR code valid for entire party — have ready on Marina's phone at the boarding gate
 - The **audio tour** narrated by former inmates and guards is exceptional — wear headphones, take your time, this is 2.5 hours minimum
 - Instagram intel (@heatherr.eats, 9,806 views): *"The audio tour is genuinely like going back in time. Don't rush the cell house."*
 - Return ferry arrives back at Pier 33 ~12:00 PM
-- Cost: ~$44/adult, ~$26/child (current 2026 pricing — verify at booking)
 
 **Midday — Fort Point National Historic Site (~12:20–1:15 PM):**
 - Drive: **20 min** from Pier 33 → Fort Point (verified Google Maps)
@@ -166,24 +453,24 @@ Arrive SFO 11:27 AM. Rental car pickup ~12:15–12:30 PM. In SF by 1:00 PM.
 - Time: 45–55 min. Walk Crissy Field afterward if energy is high (5 min walk along the bay).
 - Depart Fort Point by ~1:15 PM
 
-**Afternoon — UC Berkeley (2:00–3:30 PM):**
+**Afternoon — UC Berkeley (2:00–3:00 PM):**
 - Drive: **43 min** from Fort Point → UC Berkeley campus (verified Google Maps)
 - **Campanile (Sather Tower)** — the iconic 307-ft clock tower. Observation deck open daily. Views of the bay, bridges, and Mt. Tamalpais. $5/person to ride up.
 - **Sproul Plaza** — the historic free speech plaza. Walk the main entrance.
-- **Bancroft Way & Telegraph Avenue** — bookstores, cafes, great spot for a late lunch before Muir Woods.
-- Time needed: 1.5 hours. Depart ~3:30 PM.
+- **Bancroft Way & Telegraph Avenue** — bookstores, cafes, great spot for a quick bite before Muir Woods.
+- Time needed: ~1 hour. **Depart by 3:00 PM sharp** — parking window at Muir Woods is 4:00–4:30 PM.
 
-**Afternoon — Muir Woods National Monument (4:15–6:15 PM):**
-- Drive: **47 min** from UC Berkeley → Muir Woods (via Richmond-San Rafael Bridge + US-101 + Panoramic Hwy)
-- **⚠️ Reservations REQUIRED at gomuirwoods.com** — NOT recreation.gov. Timed entry + parking must be booked here. No walk-up parking allowed.
-- **NPS confirmed summer hours (May 23–Sep 7): 8:00 AM–8:00 PM daily.** Arriving at 4:15 PM leaves 3h 45m before closing — fully adequate. Source: nps.gov/muwo.
-- Book the **4:00 PM entry slot** at gomuirwoods.com to align with arrival time.
+**Afternoon — Muir Woods National Monument ✅ BOOKED:**
+- Drive: **~65 min with traffic** from UC Berkeley → Muir Woods (via Richmond-San Rafael Bridge + US-101 + Panoramic Hwy)
+- **Traffic note — Routes API verified (July 3 Friday afternoon):** No-traffic estimate is 47 min, Friday traffic adds 18–22 min. Depart Berkeley at 3:00 PM → arrive Muir Woods **~4:05 PM** — inside the 4:00–4:30 PM parking window.
+- **Parking slot: 4:00–4:30 PM · Planned arrival: 4:00–4:15 PM** · Booked at gomuirwoods.com · $15/person
+- **NPS confirmed summer hours (May 23–Sep 7): 8:00 AM–8:00 PM daily.** Source: nps.gov/muwo.
 - Fee: $15/person (NPS entrance, not per vehicle)
-- **Cathedral Grove Trail** — 1-mile flat loop through old-growth coast redwoods. The late afternoon light filtering through the canopy is the best version of this walk.
+- **Cathedral Grove Trail** — 1-mile flat loop through old-growth coast redwoods. Late afternoon light filtering through the canopy is the best version of this walk.
 - Time needed: 2 hours. Depart Muir Woods by ~6:15 PM.
 - **⚠️ NPS Alert — No cell service inside the park.** Do not schedule a rideshare pickup from inside Muir Woods.
 - **⚠️ NPS Alert — Auto-theft warning.** Remove all valuables from the vehicle before leaving the parking lot.
-- **Return to SF:** **42 min** → arrive Hyatt by ~7:00 PM
+- **Return to SF:** 56 min with traffic → arrive Hyatt by ~7:10 PM
 
 **Evening:**
 - Last night in SF — final dinner before the road trip south. North Beach or Fisherman's Wharf for a celebratory meal.
@@ -193,38 +480,43 @@ Arrive SFO 11:27 AM. Rental car pickup ~12:15–12:30 PM. In SF by 1:00 PM.
 
 ### DAY 3 — Saturday, July 4 · Napa Valley → Return to SF 🎂 *Adam's 22nd Birthday*
 **Overnight: Hyatt Regency SF (3rd and final night — checkout July 5)**
-**Drive: 1h 9m (SF → Yountville) + 29m (Yountville → Sterling) + 1h 34m (Sterling → Hyatt SF) = ~3h 12m total driving**
+**Drive: 61m (SF → Yountville) + 26m (Yountville → Sterling) + 38m (Sterling → Napa City) = ~2h 5m driving. Return to SF flexible — no set time.**
+*All times verified via Google Maps Routes API (TRAFFIC_AWARE_OPTIMAL), actual July 4, 2026 departure times.*
 
-⚠️ July 4th — Independence Day. One of the busiest travel days of the year. Napa Valley is a major Bay Area destination for the holiday. Add 30-45 min to all Napa driving times. Depart SF before 8:00 AM to beat traffic.
+⚠️ July 4th — Independence Day. Routes API confirms moderate holiday traffic northbound in the morning; heavier heading back into SF in the late afternoon.
 
-**Morning — Yountville, Napa Valley:**
-- Depart Hyatt SF by 7:30-8:00 AM
-- Arrive Yountville ~9:00-9:15 AM
-- **Bouchon Bakery, Yountville** ("Yonville Bakery") — 6528 Washington St, Yountville. Thomas Keller's famous French bakery, one of the best in California. Croissants, TKO sandwich cookies, seasonal pastries. Line often forms before opening but moves fast. Opens 7:00 AM. Get there early.
-- Walk Washington Street in Yountville — charming wine village, boutique galleries, no chain stores.
-- Time: 45-60 min in Yountville
+**Morning — Bouchon Bakery, Yountville (takeout, 45 min):**
+- Depart Hyatt SF **8:00 AM sharp**
+- Drive: **61 min** → arrive Yountville **9:01 AM**
+- **Bouchon Bakery** — 6528 Washington St, Yountville. Thomas Keller's famous French bakery. Croissants, TKO cookies, seasonal pastries — grab to go and eat in the car or on a bench. Opens 7:00 AM. Allow 45 min.
+- Depart Yountville by **9:46 AM**
 
-**Mid-Morning — Sterling Vineyards, Calistoga:**
-- Drive: 29 min from Yountville → Sterling Vineyards
-- Sterling Vineyards is the only Napa winery with an **aerial gondola tram** to reach the hilltop facility — 300 feet above Calistoga. The ride alone is worth the stop.
-- Instagram intel (@jetset.feast.repeat, 5,910 views): *"This winery has the ONLY aerial gondola in Napa, and the ride is worth the trip alone."* @discover_california_ (109,398 views) features Sterling in a top California wineries reel.
-- **⚠️ VERIFY JULY 4TH HOURS** — call Sterling Vineyards before the trip: (800) 726-6136. Most Napa wineries operate on July 4th but some limit capacity or require advance reservations.
-- Tram tickets include wine tastings. Allow 1.5-2 hours.
-- Cost: varies by package, ~$30-40/person (verify current rates)
+**Mid-Morning — Sterling Vineyards, Calistoga ✅ BOOKED (10:45 AM):**
+- Drive: **26 min** → arrive Sterling **~10:12 AM** · 18-min buffer to check in (arrive 15 min early per Sterling)
+- **Confirmation: TOCK-R-AE87DB44** · Sterling Stroll × 2, Non-taster × 1, Guest 10–20 × 1 · $192.53 paid
+- Gondola ride up 300 feet to the hilltop facility. One hour experience: 10:45 AM – 11:45 AM.
+- Instagram intel: @jetset.feast.repeat — *"This winery has the ONLY aerial gondola in Napa, and the ride is worth the trip alone."*
+- **Depart Sterling by 11:45 AM – 12:00 PM**
 
-**Afternoon — Drive back to San Francisco:**
-- Depart Sterling Vineyards by 2:00-2:30 PM
-- Drive: **1h 34m** (verified Google Maps) → Hyatt SF
-- Arrive Hyatt ~3:30-4:30 PM
-- **Freshen up, rest, get ready for birthday dinner**
+**Midday — Napa City: Lunch + Explore (no set schedule):**
+- Drive: **38 min** → arrive Napa City **~12:23–12:38 PM**
+- **Oxbow Public Market, 610 1st Street, Napa** — riverside market. Hog Island Oyster Bar for fresh oysters, wine, chowder; multiple food vendors; outdoor deck on the Napa River.
+- After Napa, the day is yours — no set schedule. Drive back to SF whenever, freshen up at the Hyatt, rest before dinner.
 
-**Evening — Adam's 22nd Birthday Dinner, San Francisco:**
-- ⚠️ *Restaurant TBD — research task pending (TikTok + Instagram + Google Maps Places, budget $300-400 for 4 people, July 4th availability must be confirmed — many SF restaurants close or go limited menu on the holiday)*
-- After dinner: July 4th fireworks visible from the SF waterfront/bay — the city often has displays over the bay. Walk to the Embarcadero or Aquatic Park after dinner for the show.
+**Evening — Adam's 22nd Birthday Dinner 🎂 at Scoma's:**
+- **Scoma's Restaurant** — Pier 47, Al Scoma Way, San Francisco, CA 94133 · (415) 771-4383
+- ⚠️ **Book on OpenTable NOW** — July 4th at Fisherman's Wharf fills completely. Top 10 Most-Booked restaurants in SF.
+- Located on a working pier — fishing boats dock at their own receiving station right outside. Pier-to-plate. This is the real SF waterfront experience.
+- **What to order:** Lazy Man's Cioppino (the signature — no cracking, all the crab meat pulled out), Dungeness Crab, Clam Chowder, Prawns Annuzzi, Clams on the Half Shell
+- **Price:** ~$50–100/person · For 4: ~$250–350 total (birthday dinner, not everyday)
+- **Hours (Saturday):** 12:00 PM – 10:00 PM · Call to confirm July 4th holiday hours: (415) 771-4383
+- **Rating:** SF Chronicle Top 100 Bay Area 2026 · 4.7★ / 6,492 OpenTable reviews
+- **Social media:** @bayarea.foodie.adventures (86K followers, 15,396 views) — *"Named one of San Francisco's Top 100 Bay Area restaurants"* · @scomassf (10,675f)
+- **After dinner:** Step outside — July 4th fireworks over the bay from Fisherman's Wharf. You're already there.
 
 **Overnight: Hyatt Regency San Francisco Downtown SOMA — Night 3 of 3 (final night)**
 - ⚠️ **CHECKOUT TOMORROW (July 5)** — pack tonight. Early departure required (7:00 AM sharp). Big Sur day starts from the hotel.
-- Hotel address: 50 Third St, Union Square, SF 94103 · Booking.com: KYUXME
+- Hotel address: 50 Third St, San Francisco, CA 94103 · Hyatt Confirmation: **40023B19345813**
 
 ---
 
@@ -243,7 +535,7 @@ Check out of the Hyatt this morning. This is the Big Sur day — one of the best
 5. **Bixby Bridge** → *(2 min)* → **Hurricane Point**
 6. **Hurricane Point** → *(27 min)* → **Pfeiffer Beach (Little Sur River Beach)**
 7. **Pfeiffer Beach** → *(22 min)* → **McWay Falls**
-8. **McWay Falls** → *(on the way, Plasket Ridge Rd turnoff)* → **Secret Swing Above the Clouds** ⚠️ *4WD required*
+8. **McWay Falls** → *(on the way, Plasket Ridge Rd turnoff)* → **Secret Swing Above the Clouds** ✅ *4WD confirmed*
 9. **Big Sur south** → *(1h 17m total McWay to Elephant Seals)* → **Elephant Seal Vista Point**
 10. **Elephant Seals** → *(11 min)* → **Cambria** *(overnight)*
 
@@ -270,16 +562,18 @@ Check out of the Hyatt this morning. This is the Big Sur day — one of the best
 **McWay Falls (Julia Pfeiffer Burns SP)** — 22 min south of Pfeiffer Beach. An 80-foot waterfall falling directly onto a beach cove into the Pacific Ocean. Overlook Trail: 0.5 miles round trip, flat, 20 minutes. One of the most dramatic short walks in California. Cost: $12/vehicle (or park on the highway shoulder across CA-1 for free).
 
 **Secret Swing Above the Clouds (Plasket Ridge Rd)** — One of the most secret spots in all of California. On the southbound drive from McWay Falls toward Elephant Seals, watch for the **Plasket Ridge Rd turnoff** on the east side of CA-1. A tree swing positioned above the Big Sur fog/cloud layer — when conditions are right you are literally swinging above the clouds.
-- ⚠️ **4WD vehicle required — unpaved road.** Confirm your car can handle it before committing to the turn.
+- ✅ **4WD confirmed — unpaved road is fine.** Take the turn.
 - Source: GrunIce SF→LA guide — *"One of the most secret places in California"*
 - Only attempt if the car handles the road and the group has energy for an adventure detour.
 
 **Elephant Seal Vista Point (Piedras Blancas)** — 1h 17m south of McWay Falls. The long drive through remote southern Big Sur is part of it — this is the undeveloped coastline, essentially unchanged. At Piedras Blancas: hundreds of elephant seals hauled out year-round. July = juveniles and sub-adult males. Free. Paved viewing platform directly above the beach.
 
-**Overnight — Cambria, CA:**
+**Overnight — Cambria, CA: Castle Inn ✅ CONFIRMED**
 - 11 min south of Elephant Seals.
 - Small, authentic California coastal town — Moonstone Beach boardwalk, Burton Drive restaurants and wine bars.
-- Budget: $150–250/night range (hotel search pending)
+- **Castle Inn** · 6620 Moonstone Beach Drive, Cambria, CA 93428 · +1 805-927-8605
+- Room: 2-Queen Partial Oceanview · Total: $274.50 (taxes incl.) · **Breakfast included ✓**
+- Check-in: 3:00–9:00 PM · Check-out: 7:30–11:00 AM · ⚠️ Free cancel until July 2 — after July 3 full charge
 - Tonight: dinner in Cambria. Rest up — Hearst Castle opens at 9 AM tomorrow.
 
 ---
@@ -331,8 +625,11 @@ A civilized day after yesterday's marathon. Start with Hearst Castle fresh in th
 
 **Evening — Santa Barbara:**
 - Dinner on State Street or the **Funk Zone** (hip neighborhood near the train station — wine tasting rooms, breweries, restaurants). One of the best dining scenes in coastal California relative to the size of the city.
-- Hotel on or near State Street — walkable to the beach for morning.
-- ⚠️ Hotel research pending (Phase 2)
+- **Return to Beachside Inn** for complimentary wine & cheese happy hour — every evening, included with stay.
+
+**Overnight: Beachside Inn ✅ CONFIRMED**
+- 336 W Cabrillo Blvd, Santa Barbara, CA 93101 · Confirmation #1075827673
+- Room: 2 Queen Beds, Parkside Balcony · Check-out: July 7 by 12:00 PM · Parking free · Breakfast included ✓
 
 ---
 
@@ -367,10 +664,10 @@ The full Southern California coast run. A longer driving day but every stop is w
 - Drive: 1h 17m → San Diego
 
 **Evening — San Diego:**
-- Arrive ~6:00-7:00 PM
-- Check in near the Gaslamp Quarter or Coronado Island
-- Dinner in San Diego — Little Italy neighborhood (San Diego's best restaurants) or Old Town San Diego for Mexican food
-- **⚠️ Hotel choice:** If staying on Coronado Island itself, the Hotel del Coronado is iconic but expensive. Coronado is connected to San Diego by the Coronado Bridge — 10-15 min from downtown San Diego.
+- Arrive Coronado ~6:00-7:00 PM
+- Check in to **Best Western Plus Suites Hotel Coronado Island** (275 Orange Ave, Coronado) · Conf. 6459555758 · Check-in from 3:00 PM
+- Dinner in San Diego — drive the Coronado Bridge (5 min) to **Little Italy** (San Diego's best restaurants) or **Old Town San Diego** for Mexican food, then return to the island for the night
+- ⚠️ Pool and hot tub are closed — plan accordingly
 
 ---
 
@@ -474,47 +771,52 @@ In LA, rideshare beats driving. Parking is expensive, traffic is real, and Uber 
 
 ### DEPARTURE — Sunday, July 12
 - Check out of hotel
-- Breakfast (something quick near hotel, or the airport)
 - **Leave hotel no later than 9:00 AM** for 12:17 PM flight. LAX traffic is unpredictable and check-in closes 45 min before departure.
-- Return rental car at LAX (allow 20-30 min for the rental return shuttle)
+- **In-N-Out Burger — The Last California Meal** 🏁
+  - **Location:** 9149 S Sepulveda Blvd — directly across from LAX airport entrance, ~0.2 miles from terminals. Drive-through or dine-in.
+  - **Timing:** ~10 min from most LA hotels → pull in, eat, then straight to airport. Easy stop on the way.
+  - **What to order — Animal Style:** A burger cooked with mustard grilled directly into the patty, topped with their secret spread, pickles, and grilled caramelized onions (not raw). It's the unofficial secret menu — not on the board, but everyone knows it. Ask by name. Recommended: **Double-Double Animal Style.** Fries: order well done (extra crispy) or Animal Style (topped with cheese sauce, spread, and grilled onions).
+- Adam & Vadim drop Marina and Liam at LAX Terminal 4, then drive home — no rental return needed
 - **LAX Terminal:** American Airlines uses Terminal 4 at LAX for most domestic flights. Verify terminal at check-in.
 - Flight departs 12:17 PM → arrives PHL 8:39 PM
 
 ---
 
 ## VERIFIED DRIVING TIMES SUMMARY
-*Google Maps Directions API — no estimates*
+*No-traffic: Google Maps Directions API. With traffic: Google Maps Routes API (TRAFFIC_AWARE_OPTIMAL), actual day + departure time. Always use the with-traffic figure for planning.*
 
-| Segment | Verified Time | Miles |
-|---|---|---|
-| Pier 33 (SF) → UC Berkeley | 33 min | 13.4 mi |
-| UC Berkeley → Muir Woods | 47 min | 25.3 mi |
-| Muir Woods → SF | 42 min | 16.5 mi |
-| SF → Yountville (Napa) | 1h 9m | 56.4 mi |
-| Yountville → Sterling Vineyards (Calistoga) | 29 min | 17.1 mi |
-| Sterling Vineyards → Monterey | 3h 3m | 178 mi |
-| Hyatt SF (50 Third St) → 17-Mile Drive (Pacific Grove Gate) | 2h 10m | 125 mi |
-| 17-Mile Drive (Carmel Gate) → Carmel-by-the-Sea | 3 min | 0.5 mi |
-| Carmel-by-the-Sea → Point Lobos State Reserve | 9 min | 4.1 mi |
-| Point Lobos → Bixby Creek Bridge | 15 min | 11.0 mi |
-| Bixby Creek Bridge → Hurricane Point | 2 min | 1.1 mi |
-| Hurricane Point → Pfeiffer Beach | 27 min | 14.8 mi |
-| Pfeiffer Beach → McWay Falls / Julia Pfeiffer Burns SP | 22 min | 9.8 mi |
-| McWay Falls → Piedras Blancas Elephant Seal Rookery | 1h 17m | 55.0 mi |
-| Elephant Seals → Cambria *(overnight Jul 5)* | 11 min | 5.5 mi |
-| Cambria → Hearst Castle *(Jul 6 morning)* | 14 min | 9.3 mi |
-| Hearst Castle → Solvang | 1h 52m | 108 mi |
-| Hearst Castle → San Luis Obispo *(direct, bypassing Paso Robles)* | 50 min | 42.4 mi |
-| Solvang → Santa Barbara | 44 min | 33.3 mi |
-| Sterling Vineyards (Calistoga) → Hyatt SF *(Jul 4 return)* | 1h 34m | 72.0 mi |
-| SLO → Solvang | 1h 5m | 66.7 mi |
-| SLO → Solvang | 1h 5m | 66.7 mi |
-| Solvang → Santa Barbara | 44 min | 33.3 mi |
-| Santa Barbara → El Matador Beach | 1h 5m | 60.4 mi |
-| El Matador → Newport Beach | 1h 34m | 77.8 mi |
-| Newport Beach → Laguna Beach | 15 min | 7.2 mi |
-| Laguna Beach → San Diego | 1h 17m | 79.3 mi |
-| Coronado → Beverly Hills (LA) | 2h 21m | 140 mi |
+| Segment | Day / Departure | No Traffic | **With Traffic** | Miles |
+|---|---|---|---|---|
+| Pier 33 → Fort Point | Jul 3 Fri ~noon | 20 min | **17 min** | 4.4 mi |
+| Fort Point → UC Berkeley | Jul 3 Fri ~1:15 PM | 43 min | **48 min** | 29.9 mi |
+| UC Berkeley → Muir Woods | Jul 3 Fri ~3:30 PM | 47 min | **65 min** | 28.2 mi |
+| Muir Woods → Hyatt SF | Jul 3 Fri ~7:00 PM | 42 min | **56 min** | 18.7 mi |
+| Hyatt SF → Yountville (Napa) | Jul 4 Sat 8:00 AM | 1h 9m | **61 min** | 54.5 mi |
+| Yountville → Sterling Vineyards | Jul 4 Sat ~9:46 AM | 29 min | **26 min** | 17.0 mi |
+| Sterling Vineyards → Napa City (Oxbow) | Jul 4 Sat ~noon | — | **38 min** | 27.5 mi |
+| Napa City → Hyatt SF | Jul 4 Sat flexible | — | **~74 min** *(heavier late afternoon)* | 46.3 mi |
+| Hyatt SF → 17-Mile Drive | Jul 5 Sun ~7:00 AM | 2h 10m | **1h 53m** *(early Sunday is clear)* | 123.9 mi |
+| 17-Mile Drive (Carmel Gate) → Carmel | Jul 5 Sun | 3 min | **3 min** | 0.5 mi |
+| Carmel → Point Lobos | Jul 5 Sun ~11 AM | 9 min | **13 min** | 4.3 mi |
+| Point Lobos → Bixby Creek Bridge | Jul 5 Sun ~12:15 PM | 15 min | **19 min** | 11.2 mi |
+| Bixby → Hurricane Point | Jul 5 Sun ~1 PM | 2 min | **1 min** | 0.7 mi |
+| Hurricane Point → Pfeiffer Beach | Jul 5 Sun ~1:30 PM | 27 min | **33 min** | 15.3 mi |
+| Pfeiffer Beach → McWay Falls | Jul 5 Sun ~2:30 PM | 22 min | **25 min** | 11.9 mi |
+| McWay Falls → Elephant Seals | Jul 5 Sun ~3:30 PM | 1h 17m | **1h 17m** *(remote stretch, no change)* | 57.3 mi |
+| Elephant Seals → Cambria | Jul 5 Sun ~6:00 PM | 11 min | **25 min** | 20.0 mi |
+| Cambria → Hearst Castle | Jul 6 Mon ~8:45 AM | 14 min | **15 min** | 9.6 mi |
+| Hearst Castle → Solvang | Jul 6 Mon ~noon | 1h 52m | **1h 54m** | 108.1 mi |
+| Solvang → Santa Barbara | Jul 6 Mon ~2:30 PM | 44 min | **45 min** | 33.3 mi |
+| Santa Barbara → El Matador Beach | Jul 7 Tue ~8:00 AM | 1h 5m | **1h 5m** *(8 AM Tuesday clear)* | 60.7 mi |
+| El Matador → Newport Beach | Jul 7 Tue ~10:30 AM | 1h 34m | **1h 40m** | 76.7 mi |
+| Newport Beach → Laguna Beach | Jul 7 Tue ~12:15 PM | 15 min | **23 min** | 10.7 mi |
+| Laguna Beach → San Diego | Jul 7 Tue ~1:30 PM | 1h 17m | **1h 24m** | 79.3 mi |
+| Coronado → Beverly Hills (LA) | Jul 8 Wed ~noon | 2h 21m | **2h 31m** | 139.7 mi |
+| Pier 33 (SF) → UC Berkeley *(Directions API ref)* | — | 33 min | — | 13.4 mi |
+| SF → Yountville (Napa) *(Directions API ref)* | — | 1h 9m | — | 56.4 mi |
+| Sterling Vineyards → Monterey *(Directions API ref)* | — | 3h 3m | — | 178 mi |
+| Hearst Castle → SLO direct *(bypass Paso Robles)* | — | 50 min | — | 42.4 mi |
+| SLO → Solvang *(Directions API ref)* | — | 1h 5m | — | 66.7 mi |
 | **TOTAL TRIP DRIVING** | **~16-18h** | **~900+ mi** |
 
 ---
@@ -565,12 +867,11 @@ In LA, rideshare beats driving. Parking is expensive, traffic is real, and Uber 
 
 | Item | Book At | Urgency | Estimated Cost |
 |---|---|---|---|
-| Alcatraz Ferry (Jul 3, 9:20 AM) | alcatrazcruises.com | ⚠️ NOW | ~$44/adult, ~$26/child |
-| Muir Woods Timed Entry (Jul 3) | recreation.gov | ⚠️ NOW | $15/person |
-| Point Lobos State Reserve (Jul 5 AM) | reservecalifornia.com | 1-2 weeks | $10/vehicle |
-| Sterling Vineyards Tram (Jul 4) | sterlingvineyards.com | Call to verify Jul 4 hours first | ~$30-40/person |
-| Hearst Castle Tour (Jul 5) | hearstcastle.org | 1-2 weeks | ~$30/adult |
-| Sensorio tickets (Jul 5 evening) | sensoriopaso.com | 1-2 weeks | ~$25-35/person |
+| Alcatraz Ferry (Jul 3, 9:20 AM) | alcatrazcruises.com | ✅ BOOKED | Conf. i77487162 · 4 adults |
+| Muir Woods Timed Entry (Jul 3) | gomuirwoods.com | ✅ BOOKED | $15/person · Parking 4:00–4:30 PM · Arrive 4:00–4:15 PM |
+| Point Lobos State Reserve (Jul 5) | reservecalifornia.com | ⚠️ BOOK TODAY | $10/vehicle |
+| Sterling Vineyards (Jul 4) | sterlingvineyards.com | ✅ BOOKED | TOCK-R-AE87DB44 · 10:45 AM · $192.53 paid |
+| Hearst Castle Tour (Jul 6) | hearstcastle.org | ⚠️ BOOK TODAY | ~$30/adult · 9:30 or 10:00 AM slot |
 | LA final dinner reservation (Jul 11) | OpenTable / restaurant direct | 1-2 weeks | varies |
 
 ---
@@ -591,7 +892,7 @@ In LA, rideshare beats driving. Parking is expensive, traffic is real, and Uber 
 | "Lagoon Beach" | Laguna Beach | Southern Orange County coast |
 | "LA Observatory" | Griffith Observatory | 2800 E Observatory Rd, Los Angeles |
 | "Walt Disney Theater" | Walt Disney Concert Hall | 111 S Grand Ave, downtown LA (Frank Gehry) |
-| "Powell Highline" | ⚠️ UNCLEAR — needs clarification | Most likely: Powell-Hyde Cable Car line OR Painted Ladies at Alamo Square |
+| "Powell Highline" | Powell-Hyde Cable Car (likely) | Cable car is in Day 1 plan regardless — low-priority to clarify |
 
 ---
 
@@ -606,19 +907,17 @@ After plan approval, we'll build these files using the exact structure as the pr
 | `segment-napa-to-monterey.html` | Segment Guide | Day 3 | Jul 4 |
 | `segment-bigsur.html` | Segment Guide | Day 4 | Jul 5 |
 | `segment-central-coast.html` | Segment Guide | Days 5-6 | Jul 6-7 |
+| `segment-sandiego.html` | Segment Guide | Day 6 eve – Day 7 | Jul 7–8 |
 | `la-guide.html` | City Deep-Dive | Days 7-10 | Jul 8-12 |
 | `california-logistics.html` | Logistics Guide | Full trip | Gas/rest/food/sleep |
 
-**Total: 7 HTML files** (matches pre-trip volume)
+**Total: 8 HTML files**
 
 ---
 
 ## OPEN QUESTIONS FOR USER
 
-1. **Powell Highline** — what did mom mean by this? Cable car? Painted Ladies viewing area? Something else?
-2. **4th party member names** — who are the other 2 travelers? Same flights or separate?
-3. **Coronado priority** — is the San Diego overnight + Coronado morning a firm must-do, or could we restructure to make LA entry on Day 6 and do San Diego as a day trip?
-4. **Hearst Castle** — firm yes or optional? It turns Day 4 into an 18-hour day if included.
-5. **Berkeley campus** — how much time does the group actually want here? Could be cut shorter if Day 2 gets too packed.
-6. **Hotel preferences** — any specific hotel tier or price range to plan around?
-7. **LA neighborhood** — Santa Monica, West Hollywood, or Beverly Hills as base?
+1. **Powell Highline** — what did mom mean by this? Cable car included regardless (Powell-Hyde line, Day 1) — clarification is low-priority.
+3. **Coronado priority** — ✅ RESOLVED. Staying overnight in San Diego, Coronado morning is confirmed.
+6. **Hotel preferences** — Mom is researching and booking Santa Barbara (Jul 6–7), San Diego (Jul 7–8), and Los Angeles (Jul 8–11). See Hotel Gaps section below.
+7. **LA neighborhood** — TBD by family. See Hotel Gaps section.
