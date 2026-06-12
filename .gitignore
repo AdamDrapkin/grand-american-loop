@@ -1,8 +1,11 @@
 # Environment / secrets
 .env
 
-# Claude / AI tooling
-.claude/
+# Claude / AI tooling — keep skills, ignore local machine state
+.claude/launch.json
+.claude/mind.mv2
+.claude/mind.mv2.lock
+.claude/settings.local.json
 .letta/
 .agents/
 .playwright-mcp/

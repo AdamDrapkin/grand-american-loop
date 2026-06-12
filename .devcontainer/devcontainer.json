@@ -1,0 +1,24 @@
+{
+  "name": "Grand American Loop",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "secrets": {
+    "GOOGLE_MAPS_API_KEY": {
+      "description": "Google Maps API key — required for routing, Places lookups, and geocoding"
+    },
+    "SCRAPE_CREATORS_API_KEY": {
+      "description": "Scrape Creators API key — required for Instagram content processing"
+    }
+  }
+}

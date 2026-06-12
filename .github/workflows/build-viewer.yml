@@ -1,0 +1,38 @@
+name: Build Viewer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pre-california/**'
+      - 'california/**'
+      - 'build.py'
+      - 'build_california.py'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build pre-california viewer
+        run: |
+          cd pre-california
+          python3 ../build.py
+          cp docs/index.html ../docs/index.html
+          rm -rf docs
+
+      - name: Commit rebuilt viewer
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add docs/index.html
+          git diff --staged --quiet && echo "No changes to viewer" || (git commit -m "Auto-build viewer [skip ci]" && git push)
