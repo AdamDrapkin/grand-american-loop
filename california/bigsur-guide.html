@@ -53,12 +53,12 @@
     .ov-note { font-family: sans-serif; font-size: .75rem; color: var(--mid); line-height: 1.4; }
 
     .day-section { margin-bottom: 40px; }
-    .day-hd { border-radius: 10px 10px 0 0; padding: 16px 20px; color: white; }
+    .day-hd { border-radius: 10px; padding: 16px 20px; color: white; }
     .day-hd.bigsur { background: linear-gradient(135deg, #1A3D2B, #3A6B4A); }
     .day-hd-label { font-family: sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: .8px; opacity: .8; }
     .day-hd-title { font-family: Georgia, serif; font-size: 1.35rem; margin: 4px 0; }
     .day-hd-sub { font-family: sans-serif; font-size: .82rem; opacity: .85; }
-    .day-body { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; padding: 24px; }
+    .day-body { background: white; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; padding: 24px; display: none; }
 
     .time-block { margin-bottom: 22px; }
     .tb-hd { font-family: sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; padding-bottom: 8px; margin-bottom: 12px; border-bottom: 2px solid; }
@@ -173,6 +173,13 @@
       .hc-row { flex-direction: column; gap: 2px; }
       .dual-col-nav { grid-template-columns: 1fr; }
     }
+
+    /* COLLAPSIBLE DAY SECTIONS */
+    .day-hd { cursor: pointer; user-select: none; position: relative; }
+    .day-hd::after { content: '▶'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: .72rem; opacity: .65; transition: transform .2s ease; }
+    .day-section.open .day-hd { border-radius: 10px 10px 0 0 !important; }
+    .day-section.open .day-hd::after { transform: translateY(-50%) rotate(90deg); }
+    .day-section.open .day-body { display: block !important; }
   </style>
 </head>
 <body>
@@ -811,6 +818,7 @@
   <script>
   function mkMap(id,center,zoom,stops,col,drawRoute,walkStops){
     var m=L.map(id,{scrollWheelZoom:false}).setView(center,zoom);
+    (window._leafletMaps=window._leafletMaps||{})[id]=m;
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(m);
     var pts=[];
     stops.forEach(function(s){
@@ -846,5 +854,22 @@
     ]);
   });
   </script>
+<script>
+  document.querySelectorAll('.day-hd').forEach(function(hd) {
+    hd.addEventListener('click', function() {
+      var section = this.closest('.day-section');
+      section.classList.toggle('open');
+      if (section.classList.contains('open')) {
+        setTimeout(function() {
+          section.querySelectorAll('.seg-map').forEach(function(el) {
+            if (el.id && window._leafletMaps && window._leafletMaps[el.id]) {
+              window._leafletMaps[el.id].invalidateSize();
+            }
+          });
+        }, 50);
+      }
+    });
+  });
+</script>
 </body>
 </html>
