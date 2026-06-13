@@ -74,6 +74,9 @@ For non-trivial HTML changes or routing decisions: pause and ask "is there a mor
 - If the same fix fails twice: stop. Re-read the relevant source file top to bottom. State what assumption was wrong before trying again
 
 ## Rules
+- NEVER make a change in a segment guide without also updating the logistics guide AND the overview/routes page for that trip:
+  - California: changes in `california/*.html` → also update `logistics-guide.html` + `california-routes.html`
+  - Pre-California: changes in `pre-california/segment-*.html` → also update equivalent logistics + `pre-california-routes.html`
 - NEVER guess driving times — call Google Maps Routes API via Python; show "X hrs Y mins"
 - NEVER hardcode API keys — always load from `.env`
 - NEVER commit `.env` — keys in Codespaces Secrets (cloud) or local `.env` only

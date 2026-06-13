@@ -121,6 +121,13 @@
       .seg-card-hd { flex-direction: column; gap: 8px; }
       .alerts-grid { grid-template-columns: 1fr; }
     }
+
+    /* COLLAPSIBLE SEGMENT CARDS */
+    .seg-card-hd { cursor: pointer; user-select: none; position: relative; }
+    .seg-card-hd::after { content: '▶'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: .72rem; opacity: .75; transition: transform .2s ease; }
+    .seg-card.open .seg-card-hd::after { transform: translateY(-50%) rotate(90deg); }
+    .seg-card-body { display: none; }
+    .seg-card.open .seg-card-body { display: block; }
   </style>
 </head>
 <body>
@@ -297,15 +304,15 @@
             <div class="seg-title">Los Angeles</div>
             <div class="seg-dates">July 8–12, 2026 · 3 Nights · Days 7–10 + Departure Jul 12</div>
           </div>
-          <span class="seg-badge pending">⚠️ Hotel TBD</span>
+          <span class="seg-badge" style="background:#276749;color:white;border-color:#48BB78;">✅ Hotel Confirmed</span>
         </div>
         <div class="seg-card-body">
-          <div class="seg-hotel" style="color:var(--amber);">
-            <strong style="color:var(--dark);">Hotel: NOT YET BOOKED</strong> — Mom researching budget options · Neighborhoods: Culver City / Hollywood / Downtown / Koreatown<br>
-            Avoid: Beverly Hills, Santa Monica, West Hollywood (too expensive for 3 nights)
+          <div class="seg-hotel" style="color:#276749;">
+            <strong style="color:var(--dark);">Ramada Plaza by Wyndham West Hollywood</strong> · 8585 Santa Monica Blvd, West Hollywood · Conf #6392981504<br>
+            Jul 8–12 · 4 nights · Check-in 7 PM Jul 8 (approved) · 12 min to Beverly Hills · 40 min to LAX
           </div>
           <div class="seg-stops">
-            <span class="seg-stop">Jul 8 · Arrival from Coronado · 2h 31m · I-5 N → I-405 N</span>
+            <span class="seg-stop">Jul 8 · Arrival from Coronado · 2h 26m · 135 mi · I-5 N → I-405 N</span>
             <span class="seg-stop">Jul 9 · Beverly Hills · Rodeo Drive · Sunset Strip</span>
             <span class="seg-stop">Jul 9 · Hollywood Walk of Fame · Chinese Theatre · Hollywood Blvd</span>
             <span class="seg-stop">Jul 9 · Hollywood Sign · Griffith Park</span>
@@ -414,5 +421,13 @@
     </div>
 
   </div>
+
+<script>
+  document.querySelectorAll('.seg-card-hd').forEach(function(hd) {
+    hd.addEventListener('click', function() {
+      hd.closest('.seg-card').classList.toggle('open');
+    });
+  });
+</script>
 </body>
 </html>
