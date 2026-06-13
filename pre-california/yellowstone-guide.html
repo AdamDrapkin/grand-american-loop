@@ -40,7 +40,7 @@
 
     /* LAYOUT */
     .wrap{max-width:980px;margin:0 auto;padding:0 20px}
-    section{padding:44px 0}
+    section{padding:4px 0}
     hr.div{border:none;border-top:1px solid var(--border);margin:0}
     .sec-hd{font-size:1.45rem;color:var(--ys);margin-bottom:4px}
     .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:26px}
@@ -90,8 +90,12 @@
     .do-note{font-family:sans-serif;font-size:.73rem;color:var(--mid);line-height:1.4}
 
     /* DAY SECTION HEADERS */
-    .day-section{margin-bottom:52px}
-    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-section{margin-bottom:6px}
+    .day-section.open{margin-bottom:36px}
+    .day-hd{border-radius:12px;padding:18px 24px;color:white;cursor:pointer;user-select:none;position:relative}
+    .day-hd::after{content:'▶';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:.72rem;opacity:.65;transition:transform .2s ease}
+    .day-section.open .day-hd{border-radius:12px 12px 0 0}
+    .day-section.open .day-hd::after{transform:translateY(-50%) rotate(90deg)}
     .day-hd.arrival{background:linear-gradient(135deg,#4A5568,#718096)}
     .day-hd.full1{background:linear-gradient(135deg,#5C2B0A,var(--ys2))}
     .day-hd.full2{background:linear-gradient(135deg,#0E4A56,var(--teal))}
@@ -99,7 +103,8 @@
     .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
     .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
     .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
-    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px;display:none}
+    .day-section.open .day-body{display:block}
 
     /* LEAFLET */
     .topo-map-lg{height:380px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:22px}
@@ -260,7 +265,6 @@
 
 </div>
 
-<hr class="div">
 
 <!-- ALERTS -->
 <section>
@@ -302,7 +306,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- PARK BASICS -->
 <section>
@@ -329,7 +332,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ ARRIVAL EVENING ═══ -->
 <section>
@@ -362,7 +364,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ FULL DAY 1 ═══ -->
 <section>
@@ -514,7 +515,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ FULL DAY 2 ═══ -->
 <section>
@@ -669,7 +669,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DEPARTURE ═══ -->
 <section>
@@ -701,7 +700,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- BISON PROTOCOL -->
 <section>
@@ -721,7 +719,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- WILDLIFE -->
 <section>
@@ -745,7 +742,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- INSIDER TIPS -->
 <section>
@@ -787,7 +783,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- PARK RULES -->
 <section>
@@ -827,7 +822,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- CONTACTS -->
 <section>
@@ -870,6 +864,7 @@ function mkMap(id, center, zoom, stops, drawRoute) {
   var container = document.getElementById(id);
   if (!container) return;
   var map = L.map(id, {scrollWheelZoom: false, zoomControl: true}).setView(center, zoom);
+  (window._leafletMaps=window._leafletMaps||{})[id]=map;
 
   L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
     maxZoom: 15,
@@ -954,6 +949,21 @@ window.addEventListener('load', function() {
     {lat:44.7225,lng:-110.4968, type:'base', num:'TH', name:'Brink of Lower Falls', note:'North Rim Drive · One-way · 600 ft descent to the lip of the falls'}
   ], false);
 
+});
+document.querySelectorAll('.day-hd').forEach(function(hd) {
+  hd.addEventListener('click', function() {
+    var section = this.closest('.day-section');
+    section.classList.toggle('open');
+    if (section.classList.contains('open')) {
+      setTimeout(function() {
+        section.querySelectorAll('[id]').forEach(function(el) {
+          if (window._leafletMaps && window._leafletMaps[el.id]) {
+            window._leafletMaps[el.id].invalidateSize();
+          }
+        });
+      }, 50);
+    }
+  });
 });
 </script>
 </body>

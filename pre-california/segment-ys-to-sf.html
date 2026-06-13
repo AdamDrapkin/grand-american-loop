@@ -69,7 +69,9 @@
     .day-section.open .day-body{display:block}
     /* PARK SECTION HEADERS (like Glacier/Yellowstone style) */
     .park-section{border-radius:14px;overflow:hidden;margin:28px 0}
-    .park-hd{padding:22px 28px;color:white}
+    .park-hd{padding:22px 28px;color:white;cursor:pointer;user-select:none;position:relative}
+    .park-hd::after{content:'▶';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:.72rem;opacity:.65;transition:transform .2s ease}
+    .park-section.open .park-hd::after{transform:translateY(-50%) rotate(90deg)}
     .park-hd.rainier{background:linear-gradient(135deg,#1B3D6E,#2D6A4F)}
     .park-hd.crater{background:linear-gradient(135deg,#0E2A33,#0E4A56,#1A7A8A)}
     .park-hd-sup{font-family:sans-serif;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;opacity:.65;margin-bottom:8px}
@@ -77,7 +79,8 @@
     .park-hd-sub{font-family:sans-serif;font-size:.87rem;opacity:.82;margin-bottom:12px}
     .park-chips{display:flex;flex-wrap:wrap;gap:8px}
     .park-chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 13px;font-family:sans-serif;font-size:.76rem}
-    .park-body{background:white;border:1px solid var(--border);border-top:none;padding:26px}
+    .park-body{background:white;border:1px solid var(--border);border-top:none;padding:26px;display:none}
+    .park-section.open .park-body{display:block}
     /* MAPS */
     .seg-map{height:300px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
     .park-map{height:340px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
@@ -217,7 +220,6 @@
 
 </div>
 
-<hr class="div">
 
 <!-- ═══ DAY 14 ═══ -->
 <section>
@@ -298,7 +300,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ MT. RAINIER PARK SECTION ═══ -->
 <section>
@@ -468,7 +469,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ CRATER LAKE PARK SECTION ═══ -->
 <section>
@@ -652,7 +652,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DAY 17 ═══ -->
 <section>
@@ -748,7 +747,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DAY 18 ═══ -->
 <section>
@@ -855,6 +853,21 @@ window.addEventListener('load', function(){
     {lat:38.090,lng:-122.560,type:'ca',num:'3',name:'Novato / Marin · traffic watch',note:'101 can slow here — use live routing'},
     {lat:37.618,lng:-122.375,type:'finish',num:'🏁',name:'SFO · 11am Hard Deadline',note:'18 days · 5,854 miles · 12 states · California begins'}
   ],true);
+});
+document.querySelectorAll('.park-hd').forEach(function(hd) {
+  hd.addEventListener('click', function() {
+    var section = this.closest('.park-section');
+    section.classList.toggle('open');
+    if (section.classList.contains('open')) {
+      setTimeout(function() {
+        section.querySelectorAll('.park-map').forEach(function(el) {
+          if (el.id && window._leafletMaps && window._leafletMaps[el.id]) {
+            window._leafletMaps[el.id].invalidateSize();
+          }
+        });
+      }, 50);
+    }
+  });
 });
 document.querySelectorAll('.day-hd').forEach(function(hd) {
   hd.addEventListener('click', function() {
