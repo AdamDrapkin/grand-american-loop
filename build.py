@@ -42,13 +42,13 @@ SOURCE_DIR    = "./pages"           # folder containing your HTML files
 # Set AUTO_DISCOVER = False and list files in the exact order you want.
 # Paths are relative to this script file.
 MANUAL_FILES = [
-    "./pre-california-routes.html",
-    "./segment-hv-to-kc.html",
-    "./segment-kc-to-glacier.html",
-    "./glacier-guide.html",
-    "./yellowstone-guide.html",
-    "./segment-ys-to-sf.html",
-    "./logistics-guide.html",
+    "./pre-california/pre-california-routes.html",
+    "./pre-california/segment-hv-to-kc.html",
+    "./pre-california/segment-kc-to-glacier.html",
+    "./pre-california/glacier-guide.html",
+    "./pre-california/yellowstone-guide.html",
+    "./pre-california/segment-ys-to-sf.html",
+    "./pre-california/logistics-guide.html",
 ]
 
 # ── Output ───────────────────────────────────────────────────────
