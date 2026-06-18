@@ -293,7 +293,7 @@
         </div>
 
         <div class="logistics-strip">
-          <div class="ls-title">⚠️ Critical Timing & Stops · Day 5 Corridor (CO → UT)</div>
+          <div class="ls-title">⚠️ Critical Timing & Route Logistics · Day 5 Corridor (CO → UT)</div>
           <div class="ls-grid">
             <div class="ls-card">
               <div class="ls-type food">🍽️ Fuel + Food</div>
@@ -301,9 +301,14 @@
               <div class="ls-note">Depart Denver early (6–7 AM) to have maximum daylight for the scenic drive. Coffee and breakfast before leaving Denver proper.</div>
             </div>
             <div class="ls-card">
+              <div class="ls-type shower">🚿 Shower + Rest Stop</div>
+              <div class="ls-name">Pilot Flying J · Green River, UT ⭐</div>
+              <div class="ls-note">I-70 Exit 164 · 1085 E Main St, Green River, UT 84525 · $15 shower · 30 min stop · Coordinates: 38.996, -110.149</div>
+            </div>
+            <div class="ls-card">
               <div class="ls-type rest">⏰ Critical Timing</div>
               <div class="ls-name">Glenwood Springs Golden Hour — 6–7:30 PM</div>
-              <div class="ls-note">This timing is NOT optional. The 1.93M Instagram views happen because people arrive at sunset. Plan your entire day to arrive in Glenwood between 6–7:30 PM. Adjust earlier stops if needed to hit this window.</div>
+              <div class="ls-note">This timing is NOT optional. The 1.93M Instagram views happen because people arrive at sunset. Plan your entire day to arrive in Glenwood between 6–7:30 PM. Adjust earlier stops if needed to hit this window. DINNER TIMING: Arrive by 7 PM latest.</div>
             </div>
             <div class="ls-card">
               <div class="ls-type rest">🛌 Overnight</div>
@@ -738,20 +743,19 @@ window.addEventListener('load', function(){
 
   mkMap('map-day5',[39.5,-106.5],7,[
     {lat:39.739,lng:-104.990,num:'1',name:'Denver, CO · Start',type:'ut'},
-    {lat:38.950,lng:-104.820,num:'',name:'I-25 Corridor Entry',note:'Colorado Springs gateway · drive past'},
-    {lat:38.850,lng:-104.950,num:'',name:'Pike\'s Peak Gateway',note:'High elevation approach · drive past'},
-    {lat:38.840,lng:-104.895,num:'2',name:'Manitou Springs, CO',note:'867K views · highest per-reel engagement',type:'ut'},
-    {lat:38.860,lng:-104.910,num:'',name:'Manitou Lake, CO',note:'Optional scenic stop · drive past'},
-    {lat:38.882,lng:-105.095,num:'3',name:'Woodland Park, CO',note:'881K views · mountain town corridor',type:'ut'},
-    {lat:39.191,lng:-106.818,num:'4',name:'Aspen, CO',note:'3.45M views · mountain luxury town',type:'ut'},
-    {lat:39.250,lng:-106.930,num:'',name:'Maroon Bells Area',note:'Iconic peaks · drive past'},
-    {lat:39.078,lng:-106.543,num:'',name:'Independence Pass',note:'Alpine high point · drive past'},
-    {lat:39.194,lng:-106.383,num:'5',name:'Mt. Massive Scenic',note:'9.26M views · VIRAL engagement peak',type:'ut'},
-    {lat:39.080,lng:-106.350,num:'',name:'Mt. Columbia Area',note:'Optional scenic drive · drive past'},
-    {lat:38.950,lng:-106.150,num:'',name:'Chalk Creek Corridor',note:'Scenic corridor · drive past'},
-    {lat:39.552,lng:-107.325,num:'6',name:'Glenwood Springs',note:'1.93M views · GOLDEN HOUR 6-7:30 PM',type:'ut'},
-    {lat:39.568,lng:-107.285,num:'',name:'Glenwood Canyon',note:'River gorge · final scenic approach · drive past'},
-    {lat:40.669,lng:-110.633,num:'7',name:'Echo Canyon Rest Area',note:'Sleep location · 47 min to Homestead',type:'ut'}
+    {lat:38.950,lng:-104.820,num:'',name:'I-25 Corridor Entry',note:'Colorado Springs gateway · DRIVE PAST'},
+    {lat:38.850,lng:-104.950,num:'',name:'Pike\'s Peak Gateway',note:'High elevation approach · DRIVE PAST'},
+    {lat:38.840,lng:-104.895,num:'2',name:'Manitou Springs, CO · STOP',note:'867K views · HIGHEST per-reel engagement · 30-45 min',type:'ut'},
+    {lat:38.860,lng:-104.910,num:'',name:'Manitou Lake, CO',note:'Optional scenic stop · DRIVE PAST'},
+    {lat:38.882,lng:-105.095,num:'3',name:'Woodland Park, CO · STOP',note:'881K views · mountain town corridor · 45-60 min',type:'ut'},
+    {lat:39.194,lng:-106.383,num:'4',name:'Mt. Massive Scenic · STOP',note:'9.26M views · VIRAL peak · 45-60 min turnouts',type:'ut'},
+    {lat:39.078,lng:-106.543,num:'',name:'Independence Pass',note:'Alpine pass 12,095 ft · DRIVE PAST'},
+    {lat:39.191,lng:-106.818,num:'5',name:'Aspen, CO · STOP',note:'3.45M views · mountain town lunch · 1-2 hours',type:'ut'},
+    {lat:39.250,lng:-106.930,num:'',name:'Maroon Bells Area',note:'Iconic peaks · DRIVE PAST'},
+    {lat:39.552,lng:-107.325,num:'6',name:'Glenwood Springs · STOP',note:'1.93M views · GOLDEN HOUR 6-7:30 PM · 45-90 min',type:'ut'},
+    {lat:39.568,lng:-107.285,num:'',name:'Glenwood Canyon',note:'River gorge · final scenic corridor · DRIVE PAST'},
+    {lat:38.996,lng:-110.149,num:'',name:'Pilot Flying J · Green River UT',note:'I-70 Exit 164 · Shower/Rest stop · 30 min',type:'ut'},
+    {lat:39.52,lng:-110.91,num:'7',name:'Eagle Canyon Rest Area · SLEEP',note:'I-70 MP 117 · 3 hours to Homestead',type:'ut'}
   ],true);
 
   mkMap('map-day6',[40.9,-113.0],6,[
