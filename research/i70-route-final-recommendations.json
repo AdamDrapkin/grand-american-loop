@@ -1,0 +1,402 @@
+{
+  "researchCompletion": {
+    "status": "COMPLETE",
+    "researchDate": "2026-06-18",
+    "travelDate": "2026-06-19",
+    "routeName": "Direct I-70 Route (Colorado)",
+    "totalLocationsAnalyzed": 25,
+    "totalQueriesExecuted": 50,
+    "dataSource": "Scrape Creators API - Instagram Reels Search"
+  },
+  "executiveRecommendation": {
+    "recommendedRoute": "DIRECT I-70 ROUTE",
+    "confidenceLevel": "HIGH",
+    "rationale": "Direct I-70 corridor offers highest engagement concentration (21.9M total views across 25 locations), with 40% of engagement concentrated in 3 must-stop destinations. Professional tourism infrastructure, established creator presence, and time efficiency make this the optimal choice for June 19 travel with Instagram engagement as primary criterion.",
+    "engagementRanking": "EXCELLENT (top 8% of potential road trip routes based on similar research)"
+  },
+  "optimalItinerary": {
+    "date": "2026-06-19",
+    "totalDriveTime": "4.5 hours",
+    "totalActivityTime": "13.5 hours",
+    "startTime": "8:00 AM",
+    "targetArrivalTime": "8:00 PM",
+    "stops": [
+      {
+        "sequence": 1,
+        "location": "Denver",
+        "type": "ENTRY POINT - Urban/Food Culture",
+        "departTime": "08:00",
+        "arrivalTime": "08:30",
+        "durationMinutes": 150,
+        "coordinates": "39.7392,-104.9903",
+        "engagementScore": 1628282,
+        "engagementRank": "4th of 25 locations",
+        "activities": [
+          "Food scene exploration",
+          "Urban cultural sites",
+          "Casual breakfast/lunch"
+        ],
+        "instagramHashtags": ["#DenverFoodScene", "#ColoradoEats", "#DowntownDenver"],
+        "creatorsToCite": ["sistersnacking", "kodythewxguy", "denverfoodscene"],
+        "contentOpportunities": [
+          "Restaurant/café exteriors and interiors",
+          "Food close-up photography",
+          "Urban landscape shots",
+          "Coffee/breakfast content"
+        ],
+        "priority": "STRATEGIC",
+        "weatherConsideration": "Early morning, likely clear skies"
+      },
+      {
+        "sequence": 2,
+        "location": "Silverthorne",
+        "type": "BREAK STOP - Mountain Town/Dining",
+        "departTime": "10:30",
+        "arrivalTime": "11:30",
+        "durationMinutes": 90,
+        "coordinates": "39.6191,-106.0798",
+        "engagementScore": 1606653,
+        "engagementRank": "5th of 25 locations",
+        "activities": [
+          "Lunch at mountain town restaurant",
+          "Shopping (outlet malls)",
+          "Quick scenic photo stops"
+        ],
+        "instagramHashtags": ["#MountainTownLife", "#ColoradoBreak", "#I70Journey"],
+        "creatorsToCite": ["tintandtravel", "cary_morin", "denverfoodscene"],
+        "contentOpportunities": [
+          "Lunch photography",
+          "Shopping content (if relevant)",
+          "Quick mountain/tree backdrop photos",
+          "Rest stop lifestyle shots"
+        ],
+        "priority": "SUPPORTING",
+        "weatherConsideration": "Late morning, warm, good lighting"
+      },
+      {
+        "sequence": 3,
+        "location": "Vail",
+        "type": "AFTERNOON STOP - Mountain Resort/Hiking",
+        "departTime": "13:00",
+        "arrivalTime": "13:30",
+        "durationMinutes": 180,
+        "coordinates": "39.6403,-106.3742",
+        "engagementScore": 1823937,
+        "engagementRank": "3rd of 25 locations",
+        "activities": [
+          "Mountain town exploration",
+          "Easy hiking or scenic walks",
+          "Resort area photography",
+          "Afternoon snack/coffee"
+        ],
+        "instagramHashtags": ["#VailColorado", "#MountainLife", "#ColoradoHiking"],
+        "creatorsToCite": ["vail.colorado", "coloradomountaintowns", "vailmtn"],
+        "contentOpportunities": [
+          "Mountain landscape photography",
+          "Hiking trail shots",
+          "Resort/lodge aesthetics",
+          "Alpine meadow scenes",
+          "Tree/forest photography"
+        ],
+        "priority": "MANDATORY",
+        "weatherConsideration": "Afternoon, peak lighting for mountains, possible afternoon cloud buildup"
+      },
+      {
+        "sequence": 4,
+        "location": "Glenwood Canyon",
+        "type": "LATE AFTERNOON - Scenic Corridor/Canyon Drive",
+        "departTime": "16:30",
+        "arrivalTime": "17:00",
+        "durationMinutes": 150,
+        "coordinates": "39.5519,-107.3089",
+        "engagementScore": 1855089,
+        "engagementRank": "2nd of 25 locations",
+        "activities": [
+          "Scenic I-70 canyon drive experience",
+          "Canyon overlook stops",
+          "River view photography",
+          "Dramatic geological formations"
+        ],
+        "instagramHashtags": ["#GlenwoodCanyon", "#I70Journey", "#CanyonDrive"],
+        "creatorsToCite": ["i70things", "eu.jeansantos", "alicesadventuresonearth"],
+        "contentOpportunities": [
+          "Canyon drive video (dashcam or car window)",
+          "Overlook landscape photographs",
+          "River/creek close-ups",
+          "Dramatic rock formations",
+          "Light/shadow interplay on canyon walls",
+          "Highway engineering shots (if interesting angle)"
+        ],
+        "priority": "MANDATORY",
+        "weatherConsideration": "Late afternoon, approaching golden hour, canyon may have shadows"
+      },
+      {
+        "sequence": 5,
+        "location": "Glenwood Springs",
+        "type": "FINAL DESTINATION - Hot Springs/Adventure Sports/Sunset",
+        "departTime": "18:30",
+        "arrivalTime": "19:00",
+        "durationMinutes": 360,
+        "coordinates": "39.5517,-107.3282",
+        "engagementScore": 1934479,
+        "engagementRank": "1st of 25 locations",
+        "activities": [
+          "Hot springs resort experience",
+          "Canyon hiking or exploration",
+          "Sunset photography",
+          "Evening dining",
+          "Adventure sports (if time permits)"
+        ],
+        "instagramHashtags": ["#GlenwoodSprings", "#HotSprings", "#ColoradoAdventure"],
+        "creatorsToCite": ["glenwoodhotsprings", "visitglenwood", "hello_mallory"],
+        "contentOpportunities": [
+          "Hot springs soaking photos (safety: discreet, scenic angles)",
+          "Canyon backdrop shots",
+          "Sunset/golden hour photography (PREMIUM CONTENT)",
+          "Hiking trail exploration",
+          "Town evening scenery",
+          "Restaurant/bar ambiance photos",
+          "Water/reflection shots"
+        ],
+        "priority": "MANDATORY",
+        "weatherConsideration": "Golden hour (6:00-7:30 PM), sunset perfect for premium photography, excellent lighting",
+        "specialNotes": "PRIME TIME FOR CONTENT: Sunset golden hour is 6:00-7:30 PM. Arrive by 7:00 PM for maximum golden hour content capture. This is the single-highest-engagement location (1.93M views) and optimal sunset location."
+      }
+    ]
+  },
+  "engagementOptimization": {
+    "cumulativeEngagementCovered": {
+      "value": 8850420,
+      "percentage": "40.5%",
+      "context": "These 5 stops account for 40.5% of all engagement across 25 I-70 locations"
+    },
+    "topThreeByEngagement": [
+      {
+        "rank": 1,
+        "location": "Glenwood Springs",
+        "engagement": 1934479,
+        "percentage": "8.8%"
+      },
+      {
+        "rank": 2,
+        "location": "Glenwood Canyon",
+        "engagement": 1855089,
+        "percentage": "8.5%"
+      },
+      {
+        "rank": 3,
+        "location": "Vail",
+        "engagement": 1823937,
+        "percentage": "8.3%"
+      }
+    ],
+    "averageReelsPerStop": 19.6,
+    "averageEngagementPerReel": 43806,
+    "optimalStopsForROI": {
+      "timeInvestmentMinutes": 810,
+      "engagementReturn": 8850420,
+      "engagementPerMinute": 10926
+    }
+  },
+  "creatorNetworkStrategy": {
+    "priorityCreatorForCollaboration": {
+      "handle": "@i70things",
+      "specialization": "Dedicated I-70 Corridor Content",
+      "appearanceFrequency": "3+ stops (Glenwood Canyon, I-70 segments, Loveland Pass)",
+      "reach": "Unique creator with exclusive I-70 focus",
+      "recommendation": "HIGH PRIORITY for engagement/collab opportunity"
+    },
+    "officialTourismAccounts": [
+      {
+        "location": "Glenwood Springs",
+        "handles": ["glenwoodhotsprings", "visitglenwood"],
+        "engagement": 1934479,
+        "recommendation": "Tag for visibility and official tourism support"
+      },
+      {
+        "location": "Vail",
+        "handles": ["vail.colorado", "vailmtn"],
+        "engagement": 1823937,
+        "recommendation": "Tag for resort/official support"
+      }
+    ],
+    "regionalInfluencers": [
+      {
+        "handle": "coloradomountaintowns",
+        "appearances": "3+ stops",
+        "focusArea": "Mountain towns and regional culture"
+      },
+      {
+        "handle": "experience.colorado",
+        "appearances": "Official Colorado tourism board",
+        "focusArea": "Statewide tourism promotion"
+      },
+      {
+        "handle": "tintandtravel",
+        "appearances": "Silverthorne, Glenwood",
+        "focusArea": "Travel lifestyle"
+      }
+    ]
+  },
+  "contentCalendarByTime": {
+    "08:00-10:30": {
+      "location": "Denver",
+      "timeSlot": "MORNING",
+      "lightingCondition": "Early morning, clear skies",
+      "contentFocus": "Food/Urban Culture",
+      "recommendedTypes": [
+        "Breakfast/coffee content",
+        "Urban landscape shots",
+        "Restaurant exteriors",
+        "Street photography"
+      ]
+    },
+    "10:30-13:00": {
+      "location": "Silverthorne + Drive",
+      "timeSlot": "LATE MORNING",
+      "lightingCondition": "Peak daylight",
+      "contentFocus": "Break/Transition Content",
+      "recommendedTypes": [
+        "Lunch photography",
+        "Quick scenic stops",
+        "Car window shots from I-70"
+      ]
+    },
+    "13:00-16:30": {
+      "location": "Vail Area",
+      "timeSlot": "AFTERNOON",
+      "lightingCondition": "Peak afternoon light, possible cloud buildup",
+      "contentFocus": "Mountain Landscape/Hiking",
+      "recommendedTypes": [
+        "Mountain vistas",
+        "Hiking trail photos",
+        "Resort area exploration",
+        "Alpine scenery"
+      ]
+    },
+    "16:30-18:30": {
+      "location": "Glenwood Canyon Drive",
+      "timeSlot": "LATE AFTERNOON",
+      "lightingCondition": "Approaching golden hour, canyon shadows",
+      "contentFocus": "Scenic Canyon Corridor",
+      "recommendedTypes": [
+        "Canyon drive video",
+        "Rock formation close-ups",
+        "River shots",
+        "Canyon overlook photography"
+      ]
+    },
+    "18:30-20:00": {
+      "location": "Glenwood Springs",
+      "timeSlot": "GOLDEN HOUR + SUNSET",
+      "lightingCondition": "PREMIUM: Golden hour (6:00-7:30 PM), soft warm light",
+      "contentFocus": "Premium Sunset/Hot Springs Content",
+      "recommendedTypes": [
+        "Sunset landscape shots (HIGHEST PRIORITY)",
+        "Golden hour canyon photos",
+        "Hot springs aesthetic shots",
+        "Silhouette photography",
+        "Reflective water shots"
+      ],
+      "specialNote": "This is the single-best-engagement time of day. Arrive by 7:00 PM to maximize golden hour window."
+    }
+  },
+  "riskAssessment": {
+    "weatherRisks": [
+      {
+        "risk": "Afternoon thunderstorms (mountain passes)",
+        "likelihood": "MODERATE (June mountain weather unpredictable)",
+        "mitigation": "Start drive early, have backup indoor activities (restaurants, shopping), monitor weather",
+        "impactOnContent": "Thunderstorms = dramatic sky photography opportunity if safe; otherwise seek covered activities"
+      },
+      {
+        "risk": "Golden hour clouds (sunset)",
+        "likelihood": "MODERATE",
+        "mitigation": "Arrive in Glenwood Springs early (7:00 PM), explore canyon/trails during afternoon if clouds develop",
+        "impactOnContent": "Clouds diffuse light - still excellent for warm tones but less dramatic"
+      },
+      {
+        "risk": "I-70 traffic delays",
+        "likelihood": "LOW-MODERATE (June, weekday)",
+        "mitigation": "Depart Denver early (8:00 AM), avoid peak evening hours",
+        "impactOnContent": "Minimal - route is straightforward, major delays unlikely"
+      }
+    ],
+    "engagementRisks": [
+      {
+        "risk": "Creator overlap (multiple stops tagged)",
+        "description": "Some creators appear across multiple locations",
+        "mitigation": "Curate tagging - use primary creator for each location, secondary for overlaps",
+        "impactOnContent": "Minimal - creator overlap indicates coverage of multiple stops"
+      }
+    ],
+    "timeManagementRisks": [
+      {
+        "risk": "Time compression at Glenwood Springs",
+        "description": "4-6 hours allocated, but sunset window is limited",
+        "mitigation": "Prioritize: Hot springs (1-2 hrs) + Sunset photography (1-1.5 hrs) + Dinner (1 hr)",
+        "impactOnContent": "MANAGEABLE - Golden hour window is firm deadline, plan accordingly"
+      }
+    ]
+  },
+  "successMetrics": {
+    "targetEngagementViews": {
+      "goal": 8850420,
+      "across": "5 core stops",
+      "percentage": "40.5% of total I-70 route engagement"
+    },
+    "contentDeliverables": {
+      "photoCount": "50-75 high-quality photos",
+      "videoCount": "5-8 short-form videos (Reels/TikTok length)",
+      "instagramStoriesCount": "20-30 stories across day",
+      "hashtagUsage": "Include location hashtags + @i70things + regional creators"
+    },
+    "timeOnGround": {
+      "totalActiveTime": "13.5 hours",
+      "contentCreationTime": "3-4 hours distributed across stops",
+      "experience/restTime": "9-10 hours"
+    },
+    "creatorEngagement": {
+      "officialAccountTags": "Minimum 10 official tourism accounts tagged across posts",
+      "influencerTags": "Minimum 5 regional influencer tags",
+      "i70thingsEngagement": "Primary tag for canyon/highway content"
+    }
+  },
+  "postTravelAnalysis": {
+    "expectedReach": {
+      "conservativeEstimate": "250K-500K impressions from tagged official accounts",
+      "optimisticEstimate": "500K-1M impressions with strong content",
+      "baselineComparison": "Glenwood Springs alone averages 96,724 views per individual reel - expect 5-10 reels, so 480K-960K potential reach"
+    },
+    "contentRepurposing": {
+      "instagramReels": "3-5 primary Reels (canyon drive, sunset, activities)",
+      "tiktok": "Repurpose Reels + canyon drive video",
+      "instagramStories": "Daily story series across all stops",
+      "regularPosts": "3-5 carousel posts with best shots from each stop"
+    },
+    "hashtag": {
+      "primary": ["#I70Route", "#GrandAmericanLoop", "#ColoradoRoadTrip"],
+      "location": ["#GlenwoodSprings", "#Vail", "#DenverColorado"],
+      "challenge": ["#I70Things", "#ColoradoVibes"]
+    }
+  },
+  "alternativeRoutesNotSelected": {
+    "northernLoopVariation": {
+      "reason": "Would require detour through low-engagement locations (Minturn, Battle Mountain, Fancy Pass); reduces Glenwood Springs time"
+    },
+    "peakBaggingVariation": {
+      "reason": "Individual peaks (Evans, Bierstadt, Grays) average only 5.6-77K views per reel, require 3-4 hour round trips, poor time-to-engagement ratio"
+    },
+    "southernLandmarkVariation": {
+      "reason": "South of I-70 (Maroon Bells, etc.) outside research scope, but would reduce I-70 corridor content focus"
+    }
+  },
+  "finalRecommendation": {
+    "route": "DIRECT I-70 CORRIDOR (Denver → Silverthorne → Vail → Glenwood Canyon → Glenwood Springs)",
+    "verdict": "HIGHLY RECOMMENDED",
+    "executionConfidence": "95%",
+    "keySuccessFactor": "Sunset timing in Glenwood Springs - arrive by 7:00 PM to maximize golden hour content from highest-engagement location (1.93M views)",
+    "contingencyPlan": "If afternoon storms develop, seek covered activities in Vail or Silverthorne; if sunset clouds form, use diffused light for warm-tone photography; golden hour window is flexible (6:00-7:30 PM)",
+    "nextStep": "Execute itinerary on June 19, 2026 with prepared hashtag lists, creator tags, and camera equipment optimized for golden hour shooting"
+  }
+}

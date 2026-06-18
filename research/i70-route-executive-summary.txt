@@ -1,0 +1,169 @@
+DIRECT I-70 ROUTE: INSTAGRAM ENGAGEMENT RESEARCH SUMMARY
+=========================================================
+Research Date: June 18, 2026
+Travel Date: June 19, 2026
+Locations Analyzed: 25 stops across Colorado I-70 corridor
+Total Queries: 50 (2 per location)
+Data Source: Scrape Creators API - Instagram Reels Search
+
+CRITICAL FINDINGS FOR GRAND AMERICAN LOOP ROUTE SELECTION
+===========================================================
+
+TOTAL ENGAGEMENT METRICS:
+  - Total Reels Found: 480
+  - Total View Impressions: 21,868,296
+  - Average Views per Location: 874,732
+  - Average Reels per Location: 19
+
+TOP 5 HIGHEST-ENGAGEMENT DESTINATIONS:
+
+1. GLENWOOD SPRINGS
+   Engagement Score: 1,934,479 views
+   Total Reels: 20
+   Avg per Reel: 96,724 views
+   Max Single Reel: 618,816 views
+   Top Creators: glenwoodhotsprings, visitglenwood, hello_mallory
+   Content Focus: Hot springs, adventure sports, canyon recreation
+   Recommendation: MUST-STOP (4-6 hours minimum)
+
+2. GLENWOOD CANYON
+   Engagement Score: 1,855,089 views
+   Total Reels: 20
+   Avg per Reel: 92,754 views
+   Max Single Reel: 572,495 views
+   Top Creators: eu.jeansantos, alicesadventuresonearth, i70things
+   Content Focus: Scenic canyon drives, dramatic geology, river activities
+   Recommendation: MUST-STOP (drive + 2 hour exploration)
+
+3. VAIL
+   Engagement Score: 1,823,937 views
+   Total Reels: 20
+   Avg per Reel: 91,197 views
+   Max Single Reel: 799,543 views
+   Top Creators: coloradomountaintowns, vail.colorado, vailmtn
+   Content Focus: Mountain lifestyle, hiking, resort amenities
+   Recommendation: PRIORITY STOP (3-4 hours)
+
+4. DENVER
+   Engagement Score: 1,628,282 views
+   Total Reels: 20
+   Avg per Reel: 81,414 views
+   Max Single Reel: 640,004 views
+   Top Creators: sistersnacking, kodythewxguy, midnight_tyrannosaurus
+   Content Focus: Food culture, urban exploration, cultural activities
+   Recommendation: STRATEGIC STOP (2-3 hours for curated experiences)
+
+5. SILVERTHORNE
+   Engagement Score: 1,606,653 views
+   Total Reels: 20
+   Avg per Reel: 80,333 views
+   Max Single Reel: 867,375 views
+   Top Creators: tintandtravel, cary_morin, denverfoodscene
+   Content Focus: Mountain town lifestyle, dining, shopping
+   Recommendation: GOOD BREAK STOP (1-2 hours)
+
+HIGHWAY-SPECIFIC FINDINGS:
+
+I-70 Vail to Glenwood Segment:
+  - 20 reels, 1,286,283 total views
+  - Avg 64,314 views per reel
+  - Dedicated highway content creators active (@i70things, @eu.jeansantos)
+  - Strong scenic corridor for driving content
+
+I-70 Denver to Vail Segment:
+  - 10 reels, 1,152,069 total views
+  - Avg 115,207 views per reel (HIGHEST avg per reel on route!)
+  - @mountainrecovery, @experience.colorado, @templetontravels active
+  - Lower reel count but higher per-reel engagement
+
+SECONDARY TIER (Good additions if time allows):
+  - Breckenridge: 1,005,900 views (ski resort summer activities)
+  - Keystone: 995,719 views (resort recreation)
+  - Frisco: 888,006 views (mountain town charm)
+  - Dillon/Dillon Reservoir: 1,551,979 views combined (lake recreation)
+
+NOT RECOMMENDED (Low engagement, time-intensive):
+  - Individual mountain peaks (Mt. Evans, Mt. Bierstadt, Mt. Grays, Mt. Torreys, Mt. Sherman)
+    Reason: 112K-153K views each, require 2-3+ hour round trips, minimal Instagram advantage
+
+  - Remote passes (Fancy Pass, Red Cliff, Minturn, Battle Mountain, Loveland Pass)
+    Reason: 37K-489K views each, limited June activities, sparse creator presence
+
+ROUTE ENGAGEMENT PATTERN ANALYSIS:
+
+The Direct I-70 Route shows strong engagement CONCENTRATION in 3-4 major zones:
+
+  ZONE 1: Denver Metro Area (1.6M views)
+    - Starting point with urban content appeal
+    - Food/culture focus for morning departure
+
+  ZONE 2: Mountain Resort Corridor (Silverthorne/Dillon/Keystone/Breckenridge cluster)
+    - 3-4 M views combined
+    - Summer activities, lake recreation
+    - Convenient I-70 corridor stops
+
+  ZONE 3: Western I-70 (Vail/Glenwood/Glenwood Canyon)
+    - 5.5M+ views across 3 locations
+    - HIGHEST concentration of engagement on entire route
+    - Professional tourism infrastructure
+    - Best content creators (dedicated I-70 personalities)
+
+CREATOR ECOSYSTEM INSIGHTS:
+
+Key Recurring Creators Across Multiple Locations:
+  @i70things - Appears 3+ times, DEDICATED I-70 content specialist
+  @coloradomountaintowns - Regional expertise, multiple stops
+  @experience.colorado - Official Colorado tourism voice
+  @eu.jeansantos - High-engagement scenic travel content
+
+Partnership Opportunities:
+  - Glenwood Springs Tourism Board (established social accounts)
+  - Vail Mountain Resorts (official channels)
+  - Colorado Travel Board (statewide reach)
+
+INSTAGRAM CONTENT STRATEGY RECOMMENDATIONS:
+
+For June 19 Travel Day:
+
+ESSENTIAL STOPS (non-negotiable):
+1. Glenwood Springs (1.93M engagement potential)
+   - Hot springs visit + hiking + sunset canyon photo
+   - Tag: @glenwoodhotsprings, @visitglenwood
+
+2. Glenwood Canyon (1.86M engagement potential)
+   - Scenic drive + river views + dramatic lighting
+   - Tag: @i70things, @eu.jeansantos
+
+3. Vail Area (1.82M engagement potential)
+   - Mountain landscape photography
+   - Tag: @vail.colorado, @coloradomountaintowns
+
+OPTIONAL ADDITIONS (time-permitting):
+4. Silverthorne Break (1.61M engagement potential)
+   - Lunch/shopping content
+   - Tag: @tintandtravel
+
+5. Denver Food Scene (1.63M engagement potential)
+   - If time allows for morning departure
+   - Tag: @sistersnacking, @denverfoodscene
+
+ROUTE VERDICT FOR INSTAGRAM ENGAGEMENT:
+
+RANKING: EXCELLENT
+- Top 3 locations average 91,706 views per reel
+- Established creator presence across entire corridor
+- Professional tourism infrastructure (easy content creation)
+- Multiple activity types (adventure + leisure + food)
+- Highway segments themselves have dedicated content creators
+
+COMPARISON NOTE:
+The I-70 corridor shows concentrated high-engagement potential in 3-4 major zones, making it efficiently optimizable for an Instagram-first road trip. The concentration at the western end (Glenwood/Vail region) suggests June 19 travel should prioritize reaching and spending quality time in this zone.
+
+June 2026 timing note: Peak tourism season not yet in full swing (peak summer = July-August), suggesting June 19 offers excellent opportunity for crowd-avoiding scenic content while engagement audiences remain substantial.
+
+======================================================================
+Data Collection Complete
+Total API Queries Executed: 50
+API Rate Limits: Respected (0.4s between requests)
+Engagement Data: Current as of June 18, 2026 15:41 UTC
+======================================================================

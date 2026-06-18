@@ -1,0 +1,442 @@
+{
+  "researchMetadata": {
+    "routeName": "Direct I-70 Route (Colorado)",
+    "travelDate": "2026-06-19",
+    "researchTimestamp": "2026-06-18T15:41:02.609Z",
+    "methodology": "Instagram Reels search via Scrape Creators API",
+    "locations": 25,
+    "queriesPerLocation": 2,
+    "totalQueries": 50
+  },
+  "executiveSummary": {
+    "totalReelsFound": 480,
+    "totalEngagementViews": 21868296,
+    "averageReelsPerLocation": 19,
+    "averageViewsPerLocation": 874732,
+    "topTierLocations": [
+      "Glenwood Springs (1.93M views)",
+      "Glenwood Canyon (1.86M views)",
+      "Vail (1.82M views)",
+      "Denver (1.63M views)",
+      "Silverthorne (1.61M views)"
+    ],
+    "keyFindings": [
+      "Western I-70 corridor (Glenwood Springs/Canyon/Vail) dominates Instagram engagement",
+      "Denver metropolitan area shows strong secondary engagement",
+      "Mountain peaks (Evans, Bierstadt, Grays) have moderate but consistent content",
+      "Highway-specific queries (I-70 X) often outperform location-name-only searches",
+      "Niche destinations (Minturn, Battle Mountain) have minimal but devoted creator communities"
+    ]
+  },
+  "engagementRankings": [
+    {
+      "rank": 1,
+      "location": "Glenwood Springs",
+      "totalReels": 20,
+      "totalEngagementViews": 1934479,
+      "averageViewsPerReel": 96724,
+      "maxSingleReelViews": 618816,
+      "topCreators": [
+        "glenwoodhotsprings (official)",
+        "visitglenwood (tourism)",
+        "hello_mallory (travel personality)"
+      ],
+      "contentType": "Hot springs, canyons, resort lifestyle, adventure sports",
+      "searchVariations": [
+        "Glenwood Springs Colorado - 10 reels",
+        "Glenwood Springs I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 2,
+      "location": "Glenwood Canyon",
+      "totalReels": 20,
+      "totalEngagementViews": 1855089,
+      "averageViewsPerReel": 92754,
+      "maxSingleReelViews": 572495,
+      "topCreators": [
+        "eu.jeansantos (scenic travel)",
+        "alicesadventuresonearth (adventure content)",
+        "i70things (dedicated I-70 creator)"
+      ],
+      "contentType": "Scenic canyon drives, river views, dramatic geology, highway vistas",
+      "searchVariations": [
+        "Glenwood Canyon Colorado - 10 reels",
+        "Glenwood Canyon I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 3,
+      "location": "Vail",
+      "totalReels": 20,
+      "totalEngagementViews": 1823937,
+      "averageViewsPerReel": 91197,
+      "maxSingleReelViews": 799543,
+      "topCreators": [
+        "coloradomountaintowns (regional tourism)",
+        "vail.colorado (official destination)",
+        "vailmtn (ski resort official)"
+      ],
+      "contentType": "Skiing, mountain lifestyle, resort amenities, summer activities, scenic vistas",
+      "searchVariations": [
+        "Vail Colorado - 10 reels",
+        "Vail I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 4,
+      "location": "Denver",
+      "totalReels": 20,
+      "totalEngagementViews": 1628282,
+      "averageViewsPerReel": 81414,
+      "maxSingleReelViews": 640004,
+      "topCreators": [
+        "sistersnacking (food/lifestyle)",
+        "kodythewxguy (meteorologist personality)",
+        "midnight_tyrannosaurus (general Colorado content)"
+      ],
+      "contentType": "Urban exploration, food scene, cultural activities, music, nightlife",
+      "searchVariations": [
+        "Denver Colorado - 10 reels",
+        "Denver I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 5,
+      "location": "Silverthorne",
+      "totalReels": 20,
+      "totalEngagementViews": 1606653,
+      "averageViewsPerReel": 80333,
+      "maxSingleReelViews": 867375,
+      "topCreators": [
+        "tintandtravel (travel lifestyle)",
+        "cary_morin (personality)",
+        "denverfoodscene (food culture)"
+      ],
+      "contentType": "Mountain town life, shopping, dining, outdoor activities, scenic drives",
+      "searchVariations": [
+        "Silverthorne Colorado - 10 reels",
+        "Silverthorne I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 6,
+      "location": "Dillon",
+      "totalReels": 20,
+      "totalEngagementViews": 1551979,
+      "averageViewsPerReel": 77599,
+      "maxSingleReelViews": 867375,
+      "topCreators": [
+        "9newsdenver (local news)",
+        "thomasmiller2393 (personality)",
+        "everythingcoloradoco (regional content)"
+      ],
+      "contentType": "Lake recreation, mountain activities, scenic overlooks, outdoor sports",
+      "searchVariations": [
+        "Dillon Colorado - 10 reels",
+        "Dillon I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 7,
+      "location": "Mt. Evans",
+      "totalReels": 20,
+      "totalEngagementViews": 1545852,
+      "averageViewsPerReel": 77293,
+      "maxSingleReelViews": 375096,
+      "topCreators": [
+        "fillmysoulwithadventure (adventure seeker)",
+        "hiddenplacesinamerica (discovery content)",
+        "therealcityofdenver (Denver perspective)"
+      ],
+      "contentType": "High-altitude peak, scenic vistas, wildlife, alpine ecology, climbing",
+      "searchVariations": [
+        "Mt. Evans Colorado - 10 reels",
+        "Mt. Evans I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 8,
+      "location": "Eisenhower Tunnel",
+      "totalReels": 20,
+      "totalEngagementViews": 1382648,
+      "averageViewsPerReel": 69132,
+      "maxSingleReelViews": 288575,
+      "topCreators": [
+        "debrawtx (travel vlogger)",
+        "coloradobusinessfinder (local business coverage)",
+        "littleradadventure (adventure family content)"
+      ],
+      "contentType": "Tunnel engineering, highway driving, scenic mountain transitions",
+      "searchVariations": [
+        "Eisenhower Tunnel Colorado - 10 reels",
+        "Eisenhower Tunnel I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 9,
+      "location": "I-70 Vail to Glenwood segment",
+      "totalReels": 20,
+      "totalEngagementViews": 1286283,
+      "averageViewsPerReel": 64314,
+      "maxSingleReelViews": 288575,
+      "topCreators": [
+        "pjgtravels (road trip specialist)",
+        "eu.jeansantos (scenic travel)",
+        "i70things (dedicated I-70 creator)"
+      ],
+      "contentType": "Highway driving experience, scenic transitions, mountain passes",
+      "searchVariations": [
+        "I-70 Vail to Glenwood Colorado - 10 reels",
+        "I-70 Vail to Glenwood I-70 - 10 reels"
+      ]
+    },
+    {
+      "rank": 10,
+      "location": "I-70 Denver to Vail segment",
+      "totalReels": 10,
+      "totalEngagementViews": 1152069,
+      "averageViewsPerReel": 115207,
+      "maxSingleReelViews": 799543,
+      "topCreators": [
+        "mountainrecovery (lifestyle/recovery narrative)",
+        "experience.colorado (official Colorado content)",
+        "templetontravels (travel family)"
+      ],
+      "contentType": "Highway driving, mountain transitions, scenic corridors",
+      "searchVariations": [
+        "I-70 Denver to Vail Colorado - 5 reels",
+        "I-70 Denver to Vail I-70 - 5 reels"
+      ]
+    }
+  ],
+  "midTierLocations": [
+    {
+      "rank": 11,
+      "location": "Breckenridge",
+      "engagement": 1005900,
+      "avgViews": 50295,
+      "maxViews": 341856,
+      "topCreators": ["breckenridgemtn", "coloradomountaintowns", "sweatandtell"]
+    },
+    {
+      "rank": 12,
+      "location": "Keystone",
+      "engagement": 995719,
+      "avgViews": 49786,
+      "maxViews": 212868,
+      "topCreators": ["keystone_resort", "roamingrobert", "midwesthikesandhops"]
+    },
+    {
+      "rank": 13,
+      "location": "Frisco",
+      "engagement": 888006,
+      "avgViews": 44400,
+      "maxViews": 401136,
+      "topCreators": ["biancagexplorer", "jorge.public.adjuster", "hernanditozoficial"]
+    },
+    {
+      "rank": 14,
+      "location": "Dillon Reservoir",
+      "engagement": 728275,
+      "avgViews": 36414,
+      "maxViews": 361309,
+      "topCreators": ["9newsdenver", "denver_water", "photopoetjames"]
+    }
+  ],
+  "lowTierLocations": [
+    {
+      "rank": 15,
+      "location": "Fancy Pass",
+      "engagement": 489278,
+      "avgViews": 24464,
+      "maxViews": 175397,
+      "note": "Niche pass with dedicated outdoor enthusiasts"
+    },
+    {
+      "rank": 16,
+      "location": "Red Cliff",
+      "engagement": 361822,
+      "avgViews": 18091,
+      "maxViews": 205828,
+      "note": "Small mountain community, limited but consistent content"
+    },
+    {
+      "rank": 17,
+      "location": "Loveland Pass",
+      "engagement": 338823,
+      "avgViews": 16941,
+      "maxViews": 194430,
+      "note": "Scenic pass with strong I-70 driver engagement"
+    },
+    {
+      "rank": 18,
+      "location": "Copper Mountain",
+      "engagement": 276038,
+      "avgViews": 13802,
+      "maxViews": 54972,
+      "note": "Ski resort with seasonal content"
+    },
+    {
+      "rank": 19,
+      "location": "Battle Mountain",
+      "engagement": 259850,
+      "avgViews": 12993,
+      "maxViews": 191678,
+      "note": "Remote pass with outdoor activity focus"
+    },
+    {
+      "rank": 20,
+      "location": "Mt. Sherman",
+      "engagement": 169221,
+      "avgViews": 8461,
+      "maxViews": 62762,
+      "note": "Peak content for serious hikers only"
+    },
+    {
+      "rank": 21,
+      "location": "Mt. Torreys",
+      "engagement": 153650,
+      "avgViews": 7683,
+      "maxViews": 61924,
+      "note": "Twin peak to Grays, shared audience"
+    },
+    {
+      "rank": 22,
+      "location": "Arapaho Basin",
+      "engagement": 146313,
+      "avgViews": 7316,
+      "maxViews": 50230,
+      "note": "Ski area with niche winter sports content"
+    },
+    {
+      "rank": 23,
+      "location": "Mt. Grays",
+      "engagement": 138520,
+      "avgViews": 6926,
+      "maxViews": 61924,
+      "note": "Popular fourteener with consistent climbing content"
+    },
+    {
+      "rank": 24,
+      "location": "Mt. Bierstadt",
+      "engagement": 112301,
+      "avgViews": 5615,
+      "maxViews": 47568,
+      "note": "Most accessible fourteener, niche hiking audience"
+    },
+    {
+      "rank": 25,
+      "location": "Minturn",
+      "engagement": 37309,
+      "avgViews": 3731,
+      "maxViews": 14375,
+      "note": "Smallest community, minimal content (10 reels found)"
+    }
+  ],
+  "recommendationsForJuneItinerary": {
+    "highPriorityStops": [
+      {
+        "location": "Glenwood Springs",
+        "rationale": "Highest engagement (1.93M views). Official tourism presence. Multiple activity options (hot springs, hiking, river activities). Strong creator infrastructure.",
+        "recommendedDuration": "4-6 hours minimum",
+        "instagramContentOpportunities": "Hot springs soaking, canyon views, adventure sports, sunset photography"
+      },
+      {
+        "location": "Vail",
+        "rationale": "3rd highest engagement (1.82M views). Established resort infrastructure. June offers summer mountain activities before peak season. Premium dining and accommodations.",
+        "recommendedDuration": "3-4 hours",
+        "instagramContentOpportunities": "Mountain vistas, hiking trails, town exploration, luxury resort experiences"
+      },
+      {
+        "location": "Glenwood Canyon",
+        "rationale": "2nd highest engagement (1.86M views). Dramatically scenic. Direct I-70 corridor content creator favorite (@i70things, @eu.jeansantos). River activities available.",
+        "recommendedDuration": "1-2 hours driving experience + 2 hours activities",
+        "instagramContentOpportunities": "Canyon driving, river views, dramatic geology, scenic overlooks"
+      }
+    ],
+    "secondaryStops": [
+      {
+        "location": "Denver",
+        "rationale": "4th highest engagement (1.63M views). Strong food/culture scene in June. Starting point for the drive west on I-70.",
+        "recommendedDuration": "2-3 hours for curated experiences",
+        "instagramContentOpportunities": "Food culture, urban exploration, street art, music venues"
+      },
+      {
+        "location": "Silverthorne",
+        "rationale": "5th highest engagement (1.61M views). Convenient I-70 stop with shopping/dining. Lower altitude than surrounding peaks.",
+        "recommendedDuration": "1-2 hours for break/dining",
+        "instagramContentOpportunities": "Mountain town lifestyle, shopping, casual dining, scenic drive breaks"
+      },
+      {
+        "location": "Dillon/Dillon Reservoir",
+        "rationale": "6th and 14th highest engagement respectively. Lake recreation. Central Colorado location. Water activities in June.",
+        "recommendedDuration": "2-3 hours for activities",
+        "instagramContentOpportunities": "Lake recreation, mountain reflections, scenic drives, outdoor activities"
+      }
+    ],
+    "passesAndTunnels": [
+      {
+        "location": "Eisenhower Tunnel",
+        "note": "8th highest engagement (1.38M views). Engineering/driving content. Direct I-70 experience.",
+        "duration": "30 minutes traversal"
+      },
+      {
+        "location": "Loveland Pass",
+        "note": "17th engagement but scenic value. Alternative mountain pass with strong views.",
+        "duration": "1 hour for photos/exploration"
+      }
+    ],
+    "skipRecommendations": [
+      {
+        "location": "Minturn, Battle Mountain, Fancy Pass, Red Cliff",
+        "rationale": "Low engagement (37K-361K views each). Remote locations. Limited June activities. Content opportunities minimal compared to main corridor.",
+        "instagramValue": "Minimal - only for completionists"
+      },
+      {
+        "location": "Mt. Bierstadt, Mt. Grays, Mt. Torreys, Mt. Evans, Mt. Sherman",
+        "rationale": "While peaks show content (7-77K avg views), they require significant time commitment. June weather may limit summit attempts. Better content in established towns.",
+        "instagramValue": "Moderate but time-intensive. Only pursue if specifically interested in peak bagging."
+      }
+    ]
+  },
+  "creatorNetworkInsights": {
+    "topCreatorsByReachAcross25Locations": [
+      "@i70things - Dedicated I-70 corridor content creator, appears in Glenwood Canyon, I-70 segments, Loveland Pass. HIGH PRIORITY for interviews/collaboration.",
+      "@coloradomountaintowns - Regional mountain towns specialist, appears in Vail, Breckenridge, Minturn. Strong local knowledge.",
+      "@experience.colorado - Official Colorado tourism, appears in I-70 Denver to Vail segment. Authentic destination content.",
+      "9newsdenver - Local news outlet, appears in Dillon, Dillon Reservoir. Community-focused coverage."
+    ],
+    "keyPartnerships": [
+      "Glenwood Springs Tourism Board (glenwoodhotsprings, visitglenwood)",
+      "Vail Mountain Resorts (vailmtn, vail.colorado)",
+      "Colorado Travel & Tourism Board (experience.colorado)",
+      "Local news outlets (9newsdenver, kodythewxguy)"
+    ]
+  },
+  "methodologyNotes": {
+    "searchStrategy": "Dual keyword approach per location: '[Location] Colorado' + '[Location] I-70' to capture both destination-specific and highway-corridor content",
+    "apiEndpoint": "/v2/instagram/reels/search",
+    "resultsCapped": "10 reels per query per API behavior, 20 reels maximum per location",
+    "engagementMetric": "video_view_count or video_play_count from Reels API",
+    "dataCollected": [
+      "Total reels found",
+      "View counts per reel",
+      "Creator handles and verification status",
+      "Engagement scores (sum of all views per location)",
+      "Top 3 creators per location"
+    ],
+    "limitations": [
+      "API returns max ~10 reels per query - may undercount total content",
+      "View counts are point-in-time snapshots",
+      "Reels without view metrics excluded",
+      "Creator lists show top profiles only, not exhaustive",
+      "Hashtag analysis not included"
+    ]
+  },
+  "comparisonToPreviousCalifornia": {
+    "note": "This I-70 research provides direct engagement benchmarks for the Grand American Loop project. June 2026 travel dates can be evaluated against Instagram creator saturation levels.",
+    "highestEngagementI70Locations": "Glenwood Springs (1.93M) > Glenwood Canyon (1.86M) > Vail (1.82M)",
+    "byComparison": "Strong engagement across multiple locations suggests I-70 is well-documented corridor with established content creators and tourism infrastructure"
+  }
+}

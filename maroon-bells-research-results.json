@@ -1,0 +1,3339 @@
+{
+  "metadata": {
+    "run_date": "2026-06-18T15:33:40.417Z",
+    "locations_researched": 40,
+    "total_api_calls": 80
+  },
+  "locations": {
+    "Maroon Bells": {
+      "searches": [
+        {
+          "query": "Maroon Bells Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3322,
+            "max_views": 12579,
+            "top_creators": [
+              {
+                "username": "austinfriesen",
+                "followers": 104415,
+                "verified": true,
+                "reels_found": 3
+              },
+              {
+                "username": "coloradomountaintowns",
+                "followers": 295993,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "aspenco",
+                "followers": 165409,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Maroon Bells scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3932,
+            "max_views": 21153,
+            "top_creators": [
+              {
+                "username": "austinfriesen",
+                "followers": 104415,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "ramblin.sunshine",
+                "followers": 61546,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "littleradadventure",
+                "followers": 113519,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 3627,
+        "max_views": 21153,
+        "top_creators": [
+          {
+            "username": "austinfriesen",
+            "followers": 104415,
+            "verified": true,
+            "reels_found": 5
+          },
+          {
+            "username": "coloradomountaintowns",
+            "followers": 295993,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "aspenco",
+            "followers": 165409,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Castle Peak": {
+      "searches": [
+        {
+          "query": "Castle Peak Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 19905,
+            "max_views": 114421,
+            "top_creators": [
+              {
+                "username": "meryemyukse1",
+                "followers": 42533,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "cbsmornings",
+                "followers": 746956,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "catalina_guiot",
+                "followers": 6722,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Castle Peak scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 37990,
+            "max_views": 333207,
+            "top_creators": [
+              {
+                "username": "rcee_xandrahrain",
+                "followers": 30371,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "derryainsworth",
+                "followers": 33260,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "fromnewenglandwithkids",
+                "followers": 117205,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 28948,
+        "max_views": 333207,
+        "top_creators": [
+          {
+            "username": "meryemyukse1",
+            "followers": 42533,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "cbsmornings",
+            "followers": 746956,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "catalina_guiot",
+            "followers": 6722,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Pyramid Peak": {
+      "searches": [
+        {
+          "query": "Pyramid Peak Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 9563,
+            "max_views": 65513,
+            "top_creators": [
+              {
+                "username": "tlazy7ranch",
+                "followers": 3815,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "mikey.mitch",
+                "followers": 93073,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "the_last_thing_u_forget",
+                "followers": 3085,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Pyramid Peak scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 10125,
+            "max_views": 71562,
+            "top_creators": [
+              {
+                "username": "thetravellingkangaroos",
+                "followers": 224931,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "ruedibeck",
+                "followers": 50658,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "francehiddengems",
+                "followers": 98502,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 9844,
+        "max_views": 71562,
+        "top_creators": [
+          {
+            "username": "tlazy7ranch",
+            "followers": 3815,
+            "verified": false,
+            "reels_found": 4
+          },
+          {
+            "username": "mikey.mitch",
+            "followers": 93073,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "the_last_thing_u_forget",
+            "followers": 3085,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "North Maroon Peak": {
+      "searches": [
+        {
+          "query": "North Maroon Peak Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3172,
+            "max_views": 8591,
+            "top_creators": [
+              {
+                "username": "sagecanaday",
+                "followers": 103157,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "visitcolorado",
+                "followers": 279936,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "kara_wandering",
+                "followers": 30349,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "North Maroon Peak scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3811,
+            "max_views": 11096,
+            "top_creators": [
+              {
+                "username": "kara_wandering",
+                "followers": 30349,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "austinfriesen",
+                "followers": 104415,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "alexandrablodgett",
+                "followers": 67085,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 3491,
+        "max_views": 11096,
+        "top_creators": [
+          {
+            "username": "kara_wandering",
+            "followers": 30349,
+            "verified": true,
+            "reels_found": 3
+          },
+          {
+            "username": "austinfriesen",
+            "followers": 104415,
+            "verified": true,
+            "reels_found": 3
+          },
+          {
+            "username": "visitcolorado",
+            "followers": 279936,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Sopris": {
+      "searches": [
+        {
+          "query": "Sopris Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 2311,
+            "max_views": 9077,
+            "top_creators": [
+              {
+                "username": "johnoatesofficial",
+                "followers": 95944,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "panchomedellin",
+                "followers": 2495,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "kathienichols.studio",
+                "followers": 813,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Sopris scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3474,
+            "max_views": 29228,
+            "top_creators": [
+              {
+                "username": "hotspringsloop",
+                "followers": 18494,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "_wildfiresav_",
+                "followers": 574,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "tsinhanista",
+                "followers": 215,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 2892,
+        "max_views": 29228,
+        "top_creators": [
+          {
+            "username": "mjbauer_photography",
+            "followers": 3096,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "hotspringsloop",
+            "followers": 18494,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "johnoatesofficial",
+            "followers": 95944,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Treasury Mountain": {
+      "searches": [
+        {
+          "query": "Treasury Mountain Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 18878,
+            "max_views": 103630,
+            "top_creators": [
+              {
+                "username": "vivafortravel",
+                "followers": 46397,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "mjbauer_photography",
+                "followers": 3096,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "visitpagosa",
+                "followers": 29155,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Treasury Mountain scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 64797,
+            "max_views": 612197,
+            "top_creators": [
+              {
+                "username": "thisworldtraveled",
+                "followers": 74021,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "pang_bang",
+                "followers": 534973,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "the_story_traveller",
+                "followers": 22972,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 41837,
+        "max_views": 612197,
+        "top_creators": [
+          {
+            "username": "vivafortravel",
+            "followers": 46397,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "mjbauer_photography",
+            "followers": 3096,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "visitpagosa",
+            "followers": 29155,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Lost Man Lake": {
+      "searches": [
+        {
+          "query": "Lost Man Lake Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1786,
+            "max_views": 6032,
+            "top_creators": [
+              {
+                "username": "the.guidebook",
+                "followers": 91379,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "alltrails",
+                "followers": 733252,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "tahoelover11611",
+                "followers": 93675,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Lost Man Lake scenic drive",
+          "metrics": {
+            "total_reels": 0,
+            "avg_views": 0,
+            "max_views": 0,
+            "top_creators": []
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 10,
+        "avg_views": 1786,
+        "max_views": 6032,
+        "top_creators": [
+          {
+            "username": "the.guidebook",
+            "followers": 91379,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "alltrails",
+            "followers": 733252,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "tahoelover11611",
+            "followers": 93675,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Highlands": {
+      "searches": [
+        {
+          "query": "Highlands Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1442,
+            "max_views": 4333,
+            "top_creators": [
+              {
+                "username": "eggharborcafe",
+                "followers": 11980,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "rachellvallori",
+                "followers": 413858,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "touch_grass_tv",
+                "followers": 22,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Highlands scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 4806,
+            "max_views": 23038,
+            "top_creators": [
+              {
+                "username": "ascotseyeview",
+                "followers": 190904,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "milesnmemories123",
+                "followers": 109,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "travelswithmolly_",
+                "followers": 224,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 3213,
+        "max_views": 23038,
+        "top_creators": [
+          {
+            "username": "eggharborcafe",
+            "followers": 11980,
+            "verified": false,
+            "reels_found": 3
+          },
+          {
+            "username": "rachellvallori",
+            "followers": 413858,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "touch_grass_tv",
+            "followers": 22,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Snowmass Village": {
+      "searches": [
+        {
+          "query": "Snowmass Village Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 7216,
+            "max_views": 31429,
+            "top_creators": [
+              {
+                "username": "snowmass",
+                "followers": 51455,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "matttateproperties",
+                "followers": 4794,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "aspensnowmass",
+                "followers": 381289,
+                "verified": true,
+                "reels_found": 2
+              }
+            ]
+          }
+        },
+        {
+          "query": "Snowmass Village scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 2481,
+            "max_views": 10907,
+            "top_creators": [
+              {
+                "username": "colorado.explores",
+                "followers": 214869,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "pickettjoanna",
+                "followers": 586,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "denverilove",
+                "followers": 17648,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 4848,
+        "max_views": 31429,
+        "top_creators": [
+          {
+            "username": "snowmass",
+            "followers": 51455,
+            "verified": false,
+            "reels_found": 5
+          },
+          {
+            "username": "aspensnowmass",
+            "followers": 381289,
+            "verified": true,
+            "reels_found": 3
+          },
+          {
+            "username": "matttateproperties",
+            "followers": 4794,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Mt. Daly": {
+      "searches": [
+        {
+          "query": "Mt. Daly Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1226,
+            "max_views": 5107,
+            "top_creators": [
+              {
+                "username": "condokingaspen",
+                "followers": 5675,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "aspenluxurywithfiona",
+                "followers": 836,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "woodrunv",
+                "followers": 714,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Daly scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1577,
+            "max_views": 8351,
+            "top_creators": [
+              {
+                "username": "modicumofjoy",
+                "followers": 79262,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "woodrunv",
+                "followers": 715,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "theprismwarrior",
+                "followers": 591,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 1402,
+        "max_views": 8351,
+        "top_creators": [
+          {
+            "username": "woodrunv",
+            "followers": 714,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "aspenintel",
+            "followers": 8469,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "condokingaspen",
+            "followers": 5675,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Capitol Peak": {
+      "searches": [
+        {
+          "query": "Capitol Peak Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 62083,
+            "max_views": 234907,
+            "top_creators": [
+              {
+                "username": "samueladventure",
+                "followers": 53877,
+                "verified": true,
+                "reels_found": 3
+              },
+              {
+                "username": "mikey.mitch",
+                "followers": 93077,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "nicofelich",
+                "followers": 255416,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Capitol Peak scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 6052,
+            "max_views": 29440,
+            "top_creators": [
+              {
+                "username": "hello_mallory",
+                "followers": 97015,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "kate.outdoors",
+                "followers": 49349,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "postcardsfrom.tina",
+                "followers": 145387,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 34067,
+        "max_views": 234907,
+        "top_creators": [
+          {
+            "username": "samueladventure",
+            "followers": 53877,
+            "verified": true,
+            "reels_found": 3
+          },
+          {
+            "username": "mikey.mitch",
+            "followers": 93077,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "hello_mallory",
+            "followers": 97015,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Snowmass Mountain": {
+      "searches": [
+        {
+          "query": "Snowmass Mountain Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 15482,
+            "max_views": 32519,
+            "top_creators": [
+              {
+                "username": "aspensnowmass",
+                "followers": 381289,
+                "verified": true,
+                "reels_found": 8
+              },
+              {
+                "username": "matttateproperties",
+                "followers": 4794,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "hotbook",
+                "followers": 99729,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Snowmass Mountain scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3266,
+            "max_views": 18032,
+            "top_creators": [
+              {
+                "username": "pickettjoanna",
+                "followers": 586,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "darrenjonesart",
+                "followers": 2199,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "denverilove",
+                "followers": 17648,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 9374,
+        "max_views": 32519,
+        "top_creators": [
+          {
+            "username": "aspensnowmass",
+            "followers": 381289,
+            "verified": true,
+            "reels_found": 9
+          },
+          {
+            "username": "pickettjoanna",
+            "followers": 586,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "matttateproperties",
+            "followers": 4794,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Hagerman Pass": {
+      "searches": [
+        {
+          "query": "Hagerman Pass Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1462,
+            "max_views": 3546,
+            "top_creators": [
+              {
+                "username": "adorkintheroad",
+                "followers": 18937,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "emptynestersoverlanding",
+                "followers": 39,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "michaelmichaelmoto",
+                "followers": 1872,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Hagerman Pass scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 4908,
+            "max_views": 13124,
+            "top_creators": [
+              {
+                "username": "mckenzieinmotion",
+                "followers": 69795,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "renickulasness",
+                "followers": 1118,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "emptynestersoverlanding",
+                "followers": 39,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 3185,
+        "max_views": 13124,
+        "top_creators": [
+          {
+            "username": "emptynestersoverlanding",
+            "followers": 39,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "renickulasness",
+            "followers": 1118,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "adorkintheroad",
+            "followers": 18937,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Independence Pass": {
+      "searches": [
+        {
+          "query": "Independence Pass Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 8259,
+            "max_views": 46538,
+            "top_creators": [
+              {
+                "username": "aspenco",
+                "followers": 165409,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "ridetofood",
+                "followers": 46322,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "nowthisiscolorado",
+                "followers": 45337,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Independence Pass scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 6028,
+            "max_views": 18032,
+            "top_creators": [
+              {
+                "username": "ridetofood",
+                "followers": 46322,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "aspenco",
+                "followers": 165409,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "moreoutdooradventures",
+                "followers": 6715,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 7143,
+        "max_views": 46538,
+        "top_creators": [
+          {
+            "username": "aspenco",
+            "followers": 165409,
+            "verified": false,
+            "reels_found": 3
+          },
+          {
+            "username": "ridetofood",
+            "followers": 46322,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "aspensnowmass",
+            "followers": 381289,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Aspen": {
+      "searches": [
+        {
+          "query": "Aspen Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1778873,
+            "max_views": 7985270,
+            "top_creators": [
+              {
+                "username": "mattslyon",
+                "followers": 1016789,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "visittheusa",
+                "followers": 569509,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "carlycardellino",
+                "followers": 85752,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Aspen scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 11859,
+            "max_views": 95574,
+            "top_creators": [
+              {
+                "username": "fillmysoulwithadventure",
+                "followers": 12944,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "aspenco",
+                "followers": 165409,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "nsippysfo",
+                "followers": 583,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 895366,
+        "max_views": 7985270,
+        "top_creators": [
+          {
+            "username": "mattslyon",
+            "followers": 1016789,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "visittheusa",
+            "followers": 569509,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "carlycardellino",
+            "followers": 85752,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Mt. Elbert": {
+      "searches": [
+        {
+          "query": "Mt. Elbert Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 6691,
+            "max_views": 39644,
+            "top_creators": [
+              {
+                "username": "bigbatbilly",
+                "followers": 47051,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "global_trailmates",
+                "followers": 1369,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "dale.dawson.395",
+                "followers": 1311,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Elbert scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 11176,
+            "max_views": 79382,
+            "top_creators": [
+              {
+                "username": "bigbatbilly",
+                "followers": 47051,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "_akezzgram_",
+                "followers": 1279,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "dale.dawson.395",
+                "followers": 1311,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 8933,
+        "max_views": 79382,
+        "top_creators": [
+          {
+            "username": "bigbatbilly",
+            "followers": 47051,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "dale.dawson.395",
+            "followers": 1311,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "global_trailmates",
+            "followers": 1369,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Mt. Massive": {
+      "searches": [
+        {
+          "query": "Mt. Massive Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 9923,
+            "max_views": 62762,
+            "top_creators": [
+              {
+                "username": "thevirtualsherpa",
+                "followers": 9176,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "kuhl",
+                "followers": 249566,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "bigbatbilly",
+                "followers": 47051,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Massive scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1336377,
+            "max_views": 9259067,
+            "top_creators": [
+              {
+                "username": "kate.outdoors",
+                "followers": 49349,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "lostwithlydia",
+                "followers": 27473,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "georgeandcris",
+                "followers": 701621,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 673150,
+        "max_views": 9259067,
+        "top_creators": [
+          {
+            "username": "thevirtualsherpa",
+            "followers": 9176,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "kuhl",
+            "followers": 249566,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "bigbatbilly",
+            "followers": 47051,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Mt. Oxford": {
+      "searches": [
+        {
+          "query": "Mt. Oxford Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 382,
+            "max_views": 969,
+            "top_creators": [
+              {
+                "username": "outdoorsapp",
+                "followers": 27,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "zachary_mattingley",
+                "followers": 248,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "chiefdoodle",
+                "followers": 4768,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Oxford scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 32219,
+            "max_views": 302150,
+            "top_creators": [
+              {
+                "username": "jaxwriteswords",
+                "followers": 2470,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "kmf_116",
+                "followers": 6447,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "whatrvdoing",
+                "followers": 101560,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 16301,
+        "max_views": 302150,
+        "top_creators": [
+          {
+            "username": "outdoorsapp",
+            "followers": 27,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "zachary_mattingley",
+            "followers": 248,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "chiefdoodle",
+            "followers": 4768,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Mt. Harvard": {
+      "searches": [
+        {
+          "query": "Mt. Harvard Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 8173,
+            "max_views": 66850,
+            "top_creators": [
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "alexanderpekoff",
+                "followers": 1914,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "splitboardkyle",
+                "followers": 737,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Harvard scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 52642,
+            "max_views": 386209,
+            "top_creators": [
+              {
+                "username": "travelikealocalma",
+                "followers": 119734,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "pointsforfamilytravel",
+                "followers": 229707,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 30408,
+        "max_views": 386209,
+        "top_creators": [
+          {
+            "username": "outdoor.devin",
+            "followers": 38368,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "splitboardkyle",
+            "followers": 737,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "travelikealocalma",
+            "followers": 119734,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Mt. Columbia": {
+      "searches": [
+        {
+          "query": "Mt. Columbia Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 11122,
+            "max_views": 66850,
+            "top_creators": [
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "deanie_babies",
+                "followers": 1088459,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "josiahfilm",
+                "followers": 4317,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Columbia scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 75396,
+            "max_views": 655498,
+            "top_creators": [
+              {
+                "username": "meltdownmessiah",
+                "followers": 1564,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "wereintherockies",
+                "followers": 24474,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "roamwithbus",
+                "followers": 126694,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 43259,
+        "max_views": 655498,
+        "top_creators": [
+          {
+            "username": "outdoor.devin",
+            "followers": 38368,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "deanie_babies",
+            "followers": 1088459,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "josiahfilm",
+            "followers": 4317,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Mt. Yale": {
+      "searches": [
+        {
+          "query": "Mt. Yale Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 880,
+            "max_views": 2875,
+            "top_creators": [
+              {
+                "username": "thevirtualsherpa",
+                "followers": 9176,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "dreamawalton",
+                "followers": 16217,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mt. Yale scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3659,
+            "max_views": 18257,
+            "top_creators": [
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "renan_ozturk",
+                "followers": 979445,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "jcrienton",
+                "followers": 2377,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 2270,
+        "max_views": 18257,
+        "top_creators": [
+          {
+            "username": "outdoor.devin",
+            "followers": 38368,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "thevirtualsherpa",
+            "followers": 9176,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "rolfpotts",
+            "followers": 9066,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Shavano": {
+      "searches": [
+        {
+          "query": "Shavano Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3185,
+            "max_views": 13182,
+            "top_creators": [
+              {
+                "username": "larsleberphotography",
+                "followers": 233864,
+                "verified": true,
+                "reels_found": 4
+              },
+              {
+                "username": "sagecanaday",
+                "followers": 103157,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "friendsofshavano",
+                "followers": 3276,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Shavano scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 4678,
+            "max_views": 23797,
+            "top_creators": [
+              {
+                "username": "activemomsatx",
+                "followers": 46614,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "sagecanaday",
+                "followers": 103157,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "visitcolorado",
+                "followers": 279936,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 3971,
+        "max_views": 23797,
+        "top_creators": [
+          {
+            "username": "larsleberphotography",
+            "followers": 233864,
+            "verified": true,
+            "reels_found": 5
+          },
+          {
+            "username": "sagecanaday",
+            "followers": 103157,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "friendsofshavano",
+            "followers": 3276,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Tabeguache": {
+      "searches": [
+        {
+          "query": "Tabeguache Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1975,
+            "max_views": 6043,
+            "top_creators": [
+              {
+                "username": "twoonthethrottle",
+                "followers": 27,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "tbrophotography",
+                "followers": 1086,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "nick_explores_colorado",
+                "followers": 2732,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Tabeguache scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 11161,
+            "max_views": 95574,
+            "top_creators": [
+              {
+                "username": "killn.fuel",
+                "followers": 587,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "thisworldtraveled",
+                "followers": 74021,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "emilyyyybuchtel",
+                "followers": 123223,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 6568,
+        "max_views": 95574,
+        "top_creators": [
+          {
+            "username": "emilyyyybuchtel",
+            "followers": 123223,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "coloradofanclub",
+            "followers": 662,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "killn.fuel",
+            "followers": 587,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Mount Princeton": {
+      "searches": [
+        {
+          "query": "Mount Princeton Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 5043,
+            "max_views": 38435,
+            "top_creators": [
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "emilyyyybuchtel",
+                "followers": 123223,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "outdoor.devin",
+                "followers": 38368,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mount Princeton scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 4923,
+            "max_views": 38435,
+            "top_creators": [
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 5
+              },
+              {
+                "username": "akshitandtamanna",
+                "followers": 3077,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "emilyyyybuchtel",
+                "followers": 123223,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 4983,
+        "max_views": 38435,
+        "top_creators": [
+          {
+            "username": "mtprinceton",
+            "followers": 34377,
+            "verified": false,
+            "reels_found": 9
+          },
+          {
+            "username": "emilyyyybuchtel",
+            "followers": 123223,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "colorado.explores",
+            "followers": 214869,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Mount Antero": {
+      "searches": [
+        {
+          "query": "Mount Antero Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 835,
+            "max_views": 3106,
+            "top_creators": [
+              {
+                "username": "madeofminerals",
+                "followers": 7849,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "mountainpeakfitness",
+                "followers": 1785,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "jeffinmotionn",
+                "followers": 53,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Mount Antero scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 2095,
+            "max_views": 13417,
+            "top_creators": [
+              {
+                "username": "pt_numberonemom",
+                "followers": 1072,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "renan_ozturk",
+                "followers": 979446,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "outdoorsapp",
+                "followers": 27,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 1465,
+        "max_views": 13417,
+        "top_creators": [
+          {
+            "username": "outdoorsapp",
+            "followers": 27,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "trailsoffroad",
+            "followers": 22290,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "madeofminerals",
+            "followers": 7849,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Chalk Creek": {
+      "searches": [
+        {
+          "query": "Chalk Creek Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 268,
+            "max_views": 758,
+            "top_creators": [
+              {
+                "username": "mountprincetonhotsprings.fun",
+                "followers": 43413,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "goatgirl07",
+                "followers": 308,
+                "verified": false,
+                "reels_found": 2
+              }
+            ]
+          }
+        },
+        {
+          "query": "Chalk Creek scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 73478,
+            "max_views": 655498,
+            "top_creators": [
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "blackrocklodge",
+                "followers": 4283,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "ghost.rider2112",
+                "followers": 26,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 36873,
+        "max_views": 655498,
+        "top_creators": [
+          {
+            "username": "mtprinceton",
+            "followers": 34377,
+            "verified": false,
+            "reels_found": 4
+          },
+          {
+            "username": "mountprincetonhotsprings.fun",
+            "followers": 43413,
+            "verified": false,
+            "reels_found": 3
+          },
+          {
+            "username": "goatgirl07",
+            "followers": 308,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Nathrop": {
+      "searches": [
+        {
+          "query": "Nathrop Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 2185,
+            "max_views": 16144,
+            "top_creators": [
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "travelchaffeecounty",
+                "followers": 549,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "mountprincetonhotsprings.fun",
+                "followers": 43413,
+                "verified": false,
+                "reels_found": 2
+              }
+            ]
+          }
+        },
+        {
+          "query": "Nathrop scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 6928,
+            "max_views": 36980,
+            "top_creators": [
+              {
+                "username": "mtprinceton",
+                "followers": 34377,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "fallnangelli",
+                "followers": 151,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "ourayriversideresort",
+                "followers": 2145,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 4557,
+        "max_views": 36980,
+        "top_creators": [
+          {
+            "username": "mtprinceton",
+            "followers": 34377,
+            "verified": false,
+            "reels_found": 6
+          },
+          {
+            "username": "travelchaffeecounty",
+            "followers": 549,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "mountprincetonhotsprings.fun",
+            "followers": 43413,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Poncha Pass": {
+      "searches": [
+        {
+          "query": "Poncha Pass Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1308,
+            "max_views": 6224,
+            "top_creators": [
+              {
+                "username": "nowthisiscolorado",
+                "followers": 45337,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "outsideinnnaturehotel",
+                "followers": 103521,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "colorado.state.forest.service",
+                "followers": 3160,
+                "verified": false,
+                "reels_found": 2
+              }
+            ]
+          }
+        },
+        {
+          "query": "Poncha Pass scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 1041,
+            "max_views": 3110,
+            "top_creators": [
+              {
+                "username": "nowthisiscolorado",
+                "followers": 45337,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "tintandtravel",
+                "followers": 16322,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "casaolivi",
+                "followers": 97844,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 1175,
+        "max_views": 6224,
+        "top_creators": [
+          {
+            "username": "nowthisiscolorado",
+            "followers": 45337,
+            "verified": false,
+            "reels_found": 6
+          },
+          {
+            "username": "outsideinnnaturehotel",
+            "followers": 103521,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "colorado.state.forest.service",
+            "followers": 3160,
+            "verified": false,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Garden of the Gods": {
+      "searches": [
+        {
+          "query": "Garden of the Gods Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 3631,
+            "max_views": 13075,
+            "top_creators": [
+              {
+                "username": "gardenofthegodspark",
+                "followers": 36571,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "alltrails",
+                "followers": 733253,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "myrandainthemountains",
+                "followers": 56417,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Garden of the Gods scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 7216,
+            "max_views": 39891,
+            "top_creators": [
+              {
+                "username": "gardenofthegodspark",
+                "followers": 36571,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "nachoavgblondies",
+                "followers": 103533,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "fillmysoulwithadventure",
+                "followers": 12944,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 5423,
+        "max_views": 39891,
+        "top_creators": [
+          {
+            "username": "gardenofthegodspark",
+            "followers": 36571,
+            "verified": false,
+            "reels_found": 4
+          },
+          {
+            "username": "alltrails",
+            "followers": 733253,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "mattandkarensmith",
+            "followers": 300846,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Manitou Springs": {
+      "searches": [
+        {
+          "query": "Manitou Springs Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 67112,
+            "max_views": 557402,
+            "top_creators": [
+              {
+                "username": "welcome2vintage_",
+                "followers": 6312,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "emilyyyybuchtel",
+                "followers": 123223,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "mylayoverlife",
+                "followers": 269042,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Manitou Springs scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 8915,
+            "max_views": 39891,
+            "top_creators": [
+              {
+                "username": "neltnel",
+                "followers": 54,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "visitcolorado",
+                "followers": 279936,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "roadtripexplorer",
+                "followers": 108515,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 38014,
+        "max_views": 557402,
+        "top_creators": [
+          {
+            "username": "welcome2vintage_",
+            "followers": 6312,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "emilyyyybuchtel",
+            "followers": 123223,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "mylayoverlife",
+            "followers": 269042,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Pike's Peak": {
+      "searches": [
+        {
+          "query": "Pike's Peak Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 9827,
+            "max_views": 51968,
+            "top_creators": [
+              {
+                "username": "the.worried.wanderer",
+                "followers": 183941,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "donutmedia",
+                "followers": 1769934,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "killboydotcom",
+                "followers": 34916,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Pike's Peak scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 5340,
+            "max_views": 14065,
+            "top_creators": [
+              {
+                "username": "drivepikespeak",
+                "followers": 39819,
+                "verified": true,
+                "reels_found": 8
+              },
+              {
+                "username": "fillmysoulwithadventure",
+                "followers": 12944,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "viewcolorado",
+                "followers": 123862,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 7583,
+        "max_views": 51968,
+        "top_creators": [
+          {
+            "username": "drivepikespeak",
+            "followers": 39819,
+            "verified": true,
+            "reels_found": 9
+          },
+          {
+            "username": "viewcolorado",
+            "followers": 123862,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "the.worried.wanderer",
+            "followers": 183941,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Glenwood Springs": {
+      "searches": [
+        {
+          "query": "Glenwood Springs Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 83650,
+            "max_views": 618816,
+            "top_creators": [
+              {
+                "username": "visitglenwood",
+                "followers": 31586,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "glenwoodhotsprings",
+                "followers": 72862,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "cntraveler",
+                "followers": 3458791,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Glenwood Springs scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 37804,
+            "max_views": 128973,
+            "top_creators": [
+              {
+                "username": "thisworldtraveled",
+                "followers": 74021,
+                "verified": true,
+                "reels_found": 3
+              },
+              {
+                "username": "hausofrodney",
+                "followers": 1807,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "3.travelers.notebook",
+                "followers": 20284,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 60727,
+        "max_views": 618816,
+        "top_creators": [
+          {
+            "username": "visitglenwood",
+            "followers": 31586,
+            "verified": false,
+            "reels_found": 5
+          },
+          {
+            "username": "thisworldtraveled",
+            "followers": 74021,
+            "verified": true,
+            "reels_found": 3
+          },
+          {
+            "username": "cntraveler",
+            "followers": 3458791,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Glenwood Canyon": {
+      "searches": [
+        {
+          "query": "Glenwood Canyon Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 54496,
+            "max_views": 205828,
+            "top_creators": [
+              {
+                "username": "eu.jeansantos",
+                "followers": 73306,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "i70things",
+                "followers": 475991,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "alicesadventuresonearth",
+                "followers": 43189,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Glenwood Canyon scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 19412,
+            "max_views": 95574,
+            "top_creators": [
+              {
+                "username": "eu.jeansantos",
+                "followers": 73306,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "alicesadventuresonearth",
+                "followers": 43189,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "ghokeprod",
+                "followers": 2046,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 36954,
+        "max_views": 205828,
+        "top_creators": [
+          {
+            "username": "eu.jeansantos",
+            "followers": 73306,
+            "verified": false,
+            "reels_found": 6
+          },
+          {
+            "username": "alicesadventuresonearth",
+            "followers": 43189,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "i70things",
+            "followers": 475991,
+            "verified": true,
+            "reels_found": 2
+          }
+        ]
+      }
+    },
+    "Wheeler Junction": {
+      "searches": [
+        {
+          "query": "Wheeler Junction Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 6372,
+            "max_views": 55653,
+            "top_creators": [
+              {
+                "username": "silverthreadbasecamp",
+                "followers": 1097,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "lostwithlydia",
+                "followers": 27473,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "nathanwarmes",
+                "followers": 9184,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Wheeler Junction scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 17529,
+            "max_views": 76854,
+            "top_creators": [
+              {
+                "username": "gwynandami",
+                "followers": 110891,
+                "verified": true,
+                "reels_found": 2
+              },
+              {
+                "username": "lostwithlydia",
+                "followers": 27473,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "royalgorgeregion",
+                "followers": 9625,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 11950,
+        "max_views": 76854,
+        "top_creators": [
+          {
+            "username": "lostwithlydia",
+            "followers": 27473,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "gwynandami",
+            "followers": 110891,
+            "verified": true,
+            "reels_found": 2
+          },
+          {
+            "username": "silverthreadbasecamp",
+            "followers": 1097,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Basalt": {
+      "searches": [
+        {
+          "query": "Basalt Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 12079,
+            "max_views": 104505,
+            "top_creators": [
+              {
+                "username": "scott_bayens_properties",
+                "followers": 5105,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "joshritter",
+                "followers": 44180,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "tonicmethod",
+                "followers": 7470,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Basalt scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 5628,
+            "max_views": 24528,
+            "top_creators": [
+              {
+                "username": "x_plore_more",
+                "followers": 9165,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "lamaisoncitroensolan",
+                "followers": 302,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "s.x.traveler",
+                "followers": 672253,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 8854,
+        "max_views": 104505,
+        "top_creators": [
+          {
+            "username": "scott_bayens_properties",
+            "followers": 5105,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "joshritter",
+            "followers": 44180,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "tonicmethod",
+            "followers": 7470,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Eagle": {
+      "searches": [
+        {
+          "query": "Eagle Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 8958,
+            "max_views": 51964,
+            "top_creators": [
+              {
+                "username": "amypates",
+                "followers": 2017,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "scholasticclimbingleague",
+                "followers": 608,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "colombianpilot",
+                "followers": 55314,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Eagle scenic drive",
+          "metrics": {
+            "total_reels": 0,
+            "avg_views": 0,
+            "max_views": 0,
+            "top_creators": []
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 10,
+        "avg_views": 8958,
+        "max_views": 51964,
+        "top_creators": [
+          {
+            "username": "amypates",
+            "followers": 2017,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "scholasticclimbingleague",
+            "followers": 608,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "colombianpilot",
+            "followers": 55314,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Vail Pass area": {
+      "searches": [
+        {
+          "query": "Vail Pass area Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 64297,
+            "max_views": 219712,
+            "top_creators": [
+              {
+                "username": "mattrenoux",
+                "followers": 6221,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "9newsdenver",
+                "followers": 315944,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "planetleadville",
+                "followers": 3391,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Vail Pass area scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 16029,
+            "max_views": 39891,
+            "top_creators": [
+              {
+                "username": "colorado.explores",
+                "followers": 214869,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "americantravelarchives",
+                "followers": 261139,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "tomdunninvail",
+                "followers": 2725,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 40163,
+        "max_views": 219712,
+        "top_creators": [
+          {
+            "username": "mattrenoux",
+            "followers": 6221,
+            "verified": false,
+            "reels_found": 3
+          },
+          {
+            "username": "9newsdenver",
+            "followers": 315944,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "planetleadville",
+            "followers": 3391,
+            "verified": false,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Eisenhower Tunnel area": {
+      "searches": [
+        {
+          "query": "Eisenhower Tunnel area Colorado",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 69585,
+            "max_views": 288575,
+            "top_creators": [
+              {
+                "username": "coloradobusinessfinder",
+                "followers": 2111,
+                "verified": false,
+                "reels_found": 2
+              },
+              {
+                "username": "debrawtx",
+                "followers": 4324,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "mountainrecovery",
+                "followers": 115070,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        },
+        {
+          "query": "Eisenhower Tunnel area scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 39143,
+            "max_views": 194442,
+            "top_creators": [
+              {
+                "username": "coloradobusinessfinder",
+                "followers": 2111,
+                "verified": false,
+                "reels_found": 3
+              },
+              {
+                "username": "debrawtx",
+                "followers": 4324,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "hausofrodney",
+                "followers": 1807,
+                "verified": false,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 20,
+        "avg_views": 54364,
+        "max_views": 288575,
+        "top_creators": [
+          {
+            "username": "coloradobusinessfinder",
+            "followers": 2111,
+            "verified": false,
+            "reels_found": 5
+          },
+          {
+            "username": "debrawtx",
+            "followers": 4324,
+            "verified": false,
+            "reels_found": 2
+          },
+          {
+            "username": "mountainrecovery",
+            "followers": 115070,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Loveland Pass area": {
+      "searches": [
+        {
+          "query": "Loveland Pass area Colorado",
+          "metrics": {
+            "total_reels": 0,
+            "avg_views": 0,
+            "max_views": 0,
+            "top_creators": []
+          }
+        },
+        {
+          "query": "Loveland Pass area scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 10018,
+            "max_views": 95574,
+            "top_creators": [
+              {
+                "username": "coloradobusinessfinder",
+                "followers": 2111,
+                "verified": false,
+                "reels_found": 4
+              },
+              {
+                "username": "dirtroadshighheels",
+                "followers": 30199,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "fillmysoulwithadventure",
+                "followers": 12944,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 10,
+        "avg_views": 10018,
+        "max_views": 95574,
+        "top_creators": [
+          {
+            "username": "coloradobusinessfinder",
+            "followers": 2111,
+            "verified": false,
+            "reels_found": 4
+          },
+          {
+            "username": "dirtroadshighheels",
+            "followers": 30199,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "fillmysoulwithadventure",
+            "followers": 12944,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    },
+    "Rocky Mountain National Park": {
+      "searches": [
+        {
+          "query": "Rocky Mountain National Park Colorado",
+          "metrics": {
+            "total_reels": 0,
+            "avg_views": 0,
+            "max_views": 0,
+            "top_creators": []
+          }
+        },
+        {
+          "query": "Rocky Mountain National Park scenic drive",
+          "metrics": {
+            "total_reels": 10,
+            "avg_views": 8863,
+            "max_views": 70766,
+            "top_creators": [
+              {
+                "username": "lostwithlydia",
+                "followers": 27473,
+                "verified": true,
+                "reels_found": 1
+              },
+              {
+                "username": "kimbo_explores",
+                "followers": 22119,
+                "verified": false,
+                "reels_found": 1
+              },
+              {
+                "username": "organized_adventurer",
+                "followers": 144327,
+                "verified": true,
+                "reels_found": 1
+              }
+            ]
+          }
+        }
+      ],
+      "aggregate": {
+        "total_reels": 10,
+        "avg_views": 8863,
+        "max_views": 70766,
+        "top_creators": [
+          {
+            "username": "lostwithlydia",
+            "followers": 27473,
+            "verified": true,
+            "reels_found": 1
+          },
+          {
+            "username": "kimbo_explores",
+            "followers": 22119,
+            "verified": false,
+            "reels_found": 1
+          },
+          {
+            "username": "organized_adventurer",
+            "followers": 144327,
+            "verified": true,
+            "reels_found": 1
+          }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "total_reels_across_all": 760,
+    "avg_views_across_all": 56873,
+    "highest_engagement_location": "Mt. Massive",
+    "locations_with_content": 40
+  }
+}
