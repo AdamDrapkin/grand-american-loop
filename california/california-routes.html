@@ -121,6 +121,13 @@
       .seg-card-hd { flex-direction: column; gap: 8px; }
       .alerts-grid { grid-template-columns: 1fr; }
     }
+
+    /* COLLAPSIBLE SEGMENT CARDS */
+    .seg-card-hd { cursor: pointer; user-select: none; position: relative; }
+    .seg-card-hd::after { content: '▶'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: .72rem; opacity: .75; transition: transform .2s ease; }
+    .seg-card.open .seg-card-hd::after { transform: translateY(-50%) rotate(90deg); }
+    .seg-card-body { display: none; }
+    .seg-card.open .seg-card-body { display: block; }
   </style>
 </head>
 <body>
@@ -174,7 +181,6 @@
             <div class="seg-title">San Francisco</div>
             <div class="seg-dates">July 2–5, 2026 · 3 Nights · Days 1–3</div>
           </div>
-          <span class="seg-badge booked">✅ Booked</span>
         </div>
         <div class="seg-card-body">
           <div class="seg-hotel">
@@ -189,13 +195,16 @@
             <span class="seg-stop">Jul 2 · Full House House · Mission Dolores Park · Mission District</span>
             <span class="seg-stop">Jul 2 · Golden Gate Park · Japanese Tea Garden · CA Academy of Sciences</span>
             <span class="seg-stop">Jul 2 · Ferry Building Marketplace · Marina District</span>
+            <span class="seg-stop ok">✅ Jul 2 · 2 PM El Farolito (Mission) · 5:15 PM Ebisu Sushi (Inner Sunset) · Twin Peaks sunset</span>
             <span class="seg-stop ok">✅ Jul 3 · Alcatraz 9:20 AM · Conf. i77487162</span>
             <span class="seg-stop ok">✅ Jul 3 · Fort Point NHS · Muir Woods 4:00 PM</span>
+            <span class="seg-stop ok">✅ Jul 3 · Noon Swan Oyster Depot (Polk St) · 7:30 PM Hem by LeQuy (Mission) · ~9:30 PM Smuggler's Cove (Gough St, Hayes Valley)</span>
             <span class="seg-stop ok">✅ Jul 4 🎂 · Sterling Vineyards 10:45 AM · TOCK-R-AE87DB44</span>
             <span class="seg-stop">Jul 4 · Bouchon Bakery + Napa Oxbow</span>
-            <span class="seg-stop warn">⚠️ Jul 4 · Birthday Dinner · The Waterfront Seafood Grill, Napa · (707) 699-2452</span>
+            <span class="seg-stop ok">✅ Jul 4 · Birthday Dinner · The Waterfront Seafood Grill · 4:30 PM CONFIRMED</span>
+            <span class="seg-stop ok">✅ Jul 4 · Crissy Field SF · Fireworks 9:30 PM · Free · leave Napa 7:15 PM</span>
           </div>
-          <div class="seg-drive">~4h 45m total driving · Day 2: 3h 46m · Day 3: ~3h 39m</div>
+          <div class="seg-drive">~5h 5m total driving · Day 2: 3h 46m · Day 3: ~3h 30m (incl. Crissy Field)</div>
         </div>
       </div>
 
@@ -207,7 +216,6 @@
             <div class="seg-title">Big Sur → Cambria</div>
             <div class="seg-dates">July 5, 2026 · 1 Night · Day 4</div>
           </div>
-          <span class="seg-badge booked">✅ Booked</span>
         </div>
         <div class="seg-card-body">
           <div class="seg-hotel">
@@ -218,7 +226,7 @@
             <span class="seg-stop">17-Mile Drive · $12.25/vehicle · Pacific Grove Gate</span>
             <span class="seg-stop">Carmel-by-the-Sea · Free · Ocean Ave</span>
             <span class="seg-stop">Carmel Plaza · Carmel Beach Boardwalk · Carmel Scenic Road Walkway · Carmel Walks</span>
-            <span class="seg-stop warn">⚠️ Point Lobos · $10/vehicle · NOT BOOKED — reservecalifornia.com</span>
+            <span class="seg-stop">✅ Point Lobos · $10/vehicle · First come first serve · No reservation needed</span>
             <span class="seg-stop">Bixby Creek Bridge · Free · North turnout</span>
             <span class="seg-stop">Hurricane Point · Free · 1 min from Bixby</span>
             <span class="seg-stop">Pfeiffer Beach · $12/vehicle cash · Purple sand</span>
@@ -227,6 +235,7 @@
             <span class="seg-stop">Ragged Point · Inn &amp; café · Dramatic coastal lookout</span>
             <span class="seg-stop">Secret Swing/Plasket Ridge · Optional · 4WD confirmed</span>
             <span class="seg-stop">Elephant Seals Vista Point · Free · Piedras Blancas</span>
+            <span class="seg-stop ok">✅ Dinner: Linn's Restaurant · 2277 Main St, Cambria · 7 min from hotel · (805) 927-0371</span>
           </div>
           <div class="seg-drive">~4h 36m driving · Depart SF 7:00 AM · Arrive Cambria ~6:21 PM</div>
         </div>
@@ -240,7 +249,6 @@
             <div class="seg-title">Central Coast · Santa Barbara</div>
             <div class="seg-dates">July 6, 2026 · 1 Night · Day 5</div>
           </div>
-          <span class="seg-badge booked">✅ Booked</span>
         </div>
         <div class="seg-card-body">
           <div class="seg-hotel">
@@ -255,7 +263,8 @@
             <span class="seg-stop">Santa Barbara County Courthouse · FREE · Clock tower panorama</span>
             <span class="seg-stop">State Street + Stearns Wharf · Free</span>
             <span class="seg-stop">Santa Barbara Fish Market · 117 Harbor Way · Fresh uni, crab</span>
-            <span class="seg-stop">Funk Zone dinner (near train station)</span>
+            <span class="seg-stop ok">✅ East Beach Swim · 3:30–6:00 PM · Walk from Beachside Inn · Lifeguarded · 61–64°F · ⚠️ Pack baby oil (natural tar seeps)</span>
+            <span class="seg-stop ok">✅ Dinner: Brophy Bros · 8:30 PM · 119 Harbor Way, Santa Barbara Harbor · 2 min from hotel · Party of 4 · Cancel by 7 PM · (805) 966-4418</span>
           </div>
           <div class="seg-drive">~3h 54m driving · Depart Cambria 8:45 AM · Arrive Santa Barbara ~3:15 PM</div>
         </div>
@@ -269,7 +278,6 @@
             <div class="seg-title">San Diego · Coronado Island</div>
             <div class="seg-dates">July 7, 2026 · 1 Night · Day 6</div>
           </div>
-          <span class="seg-badge booked">✅ Booked</span>
         </div>
         <div class="seg-card-body">
           <div class="seg-hotel">
@@ -282,8 +290,9 @@
             <span class="seg-stop">Newport Beach · Balboa Island · Balboa Bar</span>
             <span class="seg-stop">Laguna Beach · Heisler Park · Main Beach</span>
             <span class="seg-stop">La Jolla Cove · Sea lions · Tidepools · Free</span>
+            <span class="seg-stop ok">✅ Jul 8 Morning Swim · Coronado Beach · 8:00–11:30 AM · 10-min walk from hotel · 68–74°F · gentle surf · ⚠️ Check sdbeachinfo.com night of Jul 7 for sewage advisory</span>
             <span class="seg-stop">Coronado Beach · Hotel del Coronado (1888)</span>
-            <span class="seg-stop">Little Italy San Diego (dinner) · 5 min via bridge</span>
+            <span class="seg-stop ok">✅ Dinner: Bali Hai Restaurant · 7:00 PM · 2230 Shelter Island Dr, San Diego · 22 min from hotel · (619) 222-1181</span>
           </div>
           <div class="seg-drive">~4h 32m driving · Depart Santa Barbara 8:00 AM · Arrive Coronado ~6:00 PM</div>
         </div>
@@ -297,30 +306,29 @@
             <div class="seg-title">Los Angeles</div>
             <div class="seg-dates">July 8–12, 2026 · 3 Nights · Days 7–10 + Departure Jul 12</div>
           </div>
-          <span class="seg-badge pending">⚠️ Hotel TBD</span>
         </div>
         <div class="seg-card-body">
-          <div class="seg-hotel" style="color:var(--amber);">
-            <strong style="color:var(--dark);">Hotel: NOT YET BOOKED</strong> — Mom researching budget options · Neighborhoods: Culver City / Hollywood / Downtown / Koreatown<br>
-            Avoid: Beverly Hills, Santa Monica, West Hollywood (too expensive for 3 nights)
+          <div class="seg-hotel" style="color:#276749;">
+            <strong style="color:var(--dark);">Ramada Plaza by Wyndham West Hollywood</strong> · 8585 Santa Monica Blvd, West Hollywood · Conf #6392981504<br>
+            Jul 8–12 · 4 nights · Check-in 7 PM Jul 8 (approved) · 12 min to Beverly Hills · 40 min to LAX
           </div>
           <div class="seg-stops">
-            <span class="seg-stop">Jul 8 · Arrival from Coronado · 2h 31m · I-5 N → I-405 N</span>
-            <span class="seg-stop">Jul 9 · Beverly Hills · Rodeo Drive · Sunset Strip</span>
-            <span class="seg-stop">Jul 9 · Hollywood Walk of Fame · Chinese Theatre · Hollywood Blvd</span>
-            <span class="seg-stop">Jul 9 · Hollywood Sign · Griffith Park</span>
-            <span class="seg-stop">Jul 9 · Walt Disney Concert Hall · LACMA Urban Light · Free</span>
-            <span class="seg-stop">Jul 9 · LA Chinatown · Little Tokyo · Olvera Street</span>
-            <span class="seg-stop">Jul 10 · Griffith Observatory · Free admission</span>
+            <span class="seg-stop">Jul 8 · Depart Coronado noon · 2h 10m · 135.5 mi · I-5 N → I-405 N</span>
+            <span class="seg-stop ok">✅ Jul 8 · Saddle Ranch Chop House 6 PM · 8371 W Sunset Blvd WeHo · 0.8 mi walk from hotel</span>
+            <span class="seg-stop">Jul 9 · Beverly Hills · Rodeo Drive · Beverly Hills Hotel</span>
+            <span class="seg-stop">Jul 9 · Hollywood Walk of Fame · Grauman's Chinese Theatre</span>
+            <span class="seg-stop">Jul 9 · Walt Disney Concert Hall · Little Tokyo · Grand Central Market</span>
+            <span class="seg-stop ok">✅ Jul 9 · Pizzeria Mozza 7 PM · 641 N Highland Ave Hollywood · 13 min from DTLA · Book OpenTable</span>
+            <span class="seg-stop">Jul 10 · Griffith Observatory · Free admission · Opens 10 AM</span>
             <span class="seg-stop">Jul 10 · Santa Monica Pier · Venice Boardwalk · Abbot Kinney</span>
-            <span class="seg-stop">Jul 10 · Venice Canals Walkway · 3 blocks from Boardwalk</span>
-            <span class="seg-stop">Jul 10–11 · Downtown LA · Arts District · Grand Central Market</span>
+            <span class="seg-stop ok">✅ Jul 10 · Felix Trattoria 7 PM · 1023 Abbot Kinney Blvd Venice · 3 min from boardwalk · Book Resy</span>
             <span class="seg-stop ok">✅ Jul 11 · Santa Monica Farmers Market 8 AM–1 PM</span>
-            <span class="seg-stop warn">⚠️ Getty Center · NOT BOOKED · getty.edu · Free admission</span>
-            <span class="seg-stop warn">⚠️ Final dinner Jul 11 · NOT BOOKED</span>
-            <span class="seg-stop">Jul 12 · In-N-Out LAX (9149 S Sepulveda) · Animal Style</span>
+            <span class="seg-stop">Jul 11 · Point Dume / Malibu Coast · 31 min from Farmers Market</span>
+            <span class="seg-stop warn">⚠️ Jul 11 · Getty Center 3 PM · NOT BOOKED · getty.edu · Free admission · $20 parking</span>
+            <span class="seg-stop ok">✅ Jul 11 · Malibu Farm Restaurant 6:30 PM · 23000 PCH Malibu Pier · Call direct · 34 min from Getty</span>
+            <span class="seg-stop">Jul 12 · In-N-Out LAX (9149 S Sepulveda) · Animal Style · Depart AA 3319 12:17 PM</span>
           </div>
-          <div class="seg-drive">Arrive from Coronado 2h 31m Jul 8 · Depart AA 3319 12:17 PM Jul 12</div>
+          <div class="seg-drive">Depart Coronado noon Jul 8 · 2h 10m · 135.5 mi · Depart AA 3319 12:17 PM Jul 12</div>
         </div>
       </div>
 
@@ -347,7 +355,8 @@
           <tr><td>Hyatt SF → Bouchon Bakery, Yountville</td><td>Jul 4 Sat 8:00 AM</td><td>61 min</td><td>54.5</td></tr>
           <tr><td>Yountville → Sterling Vineyards, Calistoga</td><td>Jul 4 Sat ~9:46 AM</td><td>26 min</td><td>17.0</td></tr>
           <tr><td>Sterling → Napa Oxbow Public Market</td><td>Jul 4 Sat ~noon</td><td>38 min</td><td>27.5</td></tr>
-          <tr><td>Napa → Hyatt SF</td><td>Jul 4 Sat PM (heavy)</td><td>~74 min</td><td>46.3</td></tr>
+          <tr><td>Napa → Crissy Field, SF</td><td>Jul 4 Sat ~7:15 PM</td><td>59 min (plan 75)</td><td>49.4</td></tr>
+          <tr><td>Crissy Field → Hyatt SF (after fireworks)</td><td>Jul 4 Sat ~9:50 PM</td><td>21 min</td><td>3.5</td></tr>
           <tr class="seg-divider"><td colspan="4">BIG SUR — Day 4 · Depart SF 7:00 AM</td></tr>
           <tr><td>Hyatt SF → 17-Mile Drive (Pacific Grove Gate)</td><td>Jul 5 Sun 7:00 AM</td><td>1h 53m</td><td>123.9</td></tr>
           <tr><td>17-Mile Drive (Carmel Gate) → Carmel</td><td>Jul 5 Sun</td><td>3 min</td><td>0.5</td></tr>
@@ -367,8 +376,20 @@
           <tr><td>El Matador Beach → Newport Beach/Balboa Island</td><td>Jul 7 Tue ~10:30 AM</td><td>1h 40m</td><td>76.7</td></tr>
           <tr><td>Newport Beach → Laguna Beach</td><td>Jul 7 Tue ~12:15 PM</td><td>23 min</td><td>10.7</td></tr>
           <tr><td>Laguna Beach → San Diego/Coronado</td><td>Jul 7 Tue ~1:30 PM</td><td>1h 24m</td><td>79.3</td></tr>
-          <tr class="seg-divider"><td colspan="4">LOS ANGELES — Day 7 · Depart Coronado ~noon</td></tr>
-          <tr><td>Coronado → Los Angeles (Beverly Hills)</td><td>Jul 8 Wed ~noon</td><td>2h 31m</td><td>139.7</td></tr>
+          <tr class="seg-divider"><td colspan="4">LOS ANGELES — Day 7 · Depart Coronado noon</td></tr>
+          <tr><td>Coronado → Ramada Plaza West Hollywood</td><td>Jul 8 Wed noon</td><td>2h 10m</td><td>135.5</td></tr>
+          <tr><td>Hotel → Saddle Ranch Chop House (walk)</td><td>Jul 8 Wed 6 PM</td><td>0.8 mi walk</td><td>0.8</td></tr>
+          <tr><td>Hotel → Beverly Hills / Rodeo Drive</td><td>Jul 9 Thu AM</td><td>12 min</td><td>2.2</td></tr>
+          <tr><td>Beverly Hills → Hollywood Walk of Fame</td><td>Jul 9 Thu midday</td><td>14 min</td><td>5.3</td></tr>
+          <tr><td>Hollywood → Downtown LA</td><td>Jul 9 Thu afternoon</td><td>12 min</td><td>7.8</td></tr>
+          <tr><td>Downtown LA → Pizzeria Mozza</td><td>Jul 9 Thu ~7 PM</td><td>13 min</td><td>6.7</td></tr>
+          <tr><td>Hotel → Griffith Observatory</td><td>Jul 10 Fri AM</td><td>33 min</td><td>8.2</td></tr>
+          <tr><td>Griffith → Santa Monica Pier</td><td>Jul 10 Fri afternoon</td><td>31 min</td><td>23.8</td></tr>
+          <tr><td>Venice Boardwalk → Felix Trattoria</td><td>Jul 10 Fri ~7 PM</td><td>14 min</td><td>5.1</td></tr>
+          <tr><td>Hotel → Santa Monica Farmers Market</td><td>Jul 11 Sat 7:30 AM</td><td>30 min</td><td>11.5</td></tr>
+          <tr><td>Farmers Market → Point Dume (Malibu)</td><td>Jul 11 Sat AM</td><td>31 min</td><td>20.1</td></tr>
+          <tr><td>Point Dume → Getty Center</td><td>Jul 11 Sat ~2:30 PM</td><td>43 min</td><td>30.0</td></tr>
+          <tr><td>Getty Center → Malibu Farm Restaurant</td><td>Jul 11 Sat ~6 PM</td><td>34 min</td><td>21.0</td></tr>
         </tbody>
       </table>
     </div>
@@ -376,10 +397,10 @@
     <!-- All Gaps -->
     <div class="section-title">All Gaps — Pending Actions Required</div>
     <div class="alerts-grid">
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Birthday Dinner — Book Immediately</div>
-        <div class="ac-text">Jul 4 evening · The Waterfront Seafood Grill · 720 Main St, Napa · Call (707) 699-2452 · Sat 11:30 AM–9 PM · Saturday evenings fill fast · ~$150–200 family of 4</div>
+      <div class="ac grn">
+        <div class="ac-icon">✅</div>
+        <div class="ac-title">Birthday Dinner — CONFIRMED 4:30 PM</div>
+        <div class="ac-text">Jul 4 · The Waterfront Seafood Grill · 720 Main St, Napa · 4:30 PM ✅ · After dinner: Crissy Field SF for 9:30 PM fireworks · Leave Napa by 7:15–7:30 PM · 59 min drive via US-101 + Golden Gate Bridge</div>
       </div>
       <div class="ac red">
         <div class="ac-icon">🔴</div>
@@ -387,9 +408,9 @@
         <div class="ac-text">Jul 8–11 · Not yet booked · Mom researching: Culver City, Hollywood, Downtown, Koreatown · Avoid Beverly Hills / Santa Monica / WeHo (too expensive)</div>
       </div>
       <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Point Lobos State Reserve (Jul 5)</div>
-        <div class="ac-text">reservecalifornia.com · $10/vehicle · China Cove Bird Island Trail 1 mi · Sea lions, otters, seals · Fills on summer weekends — book now</div>
+        <div class="ac-icon">✅</div>
+        <div class="ac-title">Point Lobos State Reserve (Jul 5) — No Reservation Needed</div>
+        <div class="ac-text">$10/vehicle · First come first serve · China Cove Bird Island Trail 1 mi · Sea lions, otters, seals · If parking full, walk in from outside · Closes briefly throughout day</div>
       </div>
       <div class="ac amb">
         <div class="ac-icon">⚠️</div>
@@ -398,13 +419,13 @@
       </div>
       <div class="ac amb">
         <div class="ac-icon">⚠️</div>
-        <div class="ac-title">Getty Center Timed Entry (Jul 10–11)</div>
-        <div class="ac-text">getty.edu · Free admission · Timed entry required — book in advance · Hilltop campus · City views · World-class collection</div>
+        <div class="ac-title">Getty Center Timed Entry — Jul 11 · 3 PM Target</div>
+        <div class="ac-text">getty.edu · Free admission · Timed entry required — book now · Summer Saturday slots fill weeks out · $20 parking on site · 43 min from Point Dume · 34 min to Malibu Farm after</div>
       </div>
-      <div class="ac amb">
-        <div class="ac-icon">⚠️</div>
-        <div class="ac-title">LA Final Dinner (Jul 11) — Book 1–2 Weeks Out</div>
-        <div class="ac-text">Options: Nobu Malibu (ocean views), Bestia (Italian, downtown), Republique (French, Hollywood), Craig's (WeHo celebrity) · All require advance reservation</div>
+      <div class="ac grn">
+        <div class="ac-icon">🍽️</div>
+        <div class="ac-title">LA Dinners — All 4 Confirmed</div>
+        <div class="ac-text">Jul 8: Saddle Ranch 6 PM ✅ · Jul 9: Pizzeria Mozza 7 PM → OpenTable · Jul 10: Felix Trattoria 7 PM → Resy · Jul 11: Malibu Farm 6:30 PM → call 310-456-1112</div>
       </div>
     </div>
 
@@ -414,5 +435,13 @@
     </div>
 
   </div>
+
+<script>
+  document.querySelectorAll('.seg-card-hd').forEach(function(hd) {
+    hd.addEventListener('click', function() {
+      hd.closest('.seg-card').classList.toggle('open');
+    });
+  });
+</script>
 </body>
 </html>

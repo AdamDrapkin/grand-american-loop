@@ -34,7 +34,8 @@
     .hchip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 15px;font-family:sans-serif;font-size:.78rem}
     .r66-chip{background:rgba(192,57,43,.5);border-color:rgba(255,255,255,.4)}
     .wrap{max-width:980px;margin:0 auto;padding:0 20px}
-    section{padding:42px 0}
+    section{padding:24px 0}
+    section:has(.day-section,.park-section){padding:4px 0}
     hr.div{border:none;border-top:1px solid var(--border);margin:0}
     .sec-hd{font-size:1.45rem;color:var(--r66b);margin-bottom:4px}
     .sec-sub{font-family:sans-serif;font-size:.84rem;color:var(--mid);margin-bottom:24px}
@@ -48,8 +49,12 @@
     .ov-date{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:4px}
     .ov-label{font-family:sans-serif;font-size:.82rem;font-weight:700;margin-bottom:3px}
     .ov-note{font-family:sans-serif;font-size:.72rem;color:var(--mid);line-height:1.4}
-    .day-section{margin-bottom:52px}
-    .day-hd{border-radius:12px 12px 0 0;padding:18px 24px;color:white}
+    .day-section{margin-bottom:6px}
+    .day-section.open{margin-bottom:36px}
+    .day-hd{border-radius:12px;padding:18px 24px;color:white;cursor:pointer;user-select:none;position:relative}
+    .day-hd::after{content:'▶';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:.72rem;opacity:.65;transition:transform .2s ease}
+    .day-section.open .day-hd{border-radius:12px 12px 0 0}
+    .day-section.open .day-hd::after{transform:translateY(-50%) rotate(90deg)}
     .day-hd.d1{background:linear-gradient(135deg,#2B6CB0,#3182CE)}
     .day-hd.d2{background:linear-gradient(135deg,#C0392B,#E53E3E)}
     .day-hd.d3{background:linear-gradient(135deg,#744210,#C05621)}
@@ -57,7 +62,8 @@
     .day-hd-label{font-family:sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
     .day-hd-title{font-size:1.35rem;font-weight:normal;margin-bottom:3px}
     .day-hd-sub{font-family:sans-serif;font-size:.82rem;opacity:.82}
-    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px}
+    .day-body{background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;padding:26px;display:none}
+    .day-section.open .day-body{display:block}
     .seg-map{height:300px;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
     .map-caption{font-family:sans-serif;font-size:.72rem;color:var(--mid);margin-bottom:6px;font-style:italic}
     .map-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
@@ -161,7 +167,6 @@
   </div>
 </div>
 
-<hr class="div">
 
 <!-- ═══ DAY 1 ═══ -->
 <section>
@@ -246,7 +251,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DAY 2 ═══ -->
 <section>
@@ -399,7 +403,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DAY 3 ═══ -->
 <section>
@@ -554,7 +557,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <!-- ═══ DAY 4 ═══ -->
 <section>
@@ -639,7 +641,6 @@
   </div>
 </section>
 
-<hr class="div">
 
 <section>
   <div class="wrap">
@@ -676,6 +677,7 @@ function mkMap(id, center, zoom, stops, drawRoute) {
   var el = document.getElementById(id);
   if (!el) return;
   var map = L.map(id, {scrollWheelZoom:false}).setView(center, zoom);
+  (window._leafletMaps=window._leafletMaps||{})[id]=map;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'}).addTo(map);
   if (drawRoute && stops.length > 1) {
     L.polyline(stops.map(s=>[s.lat,s.lng]),{color:'#2B6CB0',weight:3,opacity:.7,dashArray:'7,5'}).addTo(map);
@@ -719,6 +721,21 @@ window.addEventListener('load', function(){
     {lat:38.9790,lng:-94.6090,type:'r66',num:'2',name:"Joe's Kansas City Bar-B-Que",note:'3002 W 47th Ave · Z-Man sandwich · inside a gas station'},
     {lat:40.700,lng:-99.082,num:'3',name:'Kearney, NE',note:'Overnight · Great Plains · sleep early — 571 mi tomorrow'}
   ],true);
+});
+document.querySelectorAll('.day-hd').forEach(function(hd) {
+  hd.addEventListener('click', function() {
+    var section = this.closest('.day-section');
+    section.classList.toggle('open');
+    if (section.classList.contains('open')) {
+      setTimeout(function() {
+        section.querySelectorAll('.seg-map').forEach(function(el) {
+          if (el.id && window._leafletMaps && window._leafletMaps[el.id]) {
+            window._leafletMaps[el.id].invalidateSize();
+          }
+        });
+      }, 50);
+    }
+  });
 });
 </script>
 </body>
