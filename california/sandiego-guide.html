@@ -629,17 +629,17 @@
 <script>
 (function () {
   var firebaseConfig = {
-    apiKey: "REPLACE_ME",
-    authDomain: "REPLACE_ME.firebaseapp.com",
-    projectId: "REPLACE_ME",
-    storageBucket: "REPLACE_ME.appspot.com",
-    messagingSenderId: "REPLACE_ME",
-    appId: "REPLACE_ME"
+    apiKey: "AIzaSyCYDvpmLOfJEWWLDplfd9YYzmO4wo5Dhhs",
+    authDomain: "cali-trip-2026.firebaseapp.com",
+    projectId: "cali-trip-2026",
+    storageBucket: "cali-trip-2026.firebasestorage.app",
+    messagingSenderId: "933278638851",
+    appId: "1:933278638851:web:1a5dfda6223e5343553f36"
   };
 
   var docRef = null;
   try {
-    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+    if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
       docRef = firebase.firestore().collection('checklists').doc('california-trip');
     }
