@@ -149,8 +149,8 @@
     .drive-col .nav-col-hd { color:#0B4F6C; border-color:#0B4F6C; }
     .walk-col .nav-col-hd { color:#276749; border-color:#276749; }
     .drive-stop, .walk-stop { display:flex; gap:10px; margin-bottom:10px; }
-    .ds-num, .ws-num { width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
-                       justify-content:center; font-family:sans-serif; font-size:10px; font-weight:700;
+    .ds-num, .ws-num { width:30px; height:30px; border-radius:50%; display:flex; align-items:center;
+                       justify-content:center; font-family:sans-serif; font-size:12px; font-weight:700;
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
@@ -774,9 +774,11 @@
     });
   }
 
+  var pending = {};
+
   function toggleSeg(el) {
     var key = el.getAttribute('data-seg');
-    if (!key) return;
+    if (!key || pending[key]) return; // ignore a second tap while this key's write is in flight
     var willCheck = !el.classList.contains('seg-checked');
 
     // Optimistic local update — works even if Firestore is unreachable.
@@ -784,11 +786,12 @@
     el.textContent = willCheck ? '✓' : originalText[key];
 
     if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    pending[key] = true;
     var update = {};
     update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
     docRef.update(update).catch(function (e) {
       console.warn('[checklist] write failed for', key, e);
-    });
+    }).then(function () { pending[key] = false; }, function () { pending[key] = false; });
   }
 
   // Single delegated listener — only matches .ds-num/.ws-num, never touches
