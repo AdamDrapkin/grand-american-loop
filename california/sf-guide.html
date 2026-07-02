@@ -189,6 +189,8 @@
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
+    .ds-num, .ws-num { cursor: pointer; user-select: none; }
+    .drive-stop .ds-num.seg-checked, .walk-stop .ws-num.seg-checked { background: #6b7280; }
     .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
     .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
     .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
@@ -275,7 +277,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Drive Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day1-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Chinatown</div>
                     <div class="ds-drive">From hotel · ~10 min drive · 1.8 mi</div>
@@ -283,7 +285,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day1-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">El Farolito — 2 PM Lunch 🌯</div>
                     <div class="ds-drive">From Chinatown · ~15 min drive</div>
@@ -291,7 +293,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day1-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Palace of Fine Arts</div>
                     <div class="ds-drive">From Mission · ~18 min drive</div>
@@ -299,7 +301,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day1-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">Russian Hill / Cable Car</div>
                     <div class="ds-drive">From Palace · ~12 min drive</div>
@@ -307,7 +309,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">5</div>
+                  <div class="ds-num" data-seg="map-day1-drive-5">5</div>
                   <div class="ds-info">
                     <div class="ds-name">Alamo Square — Painted Ladies</div>
                     <div class="ds-drive">From Russian Hill · ~10 min drive</div>
@@ -315,7 +317,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">6</div>
+                  <div class="ds-num" data-seg="map-day1-drive-6">6</div>
                   <div class="ds-info">
                     <div class="ds-name">Golden Gate Park — Tea Garden + Academy</div>
                     <div class="ds-drive">From Alamo Square · ~7 min drive · Arrive ~3:30 PM</div>
@@ -323,7 +325,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">7</div>
+                  <div class="ds-num" data-seg="map-day1-drive-7">7</div>
                   <div class="ds-info">
                     <div class="ds-name">Ebisu Sushi — 5:15 PM Dinner 🍣</div>
                     <div class="ds-drive">Same parking · 7 min walk from Music Concourse Garage</div>
@@ -331,7 +333,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">8</div>
+                  <div class="ds-num" data-seg="map-day1-drive-8">8</div>
                   <div class="ds-info">
                     <div class="ds-name">Twin Peaks — Sunset 🌅</div>
                     <div class="ds-drive">From Ebisu · ~8 min drive</div>
@@ -347,7 +349,7 @@
                 <div class="nav-col-hd">🚶 Walking Clusters</div>
                 <div class="wc-label">Cluster 1 — Embarcadero / Waterfront</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day1-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Ferry Building</div>
                     <div class="ws-from">Start · Embarcadero waterfront</div>
@@ -355,7 +357,7 @@
                 </div>
                 <div class="ws-leg">↓ 8 min · 0.4 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day1-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Chinatown — Dragon Gate</div>
                     <div class="ws-from">Grant Ave &amp; Stockton St · 45–60 min</div>
@@ -363,7 +365,7 @@
                 </div>
                 <div class="ws-leg">↓ 15 min · 0.7 mi to wharf</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day1-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Pier 39 / Sea Lions</div>
                     <div class="ws-from">Fisherman's Wharf area</div>
@@ -371,7 +373,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min · 0.3 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day1-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Fisherman's Wharf</div>
                     <div class="ws-from">Jefferson St · Crab stands</div>
@@ -379,7 +381,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min · 0.3 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day1-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">Ghirardelli Square</div>
                     <div class="ws-from">Historic chocolate factory · end cluster 1</div>
@@ -387,7 +389,7 @@
                 </div>
                 <div class="wc-label">Cluster 2 — Russian Hill</div>
                 <div class="walk-stop">
-                  <div class="ws-num">6</div>
+                  <div class="ws-num" data-seg="map-day1-walk-6">6</div>
                   <div class="ws-info">
                     <div class="ws-name">Powell-Hyde Cable Car</div>
                     <div class="ws-from">Board at Powell &amp; Market · $24 all-day</div>
@@ -395,7 +397,7 @@
                 </div>
                 <div class="ws-leg">↓ ride to Russian Hill summit</div>
                 <div class="walk-stop">
-                  <div class="ws-num">7</div>
+                  <div class="ws-num" data-seg="map-day1-walk-7">7</div>
                   <div class="ws-info">
                     <div class="ws-name">Lombard Street</div>
                     <div class="ws-from">Walk down the switchbacks · 20 min</div>
@@ -403,7 +405,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk</div>
                 <div class="walk-stop">
-                  <div class="ws-num">8</div>
+                  <div class="ws-num" data-seg="map-day1-walk-8">8</div>
                   <div class="ws-info">
                     <div class="ws-name">Full House House</div>
                     <div class="ws-from">1709 Broderick St · exterior only</div>
@@ -411,7 +413,7 @@
                 </div>
                 <div class="wc-label">Cluster 3 — Alamo Square</div>
                 <div class="walk-stop">
-                  <div class="ws-num">9</div>
+                  <div class="ws-num" data-seg="map-day1-walk-9">9</div>
                   <div class="ws-info">
                     <div class="ws-name">Painted Ladies</div>
                     <div class="ws-from">710 Steiner St · 20 min photo stop · end cluster 3</div>
@@ -419,7 +421,7 @@
                 </div>
                 <div class="wc-label">Cluster 4 — Golden Gate Park</div>
                 <div class="walk-stop">
-                  <div class="ws-num">10</div>
+                  <div class="ws-num" data-seg="map-day1-walk-10">10</div>
                   <div class="ws-info">
                     <div class="ws-name">Japanese Tea Garden</div>
                     <div class="ws-from">$15 adults · arrive ~3:30 PM · closes 5 PM</div>
@@ -427,7 +429,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min · 0.3 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">11</div>
+                  <div class="ws-num" data-seg="map-day1-walk-11">11</div>
                   <div class="ws-info">
                     <div class="ws-name">CA Academy of Sciences</div>
                     <div class="ws-from">$40 adults · Aquarium + Planetarium · 3:30–4:45 PM · closes 5 PM</div>
@@ -435,7 +437,7 @@
                 </div>
                 <div class="wc-label">Dinner Stop</div>
                 <div class="walk-stop">
-                  <div class="ws-num">🍣</div>
+                  <div class="ws-num" data-seg="map-day1-walk-12">🍣</div>
                   <div class="ws-info">
                     <div class="ws-name">Ebisu Sushi — 5:15 PM</div>
                     <div class="ws-from">1283 9th Ave · 7 min walk from Music Concourse Garage · paper waitlist at door</div>
@@ -444,7 +446,7 @@
                 <div class="ws-leg">↓ 8 min drive</div>
                 <div class="wc-label">Summit Stop</div>
                 <div class="walk-stop">
-                  <div class="ws-num">🌅</div>
+                  <div class="ws-num" data-seg="map-day1-walk-13">🌅</div>
                   <div class="ws-info">
                     <div class="ws-name">Twin Peaks</div>
                     <div class="ws-from">360° Bay panorama · sunset after dinner · Twin Peaks Blvd overlook lot</div>
@@ -766,7 +768,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day2-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Pier 33 — Alcatraz Ferry</div>
                     <div class="ds-drive">Walk 18 min via Embarcadero or drop car at hotel — no parking at Pier 33</div>
@@ -774,7 +776,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day2-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Fort Point NHS</div>
                     <div class="ds-drive">From Pier 33 · 17 min · 4.4 mi · Routes API</div>
@@ -782,7 +784,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day2-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">UC Berkeley</div>
                     <div class="ds-drive">From Fort Point · 48 min · 29.9 mi · Routes API</div>
@@ -790,7 +792,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day2-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">Muir Woods</div>
                     <div class="ds-drive">From Berkeley · 65 min · 28.2 mi · Routes API</div>
@@ -806,7 +808,7 @@
                 <div class="nav-col-hd">🚶 Walking Route</div>
                 <div class="wc-label">Pier 33 / Alcatraz Island</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day2-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Alcatraz Cell House Tour</div>
                     <div class="ws-from">9:20 AM ferry · 2.5 hrs on island · full self-guided audio route</div>
@@ -815,7 +817,7 @@
                 <div class="ws-leg">↓ ferry return · arrive Pier 33 ~noon</div>
                 <div class="wc-label">Fort Point / Golden Gate Bridge</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day2-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Fort Point NHS</div>
                     <div class="ws-from">201 Marine Dr · 45–55 min · 3-story fortification under GGB</div>
@@ -823,7 +825,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk to bridge overlook</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day2-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Golden Gate Bridge</div>
                     <div class="ws-from">Walk the span · north tower views · Baker Beach below</div>
@@ -831,7 +833,7 @@
                 </div>
                 <div class="wc-label">UC Berkeley Campus</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day2-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Sproul Plaza + Campanile</div>
                     <div class="ws-from">Campanile $5 · Sproul Plaza free · 45 min campus stroll</div>
@@ -839,7 +841,7 @@
                 </div>
                 <div class="wc-label">Muir Woods</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day2-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">Cathedral Grove Trail</div>
                     <div class="ws-from">$15/person · 1 mi flat · old-growth coast redwoods</div>
@@ -1155,7 +1157,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day3-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Bouchon Bakery, Yountville</div>
                     <div class="ds-drive">From hotel · 61 min · 54.5 mi · Routes API · depart 8:00 AM</div>
@@ -1163,7 +1165,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day3-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Sterling Vineyards, Calistoga</div>
                     <div class="ds-drive">From Yountville · 26 min · 17.0 mi · Routes API</div>
@@ -1171,7 +1173,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day3-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Napa Oxbow Public Market</div>
                     <div class="ds-drive">From Calistoga · 38 min · 27.5 mi · Routes API</div>
@@ -1179,7 +1181,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day3-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">The Waterfront Seafood Grill — Birthday Dinner 🎂</div>
                     <div class="ds-drive">From Oxbow · 5 min · 0.4 mi · ✅ CONFIRMED 4:30 PM reservation</div>
@@ -1187,7 +1189,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">5</div>
+                  <div class="ds-num" data-seg="map-day3-drive-5">5</div>
                   <div class="ds-info">
                     <div class="ds-name">Crissy Field East Beach — Fireworks 🎆</div>
                     <div class="ds-drive">From Napa · 59 min · 49.4 mi · Routes API Jul 4 7:15 PM · plan 75 min</div>
@@ -1203,7 +1205,7 @@
                 <div class="nav-col-hd">🚶 Walking Route</div>
                 <div class="wc-label">Yountville</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day3-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Bouchon Bakery</div>
                     <div class="ws-from">6528 Washington St · takeout croissants + coffee · 45 min</div>
@@ -1211,7 +1213,7 @@
                 </div>
                 <div class="ws-leg">↓ short stroll on Washington St</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day3-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Yountville village</div>
                     <div class="ws-from">Browse gallery row · 10 min · depart 9:46 AM</div>
@@ -1219,7 +1221,7 @@
                 </div>
                 <div class="wc-label">Calistoga — Sterling Vineyards</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day3-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Aerial Tram + Tasting Room</div>
                     <div class="ws-from">Tram ride up · vineyard walk · 4 wines · ~1 hour</div>
@@ -1227,7 +1229,7 @@
                 </div>
                 <div class="wc-label">Napa — Oxbow Market</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day3-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Oxbow Public Market</div>
                     <div class="ws-from">610 1st St · Hog Island Oyster Bar · 40+ vendors · 1.5 hrs</div>
@@ -1235,7 +1237,7 @@
                 </div>
                 <div class="ws-leg">↓ short walk along Napa River</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day3-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">The Waterfront Seafood Grill</div>
                     <div class="ws-from">720 Main St · birthday dinner · ✅ CONFIRMED 4:30 PM · leave by 7:15 PM</div>
@@ -1244,7 +1246,7 @@
                 <div class="ws-leg">↓ 59 min drive US-101 → Golden Gate Bridge</div>
                 <div class="wc-label">San Francisco — Crissy Field</div>
                 <div class="walk-stop">
-                  <div class="ws-num">6</div>
+                  <div class="ws-num" data-seg="map-day3-walk-6">6</div>
                   <div class="ws-info">
                     <div class="ws-name">Crissy Field East Beach — July 4th Fireworks 🎆</div>
                     <div class="ws-from">1199 East Beach · free parking · 5-min walk to grass · fireworks 9:30 PM</div>
@@ -1252,7 +1254,7 @@
                 </div>
                 <div class="ws-leg">↓ 0.8 mi walk east on waterfront trail</div>
                 <div class="walk-stop">
-                  <div class="ws-num">→</div>
+                  <div class="ws-num" data-seg="map-day3-walk-7">→</div>
                   <div class="ws-info">
                     <div class="ws-name">Ghirardelli Square 🍦 Birthday Dessert</div>
                     <div class="ws-from">900 North Point St · birthday sundaes · 0.8 mi waterfront walk from East Beach · open until 11 PM · the birthday dessert finish</div>
@@ -1639,6 +1641,79 @@
       }
     });
   });
+</script>
+
+<!-- ═══ Checklist sync (Firestore) — clickable driving/walking route checkmarks ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  var firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  var docRef = null;
+  try {
+    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      docRef = firebase.firestore().collection('checklists').doc('california-trip');
+    }
+  } catch (e) {
+    console.warn('[checklist] Firebase unavailable — checkmarks will not persist.', e);
+  }
+
+  var originalText = {};
+  document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+    originalText[el.getAttribute('data-seg')] = el.textContent;
+  });
+
+  function applyState(segments) {
+    segments = segments || {};
+    document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+      var key = el.getAttribute('data-seg');
+      var checked = !!segments[key];
+      el.classList.toggle('seg-checked', checked);
+      el.textContent = checked ? '✓' : originalText[key];
+    });
+  }
+
+  function toggleSeg(el) {
+    var key = el.getAttribute('data-seg');
+    if (!key) return;
+    var willCheck = !el.classList.contains('seg-checked');
+
+    // Optimistic local update — works even if Firestore is unreachable.
+    el.classList.toggle('seg-checked', willCheck);
+    el.textContent = willCheck ? '✓' : originalText[key];
+
+    if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    var update = {};
+    update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
+    docRef.update(update).catch(function (e) {
+      console.warn('[checklist] write failed for', key, e);
+    });
+  }
+
+  // Single delegated listener — only matches .ds-num/.ws-num, never touches
+  // .day-hd, so the existing day-section collapse/expand handler is unaffected.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.ds-num[data-seg], .ws-num[data-seg]');
+    if (el) toggleSeg(el);
+  });
+
+  if (docRef) {
+    docRef.onSnapshot(function (snap) {
+      applyState(snap.exists ? snap.data().segments : {});
+    }, function (err) {
+      console.warn('[checklist] onSnapshot error (offline?)', err);
+    });
+  }
+})();
 </script>
 </body>
 </html>

@@ -155,6 +155,8 @@
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
+    .ds-num, .ws-num { cursor: pointer; user-select: none; }
+    .drive-stop .ds-num.seg-checked, .walk-stop .ws-num.seg-checked { background: #6b7280; }
     .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
     .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
     .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
@@ -229,7 +231,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day4-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">17-Mile Drive</div>
                     <div class="ds-drive">From SF · 1h 53m · 123.9 mi · depart 7:00 AM</div>
@@ -237,7 +239,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day4-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Carmel-by-the-Sea</div>
                     <div class="ds-drive">From 17-Mile Drive · 3 min · 0.5 mi</div>
@@ -245,7 +247,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day4-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Point Lobos State Reserve</div>
                     <div class="ds-drive">From Carmel · 13 min · 4.3 mi</div>
@@ -253,7 +255,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day4-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">Bixby Bridge</div>
                     <div class="ds-drive">From Point Lobos · 19 min · 11.2 mi</div>
@@ -261,7 +263,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">5</div>
+                  <div class="ds-num" data-seg="map-day4-drive-5">5</div>
                   <div class="ds-info">
                     <div class="ds-name">Pfeiffer Beach</div>
                     <div class="ds-drive">From Bixby · 33 min · 15.3 mi (via Hurricane Point)</div>
@@ -269,7 +271,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">6</div>
+                  <div class="ds-num" data-seg="map-day4-drive-6">6</div>
                   <div class="ds-info">
                     <div class="ds-name">McWay Falls</div>
                     <div class="ds-drive">From Pfeiffer Beach · 25 min · 11.9 mi</div>
@@ -277,7 +279,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">7</div>
+                  <div class="ds-num" data-seg="map-day4-drive-7">7</div>
                   <div class="ds-info">
                     <div class="ds-name">Ragged Point</div>
                     <div class="ds-drive">From McWay · 58 min · 37.4 mi · arrive ~4:28 PM</div>
@@ -285,7 +287,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">8</div>
+                  <div class="ds-num" data-seg="map-day4-drive-8">8</div>
                   <div class="ds-info">
                     <div class="ds-name">Elephant Seals — Piedras Blancas</div>
                     <div class="ds-drive">From Ragged Point · 18 min · 10.9 mi</div>
@@ -293,7 +295,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">9</div>
+                  <div class="ds-num" data-seg="map-day4-drive-9">9</div>
                   <div class="ds-info">
                     <div class="ds-name">Linn's Restaurant — Dinner 🍽️</div>
                     <div class="ds-drive">From Castle Inn · 7 min · 2.5 mi · Routes API</div>
@@ -309,7 +311,7 @@
                 <div class="nav-col-hd">🚶 Walking Route</div>
                 <div class="wc-label">17-Mile Drive</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day4-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Lone Cypress + Pebble Beach scenic pullouts</div>
                     <div class="ws-from">Drive the loop · stop at overlooks · 45 min–1 hr</div>
@@ -317,7 +319,7 @@
                 </div>
                 <div class="wc-label">Carmel-by-the-Sea</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day4-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Ocean Ave village stroll</div>
                     <div class="ws-from">Boutiques · galleries · no street addresses (town tradition)</div>
@@ -325,7 +327,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk downhill</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day4-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Carmel Beach Bluff Walkway</div>
                     <div class="ws-from">Scenic road path · 30–45 min · white-sand beach below</div>
@@ -333,7 +335,7 @@
                 </div>
                 <div class="wc-label">Point Lobos</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day4-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">China Cove + Bird Island Trail</div>
                     <div class="ws-from">1 mi loop · sea otters · tidal pools · 1–1.5 hrs</div>
@@ -341,7 +343,7 @@
                 </div>
                 <div class="wc-label">Bixby Bridge</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day4-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">North Turnout Overlook</div>
                     <div class="ws-from">Best framing for the arch · 15 min · photos only</div>
@@ -349,7 +351,7 @@
                 </div>
                 <div class="wc-label">Pfeiffer Beach</div>
                 <div class="walk-stop">
-                  <div class="ws-num">6</div>
+                  <div class="ws-num" data-seg="map-day4-walk-6">6</div>
                   <div class="ws-info">
                     <div class="ws-name">Purple Sand + Keyhole Arch</div>
                     <div class="ws-from">Beach walk · manganese garnet sand · dramatic arch · 1–1.5 hrs</div>
@@ -357,7 +359,7 @@
                 </div>
                 <div class="wc-label">McWay Falls</div>
                 <div class="walk-stop">
-                  <div class="ws-num">7</div>
+                  <div class="ws-num" data-seg="map-day4-walk-7">7</div>
                   <div class="ws-info">
                     <div class="ws-name">Overlook Trail</div>
                     <div class="ws-from">0.5 mi flat · 80-ft waterfall onto the beach · 45 min</div>
@@ -365,7 +367,7 @@
                 </div>
                 <div class="wc-label">Ragged Point + Elephant Seals</div>
                 <div class="walk-stop">
-                  <div class="ws-num">8</div>
+                  <div class="ws-num" data-seg="map-day4-walk-8">8</div>
                   <div class="ws-info">
                     <div class="ws-name">Clifftop Overlook + Seal Vista</div>
                     <div class="ws-from">Ragged Point 15 min · Elephant Seal platform 30 min · roadside paved viewing area</div>
@@ -881,6 +883,79 @@
       }
     });
   });
+</script>
+
+<!-- ═══ Checklist sync (Firestore) — clickable driving/walking route checkmarks ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  var firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  var docRef = null;
+  try {
+    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      docRef = firebase.firestore().collection('checklists').doc('california-trip');
+    }
+  } catch (e) {
+    console.warn('[checklist] Firebase unavailable — checkmarks will not persist.', e);
+  }
+
+  var originalText = {};
+  document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+    originalText[el.getAttribute('data-seg')] = el.textContent;
+  });
+
+  function applyState(segments) {
+    segments = segments || {};
+    document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+      var key = el.getAttribute('data-seg');
+      var checked = !!segments[key];
+      el.classList.toggle('seg-checked', checked);
+      el.textContent = checked ? '✓' : originalText[key];
+    });
+  }
+
+  function toggleSeg(el) {
+    var key = el.getAttribute('data-seg');
+    if (!key) return;
+    var willCheck = !el.classList.contains('seg-checked');
+
+    // Optimistic local update — works even if Firestore is unreachable.
+    el.classList.toggle('seg-checked', willCheck);
+    el.textContent = willCheck ? '✓' : originalText[key];
+
+    if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    var update = {};
+    update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
+    docRef.update(update).catch(function (e) {
+      console.warn('[checklist] write failed for', key, e);
+    });
+  }
+
+  // Single delegated listener — only matches .ds-num/.ws-num, never touches
+  // .day-hd, so the existing day-section collapse/expand handler is unaffected.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.ds-num[data-seg], .ws-num[data-seg]');
+    if (el) toggleSeg(el);
+  });
+
+  if (docRef) {
+    docRef.onSnapshot(function (snap) {
+      applyState(snap.exists ? snap.data().segments : {});
+    }, function (err) {
+      console.warn('[checklist] onSnapshot error (offline?)', err);
+    });
+  }
+})();
 </script>
 </body>
 </html>

@@ -154,6 +154,8 @@
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
+    .ds-num, .ws-num { cursor: pointer; user-select: none; }
+    .drive-stop .ds-num.seg-checked, .walk-stop .ws-num.seg-checked { background: #6b7280; }
     .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
     .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
     .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
@@ -227,7 +229,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day5-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Hearst Castle</div>
                     <div class="ds-drive">From Cambria · 15 min · 9.6 mi · depart 8:45 AM</div>
@@ -235,7 +237,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day5-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Solvang</div>
                     <div class="ds-drive">From Hearst Castle · 1h 54m · 108.1 mi · arrive ~1:30 PM</div>
@@ -243,7 +245,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day5-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Beachside Inn, Santa Barbara</div>
                     <div class="ds-drive">From Solvang · 45 min · 33.3 mi · arrive ~3:15 PM</div>
@@ -251,7 +253,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day5-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">East Beach — Afternoon Swim 🏊</div>
                     <div class="ds-drive">Walk from hotel · 5 min · 0.3 mi · no car needed</div>
@@ -259,7 +261,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">5</div>
+                  <div class="ds-num" data-seg="map-day5-drive-5">5</div>
                   <div class="ds-info">
                     <div class="ds-name">Brophy Bros — Dinner 🍽️</div>
                     <div class="ds-drive">From hotel · 2 min · 0.4 mi · Routes API</div>
@@ -275,7 +277,7 @@
                 <div class="nav-col-hd">🚶 Walking Route</div>
                 <div class="wc-label">Hearst Castle</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day5-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Grand Rooms Tour (or Neptune Pool Tour)</div>
                     <div class="ws-from">Shuttle from visitor center · 1.5–2 hrs · indoor + outdoor areas</div>
@@ -283,7 +285,7 @@
                 </div>
                 <div class="ws-leg">↓ shuttle back to visitor center</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day5-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Visitor Center + Museum</div>
                     <div class="ws-from">Exhibits on Hearst family · 20 min · depart ~noon</div>
@@ -291,7 +293,7 @@
                 </div>
                 <div class="wc-label">Solvang</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day5-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Mission Dr village stroll</div>
                     <div class="ws-from">Aebleskiver stands · windmills · Danish bakeries · 1–1.5 hrs</div>
@@ -299,7 +301,7 @@
                 </div>
                 <div class="ws-leg">↓ 10 min drive</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day5-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Ostrichland USA (optional)</div>
                     <div class="ws-from">Feed ostriches · pure joy · $5 adults · 30 min</div>
@@ -307,7 +309,7 @@
                 </div>
                 <div class="wc-label">Santa Barbara</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day5-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">State Street + Stearns Wharf</div>
                     <div class="ws-from">Shops + restaurants · beach walk · 2+ hrs · evening wine &amp; cheese at hotel</div>
@@ -315,7 +317,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk east along Cabrillo Blvd</div>
                 <div class="walk-stop">
-                  <div class="ws-num">🏊</div>
+                  <div class="ws-num" data-seg="map-day5-walk-6">🏊</div>
                   <div class="ws-info">
                     <div class="ws-name">East Beach — Afternoon Swim</div>
                     <div class="ws-from">3:30–6:00 PM · walk from hotel · bring baby oil for tar · lifeguards on duty</div>
@@ -323,7 +325,7 @@
                 </div>
                 <div class="ws-leg">↓ 2 min drive / 0.4 mi to Brophy Bros</div>
                 <div class="walk-stop">
-                  <div class="ws-num">🍽️</div>
+                  <div class="ws-num" data-seg="map-day5-walk-7">🍽️</div>
                   <div class="ws-info">
                     <div class="ws-name">Brophy Bros — Harbor Dinner</div>
                     <div class="ws-from">119 Harbor Way · waterfront deck · walk or short drive from hotel</div>
@@ -731,6 +733,79 @@
       }
     });
   });
+</script>
+
+<!-- ═══ Checklist sync (Firestore) — clickable driving/walking route checkmarks ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  var firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  var docRef = null;
+  try {
+    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      docRef = firebase.firestore().collection('checklists').doc('california-trip');
+    }
+  } catch (e) {
+    console.warn('[checklist] Firebase unavailable — checkmarks will not persist.', e);
+  }
+
+  var originalText = {};
+  document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+    originalText[el.getAttribute('data-seg')] = el.textContent;
+  });
+
+  function applyState(segments) {
+    segments = segments || {};
+    document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+      var key = el.getAttribute('data-seg');
+      var checked = !!segments[key];
+      el.classList.toggle('seg-checked', checked);
+      el.textContent = checked ? '✓' : originalText[key];
+    });
+  }
+
+  function toggleSeg(el) {
+    var key = el.getAttribute('data-seg');
+    if (!key) return;
+    var willCheck = !el.classList.contains('seg-checked');
+
+    // Optimistic local update — works even if Firestore is unreachable.
+    el.classList.toggle('seg-checked', willCheck);
+    el.textContent = willCheck ? '✓' : originalText[key];
+
+    if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    var update = {};
+    update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
+    docRef.update(update).catch(function (e) {
+      console.warn('[checklist] write failed for', key, e);
+    });
+  }
+
+  // Single delegated listener — only matches .ds-num/.ws-num, never touches
+  // .day-hd, so the existing day-section collapse/expand handler is unaffected.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.ds-num[data-seg], .ws-num[data-seg]');
+    if (el) toggleSeg(el);
+  });
+
+  if (docRef) {
+    docRef.onSnapshot(function (snap) {
+      applyState(snap.exists ? snap.data().segments : {});
+    }, function (err) {
+      console.warn('[checklist] onSnapshot error (offline?)', err);
+    });
+  }
+})();
 </script>
 </body>
 </html>

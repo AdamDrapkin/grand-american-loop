@@ -179,6 +179,8 @@
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
+    .ds-num, .ws-num { cursor: pointer; user-select: none; }
+    .drive-stop .ds-num.seg-checked, .walk-stop .ws-num.seg-checked { background: #6b7280; }
     .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
     .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
     .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
@@ -319,7 +321,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Stops</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day8-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Beverly Hills / Rodeo Drive</div>
                     <div class="ds-drive">From hotel · 12 min · 2.2 mi · Routes API verified</div>
@@ -327,7 +329,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day8-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Hollywood</div>
                     <div class="ds-drive">From Beverly Hills · 14 min · 5.3 mi · Routes API verified</div>
@@ -335,7 +337,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day8-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Downtown LA</div>
                     <div class="ds-drive">From Hollywood · 12 min · 7.8 mi · Routes API verified</div>
@@ -343,7 +345,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day8-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">Pizzeria Mozza — ✅ Dinner 7 PM</div>
                     <div class="ds-drive">From Downtown LA · 13 min · 6.7 mi · Routes API verified</div>
@@ -359,7 +361,7 @@
                 <div class="nav-col-hd">📍 What to See</div>
                 <div class="wc-label">Beverly Hills Cluster</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day8-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Rodeo Drive</div>
                     <div class="ws-from">Wilshire → Santa Monica · 3 blocks · 0.5 mi strip walk</div>
@@ -367,7 +369,7 @@
                 </div>
                 <div class="ws-leg">↓ 18 min walk · 0.8 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day8-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Beverly Hills Hotel (Pink Palace)</div>
                     <div class="ws-from">9641 Sunset Blvd · Polo Lounge for a drink</div>
@@ -375,7 +377,7 @@
                 </div>
                 <div class="wc-label">Hollywood Cluster</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day8-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Walk of Fame</div>
                     <div class="ws-from">La Brea → Gower · 15 blocks · 0.8 mi · 20 min</div>
@@ -383,7 +385,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day8-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Grauman's Chinese Theatre</div>
                     <div class="ws-from">Hand + footprints · free forecourt · 6925 Hollywood Blvd</div>
@@ -391,7 +393,7 @@
                 </div>
                 <div class="wc-label">Downtown LA Cluster</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day8-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">Walt Disney Concert Hall</div>
                     <div class="ws-from">111 S Grand Ave · rooftop garden · 0.3 mi · 15 min</div>
@@ -399,7 +401,7 @@
                 </div>
                 <div class="ws-leg">↓ 21 min · 0.9 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">6</div>
+                  <div class="ws-num" data-seg="map-day8-walk-6">6</div>
                   <div class="ws-info">
                     <div class="ws-name">Little Tokyo</div>
                     <div class="ws-from">Ramen · mochi · Nisei Week district</div>
@@ -407,7 +409,7 @@
                 </div>
                 <div class="ws-leg">↓ 17 min · 0.7 mi</div>
                 <div class="walk-stop">
-                  <div class="ws-num">7</div>
+                  <div class="ws-num" data-seg="map-day8-walk-7">7</div>
                   <div class="ws-info">
                     <div class="ws-name">Grand Central Market + Chinatown</div>
                     <div class="ws-from">317 S Broadway · 40+ vendors · open to 10 PM · then Chinatown 27 min 1.2 mi</div>
@@ -543,7 +545,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Stops</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day9-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Griffith Observatory Area</div>
                     <div class="ds-drive">From hotel · 33 min · 8.2 mi · Routes API verified · arrive by 10 AM · parking fills by noon</div>
@@ -551,7 +553,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day9-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Santa Monica → Venice</div>
                     <div class="ds-drive">From Griffith · 31 min · 23.8 mi · Routes API verified</div>
@@ -559,7 +561,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day9-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Felix Trattoria — ✅ Dinner 7 PM</div>
                     <div class="ds-drive">From Venice Boardwalk · 3 min walk or 14 min drive · 1023 Abbot Kinney Blvd</div>
@@ -575,7 +577,7 @@
                 <div class="nav-col-hd">📍 What to See</div>
                 <div class="wc-label">Griffith Hills</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day9-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Griffith Observatory</div>
                     <div class="ws-from">Opens 10 AM · grounds + viewpoints · 0.3 mi · 20 min</div>
@@ -583,7 +585,7 @@
                 </div>
                 <div class="ws-leg">↓ optional: Mt. Hollywood Trail 2.5 mi RT · 1.5 hrs</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day9-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Hollywood Sign Viewpoint</div>
                     <div class="ws-from">Best view from Observatory lawn · no hiking required</div>
@@ -591,7 +593,7 @@
                 </div>
                 <div class="wc-label">Santa Monica + Venice</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day9-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Santa Monica Pier</div>
                     <div class="ws-from">End of Route 66 · Pacific Park ferris wheel · 30 min</div>
@@ -599,7 +601,7 @@
                 </div>
                 <div class="ws-leg">↓ 44 min beach path · 2.0 mi south</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day9-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Venice Boardwalk</div>
                     <div class="ws-from">Muscle Beach · street performers · skate park</div>
@@ -607,7 +609,7 @@
                 </div>
                 <div class="ws-leg">↓ 3 blocks east</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day9-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">Venice Canals</div>
                     <div class="ws-from">Dell Ave · 30–45 min · century-old canal network</div>
@@ -615,7 +617,7 @@
                 </div>
                 <div class="ws-leg">↓ 8 min walk</div>
                 <div class="walk-stop">
-                  <div class="ws-num">6</div>
+                  <div class="ws-num" data-seg="map-day9-walk-6">6</div>
                   <div class="ws-info">
                     <div class="ws-name">Abbot Kinney Blvd</div>
                     <div class="ws-from">Independent shops · Intelligentsia Coffee · "Coolest block in America"</div>
@@ -805,7 +807,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day10-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">Santa Monica Farmers Market</div>
                     <div class="ds-drive">From hotel · 30 min · 11.5 mi · Routes API verified · arrive by 8 AM</div>
@@ -813,7 +815,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day10-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Point Dume / Malibu Coast</div>
                     <div class="ds-drive">From Farmers Market · 31 min · 20.1 mi · Routes API verified · north on PCH</div>
@@ -821,7 +823,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day10-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Getty Center — ⚠️ Book 3 PM Timed Entry</div>
                     <div class="ds-drive">From Point Dume · 43 min · 30.0 mi · Routes API verified · arrive by 3 PM</div>
@@ -829,7 +831,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day10-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">Malibu Farm Restaurant — ✅ Dinner 6:30 PM</div>
                     <div class="ds-drive">From Getty Center · 34 min · 21.0 mi · Routes API verified · PCH south to Malibu Pier</div>
@@ -845,7 +847,7 @@
                 <div class="nav-col-hd">📍 What to See</div>
                 <div class="wc-label">Santa Monica — 8 AM</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day10-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Arizona Ave & 3rd St Market</div>
                     <div class="ws-from">Sat 8 AM–1 PM · produce · pastries · celebrity chef browse · 0.4 mi stroll</div>
@@ -853,7 +855,7 @@
                 </div>
                 <div class="wc-label">Malibu — 10 AM to 2 PM</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day10-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Point Dume State Beach</div>
                     <div class="ws-from">Westward Beach Rd · dramatic bluff trail · Zuma Beach adjacent</div>
@@ -861,7 +863,7 @@
                 </div>
                 <div class="ws-leg">↓ few mi north on PCH</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day10-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">El Matador State Beach</div>
                     <div class="ws-from">Sea stacks & caves · most dramatic beach in LA · sunrise / afternoon light</div>
@@ -869,7 +871,7 @@
                 </div>
                 <div class="wc-label">Getty — 3 PM timed entry</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day10-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Getty Tram + Central Garden</div>
                     <div class="ws-from">Free tram · 0.8 mi campus · Impressionists · panoramic city view · 1.5–2 hrs</div>
@@ -1197,6 +1199,79 @@
       }
     });
   });
+</script>
+
+<!-- ═══ Checklist sync (Firestore) — clickable driving/walking route checkmarks ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  var firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  var docRef = null;
+  try {
+    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      docRef = firebase.firestore().collection('checklists').doc('california-trip');
+    }
+  } catch (e) {
+    console.warn('[checklist] Firebase unavailable — checkmarks will not persist.', e);
+  }
+
+  var originalText = {};
+  document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+    originalText[el.getAttribute('data-seg')] = el.textContent;
+  });
+
+  function applyState(segments) {
+    segments = segments || {};
+    document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+      var key = el.getAttribute('data-seg');
+      var checked = !!segments[key];
+      el.classList.toggle('seg-checked', checked);
+      el.textContent = checked ? '✓' : originalText[key];
+    });
+  }
+
+  function toggleSeg(el) {
+    var key = el.getAttribute('data-seg');
+    if (!key) return;
+    var willCheck = !el.classList.contains('seg-checked');
+
+    // Optimistic local update — works even if Firestore is unreachable.
+    el.classList.toggle('seg-checked', willCheck);
+    el.textContent = willCheck ? '✓' : originalText[key];
+
+    if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    var update = {};
+    update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
+    docRef.update(update).catch(function (e) {
+      console.warn('[checklist] write failed for', key, e);
+    });
+  }
+
+  // Single delegated listener — only matches .ds-num/.ws-num, never touches
+  // .day-hd, so the existing day-section collapse/expand handler is unaffected.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.ds-num[data-seg], .ws-num[data-seg]');
+    if (el) toggleSeg(el);
+  });
+
+  if (docRef) {
+    docRef.onSnapshot(function (snap) {
+      applyState(snap.exists ? snap.data().segments : {});
+    }, function (err) {
+      console.warn('[checklist] onSnapshot error (offline?)', err);
+    });
+  }
+})();
 </script>
 </body>
 </html>

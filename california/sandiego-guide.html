@@ -144,6 +144,8 @@
                        color:#fff; flex-shrink:0; margin-top:2px; }
     .drive-stop .ds-num { background:#0B4F6C; }
     .walk-stop .ws-num  { background:#276749; }
+    .ds-num, .ws-num { cursor: pointer; user-select: none; }
+    .drive-stop .ds-num.seg-checked, .walk-stop .ws-num.seg-checked { background: #6b7280; }
     .ds-name, .ws-name  { font-family:sans-serif; font-size:.82rem; font-weight:700; color:var(--dark); }
     .ds-drive, .ws-from { font-family:sans-serif; font-size:.72rem; color:var(--mid); margin:2px 0; }
     .ds-park { font-family:sans-serif; font-size:.72rem; color:#276749; margin-top:3px; }
@@ -217,7 +219,7 @@
               <div class="nav-col drive-col">
                 <div class="nav-col-hd">🚗 Driving Route</div>
                 <div class="drive-stop">
-                  <div class="ds-num">1</div>
+                  <div class="ds-num" data-seg="map-day6-drive-1">1</div>
                   <div class="ds-info">
                     <div class="ds-name">El Matador Beach, Malibu</div>
                     <div class="ds-drive">From Santa Barbara · 1h 5m · 60.7 mi · depart 8:00 AM</div>
@@ -225,7 +227,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">2</div>
+                  <div class="ds-num" data-seg="map-day6-drive-2">2</div>
                   <div class="ds-info">
                     <div class="ds-name">Newport Beach / Balboa Island</div>
                     <div class="ds-drive">From El Matador · 1h 40m · 76.7 mi · arrive ~12:10 PM</div>
@@ -233,7 +235,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">3</div>
+                  <div class="ds-num" data-seg="map-day6-drive-3">3</div>
                   <div class="ds-info">
                     <div class="ds-name">Laguna Beach</div>
                     <div class="ds-drive">From Newport · 23 min · 10.7 mi · arrive ~12:45 PM</div>
@@ -241,7 +243,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">4</div>
+                  <div class="ds-num" data-seg="map-day6-drive-4">4</div>
                   <div class="ds-info">
                     <div class="ds-name">La Jolla Cove</div>
                     <div class="ds-drive">From Laguna · 1h 16m · 70.9 mi · arrive ~3:16 PM</div>
@@ -249,7 +251,7 @@
                   </div>
                 </div>
                 <div class="drive-stop">
-                  <div class="ds-num">5</div>
+                  <div class="ds-num" data-seg="map-day6-drive-5">5</div>
                   <div class="ds-info">
                     <div class="ds-name">Bali Hai Restaurant — Dinner 🍽️</div>
                     <div class="ds-drive">From hotel · 22 min · 11.6 mi · Routes API</div>
@@ -265,7 +267,7 @@
                 <div class="nav-col-hd">🚶 Walking Route</div>
                 <div class="wc-label">El Matador Beach</div>
                 <div class="walk-stop">
-                  <div class="ws-num">1</div>
+                  <div class="ws-num" data-seg="map-day6-walk-1">1</div>
                   <div class="ws-info">
                     <div class="ws-name">Sea Stacks + Tidal Caves</div>
                     <div class="ws-from">Stairs down from lot · dramatic rock formations · 1.5–2 hrs</div>
@@ -273,7 +275,7 @@
                 </div>
                 <div class="wc-label">Newport Beach / Balboa Island</div>
                 <div class="walk-stop">
-                  <div class="ws-num">2</div>
+                  <div class="ws-num" data-seg="map-day6-walk-2">2</div>
                   <div class="ws-info">
                     <div class="ws-name">Marine Ave stroll</div>
                     <div class="ws-from">Balboa Bar · Newport Pier · 1–1.5 hrs · casual beach town vibe</div>
@@ -281,7 +283,7 @@
                 </div>
                 <div class="wc-label">Laguna Beach</div>
                 <div class="walk-stop">
-                  <div class="ws-num">3</div>
+                  <div class="ws-num" data-seg="map-day6-walk-3">3</div>
                   <div class="ws-info">
                     <div class="ws-name">Heisler Park Bluff Walk</div>
                     <div class="ws-from">Clifftop gardens · stairs to coves below · 1–1.5 hrs</div>
@@ -289,7 +291,7 @@
                 </div>
                 <div class="ws-leg">↓ 5 min walk</div>
                 <div class="walk-stop">
-                  <div class="ws-num">4</div>
+                  <div class="ws-num" data-seg="map-day6-walk-4">4</div>
                   <div class="ws-info">
                     <div class="ws-name">Main Beach</div>
                     <div class="ws-from">Volleyball + lifeguard tower · central Laguna · depart ~2:00 PM</div>
@@ -297,7 +299,7 @@
                 </div>
                 <div class="wc-label">La Jolla Cove</div>
                 <div class="walk-stop">
-                  <div class="ws-num">5</div>
+                  <div class="ws-num" data-seg="map-day6-walk-5">5</div>
                   <div class="ws-info">
                     <div class="ws-name">Cove + Children's Pool sea lion colony</div>
                     <div class="ws-from">1100 Coast Blvd · free · sea lions on the beach · 1 hr · depart ~4:15 PM</div>
@@ -619,6 +621,79 @@
       }
     });
   });
+</script>
+
+<!-- ═══ Checklist sync (Firestore) — clickable driving/walking route checkmarks ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  var firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  var docRef = null;
+  try {
+    if (firebaseConfig.apiKey !== "REPLACE_ME" && !firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+      docRef = firebase.firestore().collection('checklists').doc('california-trip');
+    }
+  } catch (e) {
+    console.warn('[checklist] Firebase unavailable — checkmarks will not persist.', e);
+  }
+
+  var originalText = {};
+  document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+    originalText[el.getAttribute('data-seg')] = el.textContent;
+  });
+
+  function applyState(segments) {
+    segments = segments || {};
+    document.querySelectorAll('.ds-num[data-seg], .ws-num[data-seg]').forEach(function (el) {
+      var key = el.getAttribute('data-seg');
+      var checked = !!segments[key];
+      el.classList.toggle('seg-checked', checked);
+      el.textContent = checked ? '✓' : originalText[key];
+    });
+  }
+
+  function toggleSeg(el) {
+    var key = el.getAttribute('data-seg');
+    if (!key) return;
+    var willCheck = !el.classList.contains('seg-checked');
+
+    // Optimistic local update — works even if Firestore is unreachable.
+    el.classList.toggle('seg-checked', willCheck);
+    el.textContent = willCheck ? '✓' : originalText[key];
+
+    if (!docRef) return; // offline / not configured: UI-only, no persistence, no crash
+    var update = {};
+    update['segments.' + key] = willCheck ? true : firebase.firestore.FieldValue.delete();
+    docRef.update(update).catch(function (e) {
+      console.warn('[checklist] write failed for', key, e);
+    });
+  }
+
+  // Single delegated listener — only matches .ds-num/.ws-num, never touches
+  // .day-hd, so the existing day-section collapse/expand handler is unaffected.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('.ds-num[data-seg], .ws-num[data-seg]');
+    if (el) toggleSeg(el);
+  });
+
+  if (docRef) {
+    docRef.onSnapshot(function (snap) {
+      applyState(snap.exists ? snap.data().segments : {});
+    }, function (err) {
+      console.warn('[checklist] onSnapshot error (offline?)', err);
+    });
+  }
+})();
 </script>
 </body>
 </html>
